@@ -3,6 +3,97 @@ import Long = require("long");
 /** Namespace common. */
 export namespace common {
 
+    /** Properties of an Empty. */
+    interface IEmpty {
+    }
+
+    /** Represents an Empty. */
+    class Empty implements IEmpty {
+
+        /**
+         * Constructs a new Empty.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: common.IEmpty);
+
+        /**
+         * Creates a new Empty instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Empty instance
+         */
+        public static create(properties?: common.IEmpty): common.Empty;
+
+        /**
+         * Encodes the specified Empty message. Does not implicitly {@link common.Empty.verify|verify} messages.
+         * @param message Empty message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: common.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Empty message, length delimited. Does not implicitly {@link common.Empty.verify|verify} messages.
+         * @param message Empty message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: common.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): common.Empty;
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): common.Empty;
+
+        /**
+         * Verifies an Empty message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an Empty message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Empty
+         */
+        public static fromObject(object: { [k: string]: any }): common.Empty;
+
+        /**
+         * Creates a plain object from an Empty message. Also converts values to other types if specified.
+         * @param message Empty
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: common.Empty, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Empty to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Empty
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a SubscribeRequest. */
     interface ISubscribeRequest {
 
@@ -703,7 +794,7 @@ export namespace user {
          * @param request ChangePasswdRequest message or plain object
          * @returns Promise
          */
-        public changePasswd(request: user.IChangePasswdRequest): Promise<google.protobuf.Empty>;
+        public changePasswd(request: user.IChangePasswdRequest): Promise<common.Empty>;
     }
 
     namespace UserService {
@@ -727,105 +818,6 @@ export namespace user {
          * @param error Error, if any
          * @param [response] Empty
          */
-        type ChangePasswdCallback = (error: (Error|null), response?: google.protobuf.Empty) => void;
-    }
-}
-
-/** Namespace google. */
-export namespace google {
-
-    /** Namespace protobuf. */
-    namespace protobuf {
-
-        /** Properties of an Empty. */
-        interface IEmpty {
-        }
-
-        /** Represents an Empty. */
-        class Empty implements IEmpty {
-
-            /**
-             * Constructs a new Empty.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: google.protobuf.IEmpty);
-
-            /**
-             * Creates a new Empty instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns Empty instance
-             */
-            public static create(properties?: google.protobuf.IEmpty): google.protobuf.Empty;
-
-            /**
-             * Encodes the specified Empty message. Does not implicitly {@link google.protobuf.Empty.verify|verify} messages.
-             * @param message Empty message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: google.protobuf.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified Empty message, length delimited. Does not implicitly {@link google.protobuf.Empty.verify|verify} messages.
-             * @param message Empty message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: google.protobuf.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes an Empty message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns Empty
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.protobuf.Empty;
-
-            /**
-             * Decodes an Empty message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns Empty
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.protobuf.Empty;
-
-            /**
-             * Verifies an Empty message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates an Empty message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns Empty
-             */
-            public static fromObject(object: { [k: string]: any }): google.protobuf.Empty;
-
-            /**
-             * Creates a plain object from an Empty message. Also converts values to other types if specified.
-             * @param message Empty
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: google.protobuf.Empty, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this Empty to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-
-            /**
-             * Gets the default type url for Empty
-             * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns The default type url
-             */
-            public static getTypeUrl(typeUrlPrefix?: string): string;
-        }
+        type ChangePasswdCallback = (error: (Error|null), response?: common.Empty) => void;
     }
 }

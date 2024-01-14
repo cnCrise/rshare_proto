@@ -18,6 +18,181 @@ $root.common = (function() {
      */
     var common = {};
 
+    common.Empty = (function() {
+
+        /**
+         * Properties of an Empty.
+         * @memberof common
+         * @interface IEmpty
+         */
+
+        /**
+         * Constructs a new Empty.
+         * @memberof common
+         * @classdesc Represents an Empty.
+         * @implements IEmpty
+         * @constructor
+         * @param {common.IEmpty=} [properties] Properties to set
+         */
+        function Empty(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Creates a new Empty instance using the specified properties.
+         * @function create
+         * @memberof common.Empty
+         * @static
+         * @param {common.IEmpty=} [properties] Properties to set
+         * @returns {common.Empty} Empty instance
+         */
+        Empty.create = function create(properties) {
+            return new Empty(properties);
+        };
+
+        /**
+         * Encodes the specified Empty message. Does not implicitly {@link common.Empty.verify|verify} messages.
+         * @function encode
+         * @memberof common.Empty
+         * @static
+         * @param {common.IEmpty} message Empty message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Empty.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Empty message, length delimited. Does not implicitly {@link common.Empty.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof common.Empty
+         * @static
+         * @param {common.IEmpty} message Empty message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Empty.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer.
+         * @function decode
+         * @memberof common.Empty
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {common.Empty} Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Empty.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.common.Empty();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof common.Empty
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {common.Empty} Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Empty.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an Empty message.
+         * @function verify
+         * @memberof common.Empty
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Empty.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
+
+        /**
+         * Creates an Empty message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof common.Empty
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {common.Empty} Empty
+         */
+        Empty.fromObject = function fromObject(object) {
+            if (object instanceof $root.common.Empty)
+                return object;
+            return new $root.common.Empty();
+        };
+
+        /**
+         * Creates a plain object from an Empty message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof common.Empty
+         * @static
+         * @param {common.Empty} message Empty
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Empty.toObject = function toObject() {
+            return {};
+        };
+
+        /**
+         * Converts this Empty to JSON.
+         * @function toJSON
+         * @memberof common.Empty
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Empty.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Empty
+         * @function getTypeUrl
+         * @memberof common.Empty
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Empty.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/common.Empty";
+        };
+
+        return Empty;
+    })();
+
     common.SubscribeRequest = (function() {
 
         /**
@@ -1615,7 +1790,7 @@ $root.user = (function() {
          * @typedef ChangePasswdCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {google.protobuf.Empty} [response] Empty
+         * @param {common.Empty} [response] Empty
          */
 
         /**
@@ -1629,7 +1804,7 @@ $root.user = (function() {
          * @variation 1
          */
         Object.defineProperty(UserService.prototype.changePasswd = function changePasswd(request, callback) {
-            return this.rpcCall(changePasswd, $root.user.ChangePasswdRequest, $root.google.protobuf.Empty, request, callback);
+            return this.rpcCall(changePasswd, $root.user.ChangePasswdRequest, $root.common.Empty, request, callback);
         }, "name", { value: "ChangePasswd" });
 
         /**
@@ -1638,7 +1813,7 @@ $root.user = (function() {
          * @memberof user.UserService
          * @instance
          * @param {user.IChangePasswdRequest} request ChangePasswdRequest message or plain object
-         * @returns {Promise<google.protobuf.Empty>} Promise
+         * @returns {Promise<common.Empty>} Promise
          * @variation 2
          */
 
@@ -1646,205 +1821,6 @@ $root.user = (function() {
     })();
 
     return user;
-})();
-
-$root.google = (function() {
-
-    /**
-     * Namespace google.
-     * @exports google
-     * @namespace
-     */
-    var google = {};
-
-    google.protobuf = (function() {
-
-        /**
-         * Namespace protobuf.
-         * @memberof google
-         * @namespace
-         */
-        var protobuf = {};
-
-        protobuf.Empty = (function() {
-
-            /**
-             * Properties of an Empty.
-             * @memberof google.protobuf
-             * @interface IEmpty
-             */
-
-            /**
-             * Constructs a new Empty.
-             * @memberof google.protobuf
-             * @classdesc Represents an Empty.
-             * @implements IEmpty
-             * @constructor
-             * @param {google.protobuf.IEmpty=} [properties] Properties to set
-             */
-            function Empty(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-
-            /**
-             * Creates a new Empty instance using the specified properties.
-             * @function create
-             * @memberof google.protobuf.Empty
-             * @static
-             * @param {google.protobuf.IEmpty=} [properties] Properties to set
-             * @returns {google.protobuf.Empty} Empty instance
-             */
-            Empty.create = function create(properties) {
-                return new Empty(properties);
-            };
-
-            /**
-             * Encodes the specified Empty message. Does not implicitly {@link google.protobuf.Empty.verify|verify} messages.
-             * @function encode
-             * @memberof google.protobuf.Empty
-             * @static
-             * @param {google.protobuf.IEmpty} message Empty message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Empty.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                return writer;
-            };
-
-            /**
-             * Encodes the specified Empty message, length delimited. Does not implicitly {@link google.protobuf.Empty.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof google.protobuf.Empty
-             * @static
-             * @param {google.protobuf.IEmpty} message Empty message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Empty.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-
-            /**
-             * Decodes an Empty message from the specified reader or buffer.
-             * @function decode
-             * @memberof google.protobuf.Empty
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {google.protobuf.Empty} Empty
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Empty.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Empty();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-
-            /**
-             * Decodes an Empty message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof google.protobuf.Empty
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {google.protobuf.Empty} Empty
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Empty.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-
-            /**
-             * Verifies an Empty message.
-             * @function verify
-             * @memberof google.protobuf.Empty
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            Empty.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                return null;
-            };
-
-            /**
-             * Creates an Empty message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof google.protobuf.Empty
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {google.protobuf.Empty} Empty
-             */
-            Empty.fromObject = function fromObject(object) {
-                if (object instanceof $root.google.protobuf.Empty)
-                    return object;
-                return new $root.google.protobuf.Empty();
-            };
-
-            /**
-             * Creates a plain object from an Empty message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof google.protobuf.Empty
-             * @static
-             * @param {google.protobuf.Empty} message Empty
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            Empty.toObject = function toObject() {
-                return {};
-            };
-
-            /**
-             * Converts this Empty to JSON.
-             * @function toJSON
-             * @memberof google.protobuf.Empty
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            Empty.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-
-            /**
-             * Gets the default type url for Empty
-             * @function getTypeUrl
-             * @memberof google.protobuf.Empty
-             * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
-             */
-            Empty.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/google.protobuf.Empty";
-            };
-
-            return Empty;
-        })();
-
-        return protobuf;
-    })();
-
-    return google;
 })();
 
 module.exports = $root;
