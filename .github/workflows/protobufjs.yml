@@ -1,0 +1,42 @@
+name: Build ProtobufJs
+on: [push, pull_request]
+env:
+  CLICOLOR_FORCE: 1
+jobs:
+  protobufjs:
+    name: protobufjs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install NodeJs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install protobufjs-cli
+        run: npm install -g protobufjs-cli
+      - name: Checkout Proto
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          path: proto
+      - name: Checkout protobufjs
+        uses: actions/checkout@v3
+        with:
+          ref: out_protobufjs
+          path: out_protobufjs
+      - name: Build protobufjs
+        run: |
+          pbjs -t static-module -w commonjs -o ../out_protobufjs/my_protobuf.js ./*.proto
+          pbts -o ../out_protobufjs/my_protobuf.d.ts ../out_protobufjs/my_protobuf.js
+        working-directory: proto
+      - name: Publish protobufjs
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          (git commit -m $(date +%Y%m%d)) || true
+          (git push) || true
+        working-directory: out_protobufjs

@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package user;
+
+import "google/protobuf/empty.proto";
+
+// 授权信息
+message Authorization {
+  // JSON Web Token
+  string jwt = 1;
+}
+
+message LoginRequest {
+  // 秒级时间戳
+  int64 timestamp = 1;
+  // 用户名
+  string uname = 11;
+  // MD5(timestamp+用户密码)
+  string passwd = 12;
+  // 终端设备序列号
+  string device_id = 21;
+  // 终端设备名称
+  string device_name = 22;
+  // 过期时间，单位s，特殊地：0永不过期
+  int32 expire = 51;
+}
+message WxLoginRequest {
+  // 调用wx.login接口获取登录凭证
+  string code = 11;
+  // 终端设备序列号
+  string device_id = 21;
+  // 终端设备名称
+  string device_name = 22;
+}
+message LoginResponse {
+  // 授权信息
+  Authorization auth = 1;
+}
+
+message ChangePasswdRequest {
+  Authorization auth = 1;
+  string passwd = 11;
+}
+
+// 用户相关服务
+service UserService {
+  // 账号密码登录
+  rpc Login(LoginRequest) returns (LoginResponse);
+  // 微信登录
+  rpc WxLogin(WxLoginRequest) returns (LoginResponse);
+  // 修改密码
+  rpc ChangePasswd(ChangePasswdRequest) returns (google.protobuf.Empty);
+}
