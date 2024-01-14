@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user;
 
-import "google/protobuf/empty.proto";
+import "common.proto";
 
 // 授权信息
 message Authorization {
@@ -49,5 +49,5 @@ service UserService {
   // 微信登录
   rpc WxLogin(WxLoginRequest) returns (LoginResponse);
   // 修改密码
-  rpc ChangePasswd(ChangePasswdRequest) returns (google.protobuf.Empty);
+  rpc ChangePasswd(ChangePasswdRequest) returns (common.Empty);
 }

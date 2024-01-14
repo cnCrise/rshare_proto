@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package common;
 
+message Empty {}
+
 message SubscribeRequest {
   // 保证每次推送至少间隔interval时间(ms)
   uint64 interval_min = 11;
