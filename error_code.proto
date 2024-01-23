@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package error_code;
+
+// 错误码
+enum ErrorCode {
+  // 无错误
+  SUCCESS = 0;
+  // 数据库异常
+  DB_ERR = 1001;
+  // 用户名未注册
+  NOT_SIGNUP = 2001;
+  // 登录密码错误
+  PASSWD_ERR = 2002;
+  // 无效的授权码
+  INVALID_AUTH = 2011;
+  // 授权码过期
+  EXPIRED_AUTH = 2012;
+  // 授权码序列号过期
+  EXPIRED_AUTH_SN = 2013;
+  // 微信服务异常
+  WX_ERR = 8001;
+}
