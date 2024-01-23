@@ -175,6 +175,29 @@
         
           
           <li>
+            <a href="#auth.proto">auth.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#auth.Authorization"><span class="badge">M</span>Authorization</a>
+                </li>
+              
+                <li>
+                  <a href="#auth.RefreshAuthRequest"><span class="badge">M</span>RefreshAuthRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#auth.AuthService"><span class="badge">S</span>AuthService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#common.proto">common.proto</a>
             <ul>
               
@@ -194,12 +217,58 @@
         
           
           <li>
-            <a href="#user.proto">user.proto</a>
+            <a href="#error_code.proto">error_code.proto</a>
+            <ul>
+              
+              
+                <li>
+                  <a href="#error_code.ErrorCode"><span class="badge">E</span>ErrorCode</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#role.proto">role.proto</a>
             <ul>
               
                 <li>
-                  <a href="#user.Authorization"><span class="badge">M</span>Authorization</a>
+                  <a href="#role.AddRoleRequest"><span class="badge">M</span>AddRoleRequest</a>
                 </li>
+              
+                <li>
+                  <a href="#role.DelRoleRequest"><span class="badge">M</span>DelRoleRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#role.GetRoleRequest"><span class="badge">M</span>GetRoleRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#role.GetRoleResponse"><span class="badge">M</span>GetRoleResponse</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#role.Role"><span class="badge">E</span>Role</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#role.RoleService"><span class="badge">S</span>RoleService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#user.proto">user.proto</a>
+            <ul>
               
                 <li>
                   <a href="#user.ChangePasswdRequest"><span class="badge">M</span>ChangePasswdRequest</a>
@@ -231,6 +300,94 @@
       </ul>
     </div>
 
+    
+      
+      <div class="file-heading">
+        <h2 id="auth.proto">auth.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="auth.Authorization">Authorization</h3>
+        <p>授权信息</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>jwt</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>JSON Web Token </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="auth.RefreshAuthRequest">RefreshAuthRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">Authorization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expire</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>有效期，单位秒。特殊地，0为永不过期 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="auth.AuthService">AuthService</h3>
+        <p>用户认证相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>RefreshAuth</td>
+                <td><a href="#auth.RefreshAuthRequest">RefreshAuthRequest</a></td>
+                <td><a href="#auth.Authorization">Authorization</a></td>
+                <td><p>刷新授权有效期</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
@@ -286,13 +443,98 @@
     
       
       <div class="file-heading">
-        <h2 id="user.proto">user.proto</h2><a href="#title">Top</a>
+        <h2 id="error_code.proto">error_code.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="user.Authorization">Authorization</h3>
-        <p>授权信息</p>
+
+      
+        <h3 id="error_code.ErrorCode">ErrorCode</h3>
+        <p>错误码</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SUCCESS</td>
+                <td>0</td>
+                <td><p>无错误</p></td>
+              </tr>
+            
+              <tr>
+                <td>INVALID_INPUT</td>
+                <td>1001</td>
+                <td><p>输入数据无效</p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_SIGNUP</td>
+                <td>2001</td>
+                <td><p>用户名未注册</p></td>
+              </tr>
+            
+              <tr>
+                <td>PASSWD_ERR</td>
+                <td>2002</td>
+                <td><p>登录密码错误</p></td>
+              </tr>
+            
+              <tr>
+                <td>INVALID_AUTH</td>
+                <td>2011</td>
+                <td><p>无效的授权码</p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPIRED_AUTH</td>
+                <td>2012</td>
+                <td><p>授权码过期</p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPIRED_AUTH_SN</td>
+                <td>2013</td>
+                <td><p>授权码序列号过期</p></td>
+              </tr>
+            
+              <tr>
+                <td>PERMISSION_DENIED</td>
+                <td>2021</td>
+                <td><p>用户操作权限不足</p></td>
+              </tr>
+            
+              <tr>
+                <td>DB_ERR</td>
+                <td>7001</td>
+                <td><p>数据库异常</p></td>
+              </tr>
+            
+              <tr>
+                <td>WX_ERR</td>
+                <td>8001</td>
+                <td><p>微信服务异常</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="role.proto">role.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="role.AddRoleRequest">AddRoleRequest</h3>
+        <p></p>
 
         
           <table class="field-table">
@@ -302,10 +544,24 @@
             <tbody>
               
                 <tr>
-                  <td>jwt</td>
-                  <td><a href="#string">string</a></td>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
                   <td></td>
-                  <td><p>JSON Web Token </p></td>
+                  <td><p>授权信息 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uid</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>被操作账号 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#role.Role">Role</a></td>
+                  <td></td>
+                  <td><p>授予权限 </p></td>
                 </tr>
               
             </tbody>
@@ -314,6 +570,175 @@
           
 
         
+      
+        <h3 id="role.DelRoleRequest">DelRoleRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p>授权信息 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uid</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>被操作账号 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>role</td>
+                  <td><a href="#role.Role">Role</a></td>
+                  <td></td>
+                  <td><p>删除权限 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="role.GetRoleRequest">GetRoleRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p>授权信息 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>uid</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>被操作账号 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="role.GetRoleResponse">GetRoleResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>roles</td>
+                  <td><a href="#role.Role">Role</a></td>
+                  <td>repeated</td>
+                  <td><p>角色列表 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="role.Role">Role</h3>
+        <p>角色</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>USER</td>
+                <td>0</td>
+                <td><p>普通用户</p></td>
+              </tr>
+            
+              <tr>
+                <td>ADMIN</td>
+                <td>20</td>
+                <td><p>超级管理员</p></td>
+              </tr>
+            
+              <tr>
+                <td>BLACK</td>
+                <td>99</td>
+                <td><p>黑名单</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id="role.RoleService">RoleService</h3>
+        <p>角色权限相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GetRole</td>
+                <td><a href="#role.GetRoleRequest">GetRoleRequest</a></td>
+                <td><a href="#role.GetRoleResponse">GetRoleResponse</a></td>
+                <td><p>查询指定用户的角色权限列表</p></td>
+              </tr>
+            
+              <tr>
+                <td>AddRole</td>
+                <td><a href="#role.AddRoleRequest">AddRoleRequest</a></td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><p>授予指定用户的角色权限</p></td>
+              </tr>
+            
+              <tr>
+                <td>DelRole</td>
+                <td><a href="#role.DelRoleRequest">DelRoleRequest</a></td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><p>删除指定用户的角色权限</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="user.proto">user.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
       
         <h3 id="user.ChangePasswdRequest">ChangePasswdRequest</h3>
         <p></p>
@@ -327,7 +752,7 @@
               
                 <tr>
                   <td>auth</td>
-                  <td><a href="#user.Authorization">Authorization</a></td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -358,7 +783,7 @@
               
                 <tr>
                   <td>timestamp</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p>秒级时间戳 </p></td>
                 </tr>
@@ -393,7 +818,7 @@
               
                 <tr>
                   <td>expire</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p>过期时间，单位s，特殊地：0永不过期 </p></td>
                 </tr>
@@ -417,7 +842,7 @@
               
                 <tr>
                   <td>auth</td>
-                  <td><a href="#user.Authorization">Authorization</a></td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
                   <td></td>
                   <td><p>授权信息 </p></td>
                 </tr>
@@ -458,6 +883,13 @@
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>终端设备名称 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expire</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>过期时间，单位s，特殊地：0永不过期 </p></td>
                 </tr>
               
             </tbody>
