@@ -9,6 +9,535 @@ var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.ut
 // Exported root namespace
 var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
+$root.auth = (function() {
+
+    /**
+     * Namespace auth.
+     * @exports auth
+     * @namespace
+     */
+    var auth = {};
+
+    auth.Authorization = (function() {
+
+        /**
+         * Properties of an Authorization.
+         * @memberof auth
+         * @interface IAuthorization
+         * @property {string|null} [jwt] Authorization jwt
+         */
+
+        /**
+         * Constructs a new Authorization.
+         * @memberof auth
+         * @classdesc Represents an Authorization.
+         * @implements IAuthorization
+         * @constructor
+         * @param {auth.IAuthorization=} [properties] Properties to set
+         */
+        function Authorization(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Authorization jwt.
+         * @member {string} jwt
+         * @memberof auth.Authorization
+         * @instance
+         */
+        Authorization.prototype.jwt = "";
+
+        /**
+         * Creates a new Authorization instance using the specified properties.
+         * @function create
+         * @memberof auth.Authorization
+         * @static
+         * @param {auth.IAuthorization=} [properties] Properties to set
+         * @returns {auth.Authorization} Authorization instance
+         */
+        Authorization.create = function create(properties) {
+            return new Authorization(properties);
+        };
+
+        /**
+         * Encodes the specified Authorization message. Does not implicitly {@link auth.Authorization.verify|verify} messages.
+         * @function encode
+         * @memberof auth.Authorization
+         * @static
+         * @param {auth.IAuthorization} message Authorization message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Authorization.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.jwt != null && Object.hasOwnProperty.call(message, "jwt"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.jwt);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Authorization message, length delimited. Does not implicitly {@link auth.Authorization.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof auth.Authorization
+         * @static
+         * @param {auth.IAuthorization} message Authorization message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Authorization.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an Authorization message from the specified reader or buffer.
+         * @function decode
+         * @memberof auth.Authorization
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {auth.Authorization} Authorization
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Authorization.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.auth.Authorization();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.jwt = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an Authorization message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof auth.Authorization
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {auth.Authorization} Authorization
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Authorization.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an Authorization message.
+         * @function verify
+         * @memberof auth.Authorization
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Authorization.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.jwt != null && message.hasOwnProperty("jwt"))
+                if (!$util.isString(message.jwt))
+                    return "jwt: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an Authorization message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof auth.Authorization
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {auth.Authorization} Authorization
+         */
+        Authorization.fromObject = function fromObject(object) {
+            if (object instanceof $root.auth.Authorization)
+                return object;
+            var message = new $root.auth.Authorization();
+            if (object.jwt != null)
+                message.jwt = String(object.jwt);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an Authorization message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof auth.Authorization
+         * @static
+         * @param {auth.Authorization} message Authorization
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Authorization.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.jwt = "";
+            if (message.jwt != null && message.hasOwnProperty("jwt"))
+                object.jwt = message.jwt;
+            return object;
+        };
+
+        /**
+         * Converts this Authorization to JSON.
+         * @function toJSON
+         * @memberof auth.Authorization
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Authorization.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Authorization
+         * @function getTypeUrl
+         * @memberof auth.Authorization
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Authorization.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/auth.Authorization";
+        };
+
+        return Authorization;
+    })();
+
+    auth.RefreshAuthRequest = (function() {
+
+        /**
+         * Properties of a RefreshAuthRequest.
+         * @memberof auth
+         * @interface IRefreshAuthRequest
+         * @property {auth.IAuthorization|null} [auth] RefreshAuthRequest auth
+         * @property {number|Long|null} [expire] RefreshAuthRequest expire
+         */
+
+        /**
+         * Constructs a new RefreshAuthRequest.
+         * @memberof auth
+         * @classdesc Represents a RefreshAuthRequest.
+         * @implements IRefreshAuthRequest
+         * @constructor
+         * @param {auth.IRefreshAuthRequest=} [properties] Properties to set
+         */
+        function RefreshAuthRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * RefreshAuthRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof auth.RefreshAuthRequest
+         * @instance
+         */
+        RefreshAuthRequest.prototype.auth = null;
+
+        /**
+         * RefreshAuthRequest expire.
+         * @member {number|Long} expire
+         * @memberof auth.RefreshAuthRequest
+         * @instance
+         */
+        RefreshAuthRequest.prototype.expire = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * Creates a new RefreshAuthRequest instance using the specified properties.
+         * @function create
+         * @memberof auth.RefreshAuthRequest
+         * @static
+         * @param {auth.IRefreshAuthRequest=} [properties] Properties to set
+         * @returns {auth.RefreshAuthRequest} RefreshAuthRequest instance
+         */
+        RefreshAuthRequest.create = function create(properties) {
+            return new RefreshAuthRequest(properties);
+        };
+
+        /**
+         * Encodes the specified RefreshAuthRequest message. Does not implicitly {@link auth.RefreshAuthRequest.verify|verify} messages.
+         * @function encode
+         * @memberof auth.RefreshAuthRequest
+         * @static
+         * @param {auth.IRefreshAuthRequest} message RefreshAuthRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RefreshAuthRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.expire != null && Object.hasOwnProperty.call(message, "expire"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint64(message.expire);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified RefreshAuthRequest message, length delimited. Does not implicitly {@link auth.RefreshAuthRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof auth.RefreshAuthRequest
+         * @static
+         * @param {auth.IRefreshAuthRequest} message RefreshAuthRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        RefreshAuthRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a RefreshAuthRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof auth.RefreshAuthRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {auth.RefreshAuthRequest} RefreshAuthRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RefreshAuthRequest.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.auth.RefreshAuthRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 11: {
+                        message.expire = reader.uint64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a RefreshAuthRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof auth.RefreshAuthRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {auth.RefreshAuthRequest} RefreshAuthRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        RefreshAuthRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a RefreshAuthRequest message.
+         * @function verify
+         * @memberof auth.RefreshAuthRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        RefreshAuthRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.expire != null && message.hasOwnProperty("expire"))
+                if (!$util.isInteger(message.expire) && !(message.expire && $util.isInteger(message.expire.low) && $util.isInteger(message.expire.high)))
+                    return "expire: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a RefreshAuthRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof auth.RefreshAuthRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {auth.RefreshAuthRequest} RefreshAuthRequest
+         */
+        RefreshAuthRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.auth.RefreshAuthRequest)
+                return object;
+            var message = new $root.auth.RefreshAuthRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".auth.RefreshAuthRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.expire != null)
+                if ($util.Long)
+                    (message.expire = $util.Long.fromValue(object.expire)).unsigned = true;
+                else if (typeof object.expire === "string")
+                    message.expire = parseInt(object.expire, 10);
+                else if (typeof object.expire === "number")
+                    message.expire = object.expire;
+                else if (typeof object.expire === "object")
+                    message.expire = new $util.LongBits(object.expire.low >>> 0, object.expire.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a RefreshAuthRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof auth.RefreshAuthRequest
+         * @static
+         * @param {auth.RefreshAuthRequest} message RefreshAuthRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        RefreshAuthRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.expire = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.expire = options.longs === String ? "0" : 0;
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.expire != null && message.hasOwnProperty("expire"))
+                if (typeof message.expire === "number")
+                    object.expire = options.longs === String ? String(message.expire) : message.expire;
+                else
+                    object.expire = options.longs === String ? $util.Long.prototype.toString.call(message.expire) : options.longs === Number ? new $util.LongBits(message.expire.low >>> 0, message.expire.high >>> 0).toNumber(true) : message.expire;
+            return object;
+        };
+
+        /**
+         * Converts this RefreshAuthRequest to JSON.
+         * @function toJSON
+         * @memberof auth.RefreshAuthRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        RefreshAuthRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for RefreshAuthRequest
+         * @function getTypeUrl
+         * @memberof auth.RefreshAuthRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        RefreshAuthRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/auth.RefreshAuthRequest";
+        };
+
+        return RefreshAuthRequest;
+    })();
+
+    auth.AuthService = (function() {
+
+        /**
+         * Constructs a new AuthService service.
+         * @memberof auth
+         * @classdesc Represents an AuthService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function AuthService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (AuthService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = AuthService;
+
+        /**
+         * Creates new AuthService service using the specified rpc implementation.
+         * @function create
+         * @memberof auth.AuthService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {AuthService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        AuthService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link auth.AuthService#refreshAuth}.
+         * @memberof auth.AuthService
+         * @typedef RefreshAuthCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {auth.Authorization} [response] Authorization
+         */
+
+        /**
+         * Calls RefreshAuth.
+         * @function refreshAuth
+         * @memberof auth.AuthService
+         * @instance
+         * @param {auth.IRefreshAuthRequest} request RefreshAuthRequest message or plain object
+         * @param {auth.AuthService.RefreshAuthCallback} callback Node-style callback called with the error, if any, and Authorization
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(AuthService.prototype.refreshAuth = function refreshAuth(request, callback) {
+            return this.rpcCall(refreshAuth, $root.auth.RefreshAuthRequest, $root.auth.Authorization, request, callback);
+        }, "name", { value: "RefreshAuth" });
+
+        /**
+         * Calls RefreshAuth.
+         * @function refreshAuth
+         * @memberof auth.AuthService
+         * @instance
+         * @param {auth.IRefreshAuthRequest} request RefreshAuthRequest message or plain object
+         * @returns {Promise<auth.Authorization>} Promise
+         * @variation 2
+         */
+
+        return AuthService;
+    })();
+
+    return auth;
+})();
+
 $root.common = (function() {
 
     /**
@@ -451,33 +980,92 @@ $root.common = (function() {
     return common;
 })();
 
-$root.user = (function() {
+$root.error_code = (function() {
 
     /**
-     * Namespace user.
-     * @exports user
+     * Namespace error_code.
+     * @exports error_code
      * @namespace
      */
-    var user = {};
+    var error_code = {};
 
-    user.Authorization = (function() {
+    /**
+     * ErrorCode enum.
+     * @name error_code.ErrorCode
+     * @enum {number}
+     * @property {number} SUCCESS=0 SUCCESS value
+     * @property {number} INVALID_INPUT=1001 INVALID_INPUT value
+     * @property {number} NOT_SIGNUP=2001 NOT_SIGNUP value
+     * @property {number} PASSWD_ERR=2002 PASSWD_ERR value
+     * @property {number} INVALID_AUTH=2011 INVALID_AUTH value
+     * @property {number} EXPIRED_AUTH=2012 EXPIRED_AUTH value
+     * @property {number} EXPIRED_AUTH_SN=2013 EXPIRED_AUTH_SN value
+     * @property {number} PERMISSION_DENIED=2021 PERMISSION_DENIED value
+     * @property {number} DB_ERR=7001 DB_ERR value
+     * @property {number} WX_ERR=8001 WX_ERR value
+     */
+    error_code.ErrorCode = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "SUCCESS"] = 0;
+        values[valuesById[1001] = "INVALID_INPUT"] = 1001;
+        values[valuesById[2001] = "NOT_SIGNUP"] = 2001;
+        values[valuesById[2002] = "PASSWD_ERR"] = 2002;
+        values[valuesById[2011] = "INVALID_AUTH"] = 2011;
+        values[valuesById[2012] = "EXPIRED_AUTH"] = 2012;
+        values[valuesById[2013] = "EXPIRED_AUTH_SN"] = 2013;
+        values[valuesById[2021] = "PERMISSION_DENIED"] = 2021;
+        values[valuesById[7001] = "DB_ERR"] = 7001;
+        values[valuesById[8001] = "WX_ERR"] = 8001;
+        return values;
+    })();
+
+    return error_code;
+})();
+
+$root.role = (function() {
+
+    /**
+     * Namespace role.
+     * @exports role
+     * @namespace
+     */
+    var role = {};
+
+    /**
+     * Role enum.
+     * @name role.Role
+     * @enum {number}
+     * @property {number} USER=0 USER value
+     * @property {number} ADMIN=20 ADMIN value
+     * @property {number} BLACK=99 BLACK value
+     */
+    role.Role = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "USER"] = 0;
+        values[valuesById[20] = "ADMIN"] = 20;
+        values[valuesById[99] = "BLACK"] = 99;
+        return values;
+    })();
+
+    role.GetRoleRequest = (function() {
 
         /**
-         * Properties of an Authorization.
-         * @memberof user
-         * @interface IAuthorization
-         * @property {string|null} [jwt] Authorization jwt
+         * Properties of a GetRoleRequest.
+         * @memberof role
+         * @interface IGetRoleRequest
+         * @property {auth.IAuthorization|null} [auth] GetRoleRequest auth
+         * @property {number|null} [uid] GetRoleRequest uid
          */
 
         /**
-         * Constructs a new Authorization.
-         * @memberof user
-         * @classdesc Represents an Authorization.
-         * @implements IAuthorization
+         * Constructs a new GetRoleRequest.
+         * @memberof role
+         * @classdesc Represents a GetRoleRequest.
+         * @implements IGetRoleRequest
          * @constructor
-         * @param {user.IAuthorization=} [properties] Properties to set
+         * @param {role.IGetRoleRequest=} [properties] Properties to set
          */
-        function Authorization(properties) {
+        function GetRoleRequest(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -485,75 +1073,89 @@ $root.user = (function() {
         }
 
         /**
-         * Authorization jwt.
-         * @member {string} jwt
-         * @memberof user.Authorization
+         * GetRoleRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof role.GetRoleRequest
          * @instance
          */
-        Authorization.prototype.jwt = "";
+        GetRoleRequest.prototype.auth = null;
 
         /**
-         * Creates a new Authorization instance using the specified properties.
-         * @function create
-         * @memberof user.Authorization
-         * @static
-         * @param {user.IAuthorization=} [properties] Properties to set
-         * @returns {user.Authorization} Authorization instance
+         * GetRoleRequest uid.
+         * @member {number} uid
+         * @memberof role.GetRoleRequest
+         * @instance
          */
-        Authorization.create = function create(properties) {
-            return new Authorization(properties);
+        GetRoleRequest.prototype.uid = 0;
+
+        /**
+         * Creates a new GetRoleRequest instance using the specified properties.
+         * @function create
+         * @memberof role.GetRoleRequest
+         * @static
+         * @param {role.IGetRoleRequest=} [properties] Properties to set
+         * @returns {role.GetRoleRequest} GetRoleRequest instance
+         */
+        GetRoleRequest.create = function create(properties) {
+            return new GetRoleRequest(properties);
         };
 
         /**
-         * Encodes the specified Authorization message. Does not implicitly {@link user.Authorization.verify|verify} messages.
+         * Encodes the specified GetRoleRequest message. Does not implicitly {@link role.GetRoleRequest.verify|verify} messages.
          * @function encode
-         * @memberof user.Authorization
+         * @memberof role.GetRoleRequest
          * @static
-         * @param {user.IAuthorization} message Authorization message or plain object to encode
+         * @param {role.IGetRoleRequest} message GetRoleRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Authorization.encode = function encode(message, writer) {
+        GetRoleRequest.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.jwt != null && Object.hasOwnProperty.call(message, "jwt"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.jwt);
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.uid != null && Object.hasOwnProperty.call(message, "uid"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.uid);
             return writer;
         };
 
         /**
-         * Encodes the specified Authorization message, length delimited. Does not implicitly {@link user.Authorization.verify|verify} messages.
+         * Encodes the specified GetRoleRequest message, length delimited. Does not implicitly {@link role.GetRoleRequest.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof user.Authorization
+         * @memberof role.GetRoleRequest
          * @static
-         * @param {user.IAuthorization} message Authorization message or plain object to encode
+         * @param {role.IGetRoleRequest} message GetRoleRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        Authorization.encodeDelimited = function encodeDelimited(message, writer) {
+        GetRoleRequest.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes an Authorization message from the specified reader or buffer.
+         * Decodes a GetRoleRequest message from the specified reader or buffer.
          * @function decode
-         * @memberof user.Authorization
+         * @memberof role.GetRoleRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {user.Authorization} Authorization
+         * @returns {role.GetRoleRequest} GetRoleRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Authorization.decode = function decode(reader, length) {
+        GetRoleRequest.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.Authorization();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.role.GetRoleRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1: {
-                        message.jwt = reader.string();
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 11: {
+                        message.uid = reader.uint32();
                         break;
                     }
                 default:
@@ -565,103 +1167,1072 @@ $root.user = (function() {
         };
 
         /**
-         * Decodes an Authorization message from the specified reader or buffer, length delimited.
+         * Decodes a GetRoleRequest message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof user.Authorization
+         * @memberof role.GetRoleRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {user.Authorization} Authorization
+         * @returns {role.GetRoleRequest} GetRoleRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Authorization.decodeDelimited = function decodeDelimited(reader) {
+        GetRoleRequest.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies an Authorization message.
+         * Verifies a GetRoleRequest message.
          * @function verify
-         * @memberof user.Authorization
+         * @memberof role.GetRoleRequest
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        Authorization.verify = function verify(message) {
+        GetRoleRequest.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.jwt != null && message.hasOwnProperty("jwt"))
-                if (!$util.isString(message.jwt))
-                    return "jwt: string expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.uid != null && message.hasOwnProperty("uid"))
+                if (!$util.isInteger(message.uid))
+                    return "uid: integer expected";
             return null;
         };
 
         /**
-         * Creates an Authorization message from a plain object. Also converts values to their respective internal types.
+         * Creates a GetRoleRequest message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof user.Authorization
+         * @memberof role.GetRoleRequest
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {user.Authorization} Authorization
+         * @returns {role.GetRoleRequest} GetRoleRequest
          */
-        Authorization.fromObject = function fromObject(object) {
-            if (object instanceof $root.user.Authorization)
+        GetRoleRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.role.GetRoleRequest)
                 return object;
-            var message = new $root.user.Authorization();
-            if (object.jwt != null)
-                message.jwt = String(object.jwt);
+            var message = new $root.role.GetRoleRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".role.GetRoleRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.uid != null)
+                message.uid = object.uid >>> 0;
             return message;
         };
 
         /**
-         * Creates a plain object from an Authorization message. Also converts values to other types if specified.
+         * Creates a plain object from a GetRoleRequest message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof user.Authorization
+         * @memberof role.GetRoleRequest
          * @static
-         * @param {user.Authorization} message Authorization
+         * @param {role.GetRoleRequest} message GetRoleRequest
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        Authorization.toObject = function toObject(message, options) {
+        GetRoleRequest.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
-                object.jwt = "";
-            if (message.jwt != null && message.hasOwnProperty("jwt"))
-                object.jwt = message.jwt;
+            if (options.defaults) {
+                object.auth = null;
+                object.uid = 0;
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.uid != null && message.hasOwnProperty("uid"))
+                object.uid = message.uid;
             return object;
         };
 
         /**
-         * Converts this Authorization to JSON.
+         * Converts this GetRoleRequest to JSON.
          * @function toJSON
-         * @memberof user.Authorization
+         * @memberof role.GetRoleRequest
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        Authorization.prototype.toJSON = function toJSON() {
+        GetRoleRequest.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for Authorization
+         * Gets the default type url for GetRoleRequest
          * @function getTypeUrl
-         * @memberof user.Authorization
+         * @memberof role.GetRoleRequest
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        Authorization.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        GetRoleRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/user.Authorization";
+            return typeUrlPrefix + "/role.GetRoleRequest";
         };
 
-        return Authorization;
+        return GetRoleRequest;
     })();
+
+    role.GetRoleResponse = (function() {
+
+        /**
+         * Properties of a GetRoleResponse.
+         * @memberof role
+         * @interface IGetRoleResponse
+         * @property {Array.<role.Role>|null} [roles] GetRoleResponse roles
+         */
+
+        /**
+         * Constructs a new GetRoleResponse.
+         * @memberof role
+         * @classdesc Represents a GetRoleResponse.
+         * @implements IGetRoleResponse
+         * @constructor
+         * @param {role.IGetRoleResponse=} [properties] Properties to set
+         */
+        function GetRoleResponse(properties) {
+            this.roles = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetRoleResponse roles.
+         * @member {Array.<role.Role>} roles
+         * @memberof role.GetRoleResponse
+         * @instance
+         */
+        GetRoleResponse.prototype.roles = $util.emptyArray;
+
+        /**
+         * Creates a new GetRoleResponse instance using the specified properties.
+         * @function create
+         * @memberof role.GetRoleResponse
+         * @static
+         * @param {role.IGetRoleResponse=} [properties] Properties to set
+         * @returns {role.GetRoleResponse} GetRoleResponse instance
+         */
+        GetRoleResponse.create = function create(properties) {
+            return new GetRoleResponse(properties);
+        };
+
+        /**
+         * Encodes the specified GetRoleResponse message. Does not implicitly {@link role.GetRoleResponse.verify|verify} messages.
+         * @function encode
+         * @memberof role.GetRoleResponse
+         * @static
+         * @param {role.IGetRoleResponse} message GetRoleResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetRoleResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.roles != null && message.roles.length) {
+                writer.uint32(/* id 1, wireType 2 =*/10).fork();
+                for (var i = 0; i < message.roles.length; ++i)
+                    writer.int32(message.roles[i]);
+                writer.ldelim();
+            }
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetRoleResponse message, length delimited. Does not implicitly {@link role.GetRoleResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof role.GetRoleResponse
+         * @static
+         * @param {role.IGetRoleResponse} message GetRoleResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetRoleResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetRoleResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof role.GetRoleResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {role.GetRoleResponse} GetRoleResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetRoleResponse.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.role.GetRoleResponse();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        if (!(message.roles && message.roles.length))
+                            message.roles = [];
+                        if ((tag & 7) === 2) {
+                            var end2 = reader.uint32() + reader.pos;
+                            while (reader.pos < end2)
+                                message.roles.push(reader.int32());
+                        } else
+                            message.roles.push(reader.int32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetRoleResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof role.GetRoleResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {role.GetRoleResponse} GetRoleResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetRoleResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetRoleResponse message.
+         * @function verify
+         * @memberof role.GetRoleResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetRoleResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.roles != null && message.hasOwnProperty("roles")) {
+                if (!Array.isArray(message.roles))
+                    return "roles: array expected";
+                for (var i = 0; i < message.roles.length; ++i)
+                    switch (message.roles[i]) {
+                    default:
+                        return "roles: enum value[] expected";
+                    case 0:
+                    case 20:
+                    case 99:
+                        break;
+                    }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetRoleResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof role.GetRoleResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {role.GetRoleResponse} GetRoleResponse
+         */
+        GetRoleResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.role.GetRoleResponse)
+                return object;
+            var message = new $root.role.GetRoleResponse();
+            if (object.roles) {
+                if (!Array.isArray(object.roles))
+                    throw TypeError(".role.GetRoleResponse.roles: array expected");
+                message.roles = [];
+                for (var i = 0; i < object.roles.length; ++i)
+                    switch (object.roles[i]) {
+                    default:
+                        if (typeof object.roles[i] === "number") {
+                            message.roles[i] = object.roles[i];
+                            break;
+                        }
+                    case "USER":
+                    case 0:
+                        message.roles[i] = 0;
+                        break;
+                    case "ADMIN":
+                    case 20:
+                        message.roles[i] = 20;
+                        break;
+                    case "BLACK":
+                    case 99:
+                        message.roles[i] = 99;
+                        break;
+                    }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetRoleResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof role.GetRoleResponse
+         * @static
+         * @param {role.GetRoleResponse} message GetRoleResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetRoleResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.roles = [];
+            if (message.roles && message.roles.length) {
+                object.roles = [];
+                for (var j = 0; j < message.roles.length; ++j)
+                    object.roles[j] = options.enums === String ? $root.role.Role[message.roles[j]] === undefined ? message.roles[j] : $root.role.Role[message.roles[j]] : message.roles[j];
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetRoleResponse to JSON.
+         * @function toJSON
+         * @memberof role.GetRoleResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetRoleResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetRoleResponse
+         * @function getTypeUrl
+         * @memberof role.GetRoleResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetRoleResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/role.GetRoleResponse";
+        };
+
+        return GetRoleResponse;
+    })();
+
+    role.AddRoleRequest = (function() {
+
+        /**
+         * Properties of an AddRoleRequest.
+         * @memberof role
+         * @interface IAddRoleRequest
+         * @property {auth.IAuthorization|null} [auth] AddRoleRequest auth
+         * @property {number|null} [uid] AddRoleRequest uid
+         * @property {role.Role|null} [role] AddRoleRequest role
+         */
+
+        /**
+         * Constructs a new AddRoleRequest.
+         * @memberof role
+         * @classdesc Represents an AddRoleRequest.
+         * @implements IAddRoleRequest
+         * @constructor
+         * @param {role.IAddRoleRequest=} [properties] Properties to set
+         */
+        function AddRoleRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AddRoleRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof role.AddRoleRequest
+         * @instance
+         */
+        AddRoleRequest.prototype.auth = null;
+
+        /**
+         * AddRoleRequest uid.
+         * @member {number} uid
+         * @memberof role.AddRoleRequest
+         * @instance
+         */
+        AddRoleRequest.prototype.uid = 0;
+
+        /**
+         * AddRoleRequest role.
+         * @member {role.Role} role
+         * @memberof role.AddRoleRequest
+         * @instance
+         */
+        AddRoleRequest.prototype.role = 0;
+
+        /**
+         * Creates a new AddRoleRequest instance using the specified properties.
+         * @function create
+         * @memberof role.AddRoleRequest
+         * @static
+         * @param {role.IAddRoleRequest=} [properties] Properties to set
+         * @returns {role.AddRoleRequest} AddRoleRequest instance
+         */
+        AddRoleRequest.create = function create(properties) {
+            return new AddRoleRequest(properties);
+        };
+
+        /**
+         * Encodes the specified AddRoleRequest message. Does not implicitly {@link role.AddRoleRequest.verify|verify} messages.
+         * @function encode
+         * @memberof role.AddRoleRequest
+         * @static
+         * @param {role.IAddRoleRequest} message AddRoleRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AddRoleRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.uid != null && Object.hasOwnProperty.call(message, "uid"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.uid);
+            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+                writer.uint32(/* id 12, wireType 0 =*/96).int32(message.role);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AddRoleRequest message, length delimited. Does not implicitly {@link role.AddRoleRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof role.AddRoleRequest
+         * @static
+         * @param {role.IAddRoleRequest} message AddRoleRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AddRoleRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AddRoleRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof role.AddRoleRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {role.AddRoleRequest} AddRoleRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AddRoleRequest.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.role.AddRoleRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 11: {
+                        message.uid = reader.uint32();
+                        break;
+                    }
+                case 12: {
+                        message.role = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AddRoleRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof role.AddRoleRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {role.AddRoleRequest} AddRoleRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AddRoleRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AddRoleRequest message.
+         * @function verify
+         * @memberof role.AddRoleRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AddRoleRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.uid != null && message.hasOwnProperty("uid"))
+                if (!$util.isInteger(message.uid))
+                    return "uid: integer expected";
+            if (message.role != null && message.hasOwnProperty("role"))
+                switch (message.role) {
+                default:
+                    return "role: enum value expected";
+                case 0:
+                case 20:
+                case 99:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates an AddRoleRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof role.AddRoleRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {role.AddRoleRequest} AddRoleRequest
+         */
+        AddRoleRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.role.AddRoleRequest)
+                return object;
+            var message = new $root.role.AddRoleRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".role.AddRoleRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.uid != null)
+                message.uid = object.uid >>> 0;
+            switch (object.role) {
+            default:
+                if (typeof object.role === "number") {
+                    message.role = object.role;
+                    break;
+                }
+                break;
+            case "USER":
+            case 0:
+                message.role = 0;
+                break;
+            case "ADMIN":
+            case 20:
+                message.role = 20;
+                break;
+            case "BLACK":
+            case 99:
+                message.role = 99;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AddRoleRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof role.AddRoleRequest
+         * @static
+         * @param {role.AddRoleRequest} message AddRoleRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AddRoleRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.uid = 0;
+                object.role = options.enums === String ? "USER" : 0;
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.uid != null && message.hasOwnProperty("uid"))
+                object.uid = message.uid;
+            if (message.role != null && message.hasOwnProperty("role"))
+                object.role = options.enums === String ? $root.role.Role[message.role] === undefined ? message.role : $root.role.Role[message.role] : message.role;
+            return object;
+        };
+
+        /**
+         * Converts this AddRoleRequest to JSON.
+         * @function toJSON
+         * @memberof role.AddRoleRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AddRoleRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AddRoleRequest
+         * @function getTypeUrl
+         * @memberof role.AddRoleRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AddRoleRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/role.AddRoleRequest";
+        };
+
+        return AddRoleRequest;
+    })();
+
+    role.DelRoleRequest = (function() {
+
+        /**
+         * Properties of a DelRoleRequest.
+         * @memberof role
+         * @interface IDelRoleRequest
+         * @property {auth.IAuthorization|null} [auth] DelRoleRequest auth
+         * @property {number|null} [uid] DelRoleRequest uid
+         * @property {role.Role|null} [role] DelRoleRequest role
+         */
+
+        /**
+         * Constructs a new DelRoleRequest.
+         * @memberof role
+         * @classdesc Represents a DelRoleRequest.
+         * @implements IDelRoleRequest
+         * @constructor
+         * @param {role.IDelRoleRequest=} [properties] Properties to set
+         */
+        function DelRoleRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * DelRoleRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof role.DelRoleRequest
+         * @instance
+         */
+        DelRoleRequest.prototype.auth = null;
+
+        /**
+         * DelRoleRequest uid.
+         * @member {number} uid
+         * @memberof role.DelRoleRequest
+         * @instance
+         */
+        DelRoleRequest.prototype.uid = 0;
+
+        /**
+         * DelRoleRequest role.
+         * @member {role.Role} role
+         * @memberof role.DelRoleRequest
+         * @instance
+         */
+        DelRoleRequest.prototype.role = 0;
+
+        /**
+         * Creates a new DelRoleRequest instance using the specified properties.
+         * @function create
+         * @memberof role.DelRoleRequest
+         * @static
+         * @param {role.IDelRoleRequest=} [properties] Properties to set
+         * @returns {role.DelRoleRequest} DelRoleRequest instance
+         */
+        DelRoleRequest.create = function create(properties) {
+            return new DelRoleRequest(properties);
+        };
+
+        /**
+         * Encodes the specified DelRoleRequest message. Does not implicitly {@link role.DelRoleRequest.verify|verify} messages.
+         * @function encode
+         * @memberof role.DelRoleRequest
+         * @static
+         * @param {role.IDelRoleRequest} message DelRoleRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        DelRoleRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.uid != null && Object.hasOwnProperty.call(message, "uid"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.uid);
+            if (message.role != null && Object.hasOwnProperty.call(message, "role"))
+                writer.uint32(/* id 12, wireType 0 =*/96).int32(message.role);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified DelRoleRequest message, length delimited. Does not implicitly {@link role.DelRoleRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof role.DelRoleRequest
+         * @static
+         * @param {role.IDelRoleRequest} message DelRoleRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        DelRoleRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a DelRoleRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof role.DelRoleRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {role.DelRoleRequest} DelRoleRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        DelRoleRequest.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.role.DelRoleRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 11: {
+                        message.uid = reader.uint32();
+                        break;
+                    }
+                case 12: {
+                        message.role = reader.int32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a DelRoleRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof role.DelRoleRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {role.DelRoleRequest} DelRoleRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        DelRoleRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a DelRoleRequest message.
+         * @function verify
+         * @memberof role.DelRoleRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        DelRoleRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.uid != null && message.hasOwnProperty("uid"))
+                if (!$util.isInteger(message.uid))
+                    return "uid: integer expected";
+            if (message.role != null && message.hasOwnProperty("role"))
+                switch (message.role) {
+                default:
+                    return "role: enum value expected";
+                case 0:
+                case 20:
+                case 99:
+                    break;
+                }
+            return null;
+        };
+
+        /**
+         * Creates a DelRoleRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof role.DelRoleRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {role.DelRoleRequest} DelRoleRequest
+         */
+        DelRoleRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.role.DelRoleRequest)
+                return object;
+            var message = new $root.role.DelRoleRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".role.DelRoleRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.uid != null)
+                message.uid = object.uid >>> 0;
+            switch (object.role) {
+            default:
+                if (typeof object.role === "number") {
+                    message.role = object.role;
+                    break;
+                }
+                break;
+            case "USER":
+            case 0:
+                message.role = 0;
+                break;
+            case "ADMIN":
+            case 20:
+                message.role = 20;
+                break;
+            case "BLACK":
+            case 99:
+                message.role = 99;
+                break;
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a DelRoleRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof role.DelRoleRequest
+         * @static
+         * @param {role.DelRoleRequest} message DelRoleRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        DelRoleRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.uid = 0;
+                object.role = options.enums === String ? "USER" : 0;
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.uid != null && message.hasOwnProperty("uid"))
+                object.uid = message.uid;
+            if (message.role != null && message.hasOwnProperty("role"))
+                object.role = options.enums === String ? $root.role.Role[message.role] === undefined ? message.role : $root.role.Role[message.role] : message.role;
+            return object;
+        };
+
+        /**
+         * Converts this DelRoleRequest to JSON.
+         * @function toJSON
+         * @memberof role.DelRoleRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        DelRoleRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for DelRoleRequest
+         * @function getTypeUrl
+         * @memberof role.DelRoleRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        DelRoleRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/role.DelRoleRequest";
+        };
+
+        return DelRoleRequest;
+    })();
+
+    role.RoleService = (function() {
+
+        /**
+         * Constructs a new RoleService service.
+         * @memberof role
+         * @classdesc Represents a RoleService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function RoleService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (RoleService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = RoleService;
+
+        /**
+         * Creates new RoleService service using the specified rpc implementation.
+         * @function create
+         * @memberof role.RoleService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {RoleService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        RoleService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link role.RoleService#getRole}.
+         * @memberof role.RoleService
+         * @typedef GetRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {role.GetRoleResponse} [response] GetRoleResponse
+         */
+
+        /**
+         * Calls GetRole.
+         * @function getRole
+         * @memberof role.RoleService
+         * @instance
+         * @param {role.IGetRoleRequest} request GetRoleRequest message or plain object
+         * @param {role.RoleService.GetRoleCallback} callback Node-style callback called with the error, if any, and GetRoleResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(RoleService.prototype.getRole = function getRole(request, callback) {
+            return this.rpcCall(getRole, $root.role.GetRoleRequest, $root.role.GetRoleResponse, request, callback);
+        }, "name", { value: "GetRole" });
+
+        /**
+         * Calls GetRole.
+         * @function getRole
+         * @memberof role.RoleService
+         * @instance
+         * @param {role.IGetRoleRequest} request GetRoleRequest message or plain object
+         * @returns {Promise<role.GetRoleResponse>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link role.RoleService#addRole}.
+         * @memberof role.RoleService
+         * @typedef AddRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {common.Empty} [response] Empty
+         */
+
+        /**
+         * Calls AddRole.
+         * @function addRole
+         * @memberof role.RoleService
+         * @instance
+         * @param {role.IAddRoleRequest} request AddRoleRequest message or plain object
+         * @param {role.RoleService.AddRoleCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(RoleService.prototype.addRole = function addRole(request, callback) {
+            return this.rpcCall(addRole, $root.role.AddRoleRequest, $root.common.Empty, request, callback);
+        }, "name", { value: "AddRole" });
+
+        /**
+         * Calls AddRole.
+         * @function addRole
+         * @memberof role.RoleService
+         * @instance
+         * @param {role.IAddRoleRequest} request AddRoleRequest message or plain object
+         * @returns {Promise<common.Empty>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link role.RoleService#delRole}.
+         * @memberof role.RoleService
+         * @typedef DelRoleCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {common.Empty} [response] Empty
+         */
+
+        /**
+         * Calls DelRole.
+         * @function delRole
+         * @memberof role.RoleService
+         * @instance
+         * @param {role.IDelRoleRequest} request DelRoleRequest message or plain object
+         * @param {role.RoleService.DelRoleCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(RoleService.prototype.delRole = function delRole(request, callback) {
+            return this.rpcCall(delRole, $root.role.DelRoleRequest, $root.common.Empty, request, callback);
+        }, "name", { value: "DelRole" });
+
+        /**
+         * Calls DelRole.
+         * @function delRole
+         * @memberof role.RoleService
+         * @instance
+         * @param {role.IDelRoleRequest} request DelRoleRequest message or plain object
+         * @returns {Promise<common.Empty>} Promise
+         * @variation 2
+         */
+
+        return RoleService;
+    })();
+
+    return role;
+})();
+
+$root.user = (function() {
+
+    /**
+     * Namespace user.
+     * @exports user
+     * @namespace
+     */
+    var user = {};
 
     user.LoginRequest = (function() {
 
@@ -674,7 +2245,7 @@ $root.user = (function() {
          * @property {string|null} [passwd] LoginRequest passwd
          * @property {string|null} [deviceId] LoginRequest deviceId
          * @property {string|null} [deviceName] LoginRequest deviceName
-         * @property {number|null} [expire] LoginRequest expire
+         * @property {number|Long|null} [expire] LoginRequest expire
          */
 
         /**
@@ -698,7 +2269,7 @@ $root.user = (function() {
          * @memberof user.LoginRequest
          * @instance
          */
-        LoginRequest.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+        LoginRequest.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
 
         /**
          * LoginRequest uname.
@@ -734,11 +2305,11 @@ $root.user = (function() {
 
         /**
          * LoginRequest expire.
-         * @member {number} expire
+         * @member {number|Long} expire
          * @memberof user.LoginRequest
          * @instance
          */
-        LoginRequest.prototype.expire = 0;
+        LoginRequest.prototype.expire = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
 
         /**
          * Creates a new LoginRequest instance using the specified properties.
@@ -765,7 +2336,7 @@ $root.user = (function() {
             if (!writer)
                 writer = $Writer.create();
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
-                writer.uint32(/* id 1, wireType 0 =*/8).int64(message.timestamp);
+                writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.timestamp);
             if (message.uname != null && Object.hasOwnProperty.call(message, "uname"))
                 writer.uint32(/* id 11, wireType 2 =*/90).string(message.uname);
             if (message.passwd != null && Object.hasOwnProperty.call(message, "passwd"))
@@ -775,7 +2346,7 @@ $root.user = (function() {
             if (message.deviceName != null && Object.hasOwnProperty.call(message, "deviceName"))
                 writer.uint32(/* id 22, wireType 2 =*/178).string(message.deviceName);
             if (message.expire != null && Object.hasOwnProperty.call(message, "expire"))
-                writer.uint32(/* id 51, wireType 0 =*/408).int32(message.expire);
+                writer.uint32(/* id 51, wireType 0 =*/408).uint64(message.expire);
             return writer;
         };
 
@@ -811,7 +2382,7 @@ $root.user = (function() {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1: {
-                        message.timestamp = reader.int64();
+                        message.timestamp = reader.uint64();
                         break;
                     }
                 case 11: {
@@ -831,7 +2402,7 @@ $root.user = (function() {
                         break;
                     }
                 case 51: {
-                        message.expire = reader.int32();
+                        message.expire = reader.uint64();
                         break;
                     }
                 default:
@@ -885,8 +2456,8 @@ $root.user = (function() {
                 if (!$util.isString(message.deviceName))
                     return "deviceName: string expected";
             if (message.expire != null && message.hasOwnProperty("expire"))
-                if (!$util.isInteger(message.expire))
-                    return "expire: integer expected";
+                if (!$util.isInteger(message.expire) && !(message.expire && $util.isInteger(message.expire.low) && $util.isInteger(message.expire.high)))
+                    return "expire: integer|Long expected";
             return null;
         };
 
@@ -904,13 +2475,13 @@ $root.user = (function() {
             var message = new $root.user.LoginRequest();
             if (object.timestamp != null)
                 if ($util.Long)
-                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = false;
+                    (message.timestamp = $util.Long.fromValue(object.timestamp)).unsigned = true;
                 else if (typeof object.timestamp === "string")
                     message.timestamp = parseInt(object.timestamp, 10);
                 else if (typeof object.timestamp === "number")
                     message.timestamp = object.timestamp;
                 else if (typeof object.timestamp === "object")
-                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber();
+                    message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
             if (object.uname != null)
                 message.uname = String(object.uname);
             if (object.passwd != null)
@@ -920,7 +2491,14 @@ $root.user = (function() {
             if (object.deviceName != null)
                 message.deviceName = String(object.deviceName);
             if (object.expire != null)
-                message.expire = object.expire | 0;
+                if ($util.Long)
+                    (message.expire = $util.Long.fromValue(object.expire)).unsigned = true;
+                else if (typeof object.expire === "string")
+                    message.expire = parseInt(object.expire, 10);
+                else if (typeof object.expire === "number")
+                    message.expire = object.expire;
+                else if (typeof object.expire === "object")
+                    message.expire = new $util.LongBits(object.expire.low >>> 0, object.expire.high >>> 0).toNumber(true);
             return message;
         };
 
@@ -939,7 +2517,7 @@ $root.user = (function() {
             var object = {};
             if (options.defaults) {
                 if ($util.Long) {
-                    var long = new $util.Long(0, 0, false);
+                    var long = new $util.Long(0, 0, true);
                     object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.timestamp = options.longs === String ? "0" : 0;
@@ -947,13 +2525,17 @@ $root.user = (function() {
                 object.passwd = "";
                 object.deviceId = "";
                 object.deviceName = "";
-                object.expire = 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.expire = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.expire = options.longs === String ? "0" : 0;
             }
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (typeof message.timestamp === "number")
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
-                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber() : message.timestamp;
+                    object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
             if (message.uname != null && message.hasOwnProperty("uname"))
                 object.uname = message.uname;
             if (message.passwd != null && message.hasOwnProperty("passwd"))
@@ -963,7 +2545,10 @@ $root.user = (function() {
             if (message.deviceName != null && message.hasOwnProperty("deviceName"))
                 object.deviceName = message.deviceName;
             if (message.expire != null && message.hasOwnProperty("expire"))
-                object.expire = message.expire;
+                if (typeof message.expire === "number")
+                    object.expire = options.longs === String ? String(message.expire) : message.expire;
+                else
+                    object.expire = options.longs === String ? $util.Long.prototype.toString.call(message.expire) : options.longs === Number ? new $util.LongBits(message.expire.low >>> 0, message.expire.high >>> 0).toNumber(true) : message.expire;
             return object;
         };
 
@@ -1005,6 +2590,7 @@ $root.user = (function() {
          * @property {string|null} [code] WxLoginRequest code
          * @property {string|null} [deviceId] WxLoginRequest deviceId
          * @property {string|null} [deviceName] WxLoginRequest deviceName
+         * @property {number|Long|null} [expire] WxLoginRequest expire
          */
 
         /**
@@ -1047,6 +2633,14 @@ $root.user = (function() {
         WxLoginRequest.prototype.deviceName = "";
 
         /**
+         * WxLoginRequest expire.
+         * @member {number|Long} expire
+         * @memberof user.WxLoginRequest
+         * @instance
+         */
+        WxLoginRequest.prototype.expire = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
          * Creates a new WxLoginRequest instance using the specified properties.
          * @function create
          * @memberof user.WxLoginRequest
@@ -1076,6 +2670,8 @@ $root.user = (function() {
                 writer.uint32(/* id 21, wireType 2 =*/170).string(message.deviceId);
             if (message.deviceName != null && Object.hasOwnProperty.call(message, "deviceName"))
                 writer.uint32(/* id 22, wireType 2 =*/178).string(message.deviceName);
+            if (message.expire != null && Object.hasOwnProperty.call(message, "expire"))
+                writer.uint32(/* id 51, wireType 0 =*/408).uint64(message.expire);
             return writer;
         };
 
@@ -1122,6 +2718,10 @@ $root.user = (function() {
                         message.deviceName = reader.string();
                         break;
                     }
+                case 51: {
+                        message.expire = reader.uint64();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1166,6 +2766,9 @@ $root.user = (function() {
             if (message.deviceName != null && message.hasOwnProperty("deviceName"))
                 if (!$util.isString(message.deviceName))
                     return "deviceName: string expected";
+            if (message.expire != null && message.hasOwnProperty("expire"))
+                if (!$util.isInteger(message.expire) && !(message.expire && $util.isInteger(message.expire.low) && $util.isInteger(message.expire.high)))
+                    return "expire: integer|Long expected";
             return null;
         };
 
@@ -1187,6 +2790,15 @@ $root.user = (function() {
                 message.deviceId = String(object.deviceId);
             if (object.deviceName != null)
                 message.deviceName = String(object.deviceName);
+            if (object.expire != null)
+                if ($util.Long)
+                    (message.expire = $util.Long.fromValue(object.expire)).unsigned = true;
+                else if (typeof object.expire === "string")
+                    message.expire = parseInt(object.expire, 10);
+                else if (typeof object.expire === "number")
+                    message.expire = object.expire;
+                else if (typeof object.expire === "object")
+                    message.expire = new $util.LongBits(object.expire.low >>> 0, object.expire.high >>> 0).toNumber(true);
             return message;
         };
 
@@ -1207,6 +2819,11 @@ $root.user = (function() {
                 object.code = "";
                 object.deviceId = "";
                 object.deviceName = "";
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.expire = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.expire = options.longs === String ? "0" : 0;
             }
             if (message.code != null && message.hasOwnProperty("code"))
                 object.code = message.code;
@@ -1214,6 +2831,11 @@ $root.user = (function() {
                 object.deviceId = message.deviceId;
             if (message.deviceName != null && message.hasOwnProperty("deviceName"))
                 object.deviceName = message.deviceName;
+            if (message.expire != null && message.hasOwnProperty("expire"))
+                if (typeof message.expire === "number")
+                    object.expire = options.longs === String ? String(message.expire) : message.expire;
+                else
+                    object.expire = options.longs === String ? $util.Long.prototype.toString.call(message.expire) : options.longs === Number ? new $util.LongBits(message.expire.low >>> 0, message.expire.high >>> 0).toNumber(true) : message.expire;
             return object;
         };
 
@@ -1252,7 +2874,7 @@ $root.user = (function() {
          * Properties of a LoginResponse.
          * @memberof user
          * @interface ILoginResponse
-         * @property {user.IAuthorization|null} [auth] LoginResponse auth
+         * @property {auth.IAuthorization|null} [auth] LoginResponse auth
          */
 
         /**
@@ -1272,7 +2894,7 @@ $root.user = (function() {
 
         /**
          * LoginResponse auth.
-         * @member {user.IAuthorization|null|undefined} auth
+         * @member {auth.IAuthorization|null|undefined} auth
          * @memberof user.LoginResponse
          * @instance
          */
@@ -1303,7 +2925,7 @@ $root.user = (function() {
             if (!writer)
                 writer = $Writer.create();
             if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
-                $root.user.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
 
@@ -1339,7 +2961,7 @@ $root.user = (function() {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1: {
-                        message.auth = $root.user.Authorization.decode(reader, reader.uint32());
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -1378,7 +3000,7 @@ $root.user = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.auth != null && message.hasOwnProperty("auth")) {
-                var error = $root.user.Authorization.verify(message.auth);
+                var error = $root.auth.Authorization.verify(message.auth);
                 if (error)
                     return "auth." + error;
             }
@@ -1400,7 +3022,7 @@ $root.user = (function() {
             if (object.auth != null) {
                 if (typeof object.auth !== "object")
                     throw TypeError(".user.LoginResponse.auth: object expected");
-                message.auth = $root.user.Authorization.fromObject(object.auth);
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
             }
             return message;
         };
@@ -1421,7 +3043,7 @@ $root.user = (function() {
             if (options.defaults)
                 object.auth = null;
             if (message.auth != null && message.hasOwnProperty("auth"))
-                object.auth = $root.user.Authorization.toObject(message.auth, options);
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
             return object;
         };
 
@@ -1460,7 +3082,7 @@ $root.user = (function() {
          * Properties of a ChangePasswdRequest.
          * @memberof user
          * @interface IChangePasswdRequest
-         * @property {user.IAuthorization|null} [auth] ChangePasswdRequest auth
+         * @property {auth.IAuthorization|null} [auth] ChangePasswdRequest auth
          * @property {string|null} [passwd] ChangePasswdRequest passwd
          */
 
@@ -1481,7 +3103,7 @@ $root.user = (function() {
 
         /**
          * ChangePasswdRequest auth.
-         * @member {user.IAuthorization|null|undefined} auth
+         * @member {auth.IAuthorization|null|undefined} auth
          * @memberof user.ChangePasswdRequest
          * @instance
          */
@@ -1520,7 +3142,7 @@ $root.user = (function() {
             if (!writer)
                 writer = $Writer.create();
             if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
-                $root.user.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.passwd != null && Object.hasOwnProperty.call(message, "passwd"))
                 writer.uint32(/* id 11, wireType 2 =*/90).string(message.passwd);
             return writer;
@@ -1558,7 +3180,7 @@ $root.user = (function() {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1: {
-                        message.auth = $root.user.Authorization.decode(reader, reader.uint32());
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
                         break;
                     }
                 case 11: {
@@ -1601,7 +3223,7 @@ $root.user = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.auth != null && message.hasOwnProperty("auth")) {
-                var error = $root.user.Authorization.verify(message.auth);
+                var error = $root.auth.Authorization.verify(message.auth);
                 if (error)
                     return "auth." + error;
             }
@@ -1626,7 +3248,7 @@ $root.user = (function() {
             if (object.auth != null) {
                 if (typeof object.auth !== "object")
                     throw TypeError(".user.ChangePasswdRequest.auth: object expected");
-                message.auth = $root.user.Authorization.fromObject(object.auth);
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
             }
             if (object.passwd != null)
                 message.passwd = String(object.passwd);
@@ -1651,7 +3273,7 @@ $root.user = (function() {
                 object.passwd = "";
             }
             if (message.auth != null && message.hasOwnProperty("auth"))
-                object.auth = $root.user.Authorization.toObject(message.auth, options);
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
             if (message.passwd != null && message.hasOwnProperty("passwd"))
                 object.passwd = message.passwd;
             return object;
