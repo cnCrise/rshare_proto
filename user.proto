@@ -3,16 +3,11 @@ syntax = "proto3";
 package user;
 
 import "common.proto";
-
-// 授权信息
-message Authorization {
-  // JSON Web Token
-  string jwt = 1;
-}
+import "auth.proto";
 
 message LoginRequest {
   // 秒级时间戳
-  int64 timestamp = 1;
+  uint64 timestamp = 1;
   // 用户名
   string uname = 11;
   // MD5(timestamp+用户密码)
@@ -22,7 +17,7 @@ message LoginRequest {
   // 终端设备名称
   string device_name = 22;
   // 过期时间，单位s，特殊地：0永不过期
-  int32 expire = 51;
+  uint64 expire = 51;
 }
 message WxLoginRequest {
   // 调用wx.login接口获取登录凭证
@@ -31,14 +26,16 @@ message WxLoginRequest {
   string device_id = 21;
   // 终端设备名称
   string device_name = 22;
+  // 过期时间，单位s，特殊地：0永不过期
+  uint64 expire = 51;
 }
 message LoginResponse {
   // 授权信息
-  Authorization auth = 1;
+  auth.Authorization auth = 1;
 }
 
 message ChangePasswdRequest {
-  Authorization auth = 1;
+  auth.Authorization auth = 1;
   string passwd = 11;
 }
 

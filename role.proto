@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package role;
+
+import "common.proto";
+import "auth.proto";
+
+// 角色
+enum Role {
+  // 普通用户
+  USER = 0;
+  // 超级管理员
+  ADMIN = 20;
+  // 黑名单
+  BLACK = 99;
+}
+
+message GetRoleRequest {
+  // 授权信息
+  auth.Authorization auth = 1;
+  // 被操作账号
+  uint32 uid = 11;
+}
+message GetRoleResponse {
+  // 角色列表
+  repeated Role roles = 1;
+}
+message AddRoleRequest {
+  // 授权信息
+  auth.Authorization auth = 1;
+  // 被操作账号
+  uint32 uid = 11;
+  // 授予权限
+  Role role = 12;
+}
+message DelRoleRequest {
+  // 授权信息
+  auth.Authorization auth = 1;
+  // 被操作账号
+  uint32 uid = 11;
+  // 删除权限
+  Role role = 12;
+}
+
+// 角色权限相关服务
+service RoleService {
+  // 查询指定用户的角色权限列表
+  rpc GetRole(GetRoleRequest) returns (GetRoleResponse);
+  // 授予指定用户的角色权限
+  rpc AddRole(AddRoleRequest) returns (common.Empty);
+  // 删除指定用户的角色权限
+  rpc DelRole(DelRoleRequest) returns (common.Empty);
+}

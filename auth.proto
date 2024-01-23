@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package auth;
+
+// 授权信息
+message Authorization {
+  // JSON Web Token
+  string jwt = 1;
+}
+
+message RefreshAuthRequest {
+  Authorization auth = 1;
+  // 有效期，单位秒。特殊地，0为永不过期
+  uint64 expire = 11;
+}
+
+// 用户认证相关服务
+service AuthService {
+  // 刷新授权有效期
+  rpc RefreshAuth(RefreshAuthRequest) returns (Authorization);
+}
