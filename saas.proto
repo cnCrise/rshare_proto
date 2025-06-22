@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package saas;
+
+import "common.proto";
+import "auth.proto";
+
+message CreateSaasRequest {
+  // 授权信息
+  auth.Authorization auth = 1;
+  string name = 10;
+}
+message CreateSaasResponse {
+  uint32 saas_id = 11;
+}
+
+// Saas相关服务
+service SaasService {
+  // 创建Saas
+  rpc CreateSaas(CreateSaasRequest) returns (CreateSaasResponse);
+}

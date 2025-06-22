@@ -4,22 +4,33 @@ package role;
 
 import "common.proto";
 import "auth.proto";
+import "app.proto";
 
 // 角色
 enum Role {
   // 普通用户
   USER = 0;
   // 超级管理员
-  ADMIN = 20;
+  ADMIN = 1;
   // 黑名单
-  BLACK = 99;
+  BLACK = 9;
+  // Saas管理员
+  SAAS_ADMIN = 11;
+  // Saas授权者
+  SAAS_AUTHORIZER = 12;
+  // 应用管理员
+  APP_ADMIN = 21;
+  // 应用授权者
+  APP_AUTHORIZER = 22;
 }
 
 message GetRoleRequest {
   // 授权信息
   auth.Authorization auth = 1;
+  // 应用ID
+  app.AppIndex app = 2;
   // 被操作账号
-  uint32 uid = 11;
+  uint32 user_id = 11;
 }
 message GetRoleResponse {
   // 角色列表
@@ -28,16 +39,20 @@ message GetRoleResponse {
 message AddRoleRequest {
   // 授权信息
   auth.Authorization auth = 1;
+  // 应用ID
+  app.AppIndex app = 2;
   // 被操作账号
-  uint32 uid = 11;
+  uint32 user_id = 11;
   // 授予权限
   Role role = 12;
 }
 message DelRoleRequest {
   // 授权信息
   auth.Authorization auth = 1;
+  // 应用ID
+  app.AppIndex app = 2;
   // 被操作账号
-  uint32 uid = 11;
+  uint32 user_id = 11;
   // 删除权限
   Role role = 12;
 }

@@ -9,7 +9,7 @@ message LoginRequest {
   // 秒级时间戳
   uint64 timestamp = 1;
   // 用户名
-  string uname = 11;
+  string username = 11;
   // MD5(timestamp+用户密码)
   string passwd = 12;
   // 终端设备序列号
@@ -19,8 +19,9 @@ message LoginRequest {
   // 过期时间，单位s，特殊地：0永不过期
   uint64 expire = 51;
 }
-message WxLoginRequest {
-  // 调用wx.login接口获取登录凭证
+message ThreeLoginRequest {
+  string platform = 10;
+  // 三方平台登录凭证
   string code = 11;
   // 终端设备序列号
   string device_id = 21;
@@ -44,7 +45,7 @@ service UserService {
   // 账号密码登录
   rpc Login(LoginRequest) returns (LoginResponse);
   // 微信登录
-  rpc WxLogin(WxLoginRequest) returns (LoginResponse);
+  rpc ThreeLogin(ThreeLoginRequest) returns (LoginResponse);
   // 修改密码
   rpc ChangePasswd(ChangePasswdRequest) returns (common.Empty);
 }
