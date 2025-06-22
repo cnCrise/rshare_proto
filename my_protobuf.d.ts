@@ -1,5 +1,464 @@
 import * as $protobuf from "protobufjs";
 import Long = require("long");
+/** Namespace app. */
+export namespace app {
+
+    /** Properties of an AppIndex. */
+    interface IAppIndex {
+
+        /** AppIndex saasId */
+        saasId?: (number|null);
+
+        /** AppIndex appId */
+        appId?: (number|null);
+    }
+
+    /** Represents an AppIndex. */
+    class AppIndex implements IAppIndex {
+
+        /**
+         * Constructs a new AppIndex.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: app.IAppIndex);
+
+        /** AppIndex saasId. */
+        public saasId: number;
+
+        /** AppIndex appId. */
+        public appId: number;
+
+        /**
+         * Creates a new AppIndex instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AppIndex instance
+         */
+        public static create(properties?: app.IAppIndex): app.AppIndex;
+
+        /**
+         * Encodes the specified AppIndex message. Does not implicitly {@link app.AppIndex.verify|verify} messages.
+         * @param message AppIndex message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: app.IAppIndex, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AppIndex message, length delimited. Does not implicitly {@link app.AppIndex.verify|verify} messages.
+         * @param message AppIndex message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: app.IAppIndex, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AppIndex message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AppIndex
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): app.AppIndex;
+
+        /**
+         * Decodes an AppIndex message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AppIndex
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): app.AppIndex;
+
+        /**
+         * Verifies an AppIndex message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AppIndex message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AppIndex
+         */
+        public static fromObject(object: { [k: string]: any }): app.AppIndex;
+
+        /**
+         * Creates a plain object from an AppIndex message. Also converts values to other types if specified.
+         * @param message AppIndex
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: app.AppIndex, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AppIndex to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AppIndex
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a CreateAppRequest. */
+    interface ICreateAppRequest {
+
+        /** CreateAppRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** CreateAppRequest name */
+        name?: (string|null);
+
+        /** CreateAppRequest saasId */
+        saasId?: (number|null);
+    }
+
+    /** Represents a CreateAppRequest. */
+    class CreateAppRequest implements ICreateAppRequest {
+
+        /**
+         * Constructs a new CreateAppRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: app.ICreateAppRequest);
+
+        /** CreateAppRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** CreateAppRequest name. */
+        public name: string;
+
+        /** CreateAppRequest saasId. */
+        public saasId: number;
+
+        /**
+         * Creates a new CreateAppRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CreateAppRequest instance
+         */
+        public static create(properties?: app.ICreateAppRequest): app.CreateAppRequest;
+
+        /**
+         * Encodes the specified CreateAppRequest message. Does not implicitly {@link app.CreateAppRequest.verify|verify} messages.
+         * @param message CreateAppRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: app.ICreateAppRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CreateAppRequest message, length delimited. Does not implicitly {@link app.CreateAppRequest.verify|verify} messages.
+         * @param message CreateAppRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: app.ICreateAppRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CreateAppRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CreateAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): app.CreateAppRequest;
+
+        /**
+         * Decodes a CreateAppRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CreateAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): app.CreateAppRequest;
+
+        /**
+         * Verifies a CreateAppRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CreateAppRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CreateAppRequest
+         */
+        public static fromObject(object: { [k: string]: any }): app.CreateAppRequest;
+
+        /**
+         * Creates a plain object from a CreateAppRequest message. Also converts values to other types if specified.
+         * @param message CreateAppRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: app.CreateAppRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CreateAppRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CreateAppRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Represents an AppService */
+    class AppService extends $protobuf.rpc.Service {
+
+        /**
+         * Constructs a new AppService service.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         */
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+        /**
+         * Creates new AppService service using the specified rpc implementation.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         * @returns RPC service. Useful where requests and/or responses are streamed.
+         */
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): AppService;
+
+        /**
+         * Calls CreateApp.
+         * @param request CreateAppRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and AppIndex
+         */
+        public createApp(request: app.ICreateAppRequest, callback: app.AppService.CreateAppCallback): void;
+
+        /**
+         * Calls CreateApp.
+         * @param request CreateAppRequest message or plain object
+         * @returns Promise
+         */
+        public createApp(request: app.ICreateAppRequest): Promise<app.AppIndex>;
+    }
+
+    namespace AppService {
+
+        /**
+         * Callback as used by {@link app.AppService#createApp}.
+         * @param error Error, if any
+         * @param [response] AppIndex
+         */
+        type CreateAppCallback = (error: (Error|null), response?: app.AppIndex) => void;
+    }
+}
+
+/** Namespace common. */
+export namespace common {
+
+    /** Properties of an Empty. */
+    interface IEmpty {
+    }
+
+    /** Represents an Empty. */
+    class Empty implements IEmpty {
+
+        /**
+         * Constructs a new Empty.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: common.IEmpty);
+
+        /**
+         * Creates a new Empty instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Empty instance
+         */
+        public static create(properties?: common.IEmpty): common.Empty;
+
+        /**
+         * Encodes the specified Empty message. Does not implicitly {@link common.Empty.verify|verify} messages.
+         * @param message Empty message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: common.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Empty message, length delimited. Does not implicitly {@link common.Empty.verify|verify} messages.
+         * @param message Empty message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: common.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): common.Empty;
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): common.Empty;
+
+        /**
+         * Verifies an Empty message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an Empty message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Empty
+         */
+        public static fromObject(object: { [k: string]: any }): common.Empty;
+
+        /**
+         * Creates a plain object from an Empty message. Also converts values to other types if specified.
+         * @param message Empty
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: common.Empty, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Empty to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Empty
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SubscribeRequest. */
+    interface ISubscribeRequest {
+
+        /** SubscribeRequest intervalMin */
+        intervalMin?: (number|Long|null);
+
+        /** SubscribeRequest intervalMax */
+        intervalMax?: (number|Long|null);
+    }
+
+    /** Represents a SubscribeRequest. */
+    class SubscribeRequest implements ISubscribeRequest {
+
+        /**
+         * Constructs a new SubscribeRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: common.ISubscribeRequest);
+
+        /** SubscribeRequest intervalMin. */
+        public intervalMin: (number|Long);
+
+        /** SubscribeRequest intervalMax. */
+        public intervalMax: (number|Long);
+
+        /**
+         * Creates a new SubscribeRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SubscribeRequest instance
+         */
+        public static create(properties?: common.ISubscribeRequest): common.SubscribeRequest;
+
+        /**
+         * Encodes the specified SubscribeRequest message. Does not implicitly {@link common.SubscribeRequest.verify|verify} messages.
+         * @param message SubscribeRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: common.ISubscribeRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SubscribeRequest message, length delimited. Does not implicitly {@link common.SubscribeRequest.verify|verify} messages.
+         * @param message SubscribeRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: common.ISubscribeRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SubscribeRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SubscribeRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): common.SubscribeRequest;
+
+        /**
+         * Decodes a SubscribeRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SubscribeRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): common.SubscribeRequest;
+
+        /**
+         * Verifies a SubscribeRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SubscribeRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SubscribeRequest
+         */
+        public static fromObject(object: { [k: string]: any }): common.SubscribeRequest;
+
+        /**
+         * Creates a plain object from a SubscribeRequest message. Also converts values to other types if specified.
+         * @param message SubscribeRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: common.SubscribeRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SubscribeRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SubscribeRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+}
+
 /** Namespace auth. */
 export namespace auth {
 
@@ -249,204 +708,6 @@ export namespace auth {
     }
 }
 
-/** Namespace common. */
-export namespace common {
-
-    /** Properties of an Empty. */
-    interface IEmpty {
-    }
-
-    /** Represents an Empty. */
-    class Empty implements IEmpty {
-
-        /**
-         * Constructs a new Empty.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: common.IEmpty);
-
-        /**
-         * Creates a new Empty instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Empty instance
-         */
-        public static create(properties?: common.IEmpty): common.Empty;
-
-        /**
-         * Encodes the specified Empty message. Does not implicitly {@link common.Empty.verify|verify} messages.
-         * @param message Empty message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: common.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Empty message, length delimited. Does not implicitly {@link common.Empty.verify|verify} messages.
-         * @param message Empty message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: common.IEmpty, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes an Empty message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Empty
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): common.Empty;
-
-        /**
-         * Decodes an Empty message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Empty
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): common.Empty;
-
-        /**
-         * Verifies an Empty message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates an Empty message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns Empty
-         */
-        public static fromObject(object: { [k: string]: any }): common.Empty;
-
-        /**
-         * Creates a plain object from an Empty message. Also converts values to other types if specified.
-         * @param message Empty
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: common.Empty, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this Empty to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for Empty
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a SubscribeRequest. */
-    interface ISubscribeRequest {
-
-        /** SubscribeRequest intervalMin */
-        intervalMin?: (number|Long|null);
-
-        /** SubscribeRequest intervalMax */
-        intervalMax?: (number|Long|null);
-    }
-
-    /** Represents a SubscribeRequest. */
-    class SubscribeRequest implements ISubscribeRequest {
-
-        /**
-         * Constructs a new SubscribeRequest.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: common.ISubscribeRequest);
-
-        /** SubscribeRequest intervalMin. */
-        public intervalMin: (number|Long);
-
-        /** SubscribeRequest intervalMax. */
-        public intervalMax: (number|Long);
-
-        /**
-         * Creates a new SubscribeRequest instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns SubscribeRequest instance
-         */
-        public static create(properties?: common.ISubscribeRequest): common.SubscribeRequest;
-
-        /**
-         * Encodes the specified SubscribeRequest message. Does not implicitly {@link common.SubscribeRequest.verify|verify} messages.
-         * @param message SubscribeRequest message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: common.ISubscribeRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified SubscribeRequest message, length delimited. Does not implicitly {@link common.SubscribeRequest.verify|verify} messages.
-         * @param message SubscribeRequest message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: common.ISubscribeRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a SubscribeRequest message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns SubscribeRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): common.SubscribeRequest;
-
-        /**
-         * Decodes a SubscribeRequest message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns SubscribeRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): common.SubscribeRequest;
-
-        /**
-         * Verifies a SubscribeRequest message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a SubscribeRequest message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns SubscribeRequest
-         */
-        public static fromObject(object: { [k: string]: any }): common.SubscribeRequest;
-
-        /**
-         * Creates a plain object from a SubscribeRequest message. Also converts values to other types if specified.
-         * @param message SubscribeRequest
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: common.SubscribeRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this SubscribeRequest to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for SubscribeRequest
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-}
-
 /** Namespace error_code. */
 export namespace error_code {
 
@@ -455,10 +716,14 @@ export namespace error_code {
         SUCCESS = 0,
         INVALID_INPUT = 1001,
         NOT_SIGNUP = 2001,
-        PASSWD_ERR = 2002,
+        NONE_PASSWD = 2002,
+        PASSWD_ERR = 2003,
+        INVALID_THREE = 2005,
+        THREE_ERR = 2006,
         INVALID_AUTH = 2011,
         EXPIRED_AUTH = 2012,
         EXPIRED_AUTH_SN = 2013,
+        INVALID_APP = 2018,
         PERMISSION_DENIED = 2021,
         DB_ERR = 7001,
         WX_ERR = 8001
@@ -471,8 +736,12 @@ export namespace role {
     /** Role enum. */
     enum Role {
         USER = 0,
-        ADMIN = 20,
-        BLACK = 99
+        ADMIN = 1,
+        BLACK = 9,
+        SAAS_ADMIN = 11,
+        SAAS_AUTHORIZER = 12,
+        APP_ADMIN = 21,
+        APP_AUTHORIZER = 22
     }
 
     /** Properties of a GetRoleRequest. */
@@ -481,8 +750,11 @@ export namespace role {
         /** GetRoleRequest auth */
         auth?: (auth.IAuthorization|null);
 
-        /** GetRoleRequest uid */
-        uid?: (number|null);
+        /** GetRoleRequest app */
+        app?: (app.IAppIndex|null);
+
+        /** GetRoleRequest userId */
+        userId?: (number|null);
     }
 
     /** Represents a GetRoleRequest. */
@@ -497,8 +769,11 @@ export namespace role {
         /** GetRoleRequest auth. */
         public auth?: (auth.IAuthorization|null);
 
-        /** GetRoleRequest uid. */
-        public uid: number;
+        /** GetRoleRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /** GetRoleRequest userId. */
+        public userId: number;
 
         /**
          * Creates a new GetRoleRequest instance using the specified properties.
@@ -681,8 +956,11 @@ export namespace role {
         /** AddRoleRequest auth */
         auth?: (auth.IAuthorization|null);
 
-        /** AddRoleRequest uid */
-        uid?: (number|null);
+        /** AddRoleRequest app */
+        app?: (app.IAppIndex|null);
+
+        /** AddRoleRequest userId */
+        userId?: (number|null);
 
         /** AddRoleRequest role */
         role?: (role.Role|null);
@@ -700,8 +978,11 @@ export namespace role {
         /** AddRoleRequest auth. */
         public auth?: (auth.IAuthorization|null);
 
-        /** AddRoleRequest uid. */
-        public uid: number;
+        /** AddRoleRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /** AddRoleRequest userId. */
+        public userId: number;
 
         /** AddRoleRequest role. */
         public role: role.Role;
@@ -790,8 +1071,11 @@ export namespace role {
         /** DelRoleRequest auth */
         auth?: (auth.IAuthorization|null);
 
-        /** DelRoleRequest uid */
-        uid?: (number|null);
+        /** DelRoleRequest app */
+        app?: (app.IAppIndex|null);
+
+        /** DelRoleRequest userId */
+        userId?: (number|null);
 
         /** DelRoleRequest role */
         role?: (role.Role|null);
@@ -809,8 +1093,11 @@ export namespace role {
         /** DelRoleRequest auth. */
         public auth?: (auth.IAuthorization|null);
 
-        /** DelRoleRequest uid. */
-        public uid: number;
+        /** DelRoleRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /** DelRoleRequest userId. */
+        public userId: number;
 
         /** DelRoleRequest role. */
         public role: role.Role;
@@ -981,6 +1268,492 @@ export namespace role {
     }
 }
 
+/** Namespace saas. */
+export namespace saas {
+
+    /** Properties of a CreateSaasRequest. */
+    interface ICreateSaasRequest {
+
+        /** CreateSaasRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** CreateSaasRequest name */
+        name?: (string|null);
+    }
+
+    /** Represents a CreateSaasRequest. */
+    class CreateSaasRequest implements ICreateSaasRequest {
+
+        /**
+         * Constructs a new CreateSaasRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: saas.ICreateSaasRequest);
+
+        /** CreateSaasRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** CreateSaasRequest name. */
+        public name: string;
+
+        /**
+         * Creates a new CreateSaasRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CreateSaasRequest instance
+         */
+        public static create(properties?: saas.ICreateSaasRequest): saas.CreateSaasRequest;
+
+        /**
+         * Encodes the specified CreateSaasRequest message. Does not implicitly {@link saas.CreateSaasRequest.verify|verify} messages.
+         * @param message CreateSaasRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: saas.ICreateSaasRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CreateSaasRequest message, length delimited. Does not implicitly {@link saas.CreateSaasRequest.verify|verify} messages.
+         * @param message CreateSaasRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: saas.ICreateSaasRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CreateSaasRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CreateSaasRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): saas.CreateSaasRequest;
+
+        /**
+         * Decodes a CreateSaasRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CreateSaasRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): saas.CreateSaasRequest;
+
+        /**
+         * Verifies a CreateSaasRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CreateSaasRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CreateSaasRequest
+         */
+        public static fromObject(object: { [k: string]: any }): saas.CreateSaasRequest;
+
+        /**
+         * Creates a plain object from a CreateSaasRequest message. Also converts values to other types if specified.
+         * @param message CreateSaasRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: saas.CreateSaasRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CreateSaasRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CreateSaasRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a CreateSaasResponse. */
+    interface ICreateSaasResponse {
+
+        /** CreateSaasResponse saasId */
+        saasId?: (number|null);
+    }
+
+    /** Represents a CreateSaasResponse. */
+    class CreateSaasResponse implements ICreateSaasResponse {
+
+        /**
+         * Constructs a new CreateSaasResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: saas.ICreateSaasResponse);
+
+        /** CreateSaasResponse saasId. */
+        public saasId: number;
+
+        /**
+         * Creates a new CreateSaasResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CreateSaasResponse instance
+         */
+        public static create(properties?: saas.ICreateSaasResponse): saas.CreateSaasResponse;
+
+        /**
+         * Encodes the specified CreateSaasResponse message. Does not implicitly {@link saas.CreateSaasResponse.verify|verify} messages.
+         * @param message CreateSaasResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: saas.ICreateSaasResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CreateSaasResponse message, length delimited. Does not implicitly {@link saas.CreateSaasResponse.verify|verify} messages.
+         * @param message CreateSaasResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: saas.ICreateSaasResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CreateSaasResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CreateSaasResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): saas.CreateSaasResponse;
+
+        /**
+         * Decodes a CreateSaasResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CreateSaasResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): saas.CreateSaasResponse;
+
+        /**
+         * Verifies a CreateSaasResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CreateSaasResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CreateSaasResponse
+         */
+        public static fromObject(object: { [k: string]: any }): saas.CreateSaasResponse;
+
+        /**
+         * Creates a plain object from a CreateSaasResponse message. Also converts values to other types if specified.
+         * @param message CreateSaasResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: saas.CreateSaasResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CreateSaasResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CreateSaasResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Represents a SaasService */
+    class SaasService extends $protobuf.rpc.Service {
+
+        /**
+         * Constructs a new SaasService service.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         */
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+        /**
+         * Creates new SaasService service using the specified rpc implementation.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         * @returns RPC service. Useful where requests and/or responses are streamed.
+         */
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): SaasService;
+
+        /**
+         * Calls CreateSaas.
+         * @param request CreateSaasRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and CreateSaasResponse
+         */
+        public createSaas(request: saas.ICreateSaasRequest, callback: saas.SaasService.CreateSaasCallback): void;
+
+        /**
+         * Calls CreateSaas.
+         * @param request CreateSaasRequest message or plain object
+         * @returns Promise
+         */
+        public createSaas(request: saas.ICreateSaasRequest): Promise<saas.CreateSaasResponse>;
+    }
+
+    namespace SaasService {
+
+        /**
+         * Callback as used by {@link saas.SaasService#createSaas}.
+         * @param error Error, if any
+         * @param [response] CreateSaasResponse
+         */
+        type CreateSaasCallback = (error: (Error|null), response?: saas.CreateSaasResponse) => void;
+    }
+}
+
+/** Namespace three. */
+export namespace three {
+
+    /** Properties of a GetWeichatMpRequest. */
+    interface IGetWeichatMpRequest {
+    }
+
+    /** Represents a GetWeichatMpRequest. */
+    class GetWeichatMpRequest implements IGetWeichatMpRequest {
+
+        /**
+         * Constructs a new GetWeichatMpRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: three.IGetWeichatMpRequest);
+
+        /**
+         * Creates a new GetWeichatMpRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetWeichatMpRequest instance
+         */
+        public static create(properties?: three.IGetWeichatMpRequest): three.GetWeichatMpRequest;
+
+        /**
+         * Encodes the specified GetWeichatMpRequest message. Does not implicitly {@link three.GetWeichatMpRequest.verify|verify} messages.
+         * @param message GetWeichatMpRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: three.IGetWeichatMpRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetWeichatMpRequest message, length delimited. Does not implicitly {@link three.GetWeichatMpRequest.verify|verify} messages.
+         * @param message GetWeichatMpRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: three.IGetWeichatMpRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetWeichatMpRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetWeichatMpRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): three.GetWeichatMpRequest;
+
+        /**
+         * Decodes a GetWeichatMpRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetWeichatMpRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): three.GetWeichatMpRequest;
+
+        /**
+         * Verifies a GetWeichatMpRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetWeichatMpRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetWeichatMpRequest
+         */
+        public static fromObject(object: { [k: string]: any }): three.GetWeichatMpRequest;
+
+        /**
+         * Creates a plain object from a GetWeichatMpRequest message. Also converts values to other types if specified.
+         * @param message GetWeichatMpRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: three.GetWeichatMpRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetWeichatMpRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetWeichatMpRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a GetWeichatMpResponse. */
+    interface IGetWeichatMpResponse {
+
+        /** GetWeichatMpResponse auth */
+        auth?: (auth.IAuthorization|null);
+    }
+
+    /** Represents a GetWeichatMpResponse. */
+    class GetWeichatMpResponse implements IGetWeichatMpResponse {
+
+        /**
+         * Constructs a new GetWeichatMpResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: three.IGetWeichatMpResponse);
+
+        /** GetWeichatMpResponse auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /**
+         * Creates a new GetWeichatMpResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetWeichatMpResponse instance
+         */
+        public static create(properties?: three.IGetWeichatMpResponse): three.GetWeichatMpResponse;
+
+        /**
+         * Encodes the specified GetWeichatMpResponse message. Does not implicitly {@link three.GetWeichatMpResponse.verify|verify} messages.
+         * @param message GetWeichatMpResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: three.IGetWeichatMpResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetWeichatMpResponse message, length delimited. Does not implicitly {@link three.GetWeichatMpResponse.verify|verify} messages.
+         * @param message GetWeichatMpResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: three.IGetWeichatMpResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetWeichatMpResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetWeichatMpResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): three.GetWeichatMpResponse;
+
+        /**
+         * Decodes a GetWeichatMpResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetWeichatMpResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): three.GetWeichatMpResponse;
+
+        /**
+         * Verifies a GetWeichatMpResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetWeichatMpResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetWeichatMpResponse
+         */
+        public static fromObject(object: { [k: string]: any }): three.GetWeichatMpResponse;
+
+        /**
+         * Creates a plain object from a GetWeichatMpResponse message. Also converts values to other types if specified.
+         * @param message GetWeichatMpResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: three.GetWeichatMpResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetWeichatMpResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetWeichatMpResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Represents a ThreeService */
+    class ThreeService extends $protobuf.rpc.Service {
+
+        /**
+         * Constructs a new ThreeService service.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         */
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+        /**
+         * Creates new ThreeService service using the specified rpc implementation.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         * @returns RPC service. Useful where requests and/or responses are streamed.
+         */
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): ThreeService;
+
+        /**
+         * Calls GetWeichatMp.
+         * @param request GetWeichatMpRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and GetWeichatMpResponse
+         */
+        public getWeichatMp(request: three.IGetWeichatMpRequest, callback: three.ThreeService.GetWeichatMpCallback): void;
+
+        /**
+         * Calls GetWeichatMp.
+         * @param request GetWeichatMpRequest message or plain object
+         * @returns Promise
+         */
+        public getWeichatMp(request: three.IGetWeichatMpRequest): Promise<three.GetWeichatMpResponse>;
+    }
+
+    namespace ThreeService {
+
+        /**
+         * Callback as used by {@link three.ThreeService#getWeichatMp}.
+         * @param error Error, if any
+         * @param [response] GetWeichatMpResponse
+         */
+        type GetWeichatMpCallback = (error: (Error|null), response?: three.GetWeichatMpResponse) => void;
+    }
+}
+
 /** Namespace user. */
 export namespace user {
 
@@ -990,8 +1763,8 @@ export namespace user {
         /** LoginRequest timestamp */
         timestamp?: (number|Long|null);
 
-        /** LoginRequest uname */
-        uname?: (string|null);
+        /** LoginRequest username */
+        username?: (string|null);
 
         /** LoginRequest passwd */
         passwd?: (string|null);
@@ -1018,8 +1791,8 @@ export namespace user {
         /** LoginRequest timestamp. */
         public timestamp: (number|Long);
 
-        /** LoginRequest uname. */
-        public uname: string;
+        /** LoginRequest username. */
+        public username: string;
 
         /** LoginRequest passwd. */
         public passwd: string;
@@ -1111,115 +1884,121 @@ export namespace user {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    /** Properties of a WxLoginRequest. */
-    interface IWxLoginRequest {
+    /** Properties of a ThreeLoginRequest. */
+    interface IThreeLoginRequest {
 
-        /** WxLoginRequest code */
+        /** ThreeLoginRequest platform */
+        platform?: (string|null);
+
+        /** ThreeLoginRequest code */
         code?: (string|null);
 
-        /** WxLoginRequest deviceId */
+        /** ThreeLoginRequest deviceId */
         deviceId?: (string|null);
 
-        /** WxLoginRequest deviceName */
+        /** ThreeLoginRequest deviceName */
         deviceName?: (string|null);
 
-        /** WxLoginRequest expire */
+        /** ThreeLoginRequest expire */
         expire?: (number|Long|null);
     }
 
-    /** Represents a WxLoginRequest. */
-    class WxLoginRequest implements IWxLoginRequest {
+    /** Represents a ThreeLoginRequest. */
+    class ThreeLoginRequest implements IThreeLoginRequest {
 
         /**
-         * Constructs a new WxLoginRequest.
+         * Constructs a new ThreeLoginRequest.
          * @param [properties] Properties to set
          */
-        constructor(properties?: user.IWxLoginRequest);
+        constructor(properties?: user.IThreeLoginRequest);
 
-        /** WxLoginRequest code. */
+        /** ThreeLoginRequest platform. */
+        public platform: string;
+
+        /** ThreeLoginRequest code. */
         public code: string;
 
-        /** WxLoginRequest deviceId. */
+        /** ThreeLoginRequest deviceId. */
         public deviceId: string;
 
-        /** WxLoginRequest deviceName. */
+        /** ThreeLoginRequest deviceName. */
         public deviceName: string;
 
-        /** WxLoginRequest expire. */
+        /** ThreeLoginRequest expire. */
         public expire: (number|Long);
 
         /**
-         * Creates a new WxLoginRequest instance using the specified properties.
+         * Creates a new ThreeLoginRequest instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns WxLoginRequest instance
+         * @returns ThreeLoginRequest instance
          */
-        public static create(properties?: user.IWxLoginRequest): user.WxLoginRequest;
+        public static create(properties?: user.IThreeLoginRequest): user.ThreeLoginRequest;
 
         /**
-         * Encodes the specified WxLoginRequest message. Does not implicitly {@link user.WxLoginRequest.verify|verify} messages.
-         * @param message WxLoginRequest message or plain object to encode
+         * Encodes the specified ThreeLoginRequest message. Does not implicitly {@link user.ThreeLoginRequest.verify|verify} messages.
+         * @param message ThreeLoginRequest message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: user.IWxLoginRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: user.IThreeLoginRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified WxLoginRequest message, length delimited. Does not implicitly {@link user.WxLoginRequest.verify|verify} messages.
-         * @param message WxLoginRequest message or plain object to encode
+         * Encodes the specified ThreeLoginRequest message, length delimited. Does not implicitly {@link user.ThreeLoginRequest.verify|verify} messages.
+         * @param message ThreeLoginRequest message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: user.IWxLoginRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: user.IThreeLoginRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a WxLoginRequest message from the specified reader or buffer.
+         * Decodes a ThreeLoginRequest message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns WxLoginRequest
+         * @returns ThreeLoginRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.WxLoginRequest;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.ThreeLoginRequest;
 
         /**
-         * Decodes a WxLoginRequest message from the specified reader or buffer, length delimited.
+         * Decodes a ThreeLoginRequest message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns WxLoginRequest
+         * @returns ThreeLoginRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.WxLoginRequest;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.ThreeLoginRequest;
 
         /**
-         * Verifies a WxLoginRequest message.
+         * Verifies a ThreeLoginRequest message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a WxLoginRequest message from a plain object. Also converts values to their respective internal types.
+         * Creates a ThreeLoginRequest message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns WxLoginRequest
+         * @returns ThreeLoginRequest
          */
-        public static fromObject(object: { [k: string]: any }): user.WxLoginRequest;
+        public static fromObject(object: { [k: string]: any }): user.ThreeLoginRequest;
 
         /**
-         * Creates a plain object from a WxLoginRequest message. Also converts values to other types if specified.
-         * @param message WxLoginRequest
+         * Creates a plain object from a ThreeLoginRequest message. Also converts values to other types if specified.
+         * @param message ThreeLoginRequest
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: user.WxLoginRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: user.ThreeLoginRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this WxLoginRequest to JSON.
+         * Converts this ThreeLoginRequest to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for WxLoginRequest
+         * Gets the default type url for ThreeLoginRequest
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -1461,18 +2240,18 @@ export namespace user {
         public login(request: user.ILoginRequest): Promise<user.LoginResponse>;
 
         /**
-         * Calls WxLogin.
-         * @param request WxLoginRequest message or plain object
+         * Calls ThreeLogin.
+         * @param request ThreeLoginRequest message or plain object
          * @param callback Node-style callback called with the error, if any, and LoginResponse
          */
-        public wxLogin(request: user.IWxLoginRequest, callback: user.UserService.WxLoginCallback): void;
+        public threeLogin(request: user.IThreeLoginRequest, callback: user.UserService.ThreeLoginCallback): void;
 
         /**
-         * Calls WxLogin.
-         * @param request WxLoginRequest message or plain object
+         * Calls ThreeLogin.
+         * @param request ThreeLoginRequest message or plain object
          * @returns Promise
          */
-        public wxLogin(request: user.IWxLoginRequest): Promise<user.LoginResponse>;
+        public threeLogin(request: user.IThreeLoginRequest): Promise<user.LoginResponse>;
 
         /**
          * Calls ChangePasswd.
@@ -1499,11 +2278,11 @@ export namespace user {
         type LoginCallback = (error: (Error|null), response?: user.LoginResponse) => void;
 
         /**
-         * Callback as used by {@link user.UserService#wxLogin}.
+         * Callback as used by {@link user.UserService#threeLogin}.
          * @param error Error, if any
          * @param [response] LoginResponse
          */
-        type WxLoginCallback = (error: (Error|null), response?: user.LoginResponse) => void;
+        type ThreeLoginCallback = (error: (Error|null), response?: user.LoginResponse) => void;
 
         /**
          * Callback as used by {@link user.UserService#changePasswd}.

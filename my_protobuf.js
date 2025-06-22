@@ -9,6 +9,1018 @@ var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.ut
 // Exported root namespace
 var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
+$root.app = (function() {
+
+    /**
+     * Namespace app.
+     * @exports app
+     * @namespace
+     */
+    var app = {};
+
+    app.AppIndex = (function() {
+
+        /**
+         * Properties of an AppIndex.
+         * @memberof app
+         * @interface IAppIndex
+         * @property {number|null} [saasId] AppIndex saasId
+         * @property {number|null} [appId] AppIndex appId
+         */
+
+        /**
+         * Constructs a new AppIndex.
+         * @memberof app
+         * @classdesc Represents an AppIndex.
+         * @implements IAppIndex
+         * @constructor
+         * @param {app.IAppIndex=} [properties] Properties to set
+         */
+        function AppIndex(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AppIndex saasId.
+         * @member {number} saasId
+         * @memberof app.AppIndex
+         * @instance
+         */
+        AppIndex.prototype.saasId = 0;
+
+        /**
+         * AppIndex appId.
+         * @member {number} appId
+         * @memberof app.AppIndex
+         * @instance
+         */
+        AppIndex.prototype.appId = 0;
+
+        /**
+         * Creates a new AppIndex instance using the specified properties.
+         * @function create
+         * @memberof app.AppIndex
+         * @static
+         * @param {app.IAppIndex=} [properties] Properties to set
+         * @returns {app.AppIndex} AppIndex instance
+         */
+        AppIndex.create = function create(properties) {
+            return new AppIndex(properties);
+        };
+
+        /**
+         * Encodes the specified AppIndex message. Does not implicitly {@link app.AppIndex.verify|verify} messages.
+         * @function encode
+         * @memberof app.AppIndex
+         * @static
+         * @param {app.IAppIndex} message AppIndex message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AppIndex.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.saasId != null && Object.hasOwnProperty.call(message, "saasId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saasId);
+            if (message.appId != null && Object.hasOwnProperty.call(message, "appId"))
+                writer.uint32(/* id 12, wireType 0 =*/96).uint32(message.appId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AppIndex message, length delimited. Does not implicitly {@link app.AppIndex.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof app.AppIndex
+         * @static
+         * @param {app.IAppIndex} message AppIndex message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AppIndex.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AppIndex message from the specified reader or buffer.
+         * @function decode
+         * @memberof app.AppIndex
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {app.AppIndex} AppIndex
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AppIndex.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.app.AppIndex();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.saasId = reader.uint32();
+                        break;
+                    }
+                case 12: {
+                        message.appId = reader.uint32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AppIndex message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof app.AppIndex
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {app.AppIndex} AppIndex
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AppIndex.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AppIndex message.
+         * @function verify
+         * @memberof app.AppIndex
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AppIndex.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                if (!$util.isInteger(message.saasId))
+                    return "saasId: integer expected";
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                if (!$util.isInteger(message.appId))
+                    return "appId: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates an AppIndex message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof app.AppIndex
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {app.AppIndex} AppIndex
+         */
+        AppIndex.fromObject = function fromObject(object) {
+            if (object instanceof $root.app.AppIndex)
+                return object;
+            var message = new $root.app.AppIndex();
+            if (object.saasId != null)
+                message.saasId = object.saasId >>> 0;
+            if (object.appId != null)
+                message.appId = object.appId >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AppIndex message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof app.AppIndex
+         * @static
+         * @param {app.AppIndex} message AppIndex
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AppIndex.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.saasId = 0;
+                object.appId = 0;
+            }
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                object.saasId = message.saasId;
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                object.appId = message.appId;
+            return object;
+        };
+
+        /**
+         * Converts this AppIndex to JSON.
+         * @function toJSON
+         * @memberof app.AppIndex
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AppIndex.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AppIndex
+         * @function getTypeUrl
+         * @memberof app.AppIndex
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AppIndex.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/app.AppIndex";
+        };
+
+        return AppIndex;
+    })();
+
+    app.CreateAppRequest = (function() {
+
+        /**
+         * Properties of a CreateAppRequest.
+         * @memberof app
+         * @interface ICreateAppRequest
+         * @property {auth.IAuthorization|null} [auth] CreateAppRequest auth
+         * @property {string|null} [name] CreateAppRequest name
+         * @property {number|null} [saasId] CreateAppRequest saasId
+         */
+
+        /**
+         * Constructs a new CreateAppRequest.
+         * @memberof app
+         * @classdesc Represents a CreateAppRequest.
+         * @implements ICreateAppRequest
+         * @constructor
+         * @param {app.ICreateAppRequest=} [properties] Properties to set
+         */
+        function CreateAppRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CreateAppRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof app.CreateAppRequest
+         * @instance
+         */
+        CreateAppRequest.prototype.auth = null;
+
+        /**
+         * CreateAppRequest name.
+         * @member {string} name
+         * @memberof app.CreateAppRequest
+         * @instance
+         */
+        CreateAppRequest.prototype.name = "";
+
+        /**
+         * CreateAppRequest saasId.
+         * @member {number} saasId
+         * @memberof app.CreateAppRequest
+         * @instance
+         */
+        CreateAppRequest.prototype.saasId = 0;
+
+        /**
+         * Creates a new CreateAppRequest instance using the specified properties.
+         * @function create
+         * @memberof app.CreateAppRequest
+         * @static
+         * @param {app.ICreateAppRequest=} [properties] Properties to set
+         * @returns {app.CreateAppRequest} CreateAppRequest instance
+         */
+        CreateAppRequest.create = function create(properties) {
+            return new CreateAppRequest(properties);
+        };
+
+        /**
+         * Encodes the specified CreateAppRequest message. Does not implicitly {@link app.CreateAppRequest.verify|verify} messages.
+         * @function encode
+         * @memberof app.CreateAppRequest
+         * @static
+         * @param {app.ICreateAppRequest} message CreateAppRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateAppRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.name);
+            if (message.saasId != null && Object.hasOwnProperty.call(message, "saasId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saasId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CreateAppRequest message, length delimited. Does not implicitly {@link app.CreateAppRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof app.CreateAppRequest
+         * @static
+         * @param {app.ICreateAppRequest} message CreateAppRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateAppRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CreateAppRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof app.CreateAppRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {app.CreateAppRequest} CreateAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateAppRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.app.CreateAppRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 10: {
+                        message.name = reader.string();
+                        break;
+                    }
+                case 11: {
+                        message.saasId = reader.uint32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CreateAppRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof app.CreateAppRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {app.CreateAppRequest} CreateAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateAppRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CreateAppRequest message.
+         * @function verify
+         * @memberof app.CreateAppRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CreateAppRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                if (!$util.isInteger(message.saasId))
+                    return "saasId: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a CreateAppRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof app.CreateAppRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {app.CreateAppRequest} CreateAppRequest
+         */
+        CreateAppRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.app.CreateAppRequest)
+                return object;
+            var message = new $root.app.CreateAppRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".app.CreateAppRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.name != null)
+                message.name = String(object.name);
+            if (object.saasId != null)
+                message.saasId = object.saasId >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CreateAppRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof app.CreateAppRequest
+         * @static
+         * @param {app.CreateAppRequest} message CreateAppRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CreateAppRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.name = "";
+                object.saasId = 0;
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                object.saasId = message.saasId;
+            return object;
+        };
+
+        /**
+         * Converts this CreateAppRequest to JSON.
+         * @function toJSON
+         * @memberof app.CreateAppRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CreateAppRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CreateAppRequest
+         * @function getTypeUrl
+         * @memberof app.CreateAppRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CreateAppRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/app.CreateAppRequest";
+        };
+
+        return CreateAppRequest;
+    })();
+
+    app.AppService = (function() {
+
+        /**
+         * Constructs a new AppService service.
+         * @memberof app
+         * @classdesc Represents an AppService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function AppService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (AppService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = AppService;
+
+        /**
+         * Creates new AppService service using the specified rpc implementation.
+         * @function create
+         * @memberof app.AppService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {AppService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        AppService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link app.AppService#createApp}.
+         * @memberof app.AppService
+         * @typedef CreateAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {app.AppIndex} [response] AppIndex
+         */
+
+        /**
+         * Calls CreateApp.
+         * @function createApp
+         * @memberof app.AppService
+         * @instance
+         * @param {app.ICreateAppRequest} request CreateAppRequest message or plain object
+         * @param {app.AppService.CreateAppCallback} callback Node-style callback called with the error, if any, and AppIndex
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(AppService.prototype.createApp = function createApp(request, callback) {
+            return this.rpcCall(createApp, $root.app.CreateAppRequest, $root.app.AppIndex, request, callback);
+        }, "name", { value: "CreateApp" });
+
+        /**
+         * Calls CreateApp.
+         * @function createApp
+         * @memberof app.AppService
+         * @instance
+         * @param {app.ICreateAppRequest} request CreateAppRequest message or plain object
+         * @returns {Promise<app.AppIndex>} Promise
+         * @variation 2
+         */
+
+        return AppService;
+    })();
+
+    return app;
+})();
+
+$root.common = (function() {
+
+    /**
+     * Namespace common.
+     * @exports common
+     * @namespace
+     */
+    var common = {};
+
+    common.Empty = (function() {
+
+        /**
+         * Properties of an Empty.
+         * @memberof common
+         * @interface IEmpty
+         */
+
+        /**
+         * Constructs a new Empty.
+         * @memberof common
+         * @classdesc Represents an Empty.
+         * @implements IEmpty
+         * @constructor
+         * @param {common.IEmpty=} [properties] Properties to set
+         */
+        function Empty(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Creates a new Empty instance using the specified properties.
+         * @function create
+         * @memberof common.Empty
+         * @static
+         * @param {common.IEmpty=} [properties] Properties to set
+         * @returns {common.Empty} Empty instance
+         */
+        Empty.create = function create(properties) {
+            return new Empty(properties);
+        };
+
+        /**
+         * Encodes the specified Empty message. Does not implicitly {@link common.Empty.verify|verify} messages.
+         * @function encode
+         * @memberof common.Empty
+         * @static
+         * @param {common.IEmpty} message Empty message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Empty.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Empty message, length delimited. Does not implicitly {@link common.Empty.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof common.Empty
+         * @static
+         * @param {common.IEmpty} message Empty message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Empty.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer.
+         * @function decode
+         * @memberof common.Empty
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {common.Empty} Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Empty.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.common.Empty();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an Empty message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof common.Empty
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {common.Empty} Empty
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Empty.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an Empty message.
+         * @function verify
+         * @memberof common.Empty
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Empty.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
+
+        /**
+         * Creates an Empty message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof common.Empty
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {common.Empty} Empty
+         */
+        Empty.fromObject = function fromObject(object) {
+            if (object instanceof $root.common.Empty)
+                return object;
+            return new $root.common.Empty();
+        };
+
+        /**
+         * Creates a plain object from an Empty message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof common.Empty
+         * @static
+         * @param {common.Empty} message Empty
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Empty.toObject = function toObject() {
+            return {};
+        };
+
+        /**
+         * Converts this Empty to JSON.
+         * @function toJSON
+         * @memberof common.Empty
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Empty.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for Empty
+         * @function getTypeUrl
+         * @memberof common.Empty
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        Empty.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/common.Empty";
+        };
+
+        return Empty;
+    })();
+
+    common.SubscribeRequest = (function() {
+
+        /**
+         * Properties of a SubscribeRequest.
+         * @memberof common
+         * @interface ISubscribeRequest
+         * @property {number|Long|null} [intervalMin] SubscribeRequest intervalMin
+         * @property {number|Long|null} [intervalMax] SubscribeRequest intervalMax
+         */
+
+        /**
+         * Constructs a new SubscribeRequest.
+         * @memberof common
+         * @classdesc Represents a SubscribeRequest.
+         * @implements ISubscribeRequest
+         * @constructor
+         * @param {common.ISubscribeRequest=} [properties] Properties to set
+         */
+        function SubscribeRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SubscribeRequest intervalMin.
+         * @member {number|Long} intervalMin
+         * @memberof common.SubscribeRequest
+         * @instance
+         */
+        SubscribeRequest.prototype.intervalMin = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * SubscribeRequest intervalMax.
+         * @member {number|Long} intervalMax
+         * @memberof common.SubscribeRequest
+         * @instance
+         */
+        SubscribeRequest.prototype.intervalMax = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * Creates a new SubscribeRequest instance using the specified properties.
+         * @function create
+         * @memberof common.SubscribeRequest
+         * @static
+         * @param {common.ISubscribeRequest=} [properties] Properties to set
+         * @returns {common.SubscribeRequest} SubscribeRequest instance
+         */
+        SubscribeRequest.create = function create(properties) {
+            return new SubscribeRequest(properties);
+        };
+
+        /**
+         * Encodes the specified SubscribeRequest message. Does not implicitly {@link common.SubscribeRequest.verify|verify} messages.
+         * @function encode
+         * @memberof common.SubscribeRequest
+         * @static
+         * @param {common.ISubscribeRequest} message SubscribeRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SubscribeRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.intervalMin != null && Object.hasOwnProperty.call(message, "intervalMin"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint64(message.intervalMin);
+            if (message.intervalMax != null && Object.hasOwnProperty.call(message, "intervalMax"))
+                writer.uint32(/* id 12, wireType 0 =*/96).uint64(message.intervalMax);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SubscribeRequest message, length delimited. Does not implicitly {@link common.SubscribeRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof common.SubscribeRequest
+         * @static
+         * @param {common.ISubscribeRequest} message SubscribeRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SubscribeRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SubscribeRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof common.SubscribeRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {common.SubscribeRequest} SubscribeRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SubscribeRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.common.SubscribeRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.intervalMin = reader.uint64();
+                        break;
+                    }
+                case 12: {
+                        message.intervalMax = reader.uint64();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SubscribeRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof common.SubscribeRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {common.SubscribeRequest} SubscribeRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SubscribeRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SubscribeRequest message.
+         * @function verify
+         * @memberof common.SubscribeRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SubscribeRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.intervalMin != null && message.hasOwnProperty("intervalMin"))
+                if (!$util.isInteger(message.intervalMin) && !(message.intervalMin && $util.isInteger(message.intervalMin.low) && $util.isInteger(message.intervalMin.high)))
+                    return "intervalMin: integer|Long expected";
+            if (message.intervalMax != null && message.hasOwnProperty("intervalMax"))
+                if (!$util.isInteger(message.intervalMax) && !(message.intervalMax && $util.isInteger(message.intervalMax.low) && $util.isInteger(message.intervalMax.high)))
+                    return "intervalMax: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a SubscribeRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof common.SubscribeRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {common.SubscribeRequest} SubscribeRequest
+         */
+        SubscribeRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.common.SubscribeRequest)
+                return object;
+            var message = new $root.common.SubscribeRequest();
+            if (object.intervalMin != null)
+                if ($util.Long)
+                    (message.intervalMin = $util.Long.fromValue(object.intervalMin)).unsigned = true;
+                else if (typeof object.intervalMin === "string")
+                    message.intervalMin = parseInt(object.intervalMin, 10);
+                else if (typeof object.intervalMin === "number")
+                    message.intervalMin = object.intervalMin;
+                else if (typeof object.intervalMin === "object")
+                    message.intervalMin = new $util.LongBits(object.intervalMin.low >>> 0, object.intervalMin.high >>> 0).toNumber(true);
+            if (object.intervalMax != null)
+                if ($util.Long)
+                    (message.intervalMax = $util.Long.fromValue(object.intervalMax)).unsigned = true;
+                else if (typeof object.intervalMax === "string")
+                    message.intervalMax = parseInt(object.intervalMax, 10);
+                else if (typeof object.intervalMax === "number")
+                    message.intervalMax = object.intervalMax;
+                else if (typeof object.intervalMax === "object")
+                    message.intervalMax = new $util.LongBits(object.intervalMax.low >>> 0, object.intervalMax.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SubscribeRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof common.SubscribeRequest
+         * @static
+         * @param {common.SubscribeRequest} message SubscribeRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SubscribeRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.intervalMin = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.intervalMin = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    var long = new $util.Long(0, 0, true);
+                    object.intervalMax = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.intervalMax = options.longs === String ? "0" : 0;
+            }
+            if (message.intervalMin != null && message.hasOwnProperty("intervalMin"))
+                if (typeof message.intervalMin === "number")
+                    object.intervalMin = options.longs === String ? String(message.intervalMin) : message.intervalMin;
+                else
+                    object.intervalMin = options.longs === String ? $util.Long.prototype.toString.call(message.intervalMin) : options.longs === Number ? new $util.LongBits(message.intervalMin.low >>> 0, message.intervalMin.high >>> 0).toNumber(true) : message.intervalMin;
+            if (message.intervalMax != null && message.hasOwnProperty("intervalMax"))
+                if (typeof message.intervalMax === "number")
+                    object.intervalMax = options.longs === String ? String(message.intervalMax) : message.intervalMax;
+                else
+                    object.intervalMax = options.longs === String ? $util.Long.prototype.toString.call(message.intervalMax) : options.longs === Number ? new $util.LongBits(message.intervalMax.low >>> 0, message.intervalMax.high >>> 0).toNumber(true) : message.intervalMax;
+            return object;
+        };
+
+        /**
+         * Converts this SubscribeRequest to JSON.
+         * @function toJSON
+         * @memberof common.SubscribeRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SubscribeRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SubscribeRequest
+         * @function getTypeUrl
+         * @memberof common.SubscribeRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SubscribeRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/common.SubscribeRequest";
+        };
+
+        return SubscribeRequest;
+    })();
+
+    return common;
+})();
+
 $root.auth = (function() {
 
     /**
@@ -103,12 +1115,14 @@ $root.auth = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        Authorization.decode = function decode(reader, length) {
+        Authorization.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.auth.Authorization();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.jwt = reader.string();
@@ -317,12 +1331,14 @@ $root.auth = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        RefreshAuthRequest.decode = function decode(reader, length) {
+        RefreshAuthRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.auth.RefreshAuthRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
@@ -538,448 +1554,6 @@ $root.auth = (function() {
     return auth;
 })();
 
-$root.common = (function() {
-
-    /**
-     * Namespace common.
-     * @exports common
-     * @namespace
-     */
-    var common = {};
-
-    common.Empty = (function() {
-
-        /**
-         * Properties of an Empty.
-         * @memberof common
-         * @interface IEmpty
-         */
-
-        /**
-         * Constructs a new Empty.
-         * @memberof common
-         * @classdesc Represents an Empty.
-         * @implements IEmpty
-         * @constructor
-         * @param {common.IEmpty=} [properties] Properties to set
-         */
-        function Empty(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * Creates a new Empty instance using the specified properties.
-         * @function create
-         * @memberof common.Empty
-         * @static
-         * @param {common.IEmpty=} [properties] Properties to set
-         * @returns {common.Empty} Empty instance
-         */
-        Empty.create = function create(properties) {
-            return new Empty(properties);
-        };
-
-        /**
-         * Encodes the specified Empty message. Does not implicitly {@link common.Empty.verify|verify} messages.
-         * @function encode
-         * @memberof common.Empty
-         * @static
-         * @param {common.IEmpty} message Empty message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Empty.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            return writer;
-        };
-
-        /**
-         * Encodes the specified Empty message, length delimited. Does not implicitly {@link common.Empty.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof common.Empty
-         * @static
-         * @param {common.IEmpty} message Empty message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        Empty.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes an Empty message from the specified reader or buffer.
-         * @function decode
-         * @memberof common.Empty
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {common.Empty} Empty
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Empty.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.common.Empty();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes an Empty message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof common.Empty
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {common.Empty} Empty
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        Empty.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies an Empty message.
-         * @function verify
-         * @memberof common.Empty
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        Empty.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            return null;
-        };
-
-        /**
-         * Creates an Empty message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof common.Empty
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {common.Empty} Empty
-         */
-        Empty.fromObject = function fromObject(object) {
-            if (object instanceof $root.common.Empty)
-                return object;
-            return new $root.common.Empty();
-        };
-
-        /**
-         * Creates a plain object from an Empty message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof common.Empty
-         * @static
-         * @param {common.Empty} message Empty
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        Empty.toObject = function toObject() {
-            return {};
-        };
-
-        /**
-         * Converts this Empty to JSON.
-         * @function toJSON
-         * @memberof common.Empty
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        Empty.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for Empty
-         * @function getTypeUrl
-         * @memberof common.Empty
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        Empty.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/common.Empty";
-        };
-
-        return Empty;
-    })();
-
-    common.SubscribeRequest = (function() {
-
-        /**
-         * Properties of a SubscribeRequest.
-         * @memberof common
-         * @interface ISubscribeRequest
-         * @property {number|Long|null} [intervalMin] SubscribeRequest intervalMin
-         * @property {number|Long|null} [intervalMax] SubscribeRequest intervalMax
-         */
-
-        /**
-         * Constructs a new SubscribeRequest.
-         * @memberof common
-         * @classdesc Represents a SubscribeRequest.
-         * @implements ISubscribeRequest
-         * @constructor
-         * @param {common.ISubscribeRequest=} [properties] Properties to set
-         */
-        function SubscribeRequest(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * SubscribeRequest intervalMin.
-         * @member {number|Long} intervalMin
-         * @memberof common.SubscribeRequest
-         * @instance
-         */
-        SubscribeRequest.prototype.intervalMin = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
-
-        /**
-         * SubscribeRequest intervalMax.
-         * @member {number|Long} intervalMax
-         * @memberof common.SubscribeRequest
-         * @instance
-         */
-        SubscribeRequest.prototype.intervalMax = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
-
-        /**
-         * Creates a new SubscribeRequest instance using the specified properties.
-         * @function create
-         * @memberof common.SubscribeRequest
-         * @static
-         * @param {common.ISubscribeRequest=} [properties] Properties to set
-         * @returns {common.SubscribeRequest} SubscribeRequest instance
-         */
-        SubscribeRequest.create = function create(properties) {
-            return new SubscribeRequest(properties);
-        };
-
-        /**
-         * Encodes the specified SubscribeRequest message. Does not implicitly {@link common.SubscribeRequest.verify|verify} messages.
-         * @function encode
-         * @memberof common.SubscribeRequest
-         * @static
-         * @param {common.ISubscribeRequest} message SubscribeRequest message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        SubscribeRequest.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.intervalMin != null && Object.hasOwnProperty.call(message, "intervalMin"))
-                writer.uint32(/* id 11, wireType 0 =*/88).uint64(message.intervalMin);
-            if (message.intervalMax != null && Object.hasOwnProperty.call(message, "intervalMax"))
-                writer.uint32(/* id 12, wireType 0 =*/96).uint64(message.intervalMax);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified SubscribeRequest message, length delimited. Does not implicitly {@link common.SubscribeRequest.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof common.SubscribeRequest
-         * @static
-         * @param {common.ISubscribeRequest} message SubscribeRequest message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        SubscribeRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a SubscribeRequest message from the specified reader or buffer.
-         * @function decode
-         * @memberof common.SubscribeRequest
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {common.SubscribeRequest} SubscribeRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        SubscribeRequest.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.common.SubscribeRequest();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 11: {
-                        message.intervalMin = reader.uint64();
-                        break;
-                    }
-                case 12: {
-                        message.intervalMax = reader.uint64();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a SubscribeRequest message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof common.SubscribeRequest
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {common.SubscribeRequest} SubscribeRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        SubscribeRequest.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a SubscribeRequest message.
-         * @function verify
-         * @memberof common.SubscribeRequest
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        SubscribeRequest.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.intervalMin != null && message.hasOwnProperty("intervalMin"))
-                if (!$util.isInteger(message.intervalMin) && !(message.intervalMin && $util.isInteger(message.intervalMin.low) && $util.isInteger(message.intervalMin.high)))
-                    return "intervalMin: integer|Long expected";
-            if (message.intervalMax != null && message.hasOwnProperty("intervalMax"))
-                if (!$util.isInteger(message.intervalMax) && !(message.intervalMax && $util.isInteger(message.intervalMax.low) && $util.isInteger(message.intervalMax.high)))
-                    return "intervalMax: integer|Long expected";
-            return null;
-        };
-
-        /**
-         * Creates a SubscribeRequest message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof common.SubscribeRequest
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {common.SubscribeRequest} SubscribeRequest
-         */
-        SubscribeRequest.fromObject = function fromObject(object) {
-            if (object instanceof $root.common.SubscribeRequest)
-                return object;
-            var message = new $root.common.SubscribeRequest();
-            if (object.intervalMin != null)
-                if ($util.Long)
-                    (message.intervalMin = $util.Long.fromValue(object.intervalMin)).unsigned = true;
-                else if (typeof object.intervalMin === "string")
-                    message.intervalMin = parseInt(object.intervalMin, 10);
-                else if (typeof object.intervalMin === "number")
-                    message.intervalMin = object.intervalMin;
-                else if (typeof object.intervalMin === "object")
-                    message.intervalMin = new $util.LongBits(object.intervalMin.low >>> 0, object.intervalMin.high >>> 0).toNumber(true);
-            if (object.intervalMax != null)
-                if ($util.Long)
-                    (message.intervalMax = $util.Long.fromValue(object.intervalMax)).unsigned = true;
-                else if (typeof object.intervalMax === "string")
-                    message.intervalMax = parseInt(object.intervalMax, 10);
-                else if (typeof object.intervalMax === "number")
-                    message.intervalMax = object.intervalMax;
-                else if (typeof object.intervalMax === "object")
-                    message.intervalMax = new $util.LongBits(object.intervalMax.low >>> 0, object.intervalMax.high >>> 0).toNumber(true);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a SubscribeRequest message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof common.SubscribeRequest
-         * @static
-         * @param {common.SubscribeRequest} message SubscribeRequest
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        SubscribeRequest.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults) {
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
-                    object.intervalMin = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                } else
-                    object.intervalMin = options.longs === String ? "0" : 0;
-                if ($util.Long) {
-                    var long = new $util.Long(0, 0, true);
-                    object.intervalMax = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                } else
-                    object.intervalMax = options.longs === String ? "0" : 0;
-            }
-            if (message.intervalMin != null && message.hasOwnProperty("intervalMin"))
-                if (typeof message.intervalMin === "number")
-                    object.intervalMin = options.longs === String ? String(message.intervalMin) : message.intervalMin;
-                else
-                    object.intervalMin = options.longs === String ? $util.Long.prototype.toString.call(message.intervalMin) : options.longs === Number ? new $util.LongBits(message.intervalMin.low >>> 0, message.intervalMin.high >>> 0).toNumber(true) : message.intervalMin;
-            if (message.intervalMax != null && message.hasOwnProperty("intervalMax"))
-                if (typeof message.intervalMax === "number")
-                    object.intervalMax = options.longs === String ? String(message.intervalMax) : message.intervalMax;
-                else
-                    object.intervalMax = options.longs === String ? $util.Long.prototype.toString.call(message.intervalMax) : options.longs === Number ? new $util.LongBits(message.intervalMax.low >>> 0, message.intervalMax.high >>> 0).toNumber(true) : message.intervalMax;
-            return object;
-        };
-
-        /**
-         * Converts this SubscribeRequest to JSON.
-         * @function toJSON
-         * @memberof common.SubscribeRequest
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        SubscribeRequest.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for SubscribeRequest
-         * @function getTypeUrl
-         * @memberof common.SubscribeRequest
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        SubscribeRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/common.SubscribeRequest";
-        };
-
-        return SubscribeRequest;
-    })();
-
-    return common;
-})();
-
 $root.error_code = (function() {
 
     /**
@@ -996,10 +1570,14 @@ $root.error_code = (function() {
      * @property {number} SUCCESS=0 SUCCESS value
      * @property {number} INVALID_INPUT=1001 INVALID_INPUT value
      * @property {number} NOT_SIGNUP=2001 NOT_SIGNUP value
-     * @property {number} PASSWD_ERR=2002 PASSWD_ERR value
+     * @property {number} NONE_PASSWD=2002 NONE_PASSWD value
+     * @property {number} PASSWD_ERR=2003 PASSWD_ERR value
+     * @property {number} INVALID_THREE=2005 INVALID_THREE value
+     * @property {number} THREE_ERR=2006 THREE_ERR value
      * @property {number} INVALID_AUTH=2011 INVALID_AUTH value
      * @property {number} EXPIRED_AUTH=2012 EXPIRED_AUTH value
      * @property {number} EXPIRED_AUTH_SN=2013 EXPIRED_AUTH_SN value
+     * @property {number} INVALID_APP=2018 INVALID_APP value
      * @property {number} PERMISSION_DENIED=2021 PERMISSION_DENIED value
      * @property {number} DB_ERR=7001 DB_ERR value
      * @property {number} WX_ERR=8001 WX_ERR value
@@ -1009,10 +1587,14 @@ $root.error_code = (function() {
         values[valuesById[0] = "SUCCESS"] = 0;
         values[valuesById[1001] = "INVALID_INPUT"] = 1001;
         values[valuesById[2001] = "NOT_SIGNUP"] = 2001;
-        values[valuesById[2002] = "PASSWD_ERR"] = 2002;
+        values[valuesById[2002] = "NONE_PASSWD"] = 2002;
+        values[valuesById[2003] = "PASSWD_ERR"] = 2003;
+        values[valuesById[2005] = "INVALID_THREE"] = 2005;
+        values[valuesById[2006] = "THREE_ERR"] = 2006;
         values[valuesById[2011] = "INVALID_AUTH"] = 2011;
         values[valuesById[2012] = "EXPIRED_AUTH"] = 2012;
         values[valuesById[2013] = "EXPIRED_AUTH_SN"] = 2013;
+        values[valuesById[2018] = "INVALID_APP"] = 2018;
         values[valuesById[2021] = "PERMISSION_DENIED"] = 2021;
         values[valuesById[7001] = "DB_ERR"] = 7001;
         values[valuesById[8001] = "WX_ERR"] = 8001;
@@ -1036,14 +1618,22 @@ $root.role = (function() {
      * @name role.Role
      * @enum {number}
      * @property {number} USER=0 USER value
-     * @property {number} ADMIN=20 ADMIN value
-     * @property {number} BLACK=99 BLACK value
+     * @property {number} ADMIN=1 ADMIN value
+     * @property {number} BLACK=9 BLACK value
+     * @property {number} SAAS_ADMIN=11 SAAS_ADMIN value
+     * @property {number} SAAS_AUTHORIZER=12 SAAS_AUTHORIZER value
+     * @property {number} APP_ADMIN=21 APP_ADMIN value
+     * @property {number} APP_AUTHORIZER=22 APP_AUTHORIZER value
      */
     role.Role = (function() {
         var valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "USER"] = 0;
-        values[valuesById[20] = "ADMIN"] = 20;
-        values[valuesById[99] = "BLACK"] = 99;
+        values[valuesById[1] = "ADMIN"] = 1;
+        values[valuesById[9] = "BLACK"] = 9;
+        values[valuesById[11] = "SAAS_ADMIN"] = 11;
+        values[valuesById[12] = "SAAS_AUTHORIZER"] = 12;
+        values[valuesById[21] = "APP_ADMIN"] = 21;
+        values[valuesById[22] = "APP_AUTHORIZER"] = 22;
         return values;
     })();
 
@@ -1054,7 +1644,8 @@ $root.role = (function() {
          * @memberof role
          * @interface IGetRoleRequest
          * @property {auth.IAuthorization|null} [auth] GetRoleRequest auth
-         * @property {number|null} [uid] GetRoleRequest uid
+         * @property {app.IAppIndex|null} [app] GetRoleRequest app
+         * @property {number|null} [userId] GetRoleRequest userId
          */
 
         /**
@@ -1081,12 +1672,20 @@ $root.role = (function() {
         GetRoleRequest.prototype.auth = null;
 
         /**
-         * GetRoleRequest uid.
-         * @member {number} uid
+         * GetRoleRequest app.
+         * @member {app.IAppIndex|null|undefined} app
          * @memberof role.GetRoleRequest
          * @instance
          */
-        GetRoleRequest.prototype.uid = 0;
+        GetRoleRequest.prototype.app = null;
+
+        /**
+         * GetRoleRequest userId.
+         * @member {number} userId
+         * @memberof role.GetRoleRequest
+         * @instance
+         */
+        GetRoleRequest.prototype.userId = 0;
 
         /**
          * Creates a new GetRoleRequest instance using the specified properties.
@@ -1114,8 +1713,10 @@ $root.role = (function() {
                 writer = $Writer.create();
             if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
                 $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.uid != null && Object.hasOwnProperty.call(message, "uid"))
-                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.uid);
+            if (message.app != null && Object.hasOwnProperty.call(message, "app"))
+                $root.app.AppIndex.encode(message.app, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.userId);
             return writer;
         };
 
@@ -1143,19 +1744,25 @@ $root.role = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetRoleRequest.decode = function decode(reader, length) {
+        GetRoleRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.role.GetRoleRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
                         break;
                     }
+                case 2: {
+                        message.app = $root.app.AppIndex.decode(reader, reader.uint32());
+                        break;
+                    }
                 case 11: {
-                        message.uid = reader.uint32();
+                        message.userId = reader.uint32();
                         break;
                     }
                 default:
@@ -1198,9 +1805,14 @@ $root.role = (function() {
                 if (error)
                     return "auth." + error;
             }
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                if (!$util.isInteger(message.uid))
-                    return "uid: integer expected";
+            if (message.app != null && message.hasOwnProperty("app")) {
+                var error = $root.app.AppIndex.verify(message.app);
+                if (error)
+                    return "app." + error;
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId))
+                    return "userId: integer expected";
             return null;
         };
 
@@ -1221,8 +1833,13 @@ $root.role = (function() {
                     throw TypeError(".role.GetRoleRequest.auth: object expected");
                 message.auth = $root.auth.Authorization.fromObject(object.auth);
             }
-            if (object.uid != null)
-                message.uid = object.uid >>> 0;
+            if (object.app != null) {
+                if (typeof object.app !== "object")
+                    throw TypeError(".role.GetRoleRequest.app: object expected");
+                message.app = $root.app.AppIndex.fromObject(object.app);
+            }
+            if (object.userId != null)
+                message.userId = object.userId >>> 0;
             return message;
         };
 
@@ -1241,12 +1858,15 @@ $root.role = (function() {
             var object = {};
             if (options.defaults) {
                 object.auth = null;
-                object.uid = 0;
+                object.app = null;
+                object.userId = 0;
             }
             if (message.auth != null && message.hasOwnProperty("auth"))
                 object.auth = $root.auth.Authorization.toObject(message.auth, options);
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                object.uid = message.uid;
+            if (message.app != null && message.hasOwnProperty("app"))
+                object.app = $root.app.AppIndex.toObject(message.app, options);
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                object.userId = message.userId;
             return object;
         };
 
@@ -1369,12 +1989,14 @@ $root.role = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetRoleResponse.decode = function decode(reader, length) {
+        GetRoleResponse.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.role.GetRoleResponse();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         if (!(message.roles && message.roles.length))
@@ -1430,8 +2052,12 @@ $root.role = (function() {
                     default:
                         return "roles: enum value[] expected";
                     case 0:
-                    case 20:
-                    case 99:
+                    case 1:
+                    case 9:
+                    case 11:
+                    case 12:
+                    case 21:
+                    case 22:
                         break;
                     }
             }
@@ -1466,12 +2092,28 @@ $root.role = (function() {
                         message.roles[i] = 0;
                         break;
                     case "ADMIN":
-                    case 20:
-                        message.roles[i] = 20;
+                    case 1:
+                        message.roles[i] = 1;
                         break;
                     case "BLACK":
-                    case 99:
-                        message.roles[i] = 99;
+                    case 9:
+                        message.roles[i] = 9;
+                        break;
+                    case "SAAS_ADMIN":
+                    case 11:
+                        message.roles[i] = 11;
+                        break;
+                    case "SAAS_AUTHORIZER":
+                    case 12:
+                        message.roles[i] = 12;
+                        break;
+                    case "APP_ADMIN":
+                    case 21:
+                        message.roles[i] = 21;
+                        break;
+                    case "APP_AUTHORIZER":
+                    case 22:
+                        message.roles[i] = 22;
                         break;
                     }
             }
@@ -1537,7 +2179,8 @@ $root.role = (function() {
          * @memberof role
          * @interface IAddRoleRequest
          * @property {auth.IAuthorization|null} [auth] AddRoleRequest auth
-         * @property {number|null} [uid] AddRoleRequest uid
+         * @property {app.IAppIndex|null} [app] AddRoleRequest app
+         * @property {number|null} [userId] AddRoleRequest userId
          * @property {role.Role|null} [role] AddRoleRequest role
          */
 
@@ -1565,12 +2208,20 @@ $root.role = (function() {
         AddRoleRequest.prototype.auth = null;
 
         /**
-         * AddRoleRequest uid.
-         * @member {number} uid
+         * AddRoleRequest app.
+         * @member {app.IAppIndex|null|undefined} app
          * @memberof role.AddRoleRequest
          * @instance
          */
-        AddRoleRequest.prototype.uid = 0;
+        AddRoleRequest.prototype.app = null;
+
+        /**
+         * AddRoleRequest userId.
+         * @member {number} userId
+         * @memberof role.AddRoleRequest
+         * @instance
+         */
+        AddRoleRequest.prototype.userId = 0;
 
         /**
          * AddRoleRequest role.
@@ -1606,8 +2257,10 @@ $root.role = (function() {
                 writer = $Writer.create();
             if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
                 $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.uid != null && Object.hasOwnProperty.call(message, "uid"))
-                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.uid);
+            if (message.app != null && Object.hasOwnProperty.call(message, "app"))
+                $root.app.AppIndex.encode(message.app, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.userId);
             if (message.role != null && Object.hasOwnProperty.call(message, "role"))
                 writer.uint32(/* id 12, wireType 0 =*/96).int32(message.role);
             return writer;
@@ -1637,19 +2290,25 @@ $root.role = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        AddRoleRequest.decode = function decode(reader, length) {
+        AddRoleRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.role.AddRoleRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
                         break;
                     }
+                case 2: {
+                        message.app = $root.app.AppIndex.decode(reader, reader.uint32());
+                        break;
+                    }
                 case 11: {
-                        message.uid = reader.uint32();
+                        message.userId = reader.uint32();
                         break;
                     }
                 case 12: {
@@ -1696,16 +2355,25 @@ $root.role = (function() {
                 if (error)
                     return "auth." + error;
             }
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                if (!$util.isInteger(message.uid))
-                    return "uid: integer expected";
+            if (message.app != null && message.hasOwnProperty("app")) {
+                var error = $root.app.AppIndex.verify(message.app);
+                if (error)
+                    return "app." + error;
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId))
+                    return "userId: integer expected";
             if (message.role != null && message.hasOwnProperty("role"))
                 switch (message.role) {
                 default:
                     return "role: enum value expected";
                 case 0:
-                case 20:
-                case 99:
+                case 1:
+                case 9:
+                case 11:
+                case 12:
+                case 21:
+                case 22:
                     break;
                 }
             return null;
@@ -1728,8 +2396,13 @@ $root.role = (function() {
                     throw TypeError(".role.AddRoleRequest.auth: object expected");
                 message.auth = $root.auth.Authorization.fromObject(object.auth);
             }
-            if (object.uid != null)
-                message.uid = object.uid >>> 0;
+            if (object.app != null) {
+                if (typeof object.app !== "object")
+                    throw TypeError(".role.AddRoleRequest.app: object expected");
+                message.app = $root.app.AppIndex.fromObject(object.app);
+            }
+            if (object.userId != null)
+                message.userId = object.userId >>> 0;
             switch (object.role) {
             default:
                 if (typeof object.role === "number") {
@@ -1742,12 +2415,28 @@ $root.role = (function() {
                 message.role = 0;
                 break;
             case "ADMIN":
-            case 20:
-                message.role = 20;
+            case 1:
+                message.role = 1;
                 break;
             case "BLACK":
-            case 99:
-                message.role = 99;
+            case 9:
+                message.role = 9;
+                break;
+            case "SAAS_ADMIN":
+            case 11:
+                message.role = 11;
+                break;
+            case "SAAS_AUTHORIZER":
+            case 12:
+                message.role = 12;
+                break;
+            case "APP_ADMIN":
+            case 21:
+                message.role = 21;
+                break;
+            case "APP_AUTHORIZER":
+            case 22:
+                message.role = 22;
                 break;
             }
             return message;
@@ -1768,13 +2457,16 @@ $root.role = (function() {
             var object = {};
             if (options.defaults) {
                 object.auth = null;
-                object.uid = 0;
+                object.app = null;
+                object.userId = 0;
                 object.role = options.enums === String ? "USER" : 0;
             }
             if (message.auth != null && message.hasOwnProperty("auth"))
                 object.auth = $root.auth.Authorization.toObject(message.auth, options);
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                object.uid = message.uid;
+            if (message.app != null && message.hasOwnProperty("app"))
+                object.app = $root.app.AppIndex.toObject(message.app, options);
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                object.userId = message.userId;
             if (message.role != null && message.hasOwnProperty("role"))
                 object.role = options.enums === String ? $root.role.Role[message.role] === undefined ? message.role : $root.role.Role[message.role] : message.role;
             return object;
@@ -1816,7 +2508,8 @@ $root.role = (function() {
          * @memberof role
          * @interface IDelRoleRequest
          * @property {auth.IAuthorization|null} [auth] DelRoleRequest auth
-         * @property {number|null} [uid] DelRoleRequest uid
+         * @property {app.IAppIndex|null} [app] DelRoleRequest app
+         * @property {number|null} [userId] DelRoleRequest userId
          * @property {role.Role|null} [role] DelRoleRequest role
          */
 
@@ -1844,12 +2537,20 @@ $root.role = (function() {
         DelRoleRequest.prototype.auth = null;
 
         /**
-         * DelRoleRequest uid.
-         * @member {number} uid
+         * DelRoleRequest app.
+         * @member {app.IAppIndex|null|undefined} app
          * @memberof role.DelRoleRequest
          * @instance
          */
-        DelRoleRequest.prototype.uid = 0;
+        DelRoleRequest.prototype.app = null;
+
+        /**
+         * DelRoleRequest userId.
+         * @member {number} userId
+         * @memberof role.DelRoleRequest
+         * @instance
+         */
+        DelRoleRequest.prototype.userId = 0;
 
         /**
          * DelRoleRequest role.
@@ -1885,8 +2586,10 @@ $root.role = (function() {
                 writer = $Writer.create();
             if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
                 $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.uid != null && Object.hasOwnProperty.call(message, "uid"))
-                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.uid);
+            if (message.app != null && Object.hasOwnProperty.call(message, "app"))
+                $root.app.AppIndex.encode(message.app, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.userId);
             if (message.role != null && Object.hasOwnProperty.call(message, "role"))
                 writer.uint32(/* id 12, wireType 0 =*/96).int32(message.role);
             return writer;
@@ -1916,19 +2619,25 @@ $root.role = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        DelRoleRequest.decode = function decode(reader, length) {
+        DelRoleRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.role.DelRoleRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
                         break;
                     }
+                case 2: {
+                        message.app = $root.app.AppIndex.decode(reader, reader.uint32());
+                        break;
+                    }
                 case 11: {
-                        message.uid = reader.uint32();
+                        message.userId = reader.uint32();
                         break;
                     }
                 case 12: {
@@ -1975,16 +2684,25 @@ $root.role = (function() {
                 if (error)
                     return "auth." + error;
             }
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                if (!$util.isInteger(message.uid))
-                    return "uid: integer expected";
+            if (message.app != null && message.hasOwnProperty("app")) {
+                var error = $root.app.AppIndex.verify(message.app);
+                if (error)
+                    return "app." + error;
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId))
+                    return "userId: integer expected";
             if (message.role != null && message.hasOwnProperty("role"))
                 switch (message.role) {
                 default:
                     return "role: enum value expected";
                 case 0:
-                case 20:
-                case 99:
+                case 1:
+                case 9:
+                case 11:
+                case 12:
+                case 21:
+                case 22:
                     break;
                 }
             return null;
@@ -2007,8 +2725,13 @@ $root.role = (function() {
                     throw TypeError(".role.DelRoleRequest.auth: object expected");
                 message.auth = $root.auth.Authorization.fromObject(object.auth);
             }
-            if (object.uid != null)
-                message.uid = object.uid >>> 0;
+            if (object.app != null) {
+                if (typeof object.app !== "object")
+                    throw TypeError(".role.DelRoleRequest.app: object expected");
+                message.app = $root.app.AppIndex.fromObject(object.app);
+            }
+            if (object.userId != null)
+                message.userId = object.userId >>> 0;
             switch (object.role) {
             default:
                 if (typeof object.role === "number") {
@@ -2021,12 +2744,28 @@ $root.role = (function() {
                 message.role = 0;
                 break;
             case "ADMIN":
-            case 20:
-                message.role = 20;
+            case 1:
+                message.role = 1;
                 break;
             case "BLACK":
-            case 99:
-                message.role = 99;
+            case 9:
+                message.role = 9;
+                break;
+            case "SAAS_ADMIN":
+            case 11:
+                message.role = 11;
+                break;
+            case "SAAS_AUTHORIZER":
+            case 12:
+                message.role = 12;
+                break;
+            case "APP_ADMIN":
+            case 21:
+                message.role = 21;
+                break;
+            case "APP_AUTHORIZER":
+            case 22:
+                message.role = 22;
                 break;
             }
             return message;
@@ -2047,13 +2786,16 @@ $root.role = (function() {
             var object = {};
             if (options.defaults) {
                 object.auth = null;
-                object.uid = 0;
+                object.app = null;
+                object.userId = 0;
                 object.role = options.enums === String ? "USER" : 0;
             }
             if (message.auth != null && message.hasOwnProperty("auth"))
                 object.auth = $root.auth.Authorization.toObject(message.auth, options);
-            if (message.uid != null && message.hasOwnProperty("uid"))
-                object.uid = message.uid;
+            if (message.app != null && message.hasOwnProperty("app"))
+                object.app = $root.app.AppIndex.toObject(message.app, options);
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                object.userId = message.userId;
             if (message.role != null && message.hasOwnProperty("role"))
                 object.role = options.enums === String ? $root.role.Role[message.role] === undefined ? message.role : $root.role.Role[message.role] : message.role;
             return object;
@@ -2225,6 +2967,992 @@ $root.role = (function() {
     return role;
 })();
 
+$root.saas = (function() {
+
+    /**
+     * Namespace saas.
+     * @exports saas
+     * @namespace
+     */
+    var saas = {};
+
+    saas.CreateSaasRequest = (function() {
+
+        /**
+         * Properties of a CreateSaasRequest.
+         * @memberof saas
+         * @interface ICreateSaasRequest
+         * @property {auth.IAuthorization|null} [auth] CreateSaasRequest auth
+         * @property {string|null} [name] CreateSaasRequest name
+         */
+
+        /**
+         * Constructs a new CreateSaasRequest.
+         * @memberof saas
+         * @classdesc Represents a CreateSaasRequest.
+         * @implements ICreateSaasRequest
+         * @constructor
+         * @param {saas.ICreateSaasRequest=} [properties] Properties to set
+         */
+        function CreateSaasRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CreateSaasRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof saas.CreateSaasRequest
+         * @instance
+         */
+        CreateSaasRequest.prototype.auth = null;
+
+        /**
+         * CreateSaasRequest name.
+         * @member {string} name
+         * @memberof saas.CreateSaasRequest
+         * @instance
+         */
+        CreateSaasRequest.prototype.name = "";
+
+        /**
+         * Creates a new CreateSaasRequest instance using the specified properties.
+         * @function create
+         * @memberof saas.CreateSaasRequest
+         * @static
+         * @param {saas.ICreateSaasRequest=} [properties] Properties to set
+         * @returns {saas.CreateSaasRequest} CreateSaasRequest instance
+         */
+        CreateSaasRequest.create = function create(properties) {
+            return new CreateSaasRequest(properties);
+        };
+
+        /**
+         * Encodes the specified CreateSaasRequest message. Does not implicitly {@link saas.CreateSaasRequest.verify|verify} messages.
+         * @function encode
+         * @memberof saas.CreateSaasRequest
+         * @static
+         * @param {saas.ICreateSaasRequest} message CreateSaasRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateSaasRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.name);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CreateSaasRequest message, length delimited. Does not implicitly {@link saas.CreateSaasRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof saas.CreateSaasRequest
+         * @static
+         * @param {saas.ICreateSaasRequest} message CreateSaasRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateSaasRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CreateSaasRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof saas.CreateSaasRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {saas.CreateSaasRequest} CreateSaasRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateSaasRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.saas.CreateSaasRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 10: {
+                        message.name = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CreateSaasRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof saas.CreateSaasRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {saas.CreateSaasRequest} CreateSaasRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateSaasRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CreateSaasRequest message.
+         * @function verify
+         * @memberof saas.CreateSaasRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CreateSaasRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a CreateSaasRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof saas.CreateSaasRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {saas.CreateSaasRequest} CreateSaasRequest
+         */
+        CreateSaasRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.saas.CreateSaasRequest)
+                return object;
+            var message = new $root.saas.CreateSaasRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".saas.CreateSaasRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.name != null)
+                message.name = String(object.name);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CreateSaasRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof saas.CreateSaasRequest
+         * @static
+         * @param {saas.CreateSaasRequest} message CreateSaasRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CreateSaasRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.name = "";
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            return object;
+        };
+
+        /**
+         * Converts this CreateSaasRequest to JSON.
+         * @function toJSON
+         * @memberof saas.CreateSaasRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CreateSaasRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CreateSaasRequest
+         * @function getTypeUrl
+         * @memberof saas.CreateSaasRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CreateSaasRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/saas.CreateSaasRequest";
+        };
+
+        return CreateSaasRequest;
+    })();
+
+    saas.CreateSaasResponse = (function() {
+
+        /**
+         * Properties of a CreateSaasResponse.
+         * @memberof saas
+         * @interface ICreateSaasResponse
+         * @property {number|null} [saasId] CreateSaasResponse saasId
+         */
+
+        /**
+         * Constructs a new CreateSaasResponse.
+         * @memberof saas
+         * @classdesc Represents a CreateSaasResponse.
+         * @implements ICreateSaasResponse
+         * @constructor
+         * @param {saas.ICreateSaasResponse=} [properties] Properties to set
+         */
+        function CreateSaasResponse(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CreateSaasResponse saasId.
+         * @member {number} saasId
+         * @memberof saas.CreateSaasResponse
+         * @instance
+         */
+        CreateSaasResponse.prototype.saasId = 0;
+
+        /**
+         * Creates a new CreateSaasResponse instance using the specified properties.
+         * @function create
+         * @memberof saas.CreateSaasResponse
+         * @static
+         * @param {saas.ICreateSaasResponse=} [properties] Properties to set
+         * @returns {saas.CreateSaasResponse} CreateSaasResponse instance
+         */
+        CreateSaasResponse.create = function create(properties) {
+            return new CreateSaasResponse(properties);
+        };
+
+        /**
+         * Encodes the specified CreateSaasResponse message. Does not implicitly {@link saas.CreateSaasResponse.verify|verify} messages.
+         * @function encode
+         * @memberof saas.CreateSaasResponse
+         * @static
+         * @param {saas.ICreateSaasResponse} message CreateSaasResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateSaasResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.saasId != null && Object.hasOwnProperty.call(message, "saasId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saasId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CreateSaasResponse message, length delimited. Does not implicitly {@link saas.CreateSaasResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof saas.CreateSaasResponse
+         * @static
+         * @param {saas.ICreateSaasResponse} message CreateSaasResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateSaasResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CreateSaasResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof saas.CreateSaasResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {saas.CreateSaasResponse} CreateSaasResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateSaasResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.saas.CreateSaasResponse();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.saasId = reader.uint32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CreateSaasResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof saas.CreateSaasResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {saas.CreateSaasResponse} CreateSaasResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateSaasResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CreateSaasResponse message.
+         * @function verify
+         * @memberof saas.CreateSaasResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CreateSaasResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                if (!$util.isInteger(message.saasId))
+                    return "saasId: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a CreateSaasResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof saas.CreateSaasResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {saas.CreateSaasResponse} CreateSaasResponse
+         */
+        CreateSaasResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.saas.CreateSaasResponse)
+                return object;
+            var message = new $root.saas.CreateSaasResponse();
+            if (object.saasId != null)
+                message.saasId = object.saasId >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CreateSaasResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof saas.CreateSaasResponse
+         * @static
+         * @param {saas.CreateSaasResponse} message CreateSaasResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CreateSaasResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.saasId = 0;
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                object.saasId = message.saasId;
+            return object;
+        };
+
+        /**
+         * Converts this CreateSaasResponse to JSON.
+         * @function toJSON
+         * @memberof saas.CreateSaasResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CreateSaasResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CreateSaasResponse
+         * @function getTypeUrl
+         * @memberof saas.CreateSaasResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CreateSaasResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/saas.CreateSaasResponse";
+        };
+
+        return CreateSaasResponse;
+    })();
+
+    saas.SaasService = (function() {
+
+        /**
+         * Constructs a new SaasService service.
+         * @memberof saas
+         * @classdesc Represents a SaasService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function SaasService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (SaasService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = SaasService;
+
+        /**
+         * Creates new SaasService service using the specified rpc implementation.
+         * @function create
+         * @memberof saas.SaasService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {SaasService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        SaasService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link saas.SaasService#createSaas}.
+         * @memberof saas.SaasService
+         * @typedef CreateSaasCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {saas.CreateSaasResponse} [response] CreateSaasResponse
+         */
+
+        /**
+         * Calls CreateSaas.
+         * @function createSaas
+         * @memberof saas.SaasService
+         * @instance
+         * @param {saas.ICreateSaasRequest} request CreateSaasRequest message or plain object
+         * @param {saas.SaasService.CreateSaasCallback} callback Node-style callback called with the error, if any, and CreateSaasResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(SaasService.prototype.createSaas = function createSaas(request, callback) {
+            return this.rpcCall(createSaas, $root.saas.CreateSaasRequest, $root.saas.CreateSaasResponse, request, callback);
+        }, "name", { value: "CreateSaas" });
+
+        /**
+         * Calls CreateSaas.
+         * @function createSaas
+         * @memberof saas.SaasService
+         * @instance
+         * @param {saas.ICreateSaasRequest} request CreateSaasRequest message or plain object
+         * @returns {Promise<saas.CreateSaasResponse>} Promise
+         * @variation 2
+         */
+
+        return SaasService;
+    })();
+
+    return saas;
+})();
+
+$root.three = (function() {
+
+    /**
+     * Namespace three.
+     * @exports three
+     * @namespace
+     */
+    var three = {};
+
+    three.GetWeichatMpRequest = (function() {
+
+        /**
+         * Properties of a GetWeichatMpRequest.
+         * @memberof three
+         * @interface IGetWeichatMpRequest
+         */
+
+        /**
+         * Constructs a new GetWeichatMpRequest.
+         * @memberof three
+         * @classdesc Represents a GetWeichatMpRequest.
+         * @implements IGetWeichatMpRequest
+         * @constructor
+         * @param {three.IGetWeichatMpRequest=} [properties] Properties to set
+         */
+        function GetWeichatMpRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Creates a new GetWeichatMpRequest instance using the specified properties.
+         * @function create
+         * @memberof three.GetWeichatMpRequest
+         * @static
+         * @param {three.IGetWeichatMpRequest=} [properties] Properties to set
+         * @returns {three.GetWeichatMpRequest} GetWeichatMpRequest instance
+         */
+        GetWeichatMpRequest.create = function create(properties) {
+            return new GetWeichatMpRequest(properties);
+        };
+
+        /**
+         * Encodes the specified GetWeichatMpRequest message. Does not implicitly {@link three.GetWeichatMpRequest.verify|verify} messages.
+         * @function encode
+         * @memberof three.GetWeichatMpRequest
+         * @static
+         * @param {three.IGetWeichatMpRequest} message GetWeichatMpRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetWeichatMpRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetWeichatMpRequest message, length delimited. Does not implicitly {@link three.GetWeichatMpRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof three.GetWeichatMpRequest
+         * @static
+         * @param {three.IGetWeichatMpRequest} message GetWeichatMpRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetWeichatMpRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetWeichatMpRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof three.GetWeichatMpRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {three.GetWeichatMpRequest} GetWeichatMpRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetWeichatMpRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.three.GetWeichatMpRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetWeichatMpRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof three.GetWeichatMpRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {three.GetWeichatMpRequest} GetWeichatMpRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetWeichatMpRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetWeichatMpRequest message.
+         * @function verify
+         * @memberof three.GetWeichatMpRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetWeichatMpRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetWeichatMpRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof three.GetWeichatMpRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {three.GetWeichatMpRequest} GetWeichatMpRequest
+         */
+        GetWeichatMpRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.three.GetWeichatMpRequest)
+                return object;
+            return new $root.three.GetWeichatMpRequest();
+        };
+
+        /**
+         * Creates a plain object from a GetWeichatMpRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof three.GetWeichatMpRequest
+         * @static
+         * @param {three.GetWeichatMpRequest} message GetWeichatMpRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetWeichatMpRequest.toObject = function toObject() {
+            return {};
+        };
+
+        /**
+         * Converts this GetWeichatMpRequest to JSON.
+         * @function toJSON
+         * @memberof three.GetWeichatMpRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetWeichatMpRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetWeichatMpRequest
+         * @function getTypeUrl
+         * @memberof three.GetWeichatMpRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetWeichatMpRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/three.GetWeichatMpRequest";
+        };
+
+        return GetWeichatMpRequest;
+    })();
+
+    three.GetWeichatMpResponse = (function() {
+
+        /**
+         * Properties of a GetWeichatMpResponse.
+         * @memberof three
+         * @interface IGetWeichatMpResponse
+         * @property {auth.IAuthorization|null} [auth] GetWeichatMpResponse auth
+         */
+
+        /**
+         * Constructs a new GetWeichatMpResponse.
+         * @memberof three
+         * @classdesc Represents a GetWeichatMpResponse.
+         * @implements IGetWeichatMpResponse
+         * @constructor
+         * @param {three.IGetWeichatMpResponse=} [properties] Properties to set
+         */
+        function GetWeichatMpResponse(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetWeichatMpResponse auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof three.GetWeichatMpResponse
+         * @instance
+         */
+        GetWeichatMpResponse.prototype.auth = null;
+
+        /**
+         * Creates a new GetWeichatMpResponse instance using the specified properties.
+         * @function create
+         * @memberof three.GetWeichatMpResponse
+         * @static
+         * @param {three.IGetWeichatMpResponse=} [properties] Properties to set
+         * @returns {three.GetWeichatMpResponse} GetWeichatMpResponse instance
+         */
+        GetWeichatMpResponse.create = function create(properties) {
+            return new GetWeichatMpResponse(properties);
+        };
+
+        /**
+         * Encodes the specified GetWeichatMpResponse message. Does not implicitly {@link three.GetWeichatMpResponse.verify|verify} messages.
+         * @function encode
+         * @memberof three.GetWeichatMpResponse
+         * @static
+         * @param {three.IGetWeichatMpResponse} message GetWeichatMpResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetWeichatMpResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetWeichatMpResponse message, length delimited. Does not implicitly {@link three.GetWeichatMpResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof three.GetWeichatMpResponse
+         * @static
+         * @param {three.IGetWeichatMpResponse} message GetWeichatMpResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetWeichatMpResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetWeichatMpResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof three.GetWeichatMpResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {three.GetWeichatMpResponse} GetWeichatMpResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetWeichatMpResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.three.GetWeichatMpResponse();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetWeichatMpResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof three.GetWeichatMpResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {three.GetWeichatMpResponse} GetWeichatMpResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetWeichatMpResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetWeichatMpResponse message.
+         * @function verify
+         * @memberof three.GetWeichatMpResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetWeichatMpResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetWeichatMpResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof three.GetWeichatMpResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {three.GetWeichatMpResponse} GetWeichatMpResponse
+         */
+        GetWeichatMpResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.three.GetWeichatMpResponse)
+                return object;
+            var message = new $root.three.GetWeichatMpResponse();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".three.GetWeichatMpResponse.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetWeichatMpResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof three.GetWeichatMpResponse
+         * @static
+         * @param {three.GetWeichatMpResponse} message GetWeichatMpResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetWeichatMpResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.auth = null;
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetWeichatMpResponse to JSON.
+         * @function toJSON
+         * @memberof three.GetWeichatMpResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetWeichatMpResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetWeichatMpResponse
+         * @function getTypeUrl
+         * @memberof three.GetWeichatMpResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetWeichatMpResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/three.GetWeichatMpResponse";
+        };
+
+        return GetWeichatMpResponse;
+    })();
+
+    three.ThreeService = (function() {
+
+        /**
+         * Constructs a new ThreeService service.
+         * @memberof three
+         * @classdesc Represents a ThreeService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function ThreeService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (ThreeService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = ThreeService;
+
+        /**
+         * Creates new ThreeService service using the specified rpc implementation.
+         * @function create
+         * @memberof three.ThreeService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {ThreeService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        ThreeService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link three.ThreeService#getWeichatMp}.
+         * @memberof three.ThreeService
+         * @typedef GetWeichatMpCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {three.GetWeichatMpResponse} [response] GetWeichatMpResponse
+         */
+
+        /**
+         * Calls GetWeichatMp.
+         * @function getWeichatMp
+         * @memberof three.ThreeService
+         * @instance
+         * @param {three.IGetWeichatMpRequest} request GetWeichatMpRequest message or plain object
+         * @param {three.ThreeService.GetWeichatMpCallback} callback Node-style callback called with the error, if any, and GetWeichatMpResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(ThreeService.prototype.getWeichatMp = function getWeichatMp(request, callback) {
+            return this.rpcCall(getWeichatMp, $root.three.GetWeichatMpRequest, $root.three.GetWeichatMpResponse, request, callback);
+        }, "name", { value: "GetWeichatMp" });
+
+        /**
+         * Calls GetWeichatMp.
+         * @function getWeichatMp
+         * @memberof three.ThreeService
+         * @instance
+         * @param {three.IGetWeichatMpRequest} request GetWeichatMpRequest message or plain object
+         * @returns {Promise<three.GetWeichatMpResponse>} Promise
+         * @variation 2
+         */
+
+        return ThreeService;
+    })();
+
+    return three;
+})();
+
 $root.user = (function() {
 
     /**
@@ -2241,7 +3969,7 @@ $root.user = (function() {
          * @memberof user
          * @interface ILoginRequest
          * @property {number|Long|null} [timestamp] LoginRequest timestamp
-         * @property {string|null} [uname] LoginRequest uname
+         * @property {string|null} [username] LoginRequest username
          * @property {string|null} [passwd] LoginRequest passwd
          * @property {string|null} [deviceId] LoginRequest deviceId
          * @property {string|null} [deviceName] LoginRequest deviceName
@@ -2272,12 +4000,12 @@ $root.user = (function() {
         LoginRequest.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
 
         /**
-         * LoginRequest uname.
-         * @member {string} uname
+         * LoginRequest username.
+         * @member {string} username
          * @memberof user.LoginRequest
          * @instance
          */
-        LoginRequest.prototype.uname = "";
+        LoginRequest.prototype.username = "";
 
         /**
          * LoginRequest passwd.
@@ -2337,8 +4065,8 @@ $root.user = (function() {
                 writer = $Writer.create();
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.timestamp);
-            if (message.uname != null && Object.hasOwnProperty.call(message, "uname"))
-                writer.uint32(/* id 11, wireType 2 =*/90).string(message.uname);
+            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.username);
             if (message.passwd != null && Object.hasOwnProperty.call(message, "passwd"))
                 writer.uint32(/* id 12, wireType 2 =*/98).string(message.passwd);
             if (message.deviceId != null && Object.hasOwnProperty.call(message, "deviceId"))
@@ -2374,19 +4102,21 @@ $root.user = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LoginRequest.decode = function decode(reader, length) {
+        LoginRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.LoginRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.timestamp = reader.uint64();
                         break;
                     }
                 case 11: {
-                        message.uname = reader.string();
+                        message.username = reader.string();
                         break;
                     }
                 case 12: {
@@ -2443,9 +4173,9 @@ $root.user = (function() {
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                     return "timestamp: integer|Long expected";
-            if (message.uname != null && message.hasOwnProperty("uname"))
-                if (!$util.isString(message.uname))
-                    return "uname: string expected";
+            if (message.username != null && message.hasOwnProperty("username"))
+                if (!$util.isString(message.username))
+                    return "username: string expected";
             if (message.passwd != null && message.hasOwnProperty("passwd"))
                 if (!$util.isString(message.passwd))
                     return "passwd: string expected";
@@ -2482,8 +4212,8 @@ $root.user = (function() {
                     message.timestamp = object.timestamp;
                 else if (typeof object.timestamp === "object")
                     message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
-            if (object.uname != null)
-                message.uname = String(object.uname);
+            if (object.username != null)
+                message.username = String(object.username);
             if (object.passwd != null)
                 message.passwd = String(object.passwd);
             if (object.deviceId != null)
@@ -2521,7 +4251,7 @@ $root.user = (function() {
                     object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.timestamp = options.longs === String ? "0" : 0;
-                object.uname = "";
+                object.username = "";
                 object.passwd = "";
                 object.deviceId = "";
                 object.deviceName = "";
@@ -2536,8 +4266,8 @@ $root.user = (function() {
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
-            if (message.uname != null && message.hasOwnProperty("uname"))
-                object.uname = message.uname;
+            if (message.username != null && message.hasOwnProperty("username"))
+                object.username = message.username;
             if (message.passwd != null && message.hasOwnProperty("passwd"))
                 object.passwd = message.passwd;
             if (message.deviceId != null && message.hasOwnProperty("deviceId"))
@@ -2581,27 +4311,28 @@ $root.user = (function() {
         return LoginRequest;
     })();
 
-    user.WxLoginRequest = (function() {
+    user.ThreeLoginRequest = (function() {
 
         /**
-         * Properties of a WxLoginRequest.
+         * Properties of a ThreeLoginRequest.
          * @memberof user
-         * @interface IWxLoginRequest
-         * @property {string|null} [code] WxLoginRequest code
-         * @property {string|null} [deviceId] WxLoginRequest deviceId
-         * @property {string|null} [deviceName] WxLoginRequest deviceName
-         * @property {number|Long|null} [expire] WxLoginRequest expire
+         * @interface IThreeLoginRequest
+         * @property {string|null} [platform] ThreeLoginRequest platform
+         * @property {string|null} [code] ThreeLoginRequest code
+         * @property {string|null} [deviceId] ThreeLoginRequest deviceId
+         * @property {string|null} [deviceName] ThreeLoginRequest deviceName
+         * @property {number|Long|null} [expire] ThreeLoginRequest expire
          */
 
         /**
-         * Constructs a new WxLoginRequest.
+         * Constructs a new ThreeLoginRequest.
          * @memberof user
-         * @classdesc Represents a WxLoginRequest.
-         * @implements IWxLoginRequest
+         * @classdesc Represents a ThreeLoginRequest.
+         * @implements IThreeLoginRequest
          * @constructor
-         * @param {user.IWxLoginRequest=} [properties] Properties to set
+         * @param {user.IThreeLoginRequest=} [properties] Properties to set
          */
-        function WxLoginRequest(properties) {
+        function ThreeLoginRequest(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -2609,61 +4340,71 @@ $root.user = (function() {
         }
 
         /**
-         * WxLoginRequest code.
+         * ThreeLoginRequest platform.
+         * @member {string} platform
+         * @memberof user.ThreeLoginRequest
+         * @instance
+         */
+        ThreeLoginRequest.prototype.platform = "";
+
+        /**
+         * ThreeLoginRequest code.
          * @member {string} code
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @instance
          */
-        WxLoginRequest.prototype.code = "";
+        ThreeLoginRequest.prototype.code = "";
 
         /**
-         * WxLoginRequest deviceId.
+         * ThreeLoginRequest deviceId.
          * @member {string} deviceId
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @instance
          */
-        WxLoginRequest.prototype.deviceId = "";
+        ThreeLoginRequest.prototype.deviceId = "";
 
         /**
-         * WxLoginRequest deviceName.
+         * ThreeLoginRequest deviceName.
          * @member {string} deviceName
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @instance
          */
-        WxLoginRequest.prototype.deviceName = "";
+        ThreeLoginRequest.prototype.deviceName = "";
 
         /**
-         * WxLoginRequest expire.
+         * ThreeLoginRequest expire.
          * @member {number|Long} expire
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @instance
          */
-        WxLoginRequest.prototype.expire = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+        ThreeLoginRequest.prototype.expire = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
 
         /**
-         * Creates a new WxLoginRequest instance using the specified properties.
+         * Creates a new ThreeLoginRequest instance using the specified properties.
          * @function create
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @static
-         * @param {user.IWxLoginRequest=} [properties] Properties to set
-         * @returns {user.WxLoginRequest} WxLoginRequest instance
+         * @param {user.IThreeLoginRequest=} [properties] Properties to set
+         * @returns {user.ThreeLoginRequest} ThreeLoginRequest instance
          */
-        WxLoginRequest.create = function create(properties) {
-            return new WxLoginRequest(properties);
+        ThreeLoginRequest.create = function create(properties) {
+            return new ThreeLoginRequest(properties);
         };
 
         /**
-         * Encodes the specified WxLoginRequest message. Does not implicitly {@link user.WxLoginRequest.verify|verify} messages.
+         * Encodes the specified ThreeLoginRequest message. Does not implicitly {@link user.ThreeLoginRequest.verify|verify} messages.
          * @function encode
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @static
-         * @param {user.IWxLoginRequest} message WxLoginRequest message or plain object to encode
+         * @param {user.IThreeLoginRequest} message ThreeLoginRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WxLoginRequest.encode = function encode(message, writer) {
+        ThreeLoginRequest.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.platform);
             if (message.code != null && Object.hasOwnProperty.call(message, "code"))
                 writer.uint32(/* id 11, wireType 2 =*/90).string(message.code);
             if (message.deviceId != null && Object.hasOwnProperty.call(message, "deviceId"))
@@ -2676,36 +4417,42 @@ $root.user = (function() {
         };
 
         /**
-         * Encodes the specified WxLoginRequest message, length delimited. Does not implicitly {@link user.WxLoginRequest.verify|verify} messages.
+         * Encodes the specified ThreeLoginRequest message, length delimited. Does not implicitly {@link user.ThreeLoginRequest.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @static
-         * @param {user.IWxLoginRequest} message WxLoginRequest message or plain object to encode
+         * @param {user.IThreeLoginRequest} message ThreeLoginRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WxLoginRequest.encodeDelimited = function encodeDelimited(message, writer) {
+        ThreeLoginRequest.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a WxLoginRequest message from the specified reader or buffer.
+         * Decodes a ThreeLoginRequest message from the specified reader or buffer.
          * @function decode
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {user.WxLoginRequest} WxLoginRequest
+         * @returns {user.ThreeLoginRequest} ThreeLoginRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WxLoginRequest.decode = function decode(reader, length) {
+        ThreeLoginRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.WxLoginRequest();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.ThreeLoginRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
+                case 10: {
+                        message.platform = reader.string();
+                        break;
+                    }
                 case 11: {
                         message.code = reader.string();
                         break;
@@ -2731,32 +4478,35 @@ $root.user = (function() {
         };
 
         /**
-         * Decodes a WxLoginRequest message from the specified reader or buffer, length delimited.
+         * Decodes a ThreeLoginRequest message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {user.WxLoginRequest} WxLoginRequest
+         * @returns {user.ThreeLoginRequest} ThreeLoginRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WxLoginRequest.decodeDelimited = function decodeDelimited(reader) {
+        ThreeLoginRequest.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a WxLoginRequest message.
+         * Verifies a ThreeLoginRequest message.
          * @function verify
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        WxLoginRequest.verify = function verify(message) {
+        ThreeLoginRequest.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.platform != null && message.hasOwnProperty("platform"))
+                if (!$util.isString(message.platform))
+                    return "platform: string expected";
             if (message.code != null && message.hasOwnProperty("code"))
                 if (!$util.isString(message.code))
                     return "code: string expected";
@@ -2773,17 +4523,19 @@ $root.user = (function() {
         };
 
         /**
-         * Creates a WxLoginRequest message from a plain object. Also converts values to their respective internal types.
+         * Creates a ThreeLoginRequest message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {user.WxLoginRequest} WxLoginRequest
+         * @returns {user.ThreeLoginRequest} ThreeLoginRequest
          */
-        WxLoginRequest.fromObject = function fromObject(object) {
-            if (object instanceof $root.user.WxLoginRequest)
+        ThreeLoginRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.ThreeLoginRequest)
                 return object;
-            var message = new $root.user.WxLoginRequest();
+            var message = new $root.user.ThreeLoginRequest();
+            if (object.platform != null)
+                message.platform = String(object.platform);
             if (object.code != null)
                 message.code = String(object.code);
             if (object.deviceId != null)
@@ -2803,19 +4555,20 @@ $root.user = (function() {
         };
 
         /**
-         * Creates a plain object from a WxLoginRequest message. Also converts values to other types if specified.
+         * Creates a plain object from a ThreeLoginRequest message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @static
-         * @param {user.WxLoginRequest} message WxLoginRequest
+         * @param {user.ThreeLoginRequest} message ThreeLoginRequest
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        WxLoginRequest.toObject = function toObject(message, options) {
+        ThreeLoginRequest.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             var object = {};
             if (options.defaults) {
+                object.platform = "";
                 object.code = "";
                 object.deviceId = "";
                 object.deviceName = "";
@@ -2825,6 +4578,8 @@ $root.user = (function() {
                 } else
                     object.expire = options.longs === String ? "0" : 0;
             }
+            if (message.platform != null && message.hasOwnProperty("platform"))
+                object.platform = message.platform;
             if (message.code != null && message.hasOwnProperty("code"))
                 object.code = message.code;
             if (message.deviceId != null && message.hasOwnProperty("deviceId"))
@@ -2840,32 +4595,32 @@ $root.user = (function() {
         };
 
         /**
-         * Converts this WxLoginRequest to JSON.
+         * Converts this ThreeLoginRequest to JSON.
          * @function toJSON
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        WxLoginRequest.prototype.toJSON = function toJSON() {
+        ThreeLoginRequest.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for WxLoginRequest
+         * Gets the default type url for ThreeLoginRequest
          * @function getTypeUrl
-         * @memberof user.WxLoginRequest
+         * @memberof user.ThreeLoginRequest
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        WxLoginRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        ThreeLoginRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/user.WxLoginRequest";
+            return typeUrlPrefix + "/user.ThreeLoginRequest";
         };
 
-        return WxLoginRequest;
+        return ThreeLoginRequest;
     })();
 
     user.LoginResponse = (function() {
@@ -2953,12 +4708,14 @@ $root.user = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        LoginResponse.decode = function decode(reader, length) {
+        LoginResponse.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.LoginResponse();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
@@ -3172,12 +4929,14 @@ $root.user = (function() {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        ChangePasswdRequest.decode = function decode(reader, length) {
+        ChangePasswdRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
             var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.ChangePasswdRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
+                if (tag === error)
+                    break;
                 switch (tag >>> 3) {
                 case 1: {
                         message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
@@ -3374,34 +5133,34 @@ $root.user = (function() {
          */
 
         /**
-         * Callback as used by {@link user.UserService#wxLogin}.
+         * Callback as used by {@link user.UserService#threeLogin}.
          * @memberof user.UserService
-         * @typedef WxLoginCallback
+         * @typedef ThreeLoginCallback
          * @type {function}
          * @param {Error|null} error Error, if any
          * @param {user.LoginResponse} [response] LoginResponse
          */
 
         /**
-         * Calls WxLogin.
-         * @function wxLogin
+         * Calls ThreeLogin.
+         * @function threeLogin
          * @memberof user.UserService
          * @instance
-         * @param {user.IWxLoginRequest} request WxLoginRequest message or plain object
-         * @param {user.UserService.WxLoginCallback} callback Node-style callback called with the error, if any, and LoginResponse
+         * @param {user.IThreeLoginRequest} request ThreeLoginRequest message or plain object
+         * @param {user.UserService.ThreeLoginCallback} callback Node-style callback called with the error, if any, and LoginResponse
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(UserService.prototype.wxLogin = function wxLogin(request, callback) {
-            return this.rpcCall(wxLogin, $root.user.WxLoginRequest, $root.user.LoginResponse, request, callback);
-        }, "name", { value: "WxLogin" });
+        Object.defineProperty(UserService.prototype.threeLogin = function threeLogin(request, callback) {
+            return this.rpcCall(threeLogin, $root.user.ThreeLoginRequest, $root.user.LoginResponse, request, callback);
+        }, "name", { value: "ThreeLogin" });
 
         /**
-         * Calls WxLogin.
-         * @function wxLogin
+         * Calls ThreeLogin.
+         * @function threeLogin
          * @memberof user.UserService
          * @instance
-         * @param {user.IWxLoginRequest} request WxLoginRequest message or plain object
+         * @param {user.IThreeLoginRequest} request ThreeLoginRequest message or plain object
          * @returns {Promise<user.LoginResponse>} Promise
          * @variation 2
          */
