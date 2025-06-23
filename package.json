@@ -1,0 +1,12 @@
+{
+    "name": "rshare_proto",
+    "version": "0.1.0",
+    "license": "MIT",
+    "main": "my_protobuf.js",
+    "description": "protobuf",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cnCrise/rshare_proto"
+    },
+    "homepage": "https://github.com/cnCrise/rshare_proto"
+}
