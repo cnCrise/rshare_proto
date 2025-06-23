@@ -175,6 +175,29 @@
         
           
           <li>
+            <a href="#app.proto">app.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#app.AppIndex"><span class="badge">M</span>AppIndex</a>
+                </li>
+              
+                <li>
+                  <a href="#app.CreateAppRequest"><span class="badge">M</span>CreateAppRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#app.AppService"><span class="badge">S</span>AppService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#auth.proto">auth.proto</a>
             <ul>
               
@@ -267,6 +290,52 @@
         
           
           <li>
+            <a href="#saas.proto">saas.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#saas.CreateSaasRequest"><span class="badge">M</span>CreateSaasRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#saas.CreateSaasResponse"><span class="badge">M</span>CreateSaasResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#saas.SaasService"><span class="badge">S</span>SaasService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#three.proto">three.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#three.GetWeichatMpRequest"><span class="badge">M</span>GetWeichatMpRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#three.GetWeichatMpResponse"><span class="badge">M</span>GetWeichatMpResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#three.ThreeService"><span class="badge">S</span>ThreeService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#user.proto">user.proto</a>
             <ul>
               
@@ -283,7 +352,7 @@
                 </li>
               
                 <li>
-                  <a href="#user.WxLoginRequest"><span class="badge">M</span>WxLoginRequest</a>
+                  <a href="#user.ThreeLoginRequest"><span class="badge">M</span>ThreeLoginRequest</a>
                 </li>
               
               
@@ -300,6 +369,108 @@
       </ul>
     </div>
 
+    
+      
+      <div class="file-heading">
+        <h2 id="app.proto">app.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="app.AppIndex">AppIndex</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>saas_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="app.CreateAppRequest">CreateAppRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p>授权信息 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>saas_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="app.AppService">AppService</h3>
+        <p>App相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateApp</td>
+                <td><a href="#app.CreateAppRequest">CreateAppRequest</a></td>
+                <td><a href="#app.AppIndex">AppIndex</a></td>
+                <td><p>创建app</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
@@ -471,15 +642,39 @@
               </tr>
             
               <tr>
+                <td>SERDE_ERR</td>
+                <td>1002</td>
+                <td><p>序列化错误</p></td>
+              </tr>
+            
+              <tr>
                 <td>NOT_SIGNUP</td>
                 <td>2001</td>
                 <td><p>用户名未注册</p></td>
               </tr>
             
               <tr>
-                <td>PASSWD_ERR</td>
+                <td>NONE_PASSWD</td>
                 <td>2002</td>
+                <td><p>未设置登录密码</p></td>
+              </tr>
+            
+              <tr>
+                <td>PASSWD_ERR</td>
+                <td>2003</td>
                 <td><p>登录密码错误</p></td>
+              </tr>
+            
+              <tr>
+                <td>INVALID_THREE</td>
+                <td>2005</td>
+                <td><p>无效的第三方平台</p></td>
+              </tr>
+            
+              <tr>
+                <td>THREE_ERR</td>
+                <td>2006</td>
+                <td><p>三方登录错误</p></td>
               </tr>
             
               <tr>
@@ -498,6 +693,12 @@
                 <td>EXPIRED_AUTH_SN</td>
                 <td>2013</td>
                 <td><p>授权码序列号过期</p></td>
+              </tr>
+            
+              <tr>
+                <td>INVALID_APP</td>
+                <td>2018</td>
+                <td><p>无效的应用ID</p></td>
               </tr>
             
               <tr>
@@ -551,7 +752,14 @@
                 </tr>
               
                 <tr>
-                  <td>uid</td>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">app.AppIndex</a></td>
+                  <td></td>
+                  <td><p>应用ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>被操作账号 </p></td>
@@ -589,7 +797,14 @@
                 </tr>
               
                 <tr>
-                  <td>uid</td>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">app.AppIndex</a></td>
+                  <td></td>
+                  <td><p>应用ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>被操作账号 </p></td>
@@ -627,7 +842,14 @@
                 </tr>
               
                 <tr>
-                  <td>uid</td>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">app.AppIndex</a></td>
+                  <td></td>
+                  <td><p>应用ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>被操作账号 </p></td>
@@ -682,14 +904,38 @@
             
               <tr>
                 <td>ADMIN</td>
-                <td>20</td>
+                <td>1</td>
                 <td><p>超级管理员</p></td>
               </tr>
             
               <tr>
                 <td>BLACK</td>
-                <td>99</td>
+                <td>9</td>
                 <td><p>黑名单</p></td>
+              </tr>
+            
+              <tr>
+                <td>SAAS_ADMIN</td>
+                <td>11</td>
+                <td><p>Saas管理员</p></td>
+              </tr>
+            
+              <tr>
+                <td>SAAS_AUTHORIZER</td>
+                <td>12</td>
+                <td><p>Saas授权者</p></td>
+              </tr>
+            
+              <tr>
+                <td>APP_ADMIN</td>
+                <td>21</td>
+                <td><p>应用管理员</p></td>
+              </tr>
+            
+              <tr>
+                <td>APP_AUTHORIZER</td>
+                <td>22</td>
+                <td><p>应用授权者</p></td>
               </tr>
             
           </tbody>
@@ -726,6 +972,196 @@
                 <td><a href="#role.DelRoleRequest">DelRoleRequest</a></td>
                 <td><a href="#common.Empty">.common.Empty</a></td>
                 <td><p>删除指定用户的角色权限</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="saas.proto">saas.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="saas.CreateSaasRequest">CreateSaasRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p>授权信息 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="saas.CreateSaasResponse">CreateSaasResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>saas_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="saas.SaasService">SaasService</h3>
+        <p>Saas相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateSaas</td>
+                <td><a href="#saas.CreateSaasRequest">CreateSaasRequest</a></td>
+                <td><a href="#saas.CreateSaasResponse">CreateSaasResponse</a></td>
+                <td><p>创建Saas</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="three.proto">three.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="three.GetWeichatMpRequest">GetWeichatMpRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="three.GetWeichatMpResponse">GetWeichatMpResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>nonceStr</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="three.ThreeService">ThreeService</h3>
+        <p>第三方相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GetWeichatMp</td>
+                <td><a href="#three.GetWeichatMpRequest">GetWeichatMpRequest</a></td>
+                <td><a href="#three.GetWeichatMpResponse">GetWeichatMpResponse</a></td>
+                <td><p>微信公众号</p></td>
               </tr>
             
           </tbody>
@@ -789,7 +1225,7 @@
                 </tr>
               
                 <tr>
-                  <td>uname</td>
+                  <td>username</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>用户名 </p></td>
@@ -854,7 +1290,7 @@
 
         
       
-        <h3 id="user.WxLoginRequest">WxLoginRequest</h3>
+        <h3 id="user.ThreeLoginRequest">ThreeLoginRequest</h3>
         <p></p>
 
         
@@ -865,10 +1301,17 @@
             <tbody>
               
                 <tr>
+                  <td>platform</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>code</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>调用wx.login接口获取登录凭证 </p></td>
+                  <td><p>三方平台登录凭证 </p></td>
                 </tr>
               
                 <tr>
@@ -921,8 +1364,8 @@
               </tr>
             
               <tr>
-                <td>WxLogin</td>
-                <td><a href="#user.WxLoginRequest">WxLoginRequest</a></td>
+                <td>ThreeLogin</td>
+                <td><a href="#user.ThreeLoginRequest">ThreeLoginRequest</a></td>
                 <td><a href="#user.LoginResponse">LoginResponse</a></td>
                 <td><p>微信登录</p></td>
               </tr>
