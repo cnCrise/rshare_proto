@@ -715,6 +715,7 @@ export namespace error_code {
     enum ErrorCode {
         SUCCESS = 0,
         INVALID_INPUT = 1001,
+        SERDE_ERR = 1002,
         NOT_SIGNUP = 2001,
         NONE_PASSWD = 2002,
         PASSWD_ERR = 2003,
@@ -1522,6 +1523,9 @@ export namespace three {
 
     /** Properties of a GetWeichatMpRequest. */
     interface IGetWeichatMpRequest {
+
+        /** GetWeichatMpRequest url */
+        url?: (string|null);
     }
 
     /** Represents a GetWeichatMpRequest. */
@@ -1532,6 +1536,9 @@ export namespace three {
          * @param [properties] Properties to set
          */
         constructor(properties?: three.IGetWeichatMpRequest);
+
+        /** GetWeichatMpRequest url. */
+        public url: string;
 
         /**
          * Creates a new GetWeichatMpRequest instance using the specified properties.
@@ -1614,8 +1621,17 @@ export namespace three {
     /** Properties of a GetWeichatMpResponse. */
     interface IGetWeichatMpResponse {
 
-        /** GetWeichatMpResponse auth */
-        auth?: (auth.IAuthorization|null);
+        /** GetWeichatMpResponse appId */
+        appId?: (string|null);
+
+        /** GetWeichatMpResponse timestamp */
+        timestamp?: (string|null);
+
+        /** GetWeichatMpResponse nonceStr */
+        nonceStr?: (string|null);
+
+        /** GetWeichatMpResponse signature */
+        signature?: (string|null);
     }
 
     /** Represents a GetWeichatMpResponse. */
@@ -1627,8 +1643,17 @@ export namespace three {
          */
         constructor(properties?: three.IGetWeichatMpResponse);
 
-        /** GetWeichatMpResponse auth. */
-        public auth?: (auth.IAuthorization|null);
+        /** GetWeichatMpResponse appId. */
+        public appId: string;
+
+        /** GetWeichatMpResponse timestamp. */
+        public timestamp: string;
+
+        /** GetWeichatMpResponse nonceStr. */
+        public nonceStr: string;
+
+        /** GetWeichatMpResponse signature. */
+        public signature: string;
 
         /**
          * Creates a new GetWeichatMpResponse instance using the specified properties.

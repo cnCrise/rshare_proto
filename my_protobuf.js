@@ -1569,6 +1569,7 @@ $root.error_code = (function() {
      * @enum {number}
      * @property {number} SUCCESS=0 SUCCESS value
      * @property {number} INVALID_INPUT=1001 INVALID_INPUT value
+     * @property {number} SERDE_ERR=1002 SERDE_ERR value
      * @property {number} NOT_SIGNUP=2001 NOT_SIGNUP value
      * @property {number} NONE_PASSWD=2002 NONE_PASSWD value
      * @property {number} PASSWD_ERR=2003 PASSWD_ERR value
@@ -1586,6 +1587,7 @@ $root.error_code = (function() {
         var valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "SUCCESS"] = 0;
         values[valuesById[1001] = "INVALID_INPUT"] = 1001;
+        values[valuesById[1002] = "SERDE_ERR"] = 1002;
         values[valuesById[2001] = "NOT_SIGNUP"] = 2001;
         values[valuesById[2002] = "NONE_PASSWD"] = 2002;
         values[valuesById[2003] = "PASSWD_ERR"] = 2003;
@@ -3501,6 +3503,7 @@ $root.three = (function() {
          * Properties of a GetWeichatMpRequest.
          * @memberof three
          * @interface IGetWeichatMpRequest
+         * @property {string|null} [url] GetWeichatMpRequest url
          */
 
         /**
@@ -3517,6 +3520,14 @@ $root.three = (function() {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
+
+        /**
+         * GetWeichatMpRequest url.
+         * @member {string} url
+         * @memberof three.GetWeichatMpRequest
+         * @instance
+         */
+        GetWeichatMpRequest.prototype.url = "";
 
         /**
          * Creates a new GetWeichatMpRequest instance using the specified properties.
@@ -3542,6 +3553,8 @@ $root.three = (function() {
         GetWeichatMpRequest.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.url != null && Object.hasOwnProperty.call(message, "url"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.url);
             return writer;
         };
 
@@ -3578,6 +3591,10 @@ $root.three = (function() {
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
+                case 10: {
+                        message.url = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -3613,6 +3630,9 @@ $root.three = (function() {
         GetWeichatMpRequest.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.url != null && message.hasOwnProperty("url"))
+                if (!$util.isString(message.url))
+                    return "url: string expected";
             return null;
         };
 
@@ -3627,7 +3647,10 @@ $root.three = (function() {
         GetWeichatMpRequest.fromObject = function fromObject(object) {
             if (object instanceof $root.three.GetWeichatMpRequest)
                 return object;
-            return new $root.three.GetWeichatMpRequest();
+            var message = new $root.three.GetWeichatMpRequest();
+            if (object.url != null)
+                message.url = String(object.url);
+            return message;
         };
 
         /**
@@ -3639,8 +3662,15 @@ $root.three = (function() {
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        GetWeichatMpRequest.toObject = function toObject() {
-            return {};
+        GetWeichatMpRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.url = "";
+            if (message.url != null && message.hasOwnProperty("url"))
+                object.url = message.url;
+            return object;
         };
 
         /**
@@ -3678,7 +3708,10 @@ $root.three = (function() {
          * Properties of a GetWeichatMpResponse.
          * @memberof three
          * @interface IGetWeichatMpResponse
-         * @property {auth.IAuthorization|null} [auth] GetWeichatMpResponse auth
+         * @property {string|null} [appId] GetWeichatMpResponse appId
+         * @property {string|null} [timestamp] GetWeichatMpResponse timestamp
+         * @property {string|null} [nonceStr] GetWeichatMpResponse nonceStr
+         * @property {string|null} [signature] GetWeichatMpResponse signature
          */
 
         /**
@@ -3697,12 +3730,36 @@ $root.three = (function() {
         }
 
         /**
-         * GetWeichatMpResponse auth.
-         * @member {auth.IAuthorization|null|undefined} auth
+         * GetWeichatMpResponse appId.
+         * @member {string} appId
          * @memberof three.GetWeichatMpResponse
          * @instance
          */
-        GetWeichatMpResponse.prototype.auth = null;
+        GetWeichatMpResponse.prototype.appId = "";
+
+        /**
+         * GetWeichatMpResponse timestamp.
+         * @member {string} timestamp
+         * @memberof three.GetWeichatMpResponse
+         * @instance
+         */
+        GetWeichatMpResponse.prototype.timestamp = "";
+
+        /**
+         * GetWeichatMpResponse nonceStr.
+         * @member {string} nonceStr
+         * @memberof three.GetWeichatMpResponse
+         * @instance
+         */
+        GetWeichatMpResponse.prototype.nonceStr = "";
+
+        /**
+         * GetWeichatMpResponse signature.
+         * @member {string} signature
+         * @memberof three.GetWeichatMpResponse
+         * @instance
+         */
+        GetWeichatMpResponse.prototype.signature = "";
 
         /**
          * Creates a new GetWeichatMpResponse instance using the specified properties.
@@ -3728,8 +3785,14 @@ $root.three = (function() {
         GetWeichatMpResponse.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
-                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.appId != null && Object.hasOwnProperty.call(message, "appId"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.appId);
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.timestamp);
+            if (message.nonceStr != null && Object.hasOwnProperty.call(message, "nonceStr"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.nonceStr);
+            if (message.signature != null && Object.hasOwnProperty.call(message, "signature"))
+                writer.uint32(/* id 14, wireType 2 =*/114).string(message.signature);
             return writer;
         };
 
@@ -3766,8 +3829,20 @@ $root.three = (function() {
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
-                case 1: {
-                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                case 11: {
+                        message.appId = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.timestamp = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.nonceStr = reader.string();
+                        break;
+                    }
+                case 14: {
+                        message.signature = reader.string();
                         break;
                     }
                 default:
@@ -3805,11 +3880,18 @@ $root.three = (function() {
         GetWeichatMpResponse.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.auth != null && message.hasOwnProperty("auth")) {
-                var error = $root.auth.Authorization.verify(message.auth);
-                if (error)
-                    return "auth." + error;
-            }
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                if (!$util.isString(message.appId))
+                    return "appId: string expected";
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (!$util.isString(message.timestamp))
+                    return "timestamp: string expected";
+            if (message.nonceStr != null && message.hasOwnProperty("nonceStr"))
+                if (!$util.isString(message.nonceStr))
+                    return "nonceStr: string expected";
+            if (message.signature != null && message.hasOwnProperty("signature"))
+                if (!$util.isString(message.signature))
+                    return "signature: string expected";
             return null;
         };
 
@@ -3825,11 +3907,14 @@ $root.three = (function() {
             if (object instanceof $root.three.GetWeichatMpResponse)
                 return object;
             var message = new $root.three.GetWeichatMpResponse();
-            if (object.auth != null) {
-                if (typeof object.auth !== "object")
-                    throw TypeError(".three.GetWeichatMpResponse.auth: object expected");
-                message.auth = $root.auth.Authorization.fromObject(object.auth);
-            }
+            if (object.appId != null)
+                message.appId = String(object.appId);
+            if (object.timestamp != null)
+                message.timestamp = String(object.timestamp);
+            if (object.nonceStr != null)
+                message.nonceStr = String(object.nonceStr);
+            if (object.signature != null)
+                message.signature = String(object.signature);
             return message;
         };
 
@@ -3846,10 +3931,20 @@ $root.three = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
-                object.auth = null;
-            if (message.auth != null && message.hasOwnProperty("auth"))
-                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (options.defaults) {
+                object.appId = "";
+                object.timestamp = "";
+                object.nonceStr = "";
+                object.signature = "";
+            }
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                object.appId = message.appId;
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                object.timestamp = message.timestamp;
+            if (message.nonceStr != null && message.hasOwnProperty("nonceStr"))
+                object.nonceStr = message.nonceStr;
+            if (message.signature != null && message.hasOwnProperty("signature"))
+                object.signature = message.signature;
             return object;
         };
 
