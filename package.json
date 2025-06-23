@@ -8,5 +8,8 @@
         "type": "git",
         "url": "https://github.com/cnCrise/rshare_proto"
     },
-    "homepage": "https://github.com/cnCrise/rshare_proto"
+    "homepage": "https://github.com/cnCrise/rshare_proto",
+    "dependencies": {
+        "protobufjs": "^7.5.3"
+    }
 }
