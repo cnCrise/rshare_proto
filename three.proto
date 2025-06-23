@@ -6,10 +6,13 @@ import "common.proto";
 import "auth.proto";
 
 message GetWeichatMpRequest {
+  string url = 10;
 }
 message GetWeichatMpResponse {
-  // 授权信息
-  auth.Authorization auth = 1;
+  string appId =  11;
+  string timestamp =  12;
+  string nonceStr =  13;
+  string signature =  14;
 }
 
 // 第三方相关服务

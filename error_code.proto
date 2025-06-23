@@ -8,6 +8,8 @@ enum ErrorCode {
   SUCCESS = 0;
   // 输入数据无效
   INVALID_INPUT = 1001;
+  // 序列化错误
+  SERDE_ERR = 1002;
   // 用户名未注册
   NOT_SIGNUP = 2001;
   // 未设置登录密码
