@@ -202,6 +202,10 @@
             <ul>
               
                 <li>
+                  <a href="#auth.AuthData"><span class="badge">M</span>AuthData</a>
+                </li>
+              
+                <li>
                   <a href="#auth.Authorization"><span class="badge">M</span>Authorization</a>
                 </li>
               
@@ -344,6 +348,10 @@
                 </li>
               
                 <li>
+                  <a href="#user.GetUserInfoRequest"><span class="badge">M</span>GetUserInfoRequest</a>
+                </li>
+              
+                <li>
                   <a href="#user.LoginRequest"><span class="badge">M</span>LoginRequest</a>
                 </li>
               
@@ -352,9 +360,21 @@
                 </li>
               
                 <li>
+                  <a href="#user.SetUserInfoRequest"><span class="badge">M</span>SetUserInfoRequest</a>
+                </li>
+              
+                <li>
                   <a href="#user.ThreeLoginRequest"><span class="badge">M</span>ThreeLoginRequest</a>
                 </li>
               
+                <li>
+                  <a href="#user.User"><span class="badge">M</span>User</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#user.Sex"><span class="badge">E</span>Sex</a>
+                </li>
               
               
               
@@ -478,6 +498,30 @@
       </div>
       <p></p>
 
+      
+        <h3 id="auth.AuthData">AuthData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">Authorization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="auth.Authorization">Authorization</h3>
         <p>授权信息</p>
@@ -1207,6 +1251,30 @@
 
         
       
+        <h3 id="user.GetUserInfoRequest">GetUserInfoRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p>授权信息 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="user.LoginRequest">LoginRequest</h3>
         <p></p>
 
@@ -1290,6 +1358,58 @@
 
         
       
+        <h3 id="user.SetUserInfoRequest">SetUserInfoRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>nickname</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>昵称 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatar</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>头像url </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sex</td>
+                  <td><a href="#user.Sex">Sex</a></td>
+                  <td>optional</td>
+                  <td><p>性别 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bio</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>简介 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="user.ThreeLoginRequest">ThreeLoginRequest</h3>
         <p></p>
 
@@ -1342,7 +1462,95 @@
 
         
       
+        <h3 id="user.User">User</h3>
+        <p></p>
 
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>uid </p></td>
+                </tr>
+              
+                <tr>
+                  <td>username</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>用户名 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>nickname</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>昵称 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>avatar</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>头像url </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sex</td>
+                  <td><a href="#user.Sex">Sex</a></td>
+                  <td></td>
+                  <td><p>性别 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bio</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>简介 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="user.Sex">Sex</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKONWN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MAN</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>WOMAN</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       
@@ -1368,6 +1576,20 @@
                 <td><a href="#user.ThreeLoginRequest">ThreeLoginRequest</a></td>
                 <td><a href="#user.LoginResponse">LoginResponse</a></td>
                 <td><p>微信登录</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetUserInfo</td>
+                <td><a href="#user.GetUserInfoRequest">GetUserInfoRequest</a></td>
+                <td><a href="#user.User">User</a></td>
+                <td><p>获取用户信息</p></td>
+              </tr>
+            
+              <tr>
+                <td>SetUserInfo</td>
+                <td><a href="#user.SetUserInfoRequest">SetUserInfoRequest</a></td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><p>设置用户信息</p></td>
               </tr>
             
               <tr>
