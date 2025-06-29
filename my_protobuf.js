@@ -1235,6 +1235,216 @@ $root.auth = (function() {
         return Authorization;
     })();
 
+    auth.AuthData = (function() {
+
+        /**
+         * Properties of an AuthData.
+         * @memberof auth
+         * @interface IAuthData
+         * @property {auth.IAuthorization|null} [auth] AuthData auth
+         */
+
+        /**
+         * Constructs a new AuthData.
+         * @memberof auth
+         * @classdesc Represents an AuthData.
+         * @implements IAuthData
+         * @constructor
+         * @param {auth.IAuthData=} [properties] Properties to set
+         */
+        function AuthData(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AuthData auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof auth.AuthData
+         * @instance
+         */
+        AuthData.prototype.auth = null;
+
+        /**
+         * Creates a new AuthData instance using the specified properties.
+         * @function create
+         * @memberof auth.AuthData
+         * @static
+         * @param {auth.IAuthData=} [properties] Properties to set
+         * @returns {auth.AuthData} AuthData instance
+         */
+        AuthData.create = function create(properties) {
+            return new AuthData(properties);
+        };
+
+        /**
+         * Encodes the specified AuthData message. Does not implicitly {@link auth.AuthData.verify|verify} messages.
+         * @function encode
+         * @memberof auth.AuthData
+         * @static
+         * @param {auth.IAuthData} message AuthData message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthData.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AuthData message, length delimited. Does not implicitly {@link auth.AuthData.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof auth.AuthData
+         * @static
+         * @param {auth.IAuthData} message AuthData message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthData.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AuthData message from the specified reader or buffer.
+         * @function decode
+         * @memberof auth.AuthData
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {auth.AuthData} AuthData
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthData.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.auth.AuthData();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AuthData message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof auth.AuthData
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {auth.AuthData} AuthData
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthData.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AuthData message.
+         * @function verify
+         * @memberof auth.AuthData
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AuthData.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates an AuthData message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof auth.AuthData
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {auth.AuthData} AuthData
+         */
+        AuthData.fromObject = function fromObject(object) {
+            if (object instanceof $root.auth.AuthData)
+                return object;
+            var message = new $root.auth.AuthData();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".auth.AuthData.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AuthData message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof auth.AuthData
+         * @static
+         * @param {auth.AuthData} message AuthData
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AuthData.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.auth = null;
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            return object;
+        };
+
+        /**
+         * Converts this AuthData to JSON.
+         * @function toJSON
+         * @memberof auth.AuthData
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AuthData.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AuthData
+         * @function getTypeUrl
+         * @memberof auth.AuthData
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AuthData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/auth.AuthData";
+        };
+
+        return AuthData;
+    })();
+
     auth.RefreshAuthRequest = (function() {
 
         /**
@@ -4928,6 +5138,967 @@ $root.user = (function() {
         return LoginResponse;
     })();
 
+    user.GetUserInfoRequest = (function() {
+
+        /**
+         * Properties of a GetUserInfoRequest.
+         * @memberof user
+         * @interface IGetUserInfoRequest
+         * @property {auth.IAuthorization|null} [auth] GetUserInfoRequest auth
+         */
+
+        /**
+         * Constructs a new GetUserInfoRequest.
+         * @memberof user
+         * @classdesc Represents a GetUserInfoRequest.
+         * @implements IGetUserInfoRequest
+         * @constructor
+         * @param {user.IGetUserInfoRequest=} [properties] Properties to set
+         */
+        function GetUserInfoRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetUserInfoRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof user.GetUserInfoRequest
+         * @instance
+         */
+        GetUserInfoRequest.prototype.auth = null;
+
+        /**
+         * Creates a new GetUserInfoRequest instance using the specified properties.
+         * @function create
+         * @memberof user.GetUserInfoRequest
+         * @static
+         * @param {user.IGetUserInfoRequest=} [properties] Properties to set
+         * @returns {user.GetUserInfoRequest} GetUserInfoRequest instance
+         */
+        GetUserInfoRequest.create = function create(properties) {
+            return new GetUserInfoRequest(properties);
+        };
+
+        /**
+         * Encodes the specified GetUserInfoRequest message. Does not implicitly {@link user.GetUserInfoRequest.verify|verify} messages.
+         * @function encode
+         * @memberof user.GetUserInfoRequest
+         * @static
+         * @param {user.IGetUserInfoRequest} message GetUserInfoRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetUserInfoRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetUserInfoRequest message, length delimited. Does not implicitly {@link user.GetUserInfoRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof user.GetUserInfoRequest
+         * @static
+         * @param {user.IGetUserInfoRequest} message GetUserInfoRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetUserInfoRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetUserInfoRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof user.GetUserInfoRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {user.GetUserInfoRequest} GetUserInfoRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetUserInfoRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.GetUserInfoRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetUserInfoRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof user.GetUserInfoRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {user.GetUserInfoRequest} GetUserInfoRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetUserInfoRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetUserInfoRequest message.
+         * @function verify
+         * @memberof user.GetUserInfoRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetUserInfoRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetUserInfoRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof user.GetUserInfoRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {user.GetUserInfoRequest} GetUserInfoRequest
+         */
+        GetUserInfoRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.GetUserInfoRequest)
+                return object;
+            var message = new $root.user.GetUserInfoRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".user.GetUserInfoRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetUserInfoRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof user.GetUserInfoRequest
+         * @static
+         * @param {user.GetUserInfoRequest} message GetUserInfoRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetUserInfoRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.auth = null;
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetUserInfoRequest to JSON.
+         * @function toJSON
+         * @memberof user.GetUserInfoRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetUserInfoRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetUserInfoRequest
+         * @function getTypeUrl
+         * @memberof user.GetUserInfoRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetUserInfoRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/user.GetUserInfoRequest";
+        };
+
+        return GetUserInfoRequest;
+    })();
+
+    /**
+     * Sex enum.
+     * @name user.Sex
+     * @enum {number}
+     * @property {number} UNKONWN=0 UNKONWN value
+     * @property {number} MAN=1 MAN value
+     * @property {number} WOMAN=2 WOMAN value
+     */
+    user.Sex = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "UNKONWN"] = 0;
+        values[valuesById[1] = "MAN"] = 1;
+        values[valuesById[2] = "WOMAN"] = 2;
+        return values;
+    })();
+
+    user.User = (function() {
+
+        /**
+         * Properties of a User.
+         * @memberof user
+         * @interface IUser
+         * @property {number|null} [id] User id
+         * @property {string|null} [username] User username
+         * @property {string|null} [nickname] User nickname
+         * @property {string|null} [avatar] User avatar
+         * @property {user.Sex|null} [sex] User sex
+         * @property {string|null} [bio] User bio
+         */
+
+        /**
+         * Constructs a new User.
+         * @memberof user
+         * @classdesc Represents a User.
+         * @implements IUser
+         * @constructor
+         * @param {user.IUser=} [properties] Properties to set
+         */
+        function User(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * User id.
+         * @member {number} id
+         * @memberof user.User
+         * @instance
+         */
+        User.prototype.id = 0;
+
+        /**
+         * User username.
+         * @member {string} username
+         * @memberof user.User
+         * @instance
+         */
+        User.prototype.username = "";
+
+        /**
+         * User nickname.
+         * @member {string} nickname
+         * @memberof user.User
+         * @instance
+         */
+        User.prototype.nickname = "";
+
+        /**
+         * User avatar.
+         * @member {string} avatar
+         * @memberof user.User
+         * @instance
+         */
+        User.prototype.avatar = "";
+
+        /**
+         * User sex.
+         * @member {user.Sex} sex
+         * @memberof user.User
+         * @instance
+         */
+        User.prototype.sex = 0;
+
+        /**
+         * User bio.
+         * @member {string} bio
+         * @memberof user.User
+         * @instance
+         */
+        User.prototype.bio = "";
+
+        /**
+         * Creates a new User instance using the specified properties.
+         * @function create
+         * @memberof user.User
+         * @static
+         * @param {user.IUser=} [properties] Properties to set
+         * @returns {user.User} User instance
+         */
+        User.create = function create(properties) {
+            return new User(properties);
+        };
+
+        /**
+         * Encodes the specified User message. Does not implicitly {@link user.User.verify|verify} messages.
+         * @function encode
+         * @memberof user.User
+         * @static
+         * @param {user.IUser} message User message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        User.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.id);
+            if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.username);
+            if (message.nickname != null && Object.hasOwnProperty.call(message, "nickname"))
+                writer.uint32(/* id 21, wireType 2 =*/170).string(message.nickname);
+            if (message.avatar != null && Object.hasOwnProperty.call(message, "avatar"))
+                writer.uint32(/* id 22, wireType 2 =*/178).string(message.avatar);
+            if (message.sex != null && Object.hasOwnProperty.call(message, "sex"))
+                writer.uint32(/* id 23, wireType 0 =*/184).int32(message.sex);
+            if (message.bio != null && Object.hasOwnProperty.call(message, "bio"))
+                writer.uint32(/* id 24, wireType 2 =*/194).string(message.bio);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified User message, length delimited. Does not implicitly {@link user.User.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof user.User
+         * @static
+         * @param {user.IUser} message User message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        User.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a User message from the specified reader or buffer.
+         * @function decode
+         * @memberof user.User
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {user.User} User
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        User.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.User();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.id = reader.uint32();
+                        break;
+                    }
+                case 12: {
+                        message.username = reader.string();
+                        break;
+                    }
+                case 21: {
+                        message.nickname = reader.string();
+                        break;
+                    }
+                case 22: {
+                        message.avatar = reader.string();
+                        break;
+                    }
+                case 23: {
+                        message.sex = reader.int32();
+                        break;
+                    }
+                case 24: {
+                        message.bio = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a User message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof user.User
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {user.User} User
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        User.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a User message.
+         * @function verify
+         * @memberof user.User
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        User.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isInteger(message.id))
+                    return "id: integer expected";
+            if (message.username != null && message.hasOwnProperty("username"))
+                if (!$util.isString(message.username))
+                    return "username: string expected";
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                if (!$util.isString(message.nickname))
+                    return "nickname: string expected";
+            if (message.avatar != null && message.hasOwnProperty("avatar"))
+                if (!$util.isString(message.avatar))
+                    return "avatar: string expected";
+            if (message.sex != null && message.hasOwnProperty("sex"))
+                switch (message.sex) {
+                default:
+                    return "sex: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            if (message.bio != null && message.hasOwnProperty("bio"))
+                if (!$util.isString(message.bio))
+                    return "bio: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a User message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof user.User
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {user.User} User
+         */
+        User.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.User)
+                return object;
+            var message = new $root.user.User();
+            if (object.id != null)
+                message.id = object.id >>> 0;
+            if (object.username != null)
+                message.username = String(object.username);
+            if (object.nickname != null)
+                message.nickname = String(object.nickname);
+            if (object.avatar != null)
+                message.avatar = String(object.avatar);
+            switch (object.sex) {
+            default:
+                if (typeof object.sex === "number") {
+                    message.sex = object.sex;
+                    break;
+                }
+                break;
+            case "UNKONWN":
+            case 0:
+                message.sex = 0;
+                break;
+            case "MAN":
+            case 1:
+                message.sex = 1;
+                break;
+            case "WOMAN":
+            case 2:
+                message.sex = 2;
+                break;
+            }
+            if (object.bio != null)
+                message.bio = String(object.bio);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a User message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof user.User
+         * @static
+         * @param {user.User} message User
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        User.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.id = 0;
+                object.username = "";
+                object.nickname = "";
+                object.avatar = "";
+                object.sex = options.enums === String ? "UNKONWN" : 0;
+                object.bio = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.username != null && message.hasOwnProperty("username"))
+                object.username = message.username;
+            if (message.nickname != null && message.hasOwnProperty("nickname"))
+                object.nickname = message.nickname;
+            if (message.avatar != null && message.hasOwnProperty("avatar"))
+                object.avatar = message.avatar;
+            if (message.sex != null && message.hasOwnProperty("sex"))
+                object.sex = options.enums === String ? $root.user.Sex[message.sex] === undefined ? message.sex : $root.user.Sex[message.sex] : message.sex;
+            if (message.bio != null && message.hasOwnProperty("bio"))
+                object.bio = message.bio;
+            return object;
+        };
+
+        /**
+         * Converts this User to JSON.
+         * @function toJSON
+         * @memberof user.User
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        User.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for User
+         * @function getTypeUrl
+         * @memberof user.User
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        User.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/user.User";
+        };
+
+        return User;
+    })();
+
+    user.SetUserInfoRequest = (function() {
+
+        /**
+         * Properties of a SetUserInfoRequest.
+         * @memberof user
+         * @interface ISetUserInfoRequest
+         * @property {auth.IAuthorization|null} [auth] SetUserInfoRequest auth
+         * @property {string|null} [nickname] SetUserInfoRequest nickname
+         * @property {string|null} [avatar] SetUserInfoRequest avatar
+         * @property {user.Sex|null} [sex] SetUserInfoRequest sex
+         * @property {string|null} [bio] SetUserInfoRequest bio
+         */
+
+        /**
+         * Constructs a new SetUserInfoRequest.
+         * @memberof user
+         * @classdesc Represents a SetUserInfoRequest.
+         * @implements ISetUserInfoRequest
+         * @constructor
+         * @param {user.ISetUserInfoRequest=} [properties] Properties to set
+         */
+        function SetUserInfoRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SetUserInfoRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         */
+        SetUserInfoRequest.prototype.auth = null;
+
+        /**
+         * SetUserInfoRequest nickname.
+         * @member {string|null|undefined} nickname
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         */
+        SetUserInfoRequest.prototype.nickname = null;
+
+        /**
+         * SetUserInfoRequest avatar.
+         * @member {string|null|undefined} avatar
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         */
+        SetUserInfoRequest.prototype.avatar = null;
+
+        /**
+         * SetUserInfoRequest sex.
+         * @member {user.Sex|null|undefined} sex
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         */
+        SetUserInfoRequest.prototype.sex = null;
+
+        /**
+         * SetUserInfoRequest bio.
+         * @member {string|null|undefined} bio
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         */
+        SetUserInfoRequest.prototype.bio = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        /**
+         * SetUserInfoRequest _nickname.
+         * @member {"nickname"|undefined} _nickname
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         */
+        Object.defineProperty(SetUserInfoRequest.prototype, "_nickname", {
+            get: $util.oneOfGetter($oneOfFields = ["nickname"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * SetUserInfoRequest _avatar.
+         * @member {"avatar"|undefined} _avatar
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         */
+        Object.defineProperty(SetUserInfoRequest.prototype, "_avatar", {
+            get: $util.oneOfGetter($oneOfFields = ["avatar"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * SetUserInfoRequest _sex.
+         * @member {"sex"|undefined} _sex
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         */
+        Object.defineProperty(SetUserInfoRequest.prototype, "_sex", {
+            get: $util.oneOfGetter($oneOfFields = ["sex"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * SetUserInfoRequest _bio.
+         * @member {"bio"|undefined} _bio
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         */
+        Object.defineProperty(SetUserInfoRequest.prototype, "_bio", {
+            get: $util.oneOfGetter($oneOfFields = ["bio"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new SetUserInfoRequest instance using the specified properties.
+         * @function create
+         * @memberof user.SetUserInfoRequest
+         * @static
+         * @param {user.ISetUserInfoRequest=} [properties] Properties to set
+         * @returns {user.SetUserInfoRequest} SetUserInfoRequest instance
+         */
+        SetUserInfoRequest.create = function create(properties) {
+            return new SetUserInfoRequest(properties);
+        };
+
+        /**
+         * Encodes the specified SetUserInfoRequest message. Does not implicitly {@link user.SetUserInfoRequest.verify|verify} messages.
+         * @function encode
+         * @memberof user.SetUserInfoRequest
+         * @static
+         * @param {user.ISetUserInfoRequest} message SetUserInfoRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SetUserInfoRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.nickname != null && Object.hasOwnProperty.call(message, "nickname"))
+                writer.uint32(/* id 21, wireType 2 =*/170).string(message.nickname);
+            if (message.avatar != null && Object.hasOwnProperty.call(message, "avatar"))
+                writer.uint32(/* id 22, wireType 2 =*/178).string(message.avatar);
+            if (message.sex != null && Object.hasOwnProperty.call(message, "sex"))
+                writer.uint32(/* id 23, wireType 0 =*/184).int32(message.sex);
+            if (message.bio != null && Object.hasOwnProperty.call(message, "bio"))
+                writer.uint32(/* id 24, wireType 2 =*/194).string(message.bio);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SetUserInfoRequest message, length delimited. Does not implicitly {@link user.SetUserInfoRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof user.SetUserInfoRequest
+         * @static
+         * @param {user.ISetUserInfoRequest} message SetUserInfoRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SetUserInfoRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SetUserInfoRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof user.SetUserInfoRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {user.SetUserInfoRequest} SetUserInfoRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SetUserInfoRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.SetUserInfoRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 21: {
+                        message.nickname = reader.string();
+                        break;
+                    }
+                case 22: {
+                        message.avatar = reader.string();
+                        break;
+                    }
+                case 23: {
+                        message.sex = reader.int32();
+                        break;
+                    }
+                case 24: {
+                        message.bio = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SetUserInfoRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof user.SetUserInfoRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {user.SetUserInfoRequest} SetUserInfoRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SetUserInfoRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SetUserInfoRequest message.
+         * @function verify
+         * @memberof user.SetUserInfoRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SetUserInfoRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var properties = {};
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.nickname != null && message.hasOwnProperty("nickname")) {
+                properties._nickname = 1;
+                if (!$util.isString(message.nickname))
+                    return "nickname: string expected";
+            }
+            if (message.avatar != null && message.hasOwnProperty("avatar")) {
+                properties._avatar = 1;
+                if (!$util.isString(message.avatar))
+                    return "avatar: string expected";
+            }
+            if (message.sex != null && message.hasOwnProperty("sex")) {
+                properties._sex = 1;
+                switch (message.sex) {
+                default:
+                    return "sex: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                    break;
+                }
+            }
+            if (message.bio != null && message.hasOwnProperty("bio")) {
+                properties._bio = 1;
+                if (!$util.isString(message.bio))
+                    return "bio: string expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a SetUserInfoRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof user.SetUserInfoRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {user.SetUserInfoRequest} SetUserInfoRequest
+         */
+        SetUserInfoRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.user.SetUserInfoRequest)
+                return object;
+            var message = new $root.user.SetUserInfoRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".user.SetUserInfoRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.nickname != null)
+                message.nickname = String(object.nickname);
+            if (object.avatar != null)
+                message.avatar = String(object.avatar);
+            switch (object.sex) {
+            default:
+                if (typeof object.sex === "number") {
+                    message.sex = object.sex;
+                    break;
+                }
+                break;
+            case "UNKONWN":
+            case 0:
+                message.sex = 0;
+                break;
+            case "MAN":
+            case 1:
+                message.sex = 1;
+                break;
+            case "WOMAN":
+            case 2:
+                message.sex = 2;
+                break;
+            }
+            if (object.bio != null)
+                message.bio = String(object.bio);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SetUserInfoRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof user.SetUserInfoRequest
+         * @static
+         * @param {user.SetUserInfoRequest} message SetUserInfoRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SetUserInfoRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.auth = null;
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.nickname != null && message.hasOwnProperty("nickname")) {
+                object.nickname = message.nickname;
+                if (options.oneofs)
+                    object._nickname = "nickname";
+            }
+            if (message.avatar != null && message.hasOwnProperty("avatar")) {
+                object.avatar = message.avatar;
+                if (options.oneofs)
+                    object._avatar = "avatar";
+            }
+            if (message.sex != null && message.hasOwnProperty("sex")) {
+                object.sex = options.enums === String ? $root.user.Sex[message.sex] === undefined ? message.sex : $root.user.Sex[message.sex] : message.sex;
+                if (options.oneofs)
+                    object._sex = "sex";
+            }
+            if (message.bio != null && message.hasOwnProperty("bio")) {
+                object.bio = message.bio;
+                if (options.oneofs)
+                    object._bio = "bio";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this SetUserInfoRequest to JSON.
+         * @function toJSON
+         * @memberof user.SetUserInfoRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SetUserInfoRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SetUserInfoRequest
+         * @function getTypeUrl
+         * @memberof user.SetUserInfoRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SetUserInfoRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/user.SetUserInfoRequest";
+        };
+
+        return SetUserInfoRequest;
+    })();
+
     user.ChangePasswdRequest = (function() {
 
         /**
@@ -5257,6 +6428,72 @@ $root.user = (function() {
          * @instance
          * @param {user.IThreeLoginRequest} request ThreeLoginRequest message or plain object
          * @returns {Promise<user.LoginResponse>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link user.UserService#getUserInfo}.
+         * @memberof user.UserService
+         * @typedef GetUserInfoCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {user.User} [response] User
+         */
+
+        /**
+         * Calls GetUserInfo.
+         * @function getUserInfo
+         * @memberof user.UserService
+         * @instance
+         * @param {user.IGetUserInfoRequest} request GetUserInfoRequest message or plain object
+         * @param {user.UserService.GetUserInfoCallback} callback Node-style callback called with the error, if any, and User
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(UserService.prototype.getUserInfo = function getUserInfo(request, callback) {
+            return this.rpcCall(getUserInfo, $root.user.GetUserInfoRequest, $root.user.User, request, callback);
+        }, "name", { value: "GetUserInfo" });
+
+        /**
+         * Calls GetUserInfo.
+         * @function getUserInfo
+         * @memberof user.UserService
+         * @instance
+         * @param {user.IGetUserInfoRequest} request GetUserInfoRequest message or plain object
+         * @returns {Promise<user.User>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link user.UserService#setUserInfo}.
+         * @memberof user.UserService
+         * @typedef SetUserInfoCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {common.Empty} [response] Empty
+         */
+
+        /**
+         * Calls SetUserInfo.
+         * @function setUserInfo
+         * @memberof user.UserService
+         * @instance
+         * @param {user.ISetUserInfoRequest} request SetUserInfoRequest message or plain object
+         * @param {user.UserService.SetUserInfoCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(UserService.prototype.setUserInfo = function setUserInfo(request, callback) {
+            return this.rpcCall(setUserInfo, $root.user.SetUserInfoRequest, $root.common.Empty, request, callback);
+        }, "name", { value: "SetUserInfo" });
+
+        /**
+         * Calls SetUserInfo.
+         * @function setUserInfo
+         * @memberof user.UserService
+         * @instance
+         * @param {user.ISetUserInfoRequest} request SetUserInfoRequest message or plain object
+         * @returns {Promise<common.Empty>} Promise
          * @variation 2
          */
 

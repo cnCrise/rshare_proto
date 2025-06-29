@@ -559,6 +559,103 @@ export namespace auth {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of an AuthData. */
+    interface IAuthData {
+
+        /** AuthData auth */
+        auth?: (auth.IAuthorization|null);
+    }
+
+    /** Represents an AuthData. */
+    class AuthData implements IAuthData {
+
+        /**
+         * Constructs a new AuthData.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: auth.IAuthData);
+
+        /** AuthData auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /**
+         * Creates a new AuthData instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AuthData instance
+         */
+        public static create(properties?: auth.IAuthData): auth.AuthData;
+
+        /**
+         * Encodes the specified AuthData message. Does not implicitly {@link auth.AuthData.verify|verify} messages.
+         * @param message AuthData message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: auth.IAuthData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AuthData message, length delimited. Does not implicitly {@link auth.AuthData.verify|verify} messages.
+         * @param message AuthData message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: auth.IAuthData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AuthData message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AuthData
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): auth.AuthData;
+
+        /**
+         * Decodes an AuthData message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AuthData
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): auth.AuthData;
+
+        /**
+         * Verifies an AuthData message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AuthData message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AuthData
+         */
+        public static fromObject(object: { [k: string]: any }): auth.AuthData;
+
+        /**
+         * Creates a plain object from an AuthData message. Also converts values to other types if specified.
+         * @param message AuthData
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: auth.AuthData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AuthData to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AuthData
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a RefreshAuthRequest. */
     interface IRefreshAuthRequest {
 
@@ -2127,6 +2224,370 @@ export namespace user {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a GetUserInfoRequest. */
+    interface IGetUserInfoRequest {
+
+        /** GetUserInfoRequest auth */
+        auth?: (auth.IAuthorization|null);
+    }
+
+    /** Represents a GetUserInfoRequest. */
+    class GetUserInfoRequest implements IGetUserInfoRequest {
+
+        /**
+         * Constructs a new GetUserInfoRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: user.IGetUserInfoRequest);
+
+        /** GetUserInfoRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /**
+         * Creates a new GetUserInfoRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetUserInfoRequest instance
+         */
+        public static create(properties?: user.IGetUserInfoRequest): user.GetUserInfoRequest;
+
+        /**
+         * Encodes the specified GetUserInfoRequest message. Does not implicitly {@link user.GetUserInfoRequest.verify|verify} messages.
+         * @param message GetUserInfoRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: user.IGetUserInfoRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetUserInfoRequest message, length delimited. Does not implicitly {@link user.GetUserInfoRequest.verify|verify} messages.
+         * @param message GetUserInfoRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: user.IGetUserInfoRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetUserInfoRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetUserInfoRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.GetUserInfoRequest;
+
+        /**
+         * Decodes a GetUserInfoRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetUserInfoRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.GetUserInfoRequest;
+
+        /**
+         * Verifies a GetUserInfoRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetUserInfoRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetUserInfoRequest
+         */
+        public static fromObject(object: { [k: string]: any }): user.GetUserInfoRequest;
+
+        /**
+         * Creates a plain object from a GetUserInfoRequest message. Also converts values to other types if specified.
+         * @param message GetUserInfoRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: user.GetUserInfoRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetUserInfoRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetUserInfoRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Sex enum. */
+    enum Sex {
+        UNKONWN = 0,
+        MAN = 1,
+        WOMAN = 2
+    }
+
+    /** Properties of a User. */
+    interface IUser {
+
+        /** User id */
+        id?: (number|null);
+
+        /** User username */
+        username?: (string|null);
+
+        /** User nickname */
+        nickname?: (string|null);
+
+        /** User avatar */
+        avatar?: (string|null);
+
+        /** User sex */
+        sex?: (user.Sex|null);
+
+        /** User bio */
+        bio?: (string|null);
+    }
+
+    /** Represents a User. */
+    class User implements IUser {
+
+        /**
+         * Constructs a new User.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: user.IUser);
+
+        /** User id. */
+        public id: number;
+
+        /** User username. */
+        public username: string;
+
+        /** User nickname. */
+        public nickname: string;
+
+        /** User avatar. */
+        public avatar: string;
+
+        /** User sex. */
+        public sex: user.Sex;
+
+        /** User bio. */
+        public bio: string;
+
+        /**
+         * Creates a new User instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns User instance
+         */
+        public static create(properties?: user.IUser): user.User;
+
+        /**
+         * Encodes the specified User message. Does not implicitly {@link user.User.verify|verify} messages.
+         * @param message User message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: user.IUser, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified User message, length delimited. Does not implicitly {@link user.User.verify|verify} messages.
+         * @param message User message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: user.IUser, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a User message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns User
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.User;
+
+        /**
+         * Decodes a User message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns User
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.User;
+
+        /**
+         * Verifies a User message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a User message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns User
+         */
+        public static fromObject(object: { [k: string]: any }): user.User;
+
+        /**
+         * Creates a plain object from a User message. Also converts values to other types if specified.
+         * @param message User
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: user.User, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this User to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for User
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SetUserInfoRequest. */
+    interface ISetUserInfoRequest {
+
+        /** SetUserInfoRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** SetUserInfoRequest nickname */
+        nickname?: (string|null);
+
+        /** SetUserInfoRequest avatar */
+        avatar?: (string|null);
+
+        /** SetUserInfoRequest sex */
+        sex?: (user.Sex|null);
+
+        /** SetUserInfoRequest bio */
+        bio?: (string|null);
+    }
+
+    /** Represents a SetUserInfoRequest. */
+    class SetUserInfoRequest implements ISetUserInfoRequest {
+
+        /**
+         * Constructs a new SetUserInfoRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: user.ISetUserInfoRequest);
+
+        /** SetUserInfoRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** SetUserInfoRequest nickname. */
+        public nickname?: (string|null);
+
+        /** SetUserInfoRequest avatar. */
+        public avatar?: (string|null);
+
+        /** SetUserInfoRequest sex. */
+        public sex?: (user.Sex|null);
+
+        /** SetUserInfoRequest bio. */
+        public bio?: (string|null);
+
+        /** SetUserInfoRequest _nickname. */
+        public _nickname?: "nickname";
+
+        /** SetUserInfoRequest _avatar. */
+        public _avatar?: "avatar";
+
+        /** SetUserInfoRequest _sex. */
+        public _sex?: "sex";
+
+        /** SetUserInfoRequest _bio. */
+        public _bio?: "bio";
+
+        /**
+         * Creates a new SetUserInfoRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SetUserInfoRequest instance
+         */
+        public static create(properties?: user.ISetUserInfoRequest): user.SetUserInfoRequest;
+
+        /**
+         * Encodes the specified SetUserInfoRequest message. Does not implicitly {@link user.SetUserInfoRequest.verify|verify} messages.
+         * @param message SetUserInfoRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: user.ISetUserInfoRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SetUserInfoRequest message, length delimited. Does not implicitly {@link user.SetUserInfoRequest.verify|verify} messages.
+         * @param message SetUserInfoRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: user.ISetUserInfoRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SetUserInfoRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SetUserInfoRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.SetUserInfoRequest;
+
+        /**
+         * Decodes a SetUserInfoRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SetUserInfoRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.SetUserInfoRequest;
+
+        /**
+         * Verifies a SetUserInfoRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SetUserInfoRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SetUserInfoRequest
+         */
+        public static fromObject(object: { [k: string]: any }): user.SetUserInfoRequest;
+
+        /**
+         * Creates a plain object from a SetUserInfoRequest message. Also converts values to other types if specified.
+         * @param message SetUserInfoRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: user.SetUserInfoRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SetUserInfoRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SetUserInfoRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a ChangePasswdRequest. */
     interface IChangePasswdRequest {
 
@@ -2279,6 +2740,34 @@ export namespace user {
         public threeLogin(request: user.IThreeLoginRequest): Promise<user.LoginResponse>;
 
         /**
+         * Calls GetUserInfo.
+         * @param request GetUserInfoRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and User
+         */
+        public getUserInfo(request: user.IGetUserInfoRequest, callback: user.UserService.GetUserInfoCallback): void;
+
+        /**
+         * Calls GetUserInfo.
+         * @param request GetUserInfoRequest message or plain object
+         * @returns Promise
+         */
+        public getUserInfo(request: user.IGetUserInfoRequest): Promise<user.User>;
+
+        /**
+         * Calls SetUserInfo.
+         * @param request SetUserInfoRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and Empty
+         */
+        public setUserInfo(request: user.ISetUserInfoRequest, callback: user.UserService.SetUserInfoCallback): void;
+
+        /**
+         * Calls SetUserInfo.
+         * @param request SetUserInfoRequest message or plain object
+         * @returns Promise
+         */
+        public setUserInfo(request: user.ISetUserInfoRequest): Promise<common.Empty>;
+
+        /**
          * Calls ChangePasswd.
          * @param request ChangePasswdRequest message or plain object
          * @param callback Node-style callback called with the error, if any, and Empty
@@ -2308,6 +2797,20 @@ export namespace user {
          * @param [response] LoginResponse
          */
         type ThreeLoginCallback = (error: (Error|null), response?: user.LoginResponse) => void;
+
+        /**
+         * Callback as used by {@link user.UserService#getUserInfo}.
+         * @param error Error, if any
+         * @param [response] User
+         */
+        type GetUserInfoCallback = (error: (Error|null), response?: user.User) => void;
+
+        /**
+         * Callback as used by {@link user.UserService#setUserInfo}.
+         * @param error Error, if any
+         * @param [response] Empty
+         */
+        type SetUserInfoCallback = (error: (Error|null), response?: common.Empty) => void;
 
         /**
          * Callback as used by {@link user.UserService#changePasswd}.
