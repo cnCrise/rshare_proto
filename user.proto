@@ -35,6 +35,44 @@ message LoginResponse {
   auth.Authorization auth = 1;
 }
 
+message GetUserInfoRequest {
+  // 授权信息
+  auth.Authorization auth = 1;
+}
+
+enum Sex {
+  UNKONWN = 0;
+  MAN = 1;
+  WOMAN = 2;
+}
+
+message User {
+  // uid
+  uint32 id = 11;
+  // 用户名
+  string username = 12;
+  // 昵称
+  string nickname = 21;
+  // 头像url
+  string avatar = 22;
+  // 性别
+  Sex sex = 23;
+  // 简介
+  string bio = 24;
+}
+
+message SetUserInfoRequest {
+  auth.Authorization auth = 1;
+  // 昵称
+  optional string nickname = 21;
+  // 头像url
+  optional string avatar = 22;
+  // 性别
+  optional Sex sex = 23;
+  // 简介
+  optional string bio = 24;
+}
+
 message ChangePasswdRequest {
   auth.Authorization auth = 1;
   string passwd = 11;
@@ -46,6 +84,10 @@ service UserService {
   rpc Login(LoginRequest) returns (LoginResponse);
   // 微信登录
   rpc ThreeLogin(ThreeLoginRequest) returns (LoginResponse);
+  // 获取用户信息
+  rpc GetUserInfo(GetUserInfoRequest) returns (User);
+  // 设置用户信息
+  rpc SetUserInfo(SetUserInfoRequest) returns (common.Empty);
   // 修改密码
   rpc ChangePasswd(ChangePasswdRequest) returns (common.Empty);
 }

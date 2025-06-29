@@ -7,6 +7,9 @@ message Authorization {
   // JSON Web Token
   string jwt = 1;
 }
+message AuthData {
+  Authorization auth = 1;
+}
 
 message RefreshAuthRequest {
   Authorization auth = 1;
