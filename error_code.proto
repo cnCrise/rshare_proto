@@ -32,6 +32,8 @@ enum ErrorCode {
   PERMISSION_DENIED = 2021;
   // 数据库异常
   DB_ERR = 7001;
+  // 本地IO异常
+  IO_ERR = 7101;
   // 微信服务异常
   WX_ERR = 8001;
 }

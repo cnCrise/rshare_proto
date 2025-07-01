@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package file;
+
+message UploadFileRequest {
+  // 文件名
+  string filename = 11;
+  // 二进制文件
+  bytes data = 12;
+  // 分组
+  string group = 21;
+  // 存储位置
+  string store = 22;
+}
+message UploadFileResponse {
+  // 存储路径
+  string path = 12;
+}
+
+message FilePath {
+  // 文件名
+  string filename = 11;
+  // 存储路径
+  string path = 12;
+}
+
+message GetFileListRequest {
+  // 分组
+  string group = 21;
+}
+message GetFileListResponse {
+  // 存储路径
+  repeated FilePath list = 10;
+}
+
+// 文件相关服务
+service FileService {
+  // 上传文件
+  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse);
+  // 获取文件列表
+  rpc GetFileList(GetFileListRequest) returns (GetFileListResponse);
+}
