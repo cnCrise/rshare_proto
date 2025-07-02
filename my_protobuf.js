@@ -1791,6 +1791,7 @@ $root.error_code = (function() {
      * @property {number} INVALID_APP=2018 INVALID_APP value
      * @property {number} PERMISSION_DENIED=2021 PERMISSION_DENIED value
      * @property {number} DB_ERR=7001 DB_ERR value
+     * @property {number} IO_ERR=7101 IO_ERR value
      * @property {number} WX_ERR=8001 WX_ERR value
      */
     error_code.ErrorCode = (function() {
@@ -1809,11 +1810,1274 @@ $root.error_code = (function() {
         values[valuesById[2018] = "INVALID_APP"] = 2018;
         values[valuesById[2021] = "PERMISSION_DENIED"] = 2021;
         values[valuesById[7001] = "DB_ERR"] = 7001;
+        values[valuesById[7101] = "IO_ERR"] = 7101;
         values[valuesById[8001] = "WX_ERR"] = 8001;
         return values;
     })();
 
     return error_code;
+})();
+
+$root.file = (function() {
+
+    /**
+     * Namespace file.
+     * @exports file
+     * @namespace
+     */
+    var file = {};
+
+    file.UploadFileRequest = (function() {
+
+        /**
+         * Properties of an UploadFileRequest.
+         * @memberof file
+         * @interface IUploadFileRequest
+         * @property {string|null} [filename] UploadFileRequest filename
+         * @property {Uint8Array|null} [data] UploadFileRequest data
+         * @property {string|null} [group] UploadFileRequest group
+         * @property {string|null} [store] UploadFileRequest store
+         */
+
+        /**
+         * Constructs a new UploadFileRequest.
+         * @memberof file
+         * @classdesc Represents an UploadFileRequest.
+         * @implements IUploadFileRequest
+         * @constructor
+         * @param {file.IUploadFileRequest=} [properties] Properties to set
+         */
+        function UploadFileRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * UploadFileRequest filename.
+         * @member {string} filename
+         * @memberof file.UploadFileRequest
+         * @instance
+         */
+        UploadFileRequest.prototype.filename = "";
+
+        /**
+         * UploadFileRequest data.
+         * @member {Uint8Array} data
+         * @memberof file.UploadFileRequest
+         * @instance
+         */
+        UploadFileRequest.prototype.data = $util.newBuffer([]);
+
+        /**
+         * UploadFileRequest group.
+         * @member {string} group
+         * @memberof file.UploadFileRequest
+         * @instance
+         */
+        UploadFileRequest.prototype.group = "";
+
+        /**
+         * UploadFileRequest store.
+         * @member {string} store
+         * @memberof file.UploadFileRequest
+         * @instance
+         */
+        UploadFileRequest.prototype.store = "";
+
+        /**
+         * Creates a new UploadFileRequest instance using the specified properties.
+         * @function create
+         * @memberof file.UploadFileRequest
+         * @static
+         * @param {file.IUploadFileRequest=} [properties] Properties to set
+         * @returns {file.UploadFileRequest} UploadFileRequest instance
+         */
+        UploadFileRequest.create = function create(properties) {
+            return new UploadFileRequest(properties);
+        };
+
+        /**
+         * Encodes the specified UploadFileRequest message. Does not implicitly {@link file.UploadFileRequest.verify|verify} messages.
+         * @function encode
+         * @memberof file.UploadFileRequest
+         * @static
+         * @param {file.IUploadFileRequest} message UploadFileRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UploadFileRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.filename != null && Object.hasOwnProperty.call(message, "filename"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.filename);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                writer.uint32(/* id 12, wireType 2 =*/98).bytes(message.data);
+            if (message.group != null && Object.hasOwnProperty.call(message, "group"))
+                writer.uint32(/* id 21, wireType 2 =*/170).string(message.group);
+            if (message.store != null && Object.hasOwnProperty.call(message, "store"))
+                writer.uint32(/* id 22, wireType 2 =*/178).string(message.store);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified UploadFileRequest message, length delimited. Does not implicitly {@link file.UploadFileRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof file.UploadFileRequest
+         * @static
+         * @param {file.IUploadFileRequest} message UploadFileRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UploadFileRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an UploadFileRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof file.UploadFileRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {file.UploadFileRequest} UploadFileRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UploadFileRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.file.UploadFileRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.filename = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.data = reader.bytes();
+                        break;
+                    }
+                case 21: {
+                        message.group = reader.string();
+                        break;
+                    }
+                case 22: {
+                        message.store = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an UploadFileRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof file.UploadFileRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {file.UploadFileRequest} UploadFileRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UploadFileRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an UploadFileRequest message.
+         * @function verify
+         * @memberof file.UploadFileRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        UploadFileRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.filename != null && message.hasOwnProperty("filename"))
+                if (!$util.isString(message.filename))
+                    return "filename: string expected";
+            if (message.data != null && message.hasOwnProperty("data"))
+                if (!(message.data && typeof message.data.length === "number" || $util.isString(message.data)))
+                    return "data: buffer expected";
+            if (message.group != null && message.hasOwnProperty("group"))
+                if (!$util.isString(message.group))
+                    return "group: string expected";
+            if (message.store != null && message.hasOwnProperty("store"))
+                if (!$util.isString(message.store))
+                    return "store: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an UploadFileRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof file.UploadFileRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {file.UploadFileRequest} UploadFileRequest
+         */
+        UploadFileRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.file.UploadFileRequest)
+                return object;
+            var message = new $root.file.UploadFileRequest();
+            if (object.filename != null)
+                message.filename = String(object.filename);
+            if (object.data != null)
+                if (typeof object.data === "string")
+                    $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0);
+                else if (object.data.length >= 0)
+                    message.data = object.data;
+            if (object.group != null)
+                message.group = String(object.group);
+            if (object.store != null)
+                message.store = String(object.store);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an UploadFileRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof file.UploadFileRequest
+         * @static
+         * @param {file.UploadFileRequest} message UploadFileRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        UploadFileRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.filename = "";
+                if (options.bytes === String)
+                    object.data = "";
+                else {
+                    object.data = [];
+                    if (options.bytes !== Array)
+                        object.data = $util.newBuffer(object.data);
+                }
+                object.group = "";
+                object.store = "";
+            }
+            if (message.filename != null && message.hasOwnProperty("filename"))
+                object.filename = message.filename;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data;
+            if (message.group != null && message.hasOwnProperty("group"))
+                object.group = message.group;
+            if (message.store != null && message.hasOwnProperty("store"))
+                object.store = message.store;
+            return object;
+        };
+
+        /**
+         * Converts this UploadFileRequest to JSON.
+         * @function toJSON
+         * @memberof file.UploadFileRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        UploadFileRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UploadFileRequest
+         * @function getTypeUrl
+         * @memberof file.UploadFileRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadFileRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/file.UploadFileRequest";
+        };
+
+        return UploadFileRequest;
+    })();
+
+    file.UploadFileResponse = (function() {
+
+        /**
+         * Properties of an UploadFileResponse.
+         * @memberof file
+         * @interface IUploadFileResponse
+         * @property {string|null} [path] UploadFileResponse path
+         */
+
+        /**
+         * Constructs a new UploadFileResponse.
+         * @memberof file
+         * @classdesc Represents an UploadFileResponse.
+         * @implements IUploadFileResponse
+         * @constructor
+         * @param {file.IUploadFileResponse=} [properties] Properties to set
+         */
+        function UploadFileResponse(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * UploadFileResponse path.
+         * @member {string} path
+         * @memberof file.UploadFileResponse
+         * @instance
+         */
+        UploadFileResponse.prototype.path = "";
+
+        /**
+         * Creates a new UploadFileResponse instance using the specified properties.
+         * @function create
+         * @memberof file.UploadFileResponse
+         * @static
+         * @param {file.IUploadFileResponse=} [properties] Properties to set
+         * @returns {file.UploadFileResponse} UploadFileResponse instance
+         */
+        UploadFileResponse.create = function create(properties) {
+            return new UploadFileResponse(properties);
+        };
+
+        /**
+         * Encodes the specified UploadFileResponse message. Does not implicitly {@link file.UploadFileResponse.verify|verify} messages.
+         * @function encode
+         * @memberof file.UploadFileResponse
+         * @static
+         * @param {file.IUploadFileResponse} message UploadFileResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UploadFileResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.path != null && Object.hasOwnProperty.call(message, "path"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.path);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified UploadFileResponse message, length delimited. Does not implicitly {@link file.UploadFileResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof file.UploadFileResponse
+         * @static
+         * @param {file.IUploadFileResponse} message UploadFileResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UploadFileResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an UploadFileResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof file.UploadFileResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {file.UploadFileResponse} UploadFileResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UploadFileResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.file.UploadFileResponse();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 12: {
+                        message.path = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an UploadFileResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof file.UploadFileResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {file.UploadFileResponse} UploadFileResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UploadFileResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an UploadFileResponse message.
+         * @function verify
+         * @memberof file.UploadFileResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        UploadFileResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.path != null && message.hasOwnProperty("path"))
+                if (!$util.isString(message.path))
+                    return "path: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an UploadFileResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof file.UploadFileResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {file.UploadFileResponse} UploadFileResponse
+         */
+        UploadFileResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.file.UploadFileResponse)
+                return object;
+            var message = new $root.file.UploadFileResponse();
+            if (object.path != null)
+                message.path = String(object.path);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an UploadFileResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof file.UploadFileResponse
+         * @static
+         * @param {file.UploadFileResponse} message UploadFileResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        UploadFileResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.path = "";
+            if (message.path != null && message.hasOwnProperty("path"))
+                object.path = message.path;
+            return object;
+        };
+
+        /**
+         * Converts this UploadFileResponse to JSON.
+         * @function toJSON
+         * @memberof file.UploadFileResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        UploadFileResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UploadFileResponse
+         * @function getTypeUrl
+         * @memberof file.UploadFileResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UploadFileResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/file.UploadFileResponse";
+        };
+
+        return UploadFileResponse;
+    })();
+
+    file.FilePath = (function() {
+
+        /**
+         * Properties of a FilePath.
+         * @memberof file
+         * @interface IFilePath
+         * @property {string|null} [filename] FilePath filename
+         * @property {string|null} [path] FilePath path
+         */
+
+        /**
+         * Constructs a new FilePath.
+         * @memberof file
+         * @classdesc Represents a FilePath.
+         * @implements IFilePath
+         * @constructor
+         * @param {file.IFilePath=} [properties] Properties to set
+         */
+        function FilePath(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FilePath filename.
+         * @member {string} filename
+         * @memberof file.FilePath
+         * @instance
+         */
+        FilePath.prototype.filename = "";
+
+        /**
+         * FilePath path.
+         * @member {string} path
+         * @memberof file.FilePath
+         * @instance
+         */
+        FilePath.prototype.path = "";
+
+        /**
+         * Creates a new FilePath instance using the specified properties.
+         * @function create
+         * @memberof file.FilePath
+         * @static
+         * @param {file.IFilePath=} [properties] Properties to set
+         * @returns {file.FilePath} FilePath instance
+         */
+        FilePath.create = function create(properties) {
+            return new FilePath(properties);
+        };
+
+        /**
+         * Encodes the specified FilePath message. Does not implicitly {@link file.FilePath.verify|verify} messages.
+         * @function encode
+         * @memberof file.FilePath
+         * @static
+         * @param {file.IFilePath} message FilePath message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FilePath.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.filename != null && Object.hasOwnProperty.call(message, "filename"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.filename);
+            if (message.path != null && Object.hasOwnProperty.call(message, "path"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.path);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FilePath message, length delimited. Does not implicitly {@link file.FilePath.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof file.FilePath
+         * @static
+         * @param {file.IFilePath} message FilePath message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FilePath.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FilePath message from the specified reader or buffer.
+         * @function decode
+         * @memberof file.FilePath
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {file.FilePath} FilePath
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FilePath.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.file.FilePath();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.filename = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.path = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FilePath message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof file.FilePath
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {file.FilePath} FilePath
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FilePath.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FilePath message.
+         * @function verify
+         * @memberof file.FilePath
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FilePath.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.filename != null && message.hasOwnProperty("filename"))
+                if (!$util.isString(message.filename))
+                    return "filename: string expected";
+            if (message.path != null && message.hasOwnProperty("path"))
+                if (!$util.isString(message.path))
+                    return "path: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a FilePath message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof file.FilePath
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {file.FilePath} FilePath
+         */
+        FilePath.fromObject = function fromObject(object) {
+            if (object instanceof $root.file.FilePath)
+                return object;
+            var message = new $root.file.FilePath();
+            if (object.filename != null)
+                message.filename = String(object.filename);
+            if (object.path != null)
+                message.path = String(object.path);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FilePath message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof file.FilePath
+         * @static
+         * @param {file.FilePath} message FilePath
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FilePath.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.filename = "";
+                object.path = "";
+            }
+            if (message.filename != null && message.hasOwnProperty("filename"))
+                object.filename = message.filename;
+            if (message.path != null && message.hasOwnProperty("path"))
+                object.path = message.path;
+            return object;
+        };
+
+        /**
+         * Converts this FilePath to JSON.
+         * @function toJSON
+         * @memberof file.FilePath
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FilePath.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FilePath
+         * @function getTypeUrl
+         * @memberof file.FilePath
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FilePath.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/file.FilePath";
+        };
+
+        return FilePath;
+    })();
+
+    file.GetFileListRequest = (function() {
+
+        /**
+         * Properties of a GetFileListRequest.
+         * @memberof file
+         * @interface IGetFileListRequest
+         * @property {string|null} [group] GetFileListRequest group
+         */
+
+        /**
+         * Constructs a new GetFileListRequest.
+         * @memberof file
+         * @classdesc Represents a GetFileListRequest.
+         * @implements IGetFileListRequest
+         * @constructor
+         * @param {file.IGetFileListRequest=} [properties] Properties to set
+         */
+        function GetFileListRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetFileListRequest group.
+         * @member {string} group
+         * @memberof file.GetFileListRequest
+         * @instance
+         */
+        GetFileListRequest.prototype.group = "";
+
+        /**
+         * Creates a new GetFileListRequest instance using the specified properties.
+         * @function create
+         * @memberof file.GetFileListRequest
+         * @static
+         * @param {file.IGetFileListRequest=} [properties] Properties to set
+         * @returns {file.GetFileListRequest} GetFileListRequest instance
+         */
+        GetFileListRequest.create = function create(properties) {
+            return new GetFileListRequest(properties);
+        };
+
+        /**
+         * Encodes the specified GetFileListRequest message. Does not implicitly {@link file.GetFileListRequest.verify|verify} messages.
+         * @function encode
+         * @memberof file.GetFileListRequest
+         * @static
+         * @param {file.IGetFileListRequest} message GetFileListRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetFileListRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.group != null && Object.hasOwnProperty.call(message, "group"))
+                writer.uint32(/* id 21, wireType 2 =*/170).string(message.group);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetFileListRequest message, length delimited. Does not implicitly {@link file.GetFileListRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof file.GetFileListRequest
+         * @static
+         * @param {file.IGetFileListRequest} message GetFileListRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetFileListRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetFileListRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof file.GetFileListRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {file.GetFileListRequest} GetFileListRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetFileListRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.file.GetFileListRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 21: {
+                        message.group = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetFileListRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof file.GetFileListRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {file.GetFileListRequest} GetFileListRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetFileListRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetFileListRequest message.
+         * @function verify
+         * @memberof file.GetFileListRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetFileListRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.group != null && message.hasOwnProperty("group"))
+                if (!$util.isString(message.group))
+                    return "group: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetFileListRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof file.GetFileListRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {file.GetFileListRequest} GetFileListRequest
+         */
+        GetFileListRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.file.GetFileListRequest)
+                return object;
+            var message = new $root.file.GetFileListRequest();
+            if (object.group != null)
+                message.group = String(object.group);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetFileListRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof file.GetFileListRequest
+         * @static
+         * @param {file.GetFileListRequest} message GetFileListRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetFileListRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.group = "";
+            if (message.group != null && message.hasOwnProperty("group"))
+                object.group = message.group;
+            return object;
+        };
+
+        /**
+         * Converts this GetFileListRequest to JSON.
+         * @function toJSON
+         * @memberof file.GetFileListRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetFileListRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetFileListRequest
+         * @function getTypeUrl
+         * @memberof file.GetFileListRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetFileListRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/file.GetFileListRequest";
+        };
+
+        return GetFileListRequest;
+    })();
+
+    file.GetFileListResponse = (function() {
+
+        /**
+         * Properties of a GetFileListResponse.
+         * @memberof file
+         * @interface IGetFileListResponse
+         * @property {Array.<file.IFilePath>|null} [list] GetFileListResponse list
+         */
+
+        /**
+         * Constructs a new GetFileListResponse.
+         * @memberof file
+         * @classdesc Represents a GetFileListResponse.
+         * @implements IGetFileListResponse
+         * @constructor
+         * @param {file.IGetFileListResponse=} [properties] Properties to set
+         */
+        function GetFileListResponse(properties) {
+            this.list = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetFileListResponse list.
+         * @member {Array.<file.IFilePath>} list
+         * @memberof file.GetFileListResponse
+         * @instance
+         */
+        GetFileListResponse.prototype.list = $util.emptyArray;
+
+        /**
+         * Creates a new GetFileListResponse instance using the specified properties.
+         * @function create
+         * @memberof file.GetFileListResponse
+         * @static
+         * @param {file.IGetFileListResponse=} [properties] Properties to set
+         * @returns {file.GetFileListResponse} GetFileListResponse instance
+         */
+        GetFileListResponse.create = function create(properties) {
+            return new GetFileListResponse(properties);
+        };
+
+        /**
+         * Encodes the specified GetFileListResponse message. Does not implicitly {@link file.GetFileListResponse.verify|verify} messages.
+         * @function encode
+         * @memberof file.GetFileListResponse
+         * @static
+         * @param {file.IGetFileListResponse} message GetFileListResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetFileListResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.list != null && message.list.length)
+                for (var i = 0; i < message.list.length; ++i)
+                    $root.file.FilePath.encode(message.list[i], writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetFileListResponse message, length delimited. Does not implicitly {@link file.GetFileListResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof file.GetFileListResponse
+         * @static
+         * @param {file.IGetFileListResponse} message GetFileListResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetFileListResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetFileListResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof file.GetFileListResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {file.GetFileListResponse} GetFileListResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetFileListResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.file.GetFileListResponse();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 10: {
+                        if (!(message.list && message.list.length))
+                            message.list = [];
+                        message.list.push($root.file.FilePath.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetFileListResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof file.GetFileListResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {file.GetFileListResponse} GetFileListResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetFileListResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetFileListResponse message.
+         * @function verify
+         * @memberof file.GetFileListResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetFileListResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.list != null && message.hasOwnProperty("list")) {
+                if (!Array.isArray(message.list))
+                    return "list: array expected";
+                for (var i = 0; i < message.list.length; ++i) {
+                    var error = $root.file.FilePath.verify(message.list[i]);
+                    if (error)
+                        return "list." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetFileListResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof file.GetFileListResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {file.GetFileListResponse} GetFileListResponse
+         */
+        GetFileListResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.file.GetFileListResponse)
+                return object;
+            var message = new $root.file.GetFileListResponse();
+            if (object.list) {
+                if (!Array.isArray(object.list))
+                    throw TypeError(".file.GetFileListResponse.list: array expected");
+                message.list = [];
+                for (var i = 0; i < object.list.length; ++i) {
+                    if (typeof object.list[i] !== "object")
+                        throw TypeError(".file.GetFileListResponse.list: object expected");
+                    message.list[i] = $root.file.FilePath.fromObject(object.list[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetFileListResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof file.GetFileListResponse
+         * @static
+         * @param {file.GetFileListResponse} message GetFileListResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetFileListResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.list = [];
+            if (message.list && message.list.length) {
+                object.list = [];
+                for (var j = 0; j < message.list.length; ++j)
+                    object.list[j] = $root.file.FilePath.toObject(message.list[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetFileListResponse to JSON.
+         * @function toJSON
+         * @memberof file.GetFileListResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetFileListResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetFileListResponse
+         * @function getTypeUrl
+         * @memberof file.GetFileListResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetFileListResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/file.GetFileListResponse";
+        };
+
+        return GetFileListResponse;
+    })();
+
+    file.FileService = (function() {
+
+        /**
+         * Constructs a new FileService service.
+         * @memberof file
+         * @classdesc Represents a FileService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function FileService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (FileService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = FileService;
+
+        /**
+         * Creates new FileService service using the specified rpc implementation.
+         * @function create
+         * @memberof file.FileService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {FileService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        FileService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link file.FileService#uploadFile}.
+         * @memberof file.FileService
+         * @typedef UploadFileCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {file.UploadFileResponse} [response] UploadFileResponse
+         */
+
+        /**
+         * Calls UploadFile.
+         * @function uploadFile
+         * @memberof file.FileService
+         * @instance
+         * @param {file.IUploadFileRequest} request UploadFileRequest message or plain object
+         * @param {file.FileService.UploadFileCallback} callback Node-style callback called with the error, if any, and UploadFileResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(FileService.prototype.uploadFile = function uploadFile(request, callback) {
+            return this.rpcCall(uploadFile, $root.file.UploadFileRequest, $root.file.UploadFileResponse, request, callback);
+        }, "name", { value: "UploadFile" });
+
+        /**
+         * Calls UploadFile.
+         * @function uploadFile
+         * @memberof file.FileService
+         * @instance
+         * @param {file.IUploadFileRequest} request UploadFileRequest message or plain object
+         * @returns {Promise<file.UploadFileResponse>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link file.FileService#getFileList}.
+         * @memberof file.FileService
+         * @typedef GetFileListCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {file.GetFileListResponse} [response] GetFileListResponse
+         */
+
+        /**
+         * Calls GetFileList.
+         * @function getFileList
+         * @memberof file.FileService
+         * @instance
+         * @param {file.IGetFileListRequest} request GetFileListRequest message or plain object
+         * @param {file.FileService.GetFileListCallback} callback Node-style callback called with the error, if any, and GetFileListResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(FileService.prototype.getFileList = function getFileList(request, callback) {
+            return this.rpcCall(getFileList, $root.file.GetFileListRequest, $root.file.GetFileListResponse, request, callback);
+        }, "name", { value: "GetFileList" });
+
+        /**
+         * Calls GetFileList.
+         * @function getFileList
+         * @memberof file.FileService
+         * @instance
+         * @param {file.IGetFileListRequest} request GetFileListRequest message or plain object
+         * @returns {Promise<file.GetFileListResponse>} Promise
+         * @variation 2
+         */
+
+        return FileService;
+    })();
+
+    return file;
 })();
 
 $root.role = (function() {

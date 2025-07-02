@@ -824,7 +824,587 @@ export namespace error_code {
         INVALID_APP = 2018,
         PERMISSION_DENIED = 2021,
         DB_ERR = 7001,
+        IO_ERR = 7101,
         WX_ERR = 8001
+    }
+}
+
+/** Namespace file. */
+export namespace file {
+
+    /** Properties of an UploadFileRequest. */
+    interface IUploadFileRequest {
+
+        /** UploadFileRequest filename */
+        filename?: (string|null);
+
+        /** UploadFileRequest data */
+        data?: (Uint8Array|null);
+
+        /** UploadFileRequest group */
+        group?: (string|null);
+
+        /** UploadFileRequest store */
+        store?: (string|null);
+    }
+
+    /** Represents an UploadFileRequest. */
+    class UploadFileRequest implements IUploadFileRequest {
+
+        /**
+         * Constructs a new UploadFileRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: file.IUploadFileRequest);
+
+        /** UploadFileRequest filename. */
+        public filename: string;
+
+        /** UploadFileRequest data. */
+        public data: Uint8Array;
+
+        /** UploadFileRequest group. */
+        public group: string;
+
+        /** UploadFileRequest store. */
+        public store: string;
+
+        /**
+         * Creates a new UploadFileRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns UploadFileRequest instance
+         */
+        public static create(properties?: file.IUploadFileRequest): file.UploadFileRequest;
+
+        /**
+         * Encodes the specified UploadFileRequest message. Does not implicitly {@link file.UploadFileRequest.verify|verify} messages.
+         * @param message UploadFileRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: file.IUploadFileRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified UploadFileRequest message, length delimited. Does not implicitly {@link file.UploadFileRequest.verify|verify} messages.
+         * @param message UploadFileRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: file.IUploadFileRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an UploadFileRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns UploadFileRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): file.UploadFileRequest;
+
+        /**
+         * Decodes an UploadFileRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns UploadFileRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): file.UploadFileRequest;
+
+        /**
+         * Verifies an UploadFileRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an UploadFileRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns UploadFileRequest
+         */
+        public static fromObject(object: { [k: string]: any }): file.UploadFileRequest;
+
+        /**
+         * Creates a plain object from an UploadFileRequest message. Also converts values to other types if specified.
+         * @param message UploadFileRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: file.UploadFileRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this UploadFileRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadFileRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an UploadFileResponse. */
+    interface IUploadFileResponse {
+
+        /** UploadFileResponse path */
+        path?: (string|null);
+    }
+
+    /** Represents an UploadFileResponse. */
+    class UploadFileResponse implements IUploadFileResponse {
+
+        /**
+         * Constructs a new UploadFileResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: file.IUploadFileResponse);
+
+        /** UploadFileResponse path. */
+        public path: string;
+
+        /**
+         * Creates a new UploadFileResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns UploadFileResponse instance
+         */
+        public static create(properties?: file.IUploadFileResponse): file.UploadFileResponse;
+
+        /**
+         * Encodes the specified UploadFileResponse message. Does not implicitly {@link file.UploadFileResponse.verify|verify} messages.
+         * @param message UploadFileResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: file.IUploadFileResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified UploadFileResponse message, length delimited. Does not implicitly {@link file.UploadFileResponse.verify|verify} messages.
+         * @param message UploadFileResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: file.IUploadFileResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an UploadFileResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns UploadFileResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): file.UploadFileResponse;
+
+        /**
+         * Decodes an UploadFileResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns UploadFileResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): file.UploadFileResponse;
+
+        /**
+         * Verifies an UploadFileResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an UploadFileResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns UploadFileResponse
+         */
+        public static fromObject(object: { [k: string]: any }): file.UploadFileResponse;
+
+        /**
+         * Creates a plain object from an UploadFileResponse message. Also converts values to other types if specified.
+         * @param message UploadFileResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: file.UploadFileResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this UploadFileResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UploadFileResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a FilePath. */
+    interface IFilePath {
+
+        /** FilePath filename */
+        filename?: (string|null);
+
+        /** FilePath path */
+        path?: (string|null);
+    }
+
+    /** Represents a FilePath. */
+    class FilePath implements IFilePath {
+
+        /**
+         * Constructs a new FilePath.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: file.IFilePath);
+
+        /** FilePath filename. */
+        public filename: string;
+
+        /** FilePath path. */
+        public path: string;
+
+        /**
+         * Creates a new FilePath instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns FilePath instance
+         */
+        public static create(properties?: file.IFilePath): file.FilePath;
+
+        /**
+         * Encodes the specified FilePath message. Does not implicitly {@link file.FilePath.verify|verify} messages.
+         * @param message FilePath message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: file.IFilePath, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified FilePath message, length delimited. Does not implicitly {@link file.FilePath.verify|verify} messages.
+         * @param message FilePath message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: file.IFilePath, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a FilePath message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns FilePath
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): file.FilePath;
+
+        /**
+         * Decodes a FilePath message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns FilePath
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): file.FilePath;
+
+        /**
+         * Verifies a FilePath message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a FilePath message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns FilePath
+         */
+        public static fromObject(object: { [k: string]: any }): file.FilePath;
+
+        /**
+         * Creates a plain object from a FilePath message. Also converts values to other types if specified.
+         * @param message FilePath
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: file.FilePath, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this FilePath to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for FilePath
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a GetFileListRequest. */
+    interface IGetFileListRequest {
+
+        /** GetFileListRequest group */
+        group?: (string|null);
+    }
+
+    /** Represents a GetFileListRequest. */
+    class GetFileListRequest implements IGetFileListRequest {
+
+        /**
+         * Constructs a new GetFileListRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: file.IGetFileListRequest);
+
+        /** GetFileListRequest group. */
+        public group: string;
+
+        /**
+         * Creates a new GetFileListRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetFileListRequest instance
+         */
+        public static create(properties?: file.IGetFileListRequest): file.GetFileListRequest;
+
+        /**
+         * Encodes the specified GetFileListRequest message. Does not implicitly {@link file.GetFileListRequest.verify|verify} messages.
+         * @param message GetFileListRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: file.IGetFileListRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetFileListRequest message, length delimited. Does not implicitly {@link file.GetFileListRequest.verify|verify} messages.
+         * @param message GetFileListRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: file.IGetFileListRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetFileListRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetFileListRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): file.GetFileListRequest;
+
+        /**
+         * Decodes a GetFileListRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetFileListRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): file.GetFileListRequest;
+
+        /**
+         * Verifies a GetFileListRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetFileListRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetFileListRequest
+         */
+        public static fromObject(object: { [k: string]: any }): file.GetFileListRequest;
+
+        /**
+         * Creates a plain object from a GetFileListRequest message. Also converts values to other types if specified.
+         * @param message GetFileListRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: file.GetFileListRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetFileListRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetFileListRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a GetFileListResponse. */
+    interface IGetFileListResponse {
+
+        /** GetFileListResponse list */
+        list?: (file.IFilePath[]|null);
+    }
+
+    /** Represents a GetFileListResponse. */
+    class GetFileListResponse implements IGetFileListResponse {
+
+        /**
+         * Constructs a new GetFileListResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: file.IGetFileListResponse);
+
+        /** GetFileListResponse list. */
+        public list: file.IFilePath[];
+
+        /**
+         * Creates a new GetFileListResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetFileListResponse instance
+         */
+        public static create(properties?: file.IGetFileListResponse): file.GetFileListResponse;
+
+        /**
+         * Encodes the specified GetFileListResponse message. Does not implicitly {@link file.GetFileListResponse.verify|verify} messages.
+         * @param message GetFileListResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: file.IGetFileListResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetFileListResponse message, length delimited. Does not implicitly {@link file.GetFileListResponse.verify|verify} messages.
+         * @param message GetFileListResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: file.IGetFileListResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetFileListResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetFileListResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): file.GetFileListResponse;
+
+        /**
+         * Decodes a GetFileListResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetFileListResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): file.GetFileListResponse;
+
+        /**
+         * Verifies a GetFileListResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetFileListResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetFileListResponse
+         */
+        public static fromObject(object: { [k: string]: any }): file.GetFileListResponse;
+
+        /**
+         * Creates a plain object from a GetFileListResponse message. Also converts values to other types if specified.
+         * @param message GetFileListResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: file.GetFileListResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetFileListResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetFileListResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Represents a FileService */
+    class FileService extends $protobuf.rpc.Service {
+
+        /**
+         * Constructs a new FileService service.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         */
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+        /**
+         * Creates new FileService service using the specified rpc implementation.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         * @returns RPC service. Useful where requests and/or responses are streamed.
+         */
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): FileService;
+
+        /**
+         * Calls UploadFile.
+         * @param request UploadFileRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and UploadFileResponse
+         */
+        public uploadFile(request: file.IUploadFileRequest, callback: file.FileService.UploadFileCallback): void;
+
+        /**
+         * Calls UploadFile.
+         * @param request UploadFileRequest message or plain object
+         * @returns Promise
+         */
+        public uploadFile(request: file.IUploadFileRequest): Promise<file.UploadFileResponse>;
+
+        /**
+         * Calls GetFileList.
+         * @param request GetFileListRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and GetFileListResponse
+         */
+        public getFileList(request: file.IGetFileListRequest, callback: file.FileService.GetFileListCallback): void;
+
+        /**
+         * Calls GetFileList.
+         * @param request GetFileListRequest message or plain object
+         * @returns Promise
+         */
+        public getFileList(request: file.IGetFileListRequest): Promise<file.GetFileListResponse>;
+    }
+
+    namespace FileService {
+
+        /**
+         * Callback as used by {@link file.FileService#uploadFile}.
+         * @param error Error, if any
+         * @param [response] UploadFileResponse
+         */
+        type UploadFileCallback = (error: (Error|null), response?: file.UploadFileResponse) => void;
+
+        /**
+         * Callback as used by {@link file.FileService#getFileList}.
+         * @param error Error, if any
+         * @param [response] GetFileListResponse
+         */
+        type GetFileListCallback = (error: (Error|null), response?: file.GetFileListResponse) => void;
     }
 }
 
