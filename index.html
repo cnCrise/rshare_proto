@@ -259,6 +259,41 @@
         
           
           <li>
+            <a href="#file.proto">file.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#file.FilePath"><span class="badge">M</span>FilePath</a>
+                </li>
+              
+                <li>
+                  <a href="#file.GetFileListRequest"><span class="badge">M</span>GetFileListRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#file.GetFileListResponse"><span class="badge">M</span>GetFileListResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#file.UploadFileRequest"><span class="badge">M</span>UploadFileRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#file.UploadFileResponse"><span class="badge">M</span>UploadFileResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#file.FileService"><span class="badge">S</span>FileService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#role.proto">role.proto</a>
             <ul>
               
@@ -758,6 +793,12 @@
               </tr>
             
               <tr>
+                <td>IO_ERR</td>
+                <td>7101</td>
+                <td><p>本地IO异常</p></td>
+              </tr>
+            
+              <tr>
                 <td>WX_ERR</td>
                 <td>8001</td>
                 <td><p>微信服务异常</p></td>
@@ -770,6 +811,194 @@
       
 
       
+    
+      
+      <div class="file-heading">
+        <h2 id="file.proto">file.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="file.FilePath">FilePath</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>filename</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>文件名 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>存储路径 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="file.GetFileListRequest">GetFileListRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>group</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>分组 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="file.GetFileListResponse">GetFileListResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>list</td>
+                  <td><a href="#file.FilePath">FilePath</a></td>
+                  <td>repeated</td>
+                  <td><p>存储路径 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="file.UploadFileRequest">UploadFileRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>filename</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>文件名 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>二进制文件 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>分组 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>store</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>存储位置 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="file.UploadFileResponse">UploadFileResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>存储路径 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="file.FileService">FileService</h3>
+        <p>文件相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UploadFile</td>
+                <td><a href="#file.UploadFileRequest">UploadFileRequest</a></td>
+                <td><a href="#file.UploadFileResponse">UploadFileResponse</a></td>
+                <td><p>上传文件</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetFileList</td>
+                <td><a href="#file.GetFileListRequest">GetFileListRequest</a></td>
+                <td><a href="#file.GetFileListResponse">GetFileListResponse</a></td>
+                <td><p>获取文件列表</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
