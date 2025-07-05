@@ -294,6 +294,75 @@
         
           
           <li>
+            <a href="#form_app.proto">form_app.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#form_app.FormApp"><span class="badge">M</span>FormApp</a>
+                </li>
+              
+                <li>
+                  <a href="#form_app.GetFormAppRequest"><span class="badge">M</span>GetFormAppRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#form_app.SetFormAppRequest"><span class="badge">M</span>SetFormAppRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#form_app.FormAppService"><span class="badge">S</span>FormAppService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#form_data.proto">form_data.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#form_data.SubmitFormDataRequest"><span class="badge">M</span>SubmitFormDataRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#form_data.FormDataService"><span class="badge">S</span>FormDataService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#pay.proto">pay.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#pay.PayRequest"><span class="badge">M</span>PayRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#pay.WeixinPay"><span class="badge">M</span>WeixinPay</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#pay.PayMode"><span class="badge">E</span>PayMode</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#role.proto">role.proto</a>
             <ul>
               
@@ -787,6 +856,12 @@
               </tr>
             
               <tr>
+                <td>NOT_FOUND</td>
+                <td>4004</td>
+                <td><p>数据不存在</p></td>
+              </tr>
+            
+              <tr>
                 <td>DB_ERR</td>
                 <td>7001</td>
                 <td><p>数据库异常</p></td>
@@ -1002,6 +1077,365 @@
     
       
       <div class="file-heading">
+        <h2 id="form_app.proto">form_app.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="form_app.FormApp">FormApp</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>prefix_img</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>form</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>suffix_img</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="form_app.GetFormAppRequest">GetFormAppRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">app.AppIndex</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="form_app.SetFormAppRequest">SetFormAppRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">app.AppIndex</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prefix_img</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>form</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>suffix_img</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="form_app.FormAppService">FormAppService</h3>
+        <p>表单程序相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SetFormApp</td>
+                <td><a href="#form_app.SetFormAppRequest">SetFormAppRequest</a></td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetFormApp</td>
+                <td><a href="#form_app.GetFormAppRequest">GetFormAppRequest</a></td>
+                <td><a href="#form_app.FormApp">FormApp</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="form_data.proto">form_data.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="form_data.SubmitFormDataRequest">SubmitFormDataRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">app.AppIndex</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>form</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="form_data.FormDataService">FormDataService</h3>
+        <p>表单程序相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SubmitFormData</td>
+                <td><a href="#form_data.SubmitFormDataRequest">SubmitFormDataRequest</a></td>
+                <td><a href="#pay.PayRequest">.pay.PayRequest</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="pay.proto">pay.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="pay.PayRequest">PayRequest</h3>
+        <p>支付请求</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>weixin</td>
+                  <td><a href="#pay.WeixinPay">WeixinPay</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="pay.WeixinPay">WeixinPay</h3>
+        <p>微信支付请求</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>appId</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timeStamp</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>nonceStr</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>package</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>signType</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>paySign</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="pay.PayMode">PayMode</h3>
+        <p>支付方式</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN</td>
+                <td>0</td>
+                <td><p>未知</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEIXIN</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
         <h2 id="role.proto">role.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -1176,7 +1610,7 @@
               </tr>
             
               <tr>
-                <td>ADMIN</td>
+                <td>SUPER_ADMIN</td>
                 <td>1</td>
                 <td><p>超级管理员</p></td>
               </tr>
