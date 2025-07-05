@@ -112,11 +112,11 @@ export namespace app {
         /** CreateAppRequest auth */
         auth?: (auth.IAuthorization|null);
 
-        /** CreateAppRequest name */
-        name?: (string|null);
-
         /** CreateAppRequest saasId */
         saasId?: (number|null);
+
+        /** CreateAppRequest name */
+        name?: (string|null);
     }
 
     /** Represents a CreateAppRequest. */
@@ -131,11 +131,11 @@ export namespace app {
         /** CreateAppRequest auth. */
         public auth?: (auth.IAuthorization|null);
 
-        /** CreateAppRequest name. */
-        public name: string;
-
         /** CreateAppRequest saasId. */
         public saasId: number;
+
+        /** CreateAppRequest name. */
+        public name: string;
 
         /**
          * Creates a new CreateAppRequest instance using the specified properties.
@@ -215,6 +215,315 @@ export namespace app {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a GetAppsRequest. */
+    interface IGetAppsRequest {
+
+        /** GetAppsRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** GetAppsRequest saasId */
+        saasId?: (number|null);
+    }
+
+    /** Represents a GetAppsRequest. */
+    class GetAppsRequest implements IGetAppsRequest {
+
+        /**
+         * Constructs a new GetAppsRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: app.IGetAppsRequest);
+
+        /** GetAppsRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** GetAppsRequest saasId. */
+        public saasId: number;
+
+        /**
+         * Creates a new GetAppsRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetAppsRequest instance
+         */
+        public static create(properties?: app.IGetAppsRequest): app.GetAppsRequest;
+
+        /**
+         * Encodes the specified GetAppsRequest message. Does not implicitly {@link app.GetAppsRequest.verify|verify} messages.
+         * @param message GetAppsRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: app.IGetAppsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetAppsRequest message, length delimited. Does not implicitly {@link app.GetAppsRequest.verify|verify} messages.
+         * @param message GetAppsRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: app.IGetAppsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetAppsRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetAppsRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): app.GetAppsRequest;
+
+        /**
+         * Decodes a GetAppsRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetAppsRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): app.GetAppsRequest;
+
+        /**
+         * Verifies a GetAppsRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetAppsRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetAppsRequest
+         */
+        public static fromObject(object: { [k: string]: any }): app.GetAppsRequest;
+
+        /**
+         * Creates a plain object from a GetAppsRequest message. Also converts values to other types if specified.
+         * @param message GetAppsRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: app.GetAppsRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetAppsRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetAppsRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an App. */
+    interface IApp {
+
+        /** App saasId */
+        saasId?: (number|null);
+
+        /** App appId */
+        appId?: (number|null);
+
+        /** App name */
+        name?: (string|null);
+    }
+
+    /** Represents an App. */
+    class App implements IApp {
+
+        /**
+         * Constructs a new App.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: app.IApp);
+
+        /** App saasId. */
+        public saasId: number;
+
+        /** App appId. */
+        public appId: number;
+
+        /** App name. */
+        public name: string;
+
+        /**
+         * Creates a new App instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns App instance
+         */
+        public static create(properties?: app.IApp): app.App;
+
+        /**
+         * Encodes the specified App message. Does not implicitly {@link app.App.verify|verify} messages.
+         * @param message App message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: app.IApp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified App message, length delimited. Does not implicitly {@link app.App.verify|verify} messages.
+         * @param message App message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: app.IApp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an App message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns App
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): app.App;
+
+        /**
+         * Decodes an App message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns App
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): app.App;
+
+        /**
+         * Verifies an App message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an App message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns App
+         */
+        public static fromObject(object: { [k: string]: any }): app.App;
+
+        /**
+         * Creates a plain object from an App message. Also converts values to other types if specified.
+         * @param message App
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: app.App, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this App to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for App
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a GetAppsResponse. */
+    interface IGetAppsResponse {
+
+        /** GetAppsResponse apps */
+        apps?: (app.IApp[]|null);
+    }
+
+    /** Represents a GetAppsResponse. */
+    class GetAppsResponse implements IGetAppsResponse {
+
+        /**
+         * Constructs a new GetAppsResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: app.IGetAppsResponse);
+
+        /** GetAppsResponse apps. */
+        public apps: app.IApp[];
+
+        /**
+         * Creates a new GetAppsResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetAppsResponse instance
+         */
+        public static create(properties?: app.IGetAppsResponse): app.GetAppsResponse;
+
+        /**
+         * Encodes the specified GetAppsResponse message. Does not implicitly {@link app.GetAppsResponse.verify|verify} messages.
+         * @param message GetAppsResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: app.IGetAppsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetAppsResponse message, length delimited. Does not implicitly {@link app.GetAppsResponse.verify|verify} messages.
+         * @param message GetAppsResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: app.IGetAppsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetAppsResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetAppsResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): app.GetAppsResponse;
+
+        /**
+         * Decodes a GetAppsResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetAppsResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): app.GetAppsResponse;
+
+        /**
+         * Verifies a GetAppsResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetAppsResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetAppsResponse
+         */
+        public static fromObject(object: { [k: string]: any }): app.GetAppsResponse;
+
+        /**
+         * Creates a plain object from a GetAppsResponse message. Also converts values to other types if specified.
+         * @param message GetAppsResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: app.GetAppsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetAppsResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetAppsResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Represents an AppService */
     class AppService extends $protobuf.rpc.Service {
 
@@ -248,6 +557,20 @@ export namespace app {
          * @returns Promise
          */
         public createApp(request: app.ICreateAppRequest): Promise<app.AppIndex>;
+
+        /**
+         * Calls GetApps.
+         * @param request GetAppsRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and GetAppsResponse
+         */
+        public getApps(request: app.IGetAppsRequest, callback: app.AppService.GetAppsCallback): void;
+
+        /**
+         * Calls GetApps.
+         * @param request GetAppsRequest message or plain object
+         * @returns Promise
+         */
+        public getApps(request: app.IGetAppsRequest): Promise<app.GetAppsResponse>;
     }
 
     namespace AppService {
@@ -258,6 +581,13 @@ export namespace app {
          * @param [response] AppIndex
          */
         type CreateAppCallback = (error: (Error|null), response?: app.AppIndex) => void;
+
+        /**
+         * Callback as used by {@link app.AppService#getApps}.
+         * @param error Error, if any
+         * @param [response] GetAppsResponse
+         */
+        type GetAppsCallback = (error: (Error|null), response?: app.GetAppsResponse) => void;
     }
 }
 

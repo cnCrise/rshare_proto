@@ -254,8 +254,8 @@ $root.app = (function() {
          * @memberof app
          * @interface ICreateAppRequest
          * @property {auth.IAuthorization|null} [auth] CreateAppRequest auth
-         * @property {string|null} [name] CreateAppRequest name
          * @property {number|null} [saasId] CreateAppRequest saasId
+         * @property {string|null} [name] CreateAppRequest name
          */
 
         /**
@@ -282,20 +282,20 @@ $root.app = (function() {
         CreateAppRequest.prototype.auth = null;
 
         /**
-         * CreateAppRequest name.
-         * @member {string} name
-         * @memberof app.CreateAppRequest
-         * @instance
-         */
-        CreateAppRequest.prototype.name = "";
-
-        /**
          * CreateAppRequest saasId.
          * @member {number} saasId
          * @memberof app.CreateAppRequest
          * @instance
          */
         CreateAppRequest.prototype.saasId = 0;
+
+        /**
+         * CreateAppRequest name.
+         * @member {string} name
+         * @memberof app.CreateAppRequest
+         * @instance
+         */
+        CreateAppRequest.prototype.name = "";
 
         /**
          * Creates a new CreateAppRequest instance using the specified properties.
@@ -323,10 +323,10 @@ $root.app = (function() {
                 writer = $Writer.create();
             if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
                 $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                writer.uint32(/* id 10, wireType 2 =*/82).string(message.name);
             if (message.saasId != null && Object.hasOwnProperty.call(message, "saasId"))
                 writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saasId);
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 20, wireType 2 =*/162).string(message.name);
             return writer;
         };
 
@@ -367,12 +367,12 @@ $root.app = (function() {
                         message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
                         break;
                     }
-                case 10: {
-                        message.name = reader.string();
-                        break;
-                    }
                 case 11: {
                         message.saasId = reader.uint32();
+                        break;
+                    }
+                case 20: {
+                        message.name = reader.string();
                         break;
                     }
                 default:
@@ -415,12 +415,12 @@ $root.app = (function() {
                 if (error)
                     return "auth." + error;
             }
-            if (message.name != null && message.hasOwnProperty("name"))
-                if (!$util.isString(message.name))
-                    return "name: string expected";
             if (message.saasId != null && message.hasOwnProperty("saasId"))
                 if (!$util.isInteger(message.saasId))
                     return "saasId: integer expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
             return null;
         };
 
@@ -441,10 +441,10 @@ $root.app = (function() {
                     throw TypeError(".app.CreateAppRequest.auth: object expected");
                 message.auth = $root.auth.Authorization.fromObject(object.auth);
             }
-            if (object.name != null)
-                message.name = String(object.name);
             if (object.saasId != null)
                 message.saasId = object.saasId >>> 0;
+            if (object.name != null)
+                message.name = String(object.name);
             return message;
         };
 
@@ -463,15 +463,15 @@ $root.app = (function() {
             var object = {};
             if (options.defaults) {
                 object.auth = null;
-                object.name = "";
                 object.saasId = 0;
+                object.name = "";
             }
             if (message.auth != null && message.hasOwnProperty("auth"))
                 object.auth = $root.auth.Authorization.toObject(message.auth, options);
-            if (message.name != null && message.hasOwnProperty("name"))
-                object.name = message.name;
             if (message.saasId != null && message.hasOwnProperty("saasId"))
                 object.saasId = message.saasId;
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
             return object;
         };
 
@@ -502,6 +502,718 @@ $root.app = (function() {
         };
 
         return CreateAppRequest;
+    })();
+
+    app.GetAppsRequest = (function() {
+
+        /**
+         * Properties of a GetAppsRequest.
+         * @memberof app
+         * @interface IGetAppsRequest
+         * @property {auth.IAuthorization|null} [auth] GetAppsRequest auth
+         * @property {number|null} [saasId] GetAppsRequest saasId
+         */
+
+        /**
+         * Constructs a new GetAppsRequest.
+         * @memberof app
+         * @classdesc Represents a GetAppsRequest.
+         * @implements IGetAppsRequest
+         * @constructor
+         * @param {app.IGetAppsRequest=} [properties] Properties to set
+         */
+        function GetAppsRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetAppsRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof app.GetAppsRequest
+         * @instance
+         */
+        GetAppsRequest.prototype.auth = null;
+
+        /**
+         * GetAppsRequest saasId.
+         * @member {number} saasId
+         * @memberof app.GetAppsRequest
+         * @instance
+         */
+        GetAppsRequest.prototype.saasId = 0;
+
+        /**
+         * Creates a new GetAppsRequest instance using the specified properties.
+         * @function create
+         * @memberof app.GetAppsRequest
+         * @static
+         * @param {app.IGetAppsRequest=} [properties] Properties to set
+         * @returns {app.GetAppsRequest} GetAppsRequest instance
+         */
+        GetAppsRequest.create = function create(properties) {
+            return new GetAppsRequest(properties);
+        };
+
+        /**
+         * Encodes the specified GetAppsRequest message. Does not implicitly {@link app.GetAppsRequest.verify|verify} messages.
+         * @function encode
+         * @memberof app.GetAppsRequest
+         * @static
+         * @param {app.IGetAppsRequest} message GetAppsRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetAppsRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.saasId != null && Object.hasOwnProperty.call(message, "saasId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saasId);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetAppsRequest message, length delimited. Does not implicitly {@link app.GetAppsRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof app.GetAppsRequest
+         * @static
+         * @param {app.IGetAppsRequest} message GetAppsRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetAppsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetAppsRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof app.GetAppsRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {app.GetAppsRequest} GetAppsRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetAppsRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.app.GetAppsRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 11: {
+                        message.saasId = reader.uint32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetAppsRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof app.GetAppsRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {app.GetAppsRequest} GetAppsRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetAppsRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetAppsRequest message.
+         * @function verify
+         * @memberof app.GetAppsRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetAppsRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                if (!$util.isInteger(message.saasId))
+                    return "saasId: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetAppsRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof app.GetAppsRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {app.GetAppsRequest} GetAppsRequest
+         */
+        GetAppsRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.app.GetAppsRequest)
+                return object;
+            var message = new $root.app.GetAppsRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".app.GetAppsRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.saasId != null)
+                message.saasId = object.saasId >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetAppsRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof app.GetAppsRequest
+         * @static
+         * @param {app.GetAppsRequest} message GetAppsRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetAppsRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.saasId = 0;
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                object.saasId = message.saasId;
+            return object;
+        };
+
+        /**
+         * Converts this GetAppsRequest to JSON.
+         * @function toJSON
+         * @memberof app.GetAppsRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetAppsRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetAppsRequest
+         * @function getTypeUrl
+         * @memberof app.GetAppsRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetAppsRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/app.GetAppsRequest";
+        };
+
+        return GetAppsRequest;
+    })();
+
+    app.App = (function() {
+
+        /**
+         * Properties of an App.
+         * @memberof app
+         * @interface IApp
+         * @property {number|null} [saasId] App saasId
+         * @property {number|null} [appId] App appId
+         * @property {string|null} [name] App name
+         */
+
+        /**
+         * Constructs a new App.
+         * @memberof app
+         * @classdesc Represents an App.
+         * @implements IApp
+         * @constructor
+         * @param {app.IApp=} [properties] Properties to set
+         */
+        function App(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * App saasId.
+         * @member {number} saasId
+         * @memberof app.App
+         * @instance
+         */
+        App.prototype.saasId = 0;
+
+        /**
+         * App appId.
+         * @member {number} appId
+         * @memberof app.App
+         * @instance
+         */
+        App.prototype.appId = 0;
+
+        /**
+         * App name.
+         * @member {string} name
+         * @memberof app.App
+         * @instance
+         */
+        App.prototype.name = "";
+
+        /**
+         * Creates a new App instance using the specified properties.
+         * @function create
+         * @memberof app.App
+         * @static
+         * @param {app.IApp=} [properties] Properties to set
+         * @returns {app.App} App instance
+         */
+        App.create = function create(properties) {
+            return new App(properties);
+        };
+
+        /**
+         * Encodes the specified App message. Does not implicitly {@link app.App.verify|verify} messages.
+         * @function encode
+         * @memberof app.App
+         * @static
+         * @param {app.IApp} message App message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        App.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.saasId != null && Object.hasOwnProperty.call(message, "saasId"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saasId);
+            if (message.appId != null && Object.hasOwnProperty.call(message, "appId"))
+                writer.uint32(/* id 12, wireType 0 =*/96).uint32(message.appId);
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 20, wireType 2 =*/162).string(message.name);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified App message, length delimited. Does not implicitly {@link app.App.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof app.App
+         * @static
+         * @param {app.IApp} message App message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        App.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an App message from the specified reader or buffer.
+         * @function decode
+         * @memberof app.App
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {app.App} App
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        App.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.app.App();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.saasId = reader.uint32();
+                        break;
+                    }
+                case 12: {
+                        message.appId = reader.uint32();
+                        break;
+                    }
+                case 20: {
+                        message.name = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an App message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof app.App
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {app.App} App
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        App.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an App message.
+         * @function verify
+         * @memberof app.App
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        App.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                if (!$util.isInteger(message.saasId))
+                    return "saasId: integer expected";
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                if (!$util.isInteger(message.appId))
+                    return "appId: integer expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an App message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof app.App
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {app.App} App
+         */
+        App.fromObject = function fromObject(object) {
+            if (object instanceof $root.app.App)
+                return object;
+            var message = new $root.app.App();
+            if (object.saasId != null)
+                message.saasId = object.saasId >>> 0;
+            if (object.appId != null)
+                message.appId = object.appId >>> 0;
+            if (object.name != null)
+                message.name = String(object.name);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an App message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof app.App
+         * @static
+         * @param {app.App} message App
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        App.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.saasId = 0;
+                object.appId = 0;
+                object.name = "";
+            }
+            if (message.saasId != null && message.hasOwnProperty("saasId"))
+                object.saasId = message.saasId;
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                object.appId = message.appId;
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            return object;
+        };
+
+        /**
+         * Converts this App to JSON.
+         * @function toJSON
+         * @memberof app.App
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        App.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for App
+         * @function getTypeUrl
+         * @memberof app.App
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        App.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/app.App";
+        };
+
+        return App;
+    })();
+
+    app.GetAppsResponse = (function() {
+
+        /**
+         * Properties of a GetAppsResponse.
+         * @memberof app
+         * @interface IGetAppsResponse
+         * @property {Array.<app.IApp>|null} [apps] GetAppsResponse apps
+         */
+
+        /**
+         * Constructs a new GetAppsResponse.
+         * @memberof app
+         * @classdesc Represents a GetAppsResponse.
+         * @implements IGetAppsResponse
+         * @constructor
+         * @param {app.IGetAppsResponse=} [properties] Properties to set
+         */
+        function GetAppsResponse(properties) {
+            this.apps = [];
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetAppsResponse apps.
+         * @member {Array.<app.IApp>} apps
+         * @memberof app.GetAppsResponse
+         * @instance
+         */
+        GetAppsResponse.prototype.apps = $util.emptyArray;
+
+        /**
+         * Creates a new GetAppsResponse instance using the specified properties.
+         * @function create
+         * @memberof app.GetAppsResponse
+         * @static
+         * @param {app.IGetAppsResponse=} [properties] Properties to set
+         * @returns {app.GetAppsResponse} GetAppsResponse instance
+         */
+        GetAppsResponse.create = function create(properties) {
+            return new GetAppsResponse(properties);
+        };
+
+        /**
+         * Encodes the specified GetAppsResponse message. Does not implicitly {@link app.GetAppsResponse.verify|verify} messages.
+         * @function encode
+         * @memberof app.GetAppsResponse
+         * @static
+         * @param {app.IGetAppsResponse} message GetAppsResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetAppsResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.apps != null && message.apps.length)
+                for (var i = 0; i < message.apps.length; ++i)
+                    $root.app.App.encode(message.apps[i], writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetAppsResponse message, length delimited. Does not implicitly {@link app.GetAppsResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof app.GetAppsResponse
+         * @static
+         * @param {app.IGetAppsResponse} message GetAppsResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetAppsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetAppsResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof app.GetAppsResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {app.GetAppsResponse} GetAppsResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetAppsResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.app.GetAppsResponse();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        if (!(message.apps && message.apps.length))
+                            message.apps = [];
+                        message.apps.push($root.app.App.decode(reader, reader.uint32()));
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetAppsResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof app.GetAppsResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {app.GetAppsResponse} GetAppsResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetAppsResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetAppsResponse message.
+         * @function verify
+         * @memberof app.GetAppsResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetAppsResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.apps != null && message.hasOwnProperty("apps")) {
+                if (!Array.isArray(message.apps))
+                    return "apps: array expected";
+                for (var i = 0; i < message.apps.length; ++i) {
+                    var error = $root.app.App.verify(message.apps[i]);
+                    if (error)
+                        return "apps." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetAppsResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof app.GetAppsResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {app.GetAppsResponse} GetAppsResponse
+         */
+        GetAppsResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.app.GetAppsResponse)
+                return object;
+            var message = new $root.app.GetAppsResponse();
+            if (object.apps) {
+                if (!Array.isArray(object.apps))
+                    throw TypeError(".app.GetAppsResponse.apps: array expected");
+                message.apps = [];
+                for (var i = 0; i < object.apps.length; ++i) {
+                    if (typeof object.apps[i] !== "object")
+                        throw TypeError(".app.GetAppsResponse.apps: object expected");
+                    message.apps[i] = $root.app.App.fromObject(object.apps[i]);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetAppsResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof app.GetAppsResponse
+         * @static
+         * @param {app.GetAppsResponse} message GetAppsResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetAppsResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.apps = [];
+            if (message.apps && message.apps.length) {
+                object.apps = [];
+                for (var j = 0; j < message.apps.length; ++j)
+                    object.apps[j] = $root.app.App.toObject(message.apps[j], options);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this GetAppsResponse to JSON.
+         * @function toJSON
+         * @memberof app.GetAppsResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetAppsResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetAppsResponse
+         * @function getTypeUrl
+         * @memberof app.GetAppsResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetAppsResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/app.GetAppsResponse";
+        };
+
+        return GetAppsResponse;
     })();
 
     app.AppService = (function() {
@@ -566,6 +1278,39 @@ $root.app = (function() {
          * @instance
          * @param {app.ICreateAppRequest} request CreateAppRequest message or plain object
          * @returns {Promise<app.AppIndex>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link app.AppService#getApps}.
+         * @memberof app.AppService
+         * @typedef GetAppsCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {app.GetAppsResponse} [response] GetAppsResponse
+         */
+
+        /**
+         * Calls GetApps.
+         * @function getApps
+         * @memberof app.AppService
+         * @instance
+         * @param {app.IGetAppsRequest} request GetAppsRequest message or plain object
+         * @param {app.AppService.GetAppsCallback} callback Node-style callback called with the error, if any, and GetAppsResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(AppService.prototype.getApps = function getApps(request, callback) {
+            return this.rpcCall(getApps, $root.app.GetAppsRequest, $root.app.GetAppsResponse, request, callback);
+        }, "name", { value: "GetApps" });
+
+        /**
+         * Calls GetApps.
+         * @function getApps
+         * @memberof app.AppService
+         * @instance
+         * @param {app.IGetAppsRequest} request GetAppsRequest message or plain object
+         * @returns {Promise<app.GetAppsResponse>} Promise
          * @variation 2
          */
 
