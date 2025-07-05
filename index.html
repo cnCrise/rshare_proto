@@ -179,11 +179,23 @@
             <ul>
               
                 <li>
+                  <a href="#app.App"><span class="badge">M</span>App</a>
+                </li>
+              
+                <li>
                   <a href="#app.AppIndex"><span class="badge">M</span>AppIndex</a>
                 </li>
               
                 <li>
                   <a href="#app.CreateAppRequest"><span class="badge">M</span>CreateAppRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#app.GetAppsRequest"><span class="badge">M</span>GetAppsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#app.GetAppsResponse"><span class="badge">M</span>GetAppsResponse</a>
                 </li>
               
               
@@ -501,6 +513,44 @@
       <p></p>
 
       
+        <h3 id="app.App">App</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>saas_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="app.AppIndex">AppIndex</h3>
         <p></p>
 
@@ -550,8 +600,39 @@
                 </tr>
               
                 <tr>
+                  <td>saas_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="app.GetAppsRequest">GetAppsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -560,6 +641,30 @@
                   <td>saas_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="app.GetAppsResponse">GetAppsResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>apps</td>
+                  <td><a href="#app.App">App</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -589,6 +694,13 @@
                 <td><a href="#app.CreateAppRequest">CreateAppRequest</a></td>
                 <td><a href="#app.AppIndex">AppIndex</a></td>
                 <td><p>创建app</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetApps</td>
+                <td><a href="#app.GetAppsRequest">GetAppsRequest</a></td>
+                <td><a href="#app.GetAppsResponse">GetAppsResponse</a></td>
+                <td><p></p></td>
               </tr>
             
           </tbody>
