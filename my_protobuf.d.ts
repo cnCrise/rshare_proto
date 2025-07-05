@@ -823,6 +823,7 @@ export namespace error_code {
         EXPIRED_AUTH_SN = 2013,
         INVALID_APP = 2018,
         PERMISSION_DENIED = 2021,
+        NOT_FOUND = 4004,
         DB_ERR = 7001,
         IO_ERR = 7101,
         WX_ERR = 8001
@@ -1408,13 +1409,814 @@ export namespace file {
     }
 }
 
+/** Namespace form_app. */
+export namespace form_app {
+
+    /** Properties of a SetFormAppRequest. */
+    interface ISetFormAppRequest {
+
+        /** SetFormAppRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** SetFormAppRequest app */
+        app?: (app.IAppIndex|null);
+
+        /** SetFormAppRequest prefixImg */
+        prefixImg?: (string|null);
+
+        /** SetFormAppRequest form */
+        form?: (string|null);
+
+        /** SetFormAppRequest suffixImg */
+        suffixImg?: (string|null);
+
+        /** SetFormAppRequest price */
+        price?: (number|null);
+    }
+
+    /** Represents a SetFormAppRequest. */
+    class SetFormAppRequest implements ISetFormAppRequest {
+
+        /**
+         * Constructs a new SetFormAppRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: form_app.ISetFormAppRequest);
+
+        /** SetFormAppRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** SetFormAppRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /** SetFormAppRequest prefixImg. */
+        public prefixImg: string;
+
+        /** SetFormAppRequest form. */
+        public form: string;
+
+        /** SetFormAppRequest suffixImg. */
+        public suffixImg: string;
+
+        /** SetFormAppRequest price. */
+        public price: number;
+
+        /**
+         * Creates a new SetFormAppRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SetFormAppRequest instance
+         */
+        public static create(properties?: form_app.ISetFormAppRequest): form_app.SetFormAppRequest;
+
+        /**
+         * Encodes the specified SetFormAppRequest message. Does not implicitly {@link form_app.SetFormAppRequest.verify|verify} messages.
+         * @param message SetFormAppRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: form_app.ISetFormAppRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SetFormAppRequest message, length delimited. Does not implicitly {@link form_app.SetFormAppRequest.verify|verify} messages.
+         * @param message SetFormAppRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: form_app.ISetFormAppRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SetFormAppRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SetFormAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_app.SetFormAppRequest;
+
+        /**
+         * Decodes a SetFormAppRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SetFormAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_app.SetFormAppRequest;
+
+        /**
+         * Verifies a SetFormAppRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SetFormAppRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SetFormAppRequest
+         */
+        public static fromObject(object: { [k: string]: any }): form_app.SetFormAppRequest;
+
+        /**
+         * Creates a plain object from a SetFormAppRequest message. Also converts values to other types if specified.
+         * @param message SetFormAppRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: form_app.SetFormAppRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SetFormAppRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SetFormAppRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a GetFormAppRequest. */
+    interface IGetFormAppRequest {
+
+        /** GetFormAppRequest app */
+        app?: (app.IAppIndex|null);
+    }
+
+    /** Represents a GetFormAppRequest. */
+    class GetFormAppRequest implements IGetFormAppRequest {
+
+        /**
+         * Constructs a new GetFormAppRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: form_app.IGetFormAppRequest);
+
+        /** GetFormAppRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /**
+         * Creates a new GetFormAppRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetFormAppRequest instance
+         */
+        public static create(properties?: form_app.IGetFormAppRequest): form_app.GetFormAppRequest;
+
+        /**
+         * Encodes the specified GetFormAppRequest message. Does not implicitly {@link form_app.GetFormAppRequest.verify|verify} messages.
+         * @param message GetFormAppRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: form_app.IGetFormAppRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetFormAppRequest message, length delimited. Does not implicitly {@link form_app.GetFormAppRequest.verify|verify} messages.
+         * @param message GetFormAppRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: form_app.IGetFormAppRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetFormAppRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetFormAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_app.GetFormAppRequest;
+
+        /**
+         * Decodes a GetFormAppRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetFormAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_app.GetFormAppRequest;
+
+        /**
+         * Verifies a GetFormAppRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetFormAppRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetFormAppRequest
+         */
+        public static fromObject(object: { [k: string]: any }): form_app.GetFormAppRequest;
+
+        /**
+         * Creates a plain object from a GetFormAppRequest message. Also converts values to other types if specified.
+         * @param message GetFormAppRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: form_app.GetFormAppRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetFormAppRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetFormAppRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a FormApp. */
+    interface IFormApp {
+
+        /** FormApp prefixImg */
+        prefixImg?: (string|null);
+
+        /** FormApp form */
+        form?: (string|null);
+
+        /** FormApp suffixImg */
+        suffixImg?: (string|null);
+
+        /** FormApp price */
+        price?: (number|null);
+    }
+
+    /** Represents a FormApp. */
+    class FormApp implements IFormApp {
+
+        /**
+         * Constructs a new FormApp.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: form_app.IFormApp);
+
+        /** FormApp prefixImg. */
+        public prefixImg: string;
+
+        /** FormApp form. */
+        public form: string;
+
+        /** FormApp suffixImg. */
+        public suffixImg: string;
+
+        /** FormApp price. */
+        public price: number;
+
+        /**
+         * Creates a new FormApp instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns FormApp instance
+         */
+        public static create(properties?: form_app.IFormApp): form_app.FormApp;
+
+        /**
+         * Encodes the specified FormApp message. Does not implicitly {@link form_app.FormApp.verify|verify} messages.
+         * @param message FormApp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: form_app.IFormApp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified FormApp message, length delimited. Does not implicitly {@link form_app.FormApp.verify|verify} messages.
+         * @param message FormApp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: form_app.IFormApp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a FormApp message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns FormApp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_app.FormApp;
+
+        /**
+         * Decodes a FormApp message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns FormApp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_app.FormApp;
+
+        /**
+         * Verifies a FormApp message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a FormApp message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns FormApp
+         */
+        public static fromObject(object: { [k: string]: any }): form_app.FormApp;
+
+        /**
+         * Creates a plain object from a FormApp message. Also converts values to other types if specified.
+         * @param message FormApp
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: form_app.FormApp, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this FormApp to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for FormApp
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Represents a FormAppService */
+    class FormAppService extends $protobuf.rpc.Service {
+
+        /**
+         * Constructs a new FormAppService service.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         */
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+        /**
+         * Creates new FormAppService service using the specified rpc implementation.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         * @returns RPC service. Useful where requests and/or responses are streamed.
+         */
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): FormAppService;
+
+        /**
+         * Calls SetFormApp.
+         * @param request SetFormAppRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and Empty
+         */
+        public setFormApp(request: form_app.ISetFormAppRequest, callback: form_app.FormAppService.SetFormAppCallback): void;
+
+        /**
+         * Calls SetFormApp.
+         * @param request SetFormAppRequest message or plain object
+         * @returns Promise
+         */
+        public setFormApp(request: form_app.ISetFormAppRequest): Promise<common.Empty>;
+
+        /**
+         * Calls GetFormApp.
+         * @param request GetFormAppRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and FormApp
+         */
+        public getFormApp(request: form_app.IGetFormAppRequest, callback: form_app.FormAppService.GetFormAppCallback): void;
+
+        /**
+         * Calls GetFormApp.
+         * @param request GetFormAppRequest message or plain object
+         * @returns Promise
+         */
+        public getFormApp(request: form_app.IGetFormAppRequest): Promise<form_app.FormApp>;
+    }
+
+    namespace FormAppService {
+
+        /**
+         * Callback as used by {@link form_app.FormAppService#setFormApp}.
+         * @param error Error, if any
+         * @param [response] Empty
+         */
+        type SetFormAppCallback = (error: (Error|null), response?: common.Empty) => void;
+
+        /**
+         * Callback as used by {@link form_app.FormAppService#getFormApp}.
+         * @param error Error, if any
+         * @param [response] FormApp
+         */
+        type GetFormAppCallback = (error: (Error|null), response?: form_app.FormApp) => void;
+    }
+}
+
+/** Namespace form_data. */
+export namespace form_data {
+
+    /** Properties of a SubmitFormDataRequest. */
+    interface ISubmitFormDataRequest {
+
+        /** SubmitFormDataRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** SubmitFormDataRequest app */
+        app?: (app.IAppIndex|null);
+
+        /** SubmitFormDataRequest form */
+        form?: (string|null);
+    }
+
+    /** Represents a SubmitFormDataRequest. */
+    class SubmitFormDataRequest implements ISubmitFormDataRequest {
+
+        /**
+         * Constructs a new SubmitFormDataRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: form_data.ISubmitFormDataRequest);
+
+        /** SubmitFormDataRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** SubmitFormDataRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /** SubmitFormDataRequest form. */
+        public form: string;
+
+        /**
+         * Creates a new SubmitFormDataRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SubmitFormDataRequest instance
+         */
+        public static create(properties?: form_data.ISubmitFormDataRequest): form_data.SubmitFormDataRequest;
+
+        /**
+         * Encodes the specified SubmitFormDataRequest message. Does not implicitly {@link form_data.SubmitFormDataRequest.verify|verify} messages.
+         * @param message SubmitFormDataRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: form_data.ISubmitFormDataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SubmitFormDataRequest message, length delimited. Does not implicitly {@link form_data.SubmitFormDataRequest.verify|verify} messages.
+         * @param message SubmitFormDataRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: form_data.ISubmitFormDataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SubmitFormDataRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SubmitFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_data.SubmitFormDataRequest;
+
+        /**
+         * Decodes a SubmitFormDataRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SubmitFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_data.SubmitFormDataRequest;
+
+        /**
+         * Verifies a SubmitFormDataRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SubmitFormDataRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SubmitFormDataRequest
+         */
+        public static fromObject(object: { [k: string]: any }): form_data.SubmitFormDataRequest;
+
+        /**
+         * Creates a plain object from a SubmitFormDataRequest message. Also converts values to other types if specified.
+         * @param message SubmitFormDataRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: form_data.SubmitFormDataRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SubmitFormDataRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SubmitFormDataRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Represents a FormDataService */
+    class FormDataService extends $protobuf.rpc.Service {
+
+        /**
+         * Constructs a new FormDataService service.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         */
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+        /**
+         * Creates new FormDataService service using the specified rpc implementation.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         * @returns RPC service. Useful where requests and/or responses are streamed.
+         */
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): FormDataService;
+
+        /**
+         * Calls SubmitFormData.
+         * @param request SubmitFormDataRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and PayRequest
+         */
+        public submitFormData(request: form_data.ISubmitFormDataRequest, callback: form_data.FormDataService.SubmitFormDataCallback): void;
+
+        /**
+         * Calls SubmitFormData.
+         * @param request SubmitFormDataRequest message or plain object
+         * @returns Promise
+         */
+        public submitFormData(request: form_data.ISubmitFormDataRequest): Promise<pay.PayRequest>;
+    }
+
+    namespace FormDataService {
+
+        /**
+         * Callback as used by {@link form_data.FormDataService#submitFormData}.
+         * @param error Error, if any
+         * @param [response] PayRequest
+         */
+        type SubmitFormDataCallback = (error: (Error|null), response?: pay.PayRequest) => void;
+    }
+}
+
+/** Namespace pay. */
+export namespace pay {
+
+    /** PayMode enum. */
+    enum PayMode {
+        UNKNOWN = 0,
+        WEIXIN = 1
+    }
+
+    /** Properties of a WeixinPay. */
+    interface IWeixinPay {
+
+        /** WeixinPay appId */
+        appId?: (string|null);
+
+        /** WeixinPay timeStamp */
+        timeStamp?: (string|null);
+
+        /** WeixinPay nonceStr */
+        nonceStr?: (string|null);
+
+        /** WeixinPay package */
+        "package"?: (string|null);
+
+        /** WeixinPay signType */
+        signType?: (string|null);
+
+        /** WeixinPay paySign */
+        paySign?: (string|null);
+    }
+
+    /** Represents a WeixinPay. */
+    class WeixinPay implements IWeixinPay {
+
+        /**
+         * Constructs a new WeixinPay.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: pay.IWeixinPay);
+
+        /** WeixinPay appId. */
+        public appId: string;
+
+        /** WeixinPay timeStamp. */
+        public timeStamp: string;
+
+        /** WeixinPay nonceStr. */
+        public nonceStr: string;
+
+        /** WeixinPay package. */
+        public package: string;
+
+        /** WeixinPay signType. */
+        public signType: string;
+
+        /** WeixinPay paySign. */
+        public paySign: string;
+
+        /**
+         * Creates a new WeixinPay instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns WeixinPay instance
+         */
+        public static create(properties?: pay.IWeixinPay): pay.WeixinPay;
+
+        /**
+         * Encodes the specified WeixinPay message. Does not implicitly {@link pay.WeixinPay.verify|verify} messages.
+         * @param message WeixinPay message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: pay.IWeixinPay, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified WeixinPay message, length delimited. Does not implicitly {@link pay.WeixinPay.verify|verify} messages.
+         * @param message WeixinPay message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: pay.IWeixinPay, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a WeixinPay message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns WeixinPay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): pay.WeixinPay;
+
+        /**
+         * Decodes a WeixinPay message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns WeixinPay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): pay.WeixinPay;
+
+        /**
+         * Verifies a WeixinPay message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a WeixinPay message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns WeixinPay
+         */
+        public static fromObject(object: { [k: string]: any }): pay.WeixinPay;
+
+        /**
+         * Creates a plain object from a WeixinPay message. Also converts values to other types if specified.
+         * @param message WeixinPay
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: pay.WeixinPay, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this WeixinPay to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for WeixinPay
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PayRequest. */
+    interface IPayRequest {
+
+        /** PayRequest weixin */
+        weixin?: (pay.IWeixinPay|null);
+    }
+
+    /** Represents a PayRequest. */
+    class PayRequest implements IPayRequest {
+
+        /**
+         * Constructs a new PayRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: pay.IPayRequest);
+
+        /** PayRequest weixin. */
+        public weixin?: (pay.IWeixinPay|null);
+
+        /**
+         * Creates a new PayRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PayRequest instance
+         */
+        public static create(properties?: pay.IPayRequest): pay.PayRequest;
+
+        /**
+         * Encodes the specified PayRequest message. Does not implicitly {@link pay.PayRequest.verify|verify} messages.
+         * @param message PayRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: pay.IPayRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PayRequest message, length delimited. Does not implicitly {@link pay.PayRequest.verify|verify} messages.
+         * @param message PayRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: pay.IPayRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PayRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PayRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): pay.PayRequest;
+
+        /**
+         * Decodes a PayRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PayRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): pay.PayRequest;
+
+        /**
+         * Verifies a PayRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PayRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PayRequest
+         */
+        public static fromObject(object: { [k: string]: any }): pay.PayRequest;
+
+        /**
+         * Creates a plain object from a PayRequest message. Also converts values to other types if specified.
+         * @param message PayRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: pay.PayRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PayRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PayRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+}
+
 /** Namespace role. */
 export namespace role {
 
     /** Role enum. */
     enum Role {
         USER = 0,
-        ADMIN = 1,
+        SUPER_ADMIN = 1,
         BLACK = 9,
         SAAS_ADMIN = 11,
         SAAS_AUTHORIZER = 12,

@@ -1790,6 +1790,7 @@ $root.error_code = (function() {
      * @property {number} EXPIRED_AUTH_SN=2013 EXPIRED_AUTH_SN value
      * @property {number} INVALID_APP=2018 INVALID_APP value
      * @property {number} PERMISSION_DENIED=2021 PERMISSION_DENIED value
+     * @property {number} NOT_FOUND=4004 NOT_FOUND value
      * @property {number} DB_ERR=7001 DB_ERR value
      * @property {number} IO_ERR=7101 IO_ERR value
      * @property {number} WX_ERR=8001 WX_ERR value
@@ -1809,6 +1810,7 @@ $root.error_code = (function() {
         values[valuesById[2013] = "EXPIRED_AUTH_SN"] = 2013;
         values[valuesById[2018] = "INVALID_APP"] = 2018;
         values[valuesById[2021] = "PERMISSION_DENIED"] = 2021;
+        values[valuesById[4004] = "NOT_FOUND"] = 4004;
         values[valuesById[7001] = "DB_ERR"] = 7001;
         values[valuesById[7101] = "IO_ERR"] = 7101;
         values[valuesById[8001] = "WX_ERR"] = 8001;
@@ -3080,6 +3082,1834 @@ $root.file = (function() {
     return file;
 })();
 
+$root.form_app = (function() {
+
+    /**
+     * Namespace form_app.
+     * @exports form_app
+     * @namespace
+     */
+    var form_app = {};
+
+    form_app.SetFormAppRequest = (function() {
+
+        /**
+         * Properties of a SetFormAppRequest.
+         * @memberof form_app
+         * @interface ISetFormAppRequest
+         * @property {auth.IAuthorization|null} [auth] SetFormAppRequest auth
+         * @property {app.IAppIndex|null} [app] SetFormAppRequest app
+         * @property {string|null} [prefixImg] SetFormAppRequest prefixImg
+         * @property {string|null} [form] SetFormAppRequest form
+         * @property {string|null} [suffixImg] SetFormAppRequest suffixImg
+         * @property {number|null} [price] SetFormAppRequest price
+         */
+
+        /**
+         * Constructs a new SetFormAppRequest.
+         * @memberof form_app
+         * @classdesc Represents a SetFormAppRequest.
+         * @implements ISetFormAppRequest
+         * @constructor
+         * @param {form_app.ISetFormAppRequest=} [properties] Properties to set
+         */
+        function SetFormAppRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SetFormAppRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof form_app.SetFormAppRequest
+         * @instance
+         */
+        SetFormAppRequest.prototype.auth = null;
+
+        /**
+         * SetFormAppRequest app.
+         * @member {app.IAppIndex|null|undefined} app
+         * @memberof form_app.SetFormAppRequest
+         * @instance
+         */
+        SetFormAppRequest.prototype.app = null;
+
+        /**
+         * SetFormAppRequest prefixImg.
+         * @member {string} prefixImg
+         * @memberof form_app.SetFormAppRequest
+         * @instance
+         */
+        SetFormAppRequest.prototype.prefixImg = "";
+
+        /**
+         * SetFormAppRequest form.
+         * @member {string} form
+         * @memberof form_app.SetFormAppRequest
+         * @instance
+         */
+        SetFormAppRequest.prototype.form = "";
+
+        /**
+         * SetFormAppRequest suffixImg.
+         * @member {string} suffixImg
+         * @memberof form_app.SetFormAppRequest
+         * @instance
+         */
+        SetFormAppRequest.prototype.suffixImg = "";
+
+        /**
+         * SetFormAppRequest price.
+         * @member {number} price
+         * @memberof form_app.SetFormAppRequest
+         * @instance
+         */
+        SetFormAppRequest.prototype.price = 0;
+
+        /**
+         * Creates a new SetFormAppRequest instance using the specified properties.
+         * @function create
+         * @memberof form_app.SetFormAppRequest
+         * @static
+         * @param {form_app.ISetFormAppRequest=} [properties] Properties to set
+         * @returns {form_app.SetFormAppRequest} SetFormAppRequest instance
+         */
+        SetFormAppRequest.create = function create(properties) {
+            return new SetFormAppRequest(properties);
+        };
+
+        /**
+         * Encodes the specified SetFormAppRequest message. Does not implicitly {@link form_app.SetFormAppRequest.verify|verify} messages.
+         * @function encode
+         * @memberof form_app.SetFormAppRequest
+         * @static
+         * @param {form_app.ISetFormAppRequest} message SetFormAppRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SetFormAppRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.app != null && Object.hasOwnProperty.call(message, "app"))
+                $root.app.AppIndex.encode(message.app, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.prefixImg != null && Object.hasOwnProperty.call(message, "prefixImg"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.prefixImg);
+            if (message.form != null && Object.hasOwnProperty.call(message, "form"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.form);
+            if (message.suffixImg != null && Object.hasOwnProperty.call(message, "suffixImg"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.suffixImg);
+            if (message.price != null && Object.hasOwnProperty.call(message, "price"))
+                writer.uint32(/* id 21, wireType 1 =*/169).double(message.price);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SetFormAppRequest message, length delimited. Does not implicitly {@link form_app.SetFormAppRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof form_app.SetFormAppRequest
+         * @static
+         * @param {form_app.ISetFormAppRequest} message SetFormAppRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SetFormAppRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SetFormAppRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof form_app.SetFormAppRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {form_app.SetFormAppRequest} SetFormAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SetFormAppRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.form_app.SetFormAppRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.app = $root.app.AppIndex.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 11: {
+                        message.prefixImg = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.form = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.suffixImg = reader.string();
+                        break;
+                    }
+                case 21: {
+                        message.price = reader.double();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SetFormAppRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof form_app.SetFormAppRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {form_app.SetFormAppRequest} SetFormAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SetFormAppRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SetFormAppRequest message.
+         * @function verify
+         * @memberof form_app.SetFormAppRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SetFormAppRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.app != null && message.hasOwnProperty("app")) {
+                var error = $root.app.AppIndex.verify(message.app);
+                if (error)
+                    return "app." + error;
+            }
+            if (message.prefixImg != null && message.hasOwnProperty("prefixImg"))
+                if (!$util.isString(message.prefixImg))
+                    return "prefixImg: string expected";
+            if (message.form != null && message.hasOwnProperty("form"))
+                if (!$util.isString(message.form))
+                    return "form: string expected";
+            if (message.suffixImg != null && message.hasOwnProperty("suffixImg"))
+                if (!$util.isString(message.suffixImg))
+                    return "suffixImg: string expected";
+            if (message.price != null && message.hasOwnProperty("price"))
+                if (typeof message.price !== "number")
+                    return "price: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a SetFormAppRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof form_app.SetFormAppRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {form_app.SetFormAppRequest} SetFormAppRequest
+         */
+        SetFormAppRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.form_app.SetFormAppRequest)
+                return object;
+            var message = new $root.form_app.SetFormAppRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".form_app.SetFormAppRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.app != null) {
+                if (typeof object.app !== "object")
+                    throw TypeError(".form_app.SetFormAppRequest.app: object expected");
+                message.app = $root.app.AppIndex.fromObject(object.app);
+            }
+            if (object.prefixImg != null)
+                message.prefixImg = String(object.prefixImg);
+            if (object.form != null)
+                message.form = String(object.form);
+            if (object.suffixImg != null)
+                message.suffixImg = String(object.suffixImg);
+            if (object.price != null)
+                message.price = Number(object.price);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SetFormAppRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof form_app.SetFormAppRequest
+         * @static
+         * @param {form_app.SetFormAppRequest} message SetFormAppRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SetFormAppRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.app = null;
+                object.prefixImg = "";
+                object.form = "";
+                object.suffixImg = "";
+                object.price = 0;
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.app != null && message.hasOwnProperty("app"))
+                object.app = $root.app.AppIndex.toObject(message.app, options);
+            if (message.prefixImg != null && message.hasOwnProperty("prefixImg"))
+                object.prefixImg = message.prefixImg;
+            if (message.form != null && message.hasOwnProperty("form"))
+                object.form = message.form;
+            if (message.suffixImg != null && message.hasOwnProperty("suffixImg"))
+                object.suffixImg = message.suffixImg;
+            if (message.price != null && message.hasOwnProperty("price"))
+                object.price = options.json && !isFinite(message.price) ? String(message.price) : message.price;
+            return object;
+        };
+
+        /**
+         * Converts this SetFormAppRequest to JSON.
+         * @function toJSON
+         * @memberof form_app.SetFormAppRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SetFormAppRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SetFormAppRequest
+         * @function getTypeUrl
+         * @memberof form_app.SetFormAppRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SetFormAppRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/form_app.SetFormAppRequest";
+        };
+
+        return SetFormAppRequest;
+    })();
+
+    form_app.GetFormAppRequest = (function() {
+
+        /**
+         * Properties of a GetFormAppRequest.
+         * @memberof form_app
+         * @interface IGetFormAppRequest
+         * @property {app.IAppIndex|null} [app] GetFormAppRequest app
+         */
+
+        /**
+         * Constructs a new GetFormAppRequest.
+         * @memberof form_app
+         * @classdesc Represents a GetFormAppRequest.
+         * @implements IGetFormAppRequest
+         * @constructor
+         * @param {form_app.IGetFormAppRequest=} [properties] Properties to set
+         */
+        function GetFormAppRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetFormAppRequest app.
+         * @member {app.IAppIndex|null|undefined} app
+         * @memberof form_app.GetFormAppRequest
+         * @instance
+         */
+        GetFormAppRequest.prototype.app = null;
+
+        /**
+         * Creates a new GetFormAppRequest instance using the specified properties.
+         * @function create
+         * @memberof form_app.GetFormAppRequest
+         * @static
+         * @param {form_app.IGetFormAppRequest=} [properties] Properties to set
+         * @returns {form_app.GetFormAppRequest} GetFormAppRequest instance
+         */
+        GetFormAppRequest.create = function create(properties) {
+            return new GetFormAppRequest(properties);
+        };
+
+        /**
+         * Encodes the specified GetFormAppRequest message. Does not implicitly {@link form_app.GetFormAppRequest.verify|verify} messages.
+         * @function encode
+         * @memberof form_app.GetFormAppRequest
+         * @static
+         * @param {form_app.IGetFormAppRequest} message GetFormAppRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetFormAppRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.app != null && Object.hasOwnProperty.call(message, "app"))
+                $root.app.AppIndex.encode(message.app, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetFormAppRequest message, length delimited. Does not implicitly {@link form_app.GetFormAppRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof form_app.GetFormAppRequest
+         * @static
+         * @param {form_app.IGetFormAppRequest} message GetFormAppRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetFormAppRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetFormAppRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof form_app.GetFormAppRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {form_app.GetFormAppRequest} GetFormAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetFormAppRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.form_app.GetFormAppRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 2: {
+                        message.app = $root.app.AppIndex.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetFormAppRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof form_app.GetFormAppRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {form_app.GetFormAppRequest} GetFormAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetFormAppRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetFormAppRequest message.
+         * @function verify
+         * @memberof form_app.GetFormAppRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetFormAppRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.app != null && message.hasOwnProperty("app")) {
+                var error = $root.app.AppIndex.verify(message.app);
+                if (error)
+                    return "app." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a GetFormAppRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof form_app.GetFormAppRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {form_app.GetFormAppRequest} GetFormAppRequest
+         */
+        GetFormAppRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.form_app.GetFormAppRequest)
+                return object;
+            var message = new $root.form_app.GetFormAppRequest();
+            if (object.app != null) {
+                if (typeof object.app !== "object")
+                    throw TypeError(".form_app.GetFormAppRequest.app: object expected");
+                message.app = $root.app.AppIndex.fromObject(object.app);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetFormAppRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof form_app.GetFormAppRequest
+         * @static
+         * @param {form_app.GetFormAppRequest} message GetFormAppRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetFormAppRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.app = null;
+            if (message.app != null && message.hasOwnProperty("app"))
+                object.app = $root.app.AppIndex.toObject(message.app, options);
+            return object;
+        };
+
+        /**
+         * Converts this GetFormAppRequest to JSON.
+         * @function toJSON
+         * @memberof form_app.GetFormAppRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetFormAppRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for GetFormAppRequest
+         * @function getTypeUrl
+         * @memberof form_app.GetFormAppRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        GetFormAppRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/form_app.GetFormAppRequest";
+        };
+
+        return GetFormAppRequest;
+    })();
+
+    form_app.FormApp = (function() {
+
+        /**
+         * Properties of a FormApp.
+         * @memberof form_app
+         * @interface IFormApp
+         * @property {string|null} [prefixImg] FormApp prefixImg
+         * @property {string|null} [form] FormApp form
+         * @property {string|null} [suffixImg] FormApp suffixImg
+         * @property {number|null} [price] FormApp price
+         */
+
+        /**
+         * Constructs a new FormApp.
+         * @memberof form_app
+         * @classdesc Represents a FormApp.
+         * @implements IFormApp
+         * @constructor
+         * @param {form_app.IFormApp=} [properties] Properties to set
+         */
+        function FormApp(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * FormApp prefixImg.
+         * @member {string} prefixImg
+         * @memberof form_app.FormApp
+         * @instance
+         */
+        FormApp.prototype.prefixImg = "";
+
+        /**
+         * FormApp form.
+         * @member {string} form
+         * @memberof form_app.FormApp
+         * @instance
+         */
+        FormApp.prototype.form = "";
+
+        /**
+         * FormApp suffixImg.
+         * @member {string} suffixImg
+         * @memberof form_app.FormApp
+         * @instance
+         */
+        FormApp.prototype.suffixImg = "";
+
+        /**
+         * FormApp price.
+         * @member {number} price
+         * @memberof form_app.FormApp
+         * @instance
+         */
+        FormApp.prototype.price = 0;
+
+        /**
+         * Creates a new FormApp instance using the specified properties.
+         * @function create
+         * @memberof form_app.FormApp
+         * @static
+         * @param {form_app.IFormApp=} [properties] Properties to set
+         * @returns {form_app.FormApp} FormApp instance
+         */
+        FormApp.create = function create(properties) {
+            return new FormApp(properties);
+        };
+
+        /**
+         * Encodes the specified FormApp message. Does not implicitly {@link form_app.FormApp.verify|verify} messages.
+         * @function encode
+         * @memberof form_app.FormApp
+         * @static
+         * @param {form_app.IFormApp} message FormApp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FormApp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.prefixImg != null && Object.hasOwnProperty.call(message, "prefixImg"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.prefixImg);
+            if (message.form != null && Object.hasOwnProperty.call(message, "form"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.form);
+            if (message.suffixImg != null && Object.hasOwnProperty.call(message, "suffixImg"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.suffixImg);
+            if (message.price != null && Object.hasOwnProperty.call(message, "price"))
+                writer.uint32(/* id 21, wireType 1 =*/169).double(message.price);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified FormApp message, length delimited. Does not implicitly {@link form_app.FormApp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof form_app.FormApp
+         * @static
+         * @param {form_app.IFormApp} message FormApp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        FormApp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a FormApp message from the specified reader or buffer.
+         * @function decode
+         * @memberof form_app.FormApp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {form_app.FormApp} FormApp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FormApp.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.form_app.FormApp();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.prefixImg = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.form = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.suffixImg = reader.string();
+                        break;
+                    }
+                case 21: {
+                        message.price = reader.double();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a FormApp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof form_app.FormApp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {form_app.FormApp} FormApp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        FormApp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a FormApp message.
+         * @function verify
+         * @memberof form_app.FormApp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        FormApp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.prefixImg != null && message.hasOwnProperty("prefixImg"))
+                if (!$util.isString(message.prefixImg))
+                    return "prefixImg: string expected";
+            if (message.form != null && message.hasOwnProperty("form"))
+                if (!$util.isString(message.form))
+                    return "form: string expected";
+            if (message.suffixImg != null && message.hasOwnProperty("suffixImg"))
+                if (!$util.isString(message.suffixImg))
+                    return "suffixImg: string expected";
+            if (message.price != null && message.hasOwnProperty("price"))
+                if (typeof message.price !== "number")
+                    return "price: number expected";
+            return null;
+        };
+
+        /**
+         * Creates a FormApp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof form_app.FormApp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {form_app.FormApp} FormApp
+         */
+        FormApp.fromObject = function fromObject(object) {
+            if (object instanceof $root.form_app.FormApp)
+                return object;
+            var message = new $root.form_app.FormApp();
+            if (object.prefixImg != null)
+                message.prefixImg = String(object.prefixImg);
+            if (object.form != null)
+                message.form = String(object.form);
+            if (object.suffixImg != null)
+                message.suffixImg = String(object.suffixImg);
+            if (object.price != null)
+                message.price = Number(object.price);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a FormApp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof form_app.FormApp
+         * @static
+         * @param {form_app.FormApp} message FormApp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        FormApp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.prefixImg = "";
+                object.form = "";
+                object.suffixImg = "";
+                object.price = 0;
+            }
+            if (message.prefixImg != null && message.hasOwnProperty("prefixImg"))
+                object.prefixImg = message.prefixImg;
+            if (message.form != null && message.hasOwnProperty("form"))
+                object.form = message.form;
+            if (message.suffixImg != null && message.hasOwnProperty("suffixImg"))
+                object.suffixImg = message.suffixImg;
+            if (message.price != null && message.hasOwnProperty("price"))
+                object.price = options.json && !isFinite(message.price) ? String(message.price) : message.price;
+            return object;
+        };
+
+        /**
+         * Converts this FormApp to JSON.
+         * @function toJSON
+         * @memberof form_app.FormApp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        FormApp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for FormApp
+         * @function getTypeUrl
+         * @memberof form_app.FormApp
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        FormApp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/form_app.FormApp";
+        };
+
+        return FormApp;
+    })();
+
+    form_app.FormAppService = (function() {
+
+        /**
+         * Constructs a new FormAppService service.
+         * @memberof form_app
+         * @classdesc Represents a FormAppService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function FormAppService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (FormAppService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = FormAppService;
+
+        /**
+         * Creates new FormAppService service using the specified rpc implementation.
+         * @function create
+         * @memberof form_app.FormAppService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {FormAppService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        FormAppService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link form_app.FormAppService#setFormApp}.
+         * @memberof form_app.FormAppService
+         * @typedef SetFormAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {common.Empty} [response] Empty
+         */
+
+        /**
+         * Calls SetFormApp.
+         * @function setFormApp
+         * @memberof form_app.FormAppService
+         * @instance
+         * @param {form_app.ISetFormAppRequest} request SetFormAppRequest message or plain object
+         * @param {form_app.FormAppService.SetFormAppCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(FormAppService.prototype.setFormApp = function setFormApp(request, callback) {
+            return this.rpcCall(setFormApp, $root.form_app.SetFormAppRequest, $root.common.Empty, request, callback);
+        }, "name", { value: "SetFormApp" });
+
+        /**
+         * Calls SetFormApp.
+         * @function setFormApp
+         * @memberof form_app.FormAppService
+         * @instance
+         * @param {form_app.ISetFormAppRequest} request SetFormAppRequest message or plain object
+         * @returns {Promise<common.Empty>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link form_app.FormAppService#getFormApp}.
+         * @memberof form_app.FormAppService
+         * @typedef GetFormAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {form_app.FormApp} [response] FormApp
+         */
+
+        /**
+         * Calls GetFormApp.
+         * @function getFormApp
+         * @memberof form_app.FormAppService
+         * @instance
+         * @param {form_app.IGetFormAppRequest} request GetFormAppRequest message or plain object
+         * @param {form_app.FormAppService.GetFormAppCallback} callback Node-style callback called with the error, if any, and FormApp
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(FormAppService.prototype.getFormApp = function getFormApp(request, callback) {
+            return this.rpcCall(getFormApp, $root.form_app.GetFormAppRequest, $root.form_app.FormApp, request, callback);
+        }, "name", { value: "GetFormApp" });
+
+        /**
+         * Calls GetFormApp.
+         * @function getFormApp
+         * @memberof form_app.FormAppService
+         * @instance
+         * @param {form_app.IGetFormAppRequest} request GetFormAppRequest message or plain object
+         * @returns {Promise<form_app.FormApp>} Promise
+         * @variation 2
+         */
+
+        return FormAppService;
+    })();
+
+    return form_app;
+})();
+
+$root.form_data = (function() {
+
+    /**
+     * Namespace form_data.
+     * @exports form_data
+     * @namespace
+     */
+    var form_data = {};
+
+    form_data.SubmitFormDataRequest = (function() {
+
+        /**
+         * Properties of a SubmitFormDataRequest.
+         * @memberof form_data
+         * @interface ISubmitFormDataRequest
+         * @property {auth.IAuthorization|null} [auth] SubmitFormDataRequest auth
+         * @property {app.IAppIndex|null} [app] SubmitFormDataRequest app
+         * @property {string|null} [form] SubmitFormDataRequest form
+         */
+
+        /**
+         * Constructs a new SubmitFormDataRequest.
+         * @memberof form_data
+         * @classdesc Represents a SubmitFormDataRequest.
+         * @implements ISubmitFormDataRequest
+         * @constructor
+         * @param {form_data.ISubmitFormDataRequest=} [properties] Properties to set
+         */
+        function SubmitFormDataRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SubmitFormDataRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof form_data.SubmitFormDataRequest
+         * @instance
+         */
+        SubmitFormDataRequest.prototype.auth = null;
+
+        /**
+         * SubmitFormDataRequest app.
+         * @member {app.IAppIndex|null|undefined} app
+         * @memberof form_data.SubmitFormDataRequest
+         * @instance
+         */
+        SubmitFormDataRequest.prototype.app = null;
+
+        /**
+         * SubmitFormDataRequest form.
+         * @member {string} form
+         * @memberof form_data.SubmitFormDataRequest
+         * @instance
+         */
+        SubmitFormDataRequest.prototype.form = "";
+
+        /**
+         * Creates a new SubmitFormDataRequest instance using the specified properties.
+         * @function create
+         * @memberof form_data.SubmitFormDataRequest
+         * @static
+         * @param {form_data.ISubmitFormDataRequest=} [properties] Properties to set
+         * @returns {form_data.SubmitFormDataRequest} SubmitFormDataRequest instance
+         */
+        SubmitFormDataRequest.create = function create(properties) {
+            return new SubmitFormDataRequest(properties);
+        };
+
+        /**
+         * Encodes the specified SubmitFormDataRequest message. Does not implicitly {@link form_data.SubmitFormDataRequest.verify|verify} messages.
+         * @function encode
+         * @memberof form_data.SubmitFormDataRequest
+         * @static
+         * @param {form_data.ISubmitFormDataRequest} message SubmitFormDataRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SubmitFormDataRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.app != null && Object.hasOwnProperty.call(message, "app"))
+                $root.app.AppIndex.encode(message.app, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.form != null && Object.hasOwnProperty.call(message, "form"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.form);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SubmitFormDataRequest message, length delimited. Does not implicitly {@link form_data.SubmitFormDataRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof form_data.SubmitFormDataRequest
+         * @static
+         * @param {form_data.ISubmitFormDataRequest} message SubmitFormDataRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SubmitFormDataRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SubmitFormDataRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof form_data.SubmitFormDataRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {form_data.SubmitFormDataRequest} SubmitFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SubmitFormDataRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.form_data.SubmitFormDataRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.app = $root.app.AppIndex.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 12: {
+                        message.form = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SubmitFormDataRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof form_data.SubmitFormDataRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {form_data.SubmitFormDataRequest} SubmitFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SubmitFormDataRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SubmitFormDataRequest message.
+         * @function verify
+         * @memberof form_data.SubmitFormDataRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SubmitFormDataRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.app != null && message.hasOwnProperty("app")) {
+                var error = $root.app.AppIndex.verify(message.app);
+                if (error)
+                    return "app." + error;
+            }
+            if (message.form != null && message.hasOwnProperty("form"))
+                if (!$util.isString(message.form))
+                    return "form: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a SubmitFormDataRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof form_data.SubmitFormDataRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {form_data.SubmitFormDataRequest} SubmitFormDataRequest
+         */
+        SubmitFormDataRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.form_data.SubmitFormDataRequest)
+                return object;
+            var message = new $root.form_data.SubmitFormDataRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".form_data.SubmitFormDataRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.app != null) {
+                if (typeof object.app !== "object")
+                    throw TypeError(".form_data.SubmitFormDataRequest.app: object expected");
+                message.app = $root.app.AppIndex.fromObject(object.app);
+            }
+            if (object.form != null)
+                message.form = String(object.form);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SubmitFormDataRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof form_data.SubmitFormDataRequest
+         * @static
+         * @param {form_data.SubmitFormDataRequest} message SubmitFormDataRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SubmitFormDataRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.app = null;
+                object.form = "";
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.app != null && message.hasOwnProperty("app"))
+                object.app = $root.app.AppIndex.toObject(message.app, options);
+            if (message.form != null && message.hasOwnProperty("form"))
+                object.form = message.form;
+            return object;
+        };
+
+        /**
+         * Converts this SubmitFormDataRequest to JSON.
+         * @function toJSON
+         * @memberof form_data.SubmitFormDataRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SubmitFormDataRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SubmitFormDataRequest
+         * @function getTypeUrl
+         * @memberof form_data.SubmitFormDataRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SubmitFormDataRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/form_data.SubmitFormDataRequest";
+        };
+
+        return SubmitFormDataRequest;
+    })();
+
+    form_data.FormDataService = (function() {
+
+        /**
+         * Constructs a new FormDataService service.
+         * @memberof form_data
+         * @classdesc Represents a FormDataService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function FormDataService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (FormDataService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = FormDataService;
+
+        /**
+         * Creates new FormDataService service using the specified rpc implementation.
+         * @function create
+         * @memberof form_data.FormDataService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {FormDataService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        FormDataService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link form_data.FormDataService#submitFormData}.
+         * @memberof form_data.FormDataService
+         * @typedef SubmitFormDataCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {pay.PayRequest} [response] PayRequest
+         */
+
+        /**
+         * Calls SubmitFormData.
+         * @function submitFormData
+         * @memberof form_data.FormDataService
+         * @instance
+         * @param {form_data.ISubmitFormDataRequest} request SubmitFormDataRequest message or plain object
+         * @param {form_data.FormDataService.SubmitFormDataCallback} callback Node-style callback called with the error, if any, and PayRequest
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(FormDataService.prototype.submitFormData = function submitFormData(request, callback) {
+            return this.rpcCall(submitFormData, $root.form_data.SubmitFormDataRequest, $root.pay.PayRequest, request, callback);
+        }, "name", { value: "SubmitFormData" });
+
+        /**
+         * Calls SubmitFormData.
+         * @function submitFormData
+         * @memberof form_data.FormDataService
+         * @instance
+         * @param {form_data.ISubmitFormDataRequest} request SubmitFormDataRequest message or plain object
+         * @returns {Promise<pay.PayRequest>} Promise
+         * @variation 2
+         */
+
+        return FormDataService;
+    })();
+
+    return form_data;
+})();
+
+$root.pay = (function() {
+
+    /**
+     * Namespace pay.
+     * @exports pay
+     * @namespace
+     */
+    var pay = {};
+
+    /**
+     * PayMode enum.
+     * @name pay.PayMode
+     * @enum {number}
+     * @property {number} UNKNOWN=0 UNKNOWN value
+     * @property {number} WEIXIN=1 WEIXIN value
+     */
+    pay.PayMode = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "UNKNOWN"] = 0;
+        values[valuesById[1] = "WEIXIN"] = 1;
+        return values;
+    })();
+
+    pay.WeixinPay = (function() {
+
+        /**
+         * Properties of a WeixinPay.
+         * @memberof pay
+         * @interface IWeixinPay
+         * @property {string|null} [appId] WeixinPay appId
+         * @property {string|null} [timeStamp] WeixinPay timeStamp
+         * @property {string|null} [nonceStr] WeixinPay nonceStr
+         * @property {string|null} ["package"] WeixinPay package
+         * @property {string|null} [signType] WeixinPay signType
+         * @property {string|null} [paySign] WeixinPay paySign
+         */
+
+        /**
+         * Constructs a new WeixinPay.
+         * @memberof pay
+         * @classdesc Represents a WeixinPay.
+         * @implements IWeixinPay
+         * @constructor
+         * @param {pay.IWeixinPay=} [properties] Properties to set
+         */
+        function WeixinPay(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * WeixinPay appId.
+         * @member {string} appId
+         * @memberof pay.WeixinPay
+         * @instance
+         */
+        WeixinPay.prototype.appId = "";
+
+        /**
+         * WeixinPay timeStamp.
+         * @member {string} timeStamp
+         * @memberof pay.WeixinPay
+         * @instance
+         */
+        WeixinPay.prototype.timeStamp = "";
+
+        /**
+         * WeixinPay nonceStr.
+         * @member {string} nonceStr
+         * @memberof pay.WeixinPay
+         * @instance
+         */
+        WeixinPay.prototype.nonceStr = "";
+
+        /**
+         * WeixinPay package.
+         * @member {string} package
+         * @memberof pay.WeixinPay
+         * @instance
+         */
+        WeixinPay.prototype["package"] = "";
+
+        /**
+         * WeixinPay signType.
+         * @member {string} signType
+         * @memberof pay.WeixinPay
+         * @instance
+         */
+        WeixinPay.prototype.signType = "";
+
+        /**
+         * WeixinPay paySign.
+         * @member {string} paySign
+         * @memberof pay.WeixinPay
+         * @instance
+         */
+        WeixinPay.prototype.paySign = "";
+
+        /**
+         * Creates a new WeixinPay instance using the specified properties.
+         * @function create
+         * @memberof pay.WeixinPay
+         * @static
+         * @param {pay.IWeixinPay=} [properties] Properties to set
+         * @returns {pay.WeixinPay} WeixinPay instance
+         */
+        WeixinPay.create = function create(properties) {
+            return new WeixinPay(properties);
+        };
+
+        /**
+         * Encodes the specified WeixinPay message. Does not implicitly {@link pay.WeixinPay.verify|verify} messages.
+         * @function encode
+         * @memberof pay.WeixinPay
+         * @static
+         * @param {pay.IWeixinPay} message WeixinPay message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WeixinPay.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.appId != null && Object.hasOwnProperty.call(message, "appId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.appId);
+            if (message.timeStamp != null && Object.hasOwnProperty.call(message, "timeStamp"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.timeStamp);
+            if (message.nonceStr != null && Object.hasOwnProperty.call(message, "nonceStr"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.nonceStr);
+            if (message["package"] != null && Object.hasOwnProperty.call(message, "package"))
+                writer.uint32(/* id 4, wireType 2 =*/34).string(message["package"]);
+            if (message.signType != null && Object.hasOwnProperty.call(message, "signType"))
+                writer.uint32(/* id 5, wireType 2 =*/42).string(message.signType);
+            if (message.paySign != null && Object.hasOwnProperty.call(message, "paySign"))
+                writer.uint32(/* id 6, wireType 2 =*/50).string(message.paySign);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified WeixinPay message, length delimited. Does not implicitly {@link pay.WeixinPay.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pay.WeixinPay
+         * @static
+         * @param {pay.IWeixinPay} message WeixinPay message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        WeixinPay.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a WeixinPay message from the specified reader or buffer.
+         * @function decode
+         * @memberof pay.WeixinPay
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pay.WeixinPay} WeixinPay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WeixinPay.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pay.WeixinPay();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.appId = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.timeStamp = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.nonceStr = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message["package"] = reader.string();
+                        break;
+                    }
+                case 5: {
+                        message.signType = reader.string();
+                        break;
+                    }
+                case 6: {
+                        message.paySign = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a WeixinPay message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pay.WeixinPay
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pay.WeixinPay} WeixinPay
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        WeixinPay.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a WeixinPay message.
+         * @function verify
+         * @memberof pay.WeixinPay
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        WeixinPay.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                if (!$util.isString(message.appId))
+                    return "appId: string expected";
+            if (message.timeStamp != null && message.hasOwnProperty("timeStamp"))
+                if (!$util.isString(message.timeStamp))
+                    return "timeStamp: string expected";
+            if (message.nonceStr != null && message.hasOwnProperty("nonceStr"))
+                if (!$util.isString(message.nonceStr))
+                    return "nonceStr: string expected";
+            if (message["package"] != null && message.hasOwnProperty("package"))
+                if (!$util.isString(message["package"]))
+                    return "package: string expected";
+            if (message.signType != null && message.hasOwnProperty("signType"))
+                if (!$util.isString(message.signType))
+                    return "signType: string expected";
+            if (message.paySign != null && message.hasOwnProperty("paySign"))
+                if (!$util.isString(message.paySign))
+                    return "paySign: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a WeixinPay message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pay.WeixinPay
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pay.WeixinPay} WeixinPay
+         */
+        WeixinPay.fromObject = function fromObject(object) {
+            if (object instanceof $root.pay.WeixinPay)
+                return object;
+            var message = new $root.pay.WeixinPay();
+            if (object.appId != null)
+                message.appId = String(object.appId);
+            if (object.timeStamp != null)
+                message.timeStamp = String(object.timeStamp);
+            if (object.nonceStr != null)
+                message.nonceStr = String(object.nonceStr);
+            if (object["package"] != null)
+                message["package"] = String(object["package"]);
+            if (object.signType != null)
+                message.signType = String(object.signType);
+            if (object.paySign != null)
+                message.paySign = String(object.paySign);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a WeixinPay message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pay.WeixinPay
+         * @static
+         * @param {pay.WeixinPay} message WeixinPay
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        WeixinPay.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.appId = "";
+                object.timeStamp = "";
+                object.nonceStr = "";
+                object["package"] = "";
+                object.signType = "";
+                object.paySign = "";
+            }
+            if (message.appId != null && message.hasOwnProperty("appId"))
+                object.appId = message.appId;
+            if (message.timeStamp != null && message.hasOwnProperty("timeStamp"))
+                object.timeStamp = message.timeStamp;
+            if (message.nonceStr != null && message.hasOwnProperty("nonceStr"))
+                object.nonceStr = message.nonceStr;
+            if (message["package"] != null && message.hasOwnProperty("package"))
+                object["package"] = message["package"];
+            if (message.signType != null && message.hasOwnProperty("signType"))
+                object.signType = message.signType;
+            if (message.paySign != null && message.hasOwnProperty("paySign"))
+                object.paySign = message.paySign;
+            return object;
+        };
+
+        /**
+         * Converts this WeixinPay to JSON.
+         * @function toJSON
+         * @memberof pay.WeixinPay
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        WeixinPay.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for WeixinPay
+         * @function getTypeUrl
+         * @memberof pay.WeixinPay
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        WeixinPay.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pay.WeixinPay";
+        };
+
+        return WeixinPay;
+    })();
+
+    pay.PayRequest = (function() {
+
+        /**
+         * Properties of a PayRequest.
+         * @memberof pay
+         * @interface IPayRequest
+         * @property {pay.IWeixinPay|null} [weixin] PayRequest weixin
+         */
+
+        /**
+         * Constructs a new PayRequest.
+         * @memberof pay
+         * @classdesc Represents a PayRequest.
+         * @implements IPayRequest
+         * @constructor
+         * @param {pay.IPayRequest=} [properties] Properties to set
+         */
+        function PayRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * PayRequest weixin.
+         * @member {pay.IWeixinPay|null|undefined} weixin
+         * @memberof pay.PayRequest
+         * @instance
+         */
+        PayRequest.prototype.weixin = null;
+
+        /**
+         * Creates a new PayRequest instance using the specified properties.
+         * @function create
+         * @memberof pay.PayRequest
+         * @static
+         * @param {pay.IPayRequest=} [properties] Properties to set
+         * @returns {pay.PayRequest} PayRequest instance
+         */
+        PayRequest.create = function create(properties) {
+            return new PayRequest(properties);
+        };
+
+        /**
+         * Encodes the specified PayRequest message. Does not implicitly {@link pay.PayRequest.verify|verify} messages.
+         * @function encode
+         * @memberof pay.PayRequest
+         * @static
+         * @param {pay.IPayRequest} message PayRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PayRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.weixin != null && Object.hasOwnProperty.call(message, "weixin"))
+                $root.pay.WeixinPay.encode(message.weixin, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified PayRequest message, length delimited. Does not implicitly {@link pay.PayRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pay.PayRequest
+         * @static
+         * @param {pay.IPayRequest} message PayRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        PayRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a PayRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof pay.PayRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pay.PayRequest} PayRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PayRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pay.PayRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.weixin = $root.pay.WeixinPay.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a PayRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pay.PayRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pay.PayRequest} PayRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        PayRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a PayRequest message.
+         * @function verify
+         * @memberof pay.PayRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        PayRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.weixin != null && message.hasOwnProperty("weixin")) {
+                var error = $root.pay.WeixinPay.verify(message.weixin);
+                if (error)
+                    return "weixin." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a PayRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pay.PayRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pay.PayRequest} PayRequest
+         */
+        PayRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.pay.PayRequest)
+                return object;
+            var message = new $root.pay.PayRequest();
+            if (object.weixin != null) {
+                if (typeof object.weixin !== "object")
+                    throw TypeError(".pay.PayRequest.weixin: object expected");
+                message.weixin = $root.pay.WeixinPay.fromObject(object.weixin);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a PayRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pay.PayRequest
+         * @static
+         * @param {pay.PayRequest} message PayRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        PayRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.weixin = null;
+            if (message.weixin != null && message.hasOwnProperty("weixin"))
+                object.weixin = $root.pay.WeixinPay.toObject(message.weixin, options);
+            return object;
+        };
+
+        /**
+         * Converts this PayRequest to JSON.
+         * @function toJSON
+         * @memberof pay.PayRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        PayRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for PayRequest
+         * @function getTypeUrl
+         * @memberof pay.PayRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        PayRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pay.PayRequest";
+        };
+
+        return PayRequest;
+    })();
+
+    return pay;
+})();
+
 $root.role = (function() {
 
     /**
@@ -3094,7 +4924,7 @@ $root.role = (function() {
      * @name role.Role
      * @enum {number}
      * @property {number} USER=0 USER value
-     * @property {number} ADMIN=1 ADMIN value
+     * @property {number} SUPER_ADMIN=1 SUPER_ADMIN value
      * @property {number} BLACK=9 BLACK value
      * @property {number} SAAS_ADMIN=11 SAAS_ADMIN value
      * @property {number} SAAS_AUTHORIZER=12 SAAS_AUTHORIZER value
@@ -3104,7 +4934,7 @@ $root.role = (function() {
     role.Role = (function() {
         var valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "USER"] = 0;
-        values[valuesById[1] = "ADMIN"] = 1;
+        values[valuesById[1] = "SUPER_ADMIN"] = 1;
         values[valuesById[9] = "BLACK"] = 9;
         values[valuesById[11] = "SAAS_ADMIN"] = 11;
         values[valuesById[12] = "SAAS_AUTHORIZER"] = 12;
@@ -3567,7 +5397,7 @@ $root.role = (function() {
                     case 0:
                         message.roles[i] = 0;
                         break;
-                    case "ADMIN":
+                    case "SUPER_ADMIN":
                     case 1:
                         message.roles[i] = 1;
                         break;
@@ -3890,7 +5720,7 @@ $root.role = (function() {
             case 0:
                 message.role = 0;
                 break;
-            case "ADMIN":
+            case "SUPER_ADMIN":
             case 1:
                 message.role = 1;
                 break;
@@ -4219,7 +6049,7 @@ $root.role = (function() {
             case 0:
                 message.role = 0;
                 break;
-            case "ADMIN":
+            case "SUPER_ADMIN":
             case 1:
                 message.role = 1;
                 break;
