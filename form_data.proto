@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package form_data;
+
+import "common.proto";
+import "auth.proto";
+import "app.proto";
+import "pay.proto";
+
+message SubmitFormDataRequest {
+  auth.Authorization auth = 1;
+  app.AppIndex app = 2;
+  string form = 12;
+}
+
+// 表单程序相关服务
+service FormDataService {
+  rpc SubmitFormData(SubmitFormDataRequest) returns (pay.PayRequest);
+}

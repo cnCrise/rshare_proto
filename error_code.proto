@@ -30,6 +30,8 @@ enum ErrorCode {
   INVALID_APP = 2018;
   // 用户操作权限不足
   PERMISSION_DENIED = 2021;
+  // 数据不存在
+  NOT_FOUND = 4004;
   // 数据库异常
   DB_ERR = 7001;
   // 本地IO异常

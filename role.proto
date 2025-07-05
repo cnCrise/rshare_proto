@@ -11,7 +11,7 @@ enum Role {
   // 普通用户
   USER = 0;
   // 超级管理员
-  ADMIN = 1;
+  SUPER_ADMIN = 1;
   // 黑名单
   BLACK = 9;
   // Saas管理员

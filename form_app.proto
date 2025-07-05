@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package form_app;
+
+import "common.proto";
+import "auth.proto";
+import "app.proto";
+
+message SetFormAppRequest {
+  auth.Authorization auth = 1;
+  app.AppIndex app = 2;
+  string prefix_img = 11;
+  string form = 12;
+  string suffix_img = 13;
+  double price = 21;
+}
+message GetFormAppRequest {
+  app.AppIndex app = 2;
+}
+message FormApp {
+  string prefix_img = 11;
+  string form = 12;
+  string suffix_img = 13;
+  double price = 21;
+}
+
+// 表单程序相关服务
+service FormAppService {
+  rpc SetFormApp(SetFormAppRequest) returns (common.Empty);
+  rpc GetFormApp(GetFormAppRequest) returns (FormApp);
+}
