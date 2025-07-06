@@ -2509,6 +2509,544 @@ $root.auth = (function() {
     return auth;
 })();
 
+$root.captcha = (function() {
+
+    /**
+     * Namespace captcha.
+     * @exports captcha
+     * @namespace
+     */
+    var captcha = {};
+
+    captcha.CreateCaptchaResponse = (function() {
+
+        /**
+         * Properties of a CreateCaptchaResponse.
+         * @memberof captcha
+         * @interface ICreateCaptchaResponse
+         * @property {string|null} [id] CreateCaptchaResponse id
+         * @property {string|null} [path] CreateCaptchaResponse path
+         */
+
+        /**
+         * Constructs a new CreateCaptchaResponse.
+         * @memberof captcha
+         * @classdesc Represents a CreateCaptchaResponse.
+         * @implements ICreateCaptchaResponse
+         * @constructor
+         * @param {captcha.ICreateCaptchaResponse=} [properties] Properties to set
+         */
+        function CreateCaptchaResponse(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CreateCaptchaResponse id.
+         * @member {string} id
+         * @memberof captcha.CreateCaptchaResponse
+         * @instance
+         */
+        CreateCaptchaResponse.prototype.id = "";
+
+        /**
+         * CreateCaptchaResponse path.
+         * @member {string} path
+         * @memberof captcha.CreateCaptchaResponse
+         * @instance
+         */
+        CreateCaptchaResponse.prototype.path = "";
+
+        /**
+         * Creates a new CreateCaptchaResponse instance using the specified properties.
+         * @function create
+         * @memberof captcha.CreateCaptchaResponse
+         * @static
+         * @param {captcha.ICreateCaptchaResponse=} [properties] Properties to set
+         * @returns {captcha.CreateCaptchaResponse} CreateCaptchaResponse instance
+         */
+        CreateCaptchaResponse.create = function create(properties) {
+            return new CreateCaptchaResponse(properties);
+        };
+
+        /**
+         * Encodes the specified CreateCaptchaResponse message. Does not implicitly {@link captcha.CreateCaptchaResponse.verify|verify} messages.
+         * @function encode
+         * @memberof captcha.CreateCaptchaResponse
+         * @static
+         * @param {captcha.ICreateCaptchaResponse} message CreateCaptchaResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateCaptchaResponse.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.id);
+            if (message.path != null && Object.hasOwnProperty.call(message, "path"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.path);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CreateCaptchaResponse message, length delimited. Does not implicitly {@link captcha.CreateCaptchaResponse.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof captcha.CreateCaptchaResponse
+         * @static
+         * @param {captcha.ICreateCaptchaResponse} message CreateCaptchaResponse message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CreateCaptchaResponse.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CreateCaptchaResponse message from the specified reader or buffer.
+         * @function decode
+         * @memberof captcha.CreateCaptchaResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {captcha.CreateCaptchaResponse} CreateCaptchaResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateCaptchaResponse.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.captcha.CreateCaptchaResponse();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.path = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CreateCaptchaResponse message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof captcha.CreateCaptchaResponse
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {captcha.CreateCaptchaResponse} CreateCaptchaResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CreateCaptchaResponse.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CreateCaptchaResponse message.
+         * @function verify
+         * @memberof captcha.CreateCaptchaResponse
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CreateCaptchaResponse.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
+            if (message.path != null && message.hasOwnProperty("path"))
+                if (!$util.isString(message.path))
+                    return "path: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a CreateCaptchaResponse message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof captcha.CreateCaptchaResponse
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {captcha.CreateCaptchaResponse} CreateCaptchaResponse
+         */
+        CreateCaptchaResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.captcha.CreateCaptchaResponse)
+                return object;
+            var message = new $root.captcha.CreateCaptchaResponse();
+            if (object.id != null)
+                message.id = String(object.id);
+            if (object.path != null)
+                message.path = String(object.path);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CreateCaptchaResponse message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof captcha.CreateCaptchaResponse
+         * @static
+         * @param {captcha.CreateCaptchaResponse} message CreateCaptchaResponse
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CreateCaptchaResponse.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.id = "";
+                object.path = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.path != null && message.hasOwnProperty("path"))
+                object.path = message.path;
+            return object;
+        };
+
+        /**
+         * Converts this CreateCaptchaResponse to JSON.
+         * @function toJSON
+         * @memberof captcha.CreateCaptchaResponse
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CreateCaptchaResponse.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CreateCaptchaResponse
+         * @function getTypeUrl
+         * @memberof captcha.CreateCaptchaResponse
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CreateCaptchaResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/captcha.CreateCaptchaResponse";
+        };
+
+        return CreateCaptchaResponse;
+    })();
+
+    captcha.CheckCaptcha = (function() {
+
+        /**
+         * Properties of a CheckCaptcha.
+         * @memberof captcha
+         * @interface ICheckCaptcha
+         * @property {string|null} [id] CheckCaptcha id
+         * @property {string|null} [value] CheckCaptcha value
+         */
+
+        /**
+         * Constructs a new CheckCaptcha.
+         * @memberof captcha
+         * @classdesc Represents a CheckCaptcha.
+         * @implements ICheckCaptcha
+         * @constructor
+         * @param {captcha.ICheckCaptcha=} [properties] Properties to set
+         */
+        function CheckCaptcha(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CheckCaptcha id.
+         * @member {string} id
+         * @memberof captcha.CheckCaptcha
+         * @instance
+         */
+        CheckCaptcha.prototype.id = "";
+
+        /**
+         * CheckCaptcha value.
+         * @member {string} value
+         * @memberof captcha.CheckCaptcha
+         * @instance
+         */
+        CheckCaptcha.prototype.value = "";
+
+        /**
+         * Creates a new CheckCaptcha instance using the specified properties.
+         * @function create
+         * @memberof captcha.CheckCaptcha
+         * @static
+         * @param {captcha.ICheckCaptcha=} [properties] Properties to set
+         * @returns {captcha.CheckCaptcha} CheckCaptcha instance
+         */
+        CheckCaptcha.create = function create(properties) {
+            return new CheckCaptcha(properties);
+        };
+
+        /**
+         * Encodes the specified CheckCaptcha message. Does not implicitly {@link captcha.CheckCaptcha.verify|verify} messages.
+         * @function encode
+         * @memberof captcha.CheckCaptcha
+         * @static
+         * @param {captcha.ICheckCaptcha} message CheckCaptcha message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CheckCaptcha.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.id);
+            if (message.value != null && Object.hasOwnProperty.call(message, "value"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.value);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CheckCaptcha message, length delimited. Does not implicitly {@link captcha.CheckCaptcha.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof captcha.CheckCaptcha
+         * @static
+         * @param {captcha.ICheckCaptcha} message CheckCaptcha message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CheckCaptcha.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CheckCaptcha message from the specified reader or buffer.
+         * @function decode
+         * @memberof captcha.CheckCaptcha
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {captcha.CheckCaptcha} CheckCaptcha
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CheckCaptcha.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.captcha.CheckCaptcha();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 11: {
+                        message.id = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.value = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CheckCaptcha message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof captcha.CheckCaptcha
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {captcha.CheckCaptcha} CheckCaptcha
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CheckCaptcha.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CheckCaptcha message.
+         * @function verify
+         * @memberof captcha.CheckCaptcha
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CheckCaptcha.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.id != null && message.hasOwnProperty("id"))
+                if (!$util.isString(message.id))
+                    return "id: string expected";
+            if (message.value != null && message.hasOwnProperty("value"))
+                if (!$util.isString(message.value))
+                    return "value: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a CheckCaptcha message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof captcha.CheckCaptcha
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {captcha.CheckCaptcha} CheckCaptcha
+         */
+        CheckCaptcha.fromObject = function fromObject(object) {
+            if (object instanceof $root.captcha.CheckCaptcha)
+                return object;
+            var message = new $root.captcha.CheckCaptcha();
+            if (object.id != null)
+                message.id = String(object.id);
+            if (object.value != null)
+                message.value = String(object.value);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CheckCaptcha message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof captcha.CheckCaptcha
+         * @static
+         * @param {captcha.CheckCaptcha} message CheckCaptcha
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CheckCaptcha.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.id = "";
+                object.value = "";
+            }
+            if (message.id != null && message.hasOwnProperty("id"))
+                object.id = message.id;
+            if (message.value != null && message.hasOwnProperty("value"))
+                object.value = message.value;
+            return object;
+        };
+
+        /**
+         * Converts this CheckCaptcha to JSON.
+         * @function toJSON
+         * @memberof captcha.CheckCaptcha
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CheckCaptcha.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CheckCaptcha
+         * @function getTypeUrl
+         * @memberof captcha.CheckCaptcha
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CheckCaptcha.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/captcha.CheckCaptcha";
+        };
+
+        return CheckCaptcha;
+    })();
+
+    captcha.CaptchaService = (function() {
+
+        /**
+         * Constructs a new CaptchaService service.
+         * @memberof captcha
+         * @classdesc Represents a CaptchaService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function CaptchaService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (CaptchaService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = CaptchaService;
+
+        /**
+         * Creates new CaptchaService service using the specified rpc implementation.
+         * @function create
+         * @memberof captcha.CaptchaService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {CaptchaService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        CaptchaService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link captcha.CaptchaService#createCaptcha}.
+         * @memberof captcha.CaptchaService
+         * @typedef CreateCaptchaCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {captcha.CreateCaptchaResponse} [response] CreateCaptchaResponse
+         */
+
+        /**
+         * Calls CreateCaptcha.
+         * @function createCaptcha
+         * @memberof captcha.CaptchaService
+         * @instance
+         * @param {common.IEmpty} request Empty message or plain object
+         * @param {captcha.CaptchaService.CreateCaptchaCallback} callback Node-style callback called with the error, if any, and CreateCaptchaResponse
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(CaptchaService.prototype.createCaptcha = function createCaptcha(request, callback) {
+            return this.rpcCall(createCaptcha, $root.common.Empty, $root.captcha.CreateCaptchaResponse, request, callback);
+        }, "name", { value: "CreateCaptcha" });
+
+        /**
+         * Calls CreateCaptcha.
+         * @function createCaptcha
+         * @memberof captcha.CaptchaService
+         * @instance
+         * @param {common.IEmpty} request Empty message or plain object
+         * @returns {Promise<captcha.CreateCaptchaResponse>} Promise
+         * @variation 2
+         */
+
+        return CaptchaService;
+    })();
+
+    return captcha;
+})();
+
 $root.error_code = (function() {
 
     /**
@@ -2525,6 +3063,7 @@ $root.error_code = (function() {
      * @property {number} SUCCESS=0 SUCCESS value
      * @property {number} INVALID_INPUT=1001 INVALID_INPUT value
      * @property {number} SERDE_ERR=1002 SERDE_ERR value
+     * @property {number} CAPTCHA_ERR=1003 CAPTCHA_ERR value
      * @property {number} NOT_SIGNUP=2001 NOT_SIGNUP value
      * @property {number} NONE_PASSWD=2002 NONE_PASSWD value
      * @property {number} PASSWD_ERR=2003 PASSWD_ERR value
@@ -2536,6 +3075,7 @@ $root.error_code = (function() {
      * @property {number} INVALID_APP=2018 INVALID_APP value
      * @property {number} PERMISSION_DENIED=2021 PERMISSION_DENIED value
      * @property {number} NOT_FOUND=4004 NOT_FOUND value
+     * @property {number} COMMON_ERR=7000 COMMON_ERR value
      * @property {number} DB_ERR=7001 DB_ERR value
      * @property {number} IO_ERR=7101 IO_ERR value
      * @property {number} WX_ERR=8001 WX_ERR value
@@ -2545,6 +3085,7 @@ $root.error_code = (function() {
         values[valuesById[0] = "SUCCESS"] = 0;
         values[valuesById[1001] = "INVALID_INPUT"] = 1001;
         values[valuesById[1002] = "SERDE_ERR"] = 1002;
+        values[valuesById[1003] = "CAPTCHA_ERR"] = 1003;
         values[valuesById[2001] = "NOT_SIGNUP"] = 2001;
         values[valuesById[2002] = "NONE_PASSWD"] = 2002;
         values[valuesById[2003] = "PASSWD_ERR"] = 2003;
@@ -2556,6 +3097,7 @@ $root.error_code = (function() {
         values[valuesById[2018] = "INVALID_APP"] = 2018;
         values[valuesById[2021] = "PERMISSION_DENIED"] = 2021;
         values[valuesById[4004] = "NOT_FOUND"] = 4004;
+        values[valuesById[7000] = "COMMON_ERR"] = 7000;
         values[valuesById[7001] = "DB_ERR"] = 7001;
         values[valuesById[7101] = "IO_ERR"] = 7101;
         values[valuesById[8001] = "WX_ERR"] = 8001;
@@ -8113,6 +8655,7 @@ $root.user = (function() {
          * @memberof user
          * @interface ILoginRequest
          * @property {number|Long|null} [timestamp] LoginRequest timestamp
+         * @property {captcha.ICheckCaptcha|null} [captcha] LoginRequest captcha
          * @property {string|null} [username] LoginRequest username
          * @property {string|null} [passwd] LoginRequest passwd
          * @property {string|null} [deviceId] LoginRequest deviceId
@@ -8142,6 +8685,14 @@ $root.user = (function() {
          * @instance
          */
         LoginRequest.prototype.timestamp = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * LoginRequest captcha.
+         * @member {captcha.ICheckCaptcha|null|undefined} captcha
+         * @memberof user.LoginRequest
+         * @instance
+         */
+        LoginRequest.prototype.captcha = null;
 
         /**
          * LoginRequest username.
@@ -8209,6 +8760,8 @@ $root.user = (function() {
                 writer = $Writer.create();
             if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
                 writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.timestamp);
+            if (message.captcha != null && Object.hasOwnProperty.call(message, "captcha"))
+                $root.captcha.CheckCaptcha.encode(message.captcha, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
             if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                 writer.uint32(/* id 11, wireType 2 =*/90).string(message.username);
             if (message.passwd != null && Object.hasOwnProperty.call(message, "passwd"))
@@ -8257,6 +8810,10 @@ $root.user = (function() {
                 switch (tag >>> 3) {
                 case 1: {
                         message.timestamp = reader.uint64();
+                        break;
+                    }
+                case 3: {
+                        message.captcha = $root.captcha.CheckCaptcha.decode(reader, reader.uint32());
                         break;
                     }
                 case 11: {
@@ -8317,6 +8874,11 @@ $root.user = (function() {
             if (message.timestamp != null && message.hasOwnProperty("timestamp"))
                 if (!$util.isInteger(message.timestamp) && !(message.timestamp && $util.isInteger(message.timestamp.low) && $util.isInteger(message.timestamp.high)))
                     return "timestamp: integer|Long expected";
+            if (message.captcha != null && message.hasOwnProperty("captcha")) {
+                var error = $root.captcha.CheckCaptcha.verify(message.captcha);
+                if (error)
+                    return "captcha." + error;
+            }
             if (message.username != null && message.hasOwnProperty("username"))
                 if (!$util.isString(message.username))
                     return "username: string expected";
@@ -8356,6 +8918,11 @@ $root.user = (function() {
                     message.timestamp = object.timestamp;
                 else if (typeof object.timestamp === "object")
                     message.timestamp = new $util.LongBits(object.timestamp.low >>> 0, object.timestamp.high >>> 0).toNumber(true);
+            if (object.captcha != null) {
+                if (typeof object.captcha !== "object")
+                    throw TypeError(".user.LoginRequest.captcha: object expected");
+                message.captcha = $root.captcha.CheckCaptcha.fromObject(object.captcha);
+            }
             if (object.username != null)
                 message.username = String(object.username);
             if (object.passwd != null)
@@ -8395,6 +8962,7 @@ $root.user = (function() {
                     object.timestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.timestamp = options.longs === String ? "0" : 0;
+                object.captcha = null;
                 object.username = "";
                 object.passwd = "";
                 object.deviceId = "";
@@ -8410,6 +8978,8 @@ $root.user = (function() {
                     object.timestamp = options.longs === String ? String(message.timestamp) : message.timestamp;
                 else
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
+            if (message.captcha != null && message.hasOwnProperty("captcha"))
+                object.captcha = $root.captcha.CheckCaptcha.toObject(message.captcha, options);
             if (message.username != null && message.hasOwnProperty("username"))
                 object.username = message.username;
             if (message.passwd != null && message.hasOwnProperty("passwd"))
@@ -8975,216 +9545,6 @@ $root.user = (function() {
         };
 
         return LoginResponse;
-    })();
-
-    user.GetUserInfoRequest = (function() {
-
-        /**
-         * Properties of a GetUserInfoRequest.
-         * @memberof user
-         * @interface IGetUserInfoRequest
-         * @property {auth.IAuthorization|null} [auth] GetUserInfoRequest auth
-         */
-
-        /**
-         * Constructs a new GetUserInfoRequest.
-         * @memberof user
-         * @classdesc Represents a GetUserInfoRequest.
-         * @implements IGetUserInfoRequest
-         * @constructor
-         * @param {user.IGetUserInfoRequest=} [properties] Properties to set
-         */
-        function GetUserInfoRequest(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * GetUserInfoRequest auth.
-         * @member {auth.IAuthorization|null|undefined} auth
-         * @memberof user.GetUserInfoRequest
-         * @instance
-         */
-        GetUserInfoRequest.prototype.auth = null;
-
-        /**
-         * Creates a new GetUserInfoRequest instance using the specified properties.
-         * @function create
-         * @memberof user.GetUserInfoRequest
-         * @static
-         * @param {user.IGetUserInfoRequest=} [properties] Properties to set
-         * @returns {user.GetUserInfoRequest} GetUserInfoRequest instance
-         */
-        GetUserInfoRequest.create = function create(properties) {
-            return new GetUserInfoRequest(properties);
-        };
-
-        /**
-         * Encodes the specified GetUserInfoRequest message. Does not implicitly {@link user.GetUserInfoRequest.verify|verify} messages.
-         * @function encode
-         * @memberof user.GetUserInfoRequest
-         * @static
-         * @param {user.IGetUserInfoRequest} message GetUserInfoRequest message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        GetUserInfoRequest.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
-                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-            return writer;
-        };
-
-        /**
-         * Encodes the specified GetUserInfoRequest message, length delimited. Does not implicitly {@link user.GetUserInfoRequest.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof user.GetUserInfoRequest
-         * @static
-         * @param {user.IGetUserInfoRequest} message GetUserInfoRequest message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        GetUserInfoRequest.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a GetUserInfoRequest message from the specified reader or buffer.
-         * @function decode
-         * @memberof user.GetUserInfoRequest
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {user.GetUserInfoRequest} GetUserInfoRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        GetUserInfoRequest.decode = function decode(reader, length, error) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.user.GetUserInfoRequest();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                if (tag === error)
-                    break;
-                switch (tag >>> 3) {
-                case 1: {
-                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a GetUserInfoRequest message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof user.GetUserInfoRequest
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {user.GetUserInfoRequest} GetUserInfoRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        GetUserInfoRequest.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a GetUserInfoRequest message.
-         * @function verify
-         * @memberof user.GetUserInfoRequest
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        GetUserInfoRequest.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.auth != null && message.hasOwnProperty("auth")) {
-                var error = $root.auth.Authorization.verify(message.auth);
-                if (error)
-                    return "auth." + error;
-            }
-            return null;
-        };
-
-        /**
-         * Creates a GetUserInfoRequest message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof user.GetUserInfoRequest
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {user.GetUserInfoRequest} GetUserInfoRequest
-         */
-        GetUserInfoRequest.fromObject = function fromObject(object) {
-            if (object instanceof $root.user.GetUserInfoRequest)
-                return object;
-            var message = new $root.user.GetUserInfoRequest();
-            if (object.auth != null) {
-                if (typeof object.auth !== "object")
-                    throw TypeError(".user.GetUserInfoRequest.auth: object expected");
-                message.auth = $root.auth.Authorization.fromObject(object.auth);
-            }
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a GetUserInfoRequest message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof user.GetUserInfoRequest
-         * @static
-         * @param {user.GetUserInfoRequest} message GetUserInfoRequest
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        GetUserInfoRequest.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults)
-                object.auth = null;
-            if (message.auth != null && message.hasOwnProperty("auth"))
-                object.auth = $root.auth.Authorization.toObject(message.auth, options);
-            return object;
-        };
-
-        /**
-         * Converts this GetUserInfoRequest to JSON.
-         * @function toJSON
-         * @memberof user.GetUserInfoRequest
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        GetUserInfoRequest.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for GetUserInfoRequest
-         * @function getTypeUrl
-         * @memberof user.GetUserInfoRequest
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        GetUserInfoRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/user.GetUserInfoRequest";
-        };
-
-        return GetUserInfoRequest;
     })();
 
     /**
@@ -10238,6 +10598,39 @@ $root.user = (function() {
          */
 
         /**
+         * Callback as used by {@link user.UserService#logout}.
+         * @memberof user.UserService
+         * @typedef LogoutCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {common.Empty} [response] Empty
+         */
+
+        /**
+         * Calls Logout.
+         * @function logout
+         * @memberof user.UserService
+         * @instance
+         * @param {auth.IAuthData} request AuthData message or plain object
+         * @param {user.UserService.LogoutCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(UserService.prototype.logout = function logout(request, callback) {
+            return this.rpcCall(logout, $root.auth.AuthData, $root.common.Empty, request, callback);
+        }, "name", { value: "Logout" });
+
+        /**
+         * Calls Logout.
+         * @function logout
+         * @memberof user.UserService
+         * @instance
+         * @param {auth.IAuthData} request AuthData message or plain object
+         * @returns {Promise<common.Empty>} Promise
+         * @variation 2
+         */
+
+        /**
          * Callback as used by {@link user.UserService#threeLogin}.
          * @memberof user.UserService
          * @typedef ThreeLoginCallback
@@ -10284,13 +10677,13 @@ $root.user = (function() {
          * @function getUserInfo
          * @memberof user.UserService
          * @instance
-         * @param {user.IGetUserInfoRequest} request GetUserInfoRequest message or plain object
+         * @param {auth.IAuthData} request AuthData message or plain object
          * @param {user.UserService.GetUserInfoCallback} callback Node-style callback called with the error, if any, and User
          * @returns {undefined}
          * @variation 1
          */
         Object.defineProperty(UserService.prototype.getUserInfo = function getUserInfo(request, callback) {
-            return this.rpcCall(getUserInfo, $root.user.GetUserInfoRequest, $root.user.User, request, callback);
+            return this.rpcCall(getUserInfo, $root.auth.AuthData, $root.user.User, request, callback);
         }, "name", { value: "GetUserInfo" });
 
         /**
@@ -10298,7 +10691,7 @@ $root.user = (function() {
          * @function getUserInfo
          * @memberof user.UserService
          * @instance
-         * @param {user.IGetUserInfoRequest} request GetUserInfoRequest message or plain object
+         * @param {auth.IAuthData} request AuthData message or plain object
          * @returns {Promise<user.User>} Promise
          * @variation 2
          */

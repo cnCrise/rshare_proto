@@ -1135,6 +1135,261 @@ export namespace auth {
     }
 }
 
+/** Namespace captcha. */
+export namespace captcha {
+
+    /** Properties of a CreateCaptchaResponse. */
+    interface ICreateCaptchaResponse {
+
+        /** CreateCaptchaResponse id */
+        id?: (string|null);
+
+        /** CreateCaptchaResponse path */
+        path?: (string|null);
+    }
+
+    /** Represents a CreateCaptchaResponse. */
+    class CreateCaptchaResponse implements ICreateCaptchaResponse {
+
+        /**
+         * Constructs a new CreateCaptchaResponse.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: captcha.ICreateCaptchaResponse);
+
+        /** CreateCaptchaResponse id. */
+        public id: string;
+
+        /** CreateCaptchaResponse path. */
+        public path: string;
+
+        /**
+         * Creates a new CreateCaptchaResponse instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CreateCaptchaResponse instance
+         */
+        public static create(properties?: captcha.ICreateCaptchaResponse): captcha.CreateCaptchaResponse;
+
+        /**
+         * Encodes the specified CreateCaptchaResponse message. Does not implicitly {@link captcha.CreateCaptchaResponse.verify|verify} messages.
+         * @param message CreateCaptchaResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: captcha.ICreateCaptchaResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CreateCaptchaResponse message, length delimited. Does not implicitly {@link captcha.CreateCaptchaResponse.verify|verify} messages.
+         * @param message CreateCaptchaResponse message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: captcha.ICreateCaptchaResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CreateCaptchaResponse message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CreateCaptchaResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): captcha.CreateCaptchaResponse;
+
+        /**
+         * Decodes a CreateCaptchaResponse message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CreateCaptchaResponse
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): captcha.CreateCaptchaResponse;
+
+        /**
+         * Verifies a CreateCaptchaResponse message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CreateCaptchaResponse message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CreateCaptchaResponse
+         */
+        public static fromObject(object: { [k: string]: any }): captcha.CreateCaptchaResponse;
+
+        /**
+         * Creates a plain object from a CreateCaptchaResponse message. Also converts values to other types if specified.
+         * @param message CreateCaptchaResponse
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: captcha.CreateCaptchaResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CreateCaptchaResponse to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CreateCaptchaResponse
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a CheckCaptcha. */
+    interface ICheckCaptcha {
+
+        /** CheckCaptcha id */
+        id?: (string|null);
+
+        /** CheckCaptcha value */
+        value?: (string|null);
+    }
+
+    /** Represents a CheckCaptcha. */
+    class CheckCaptcha implements ICheckCaptcha {
+
+        /**
+         * Constructs a new CheckCaptcha.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: captcha.ICheckCaptcha);
+
+        /** CheckCaptcha id. */
+        public id: string;
+
+        /** CheckCaptcha value. */
+        public value: string;
+
+        /**
+         * Creates a new CheckCaptcha instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CheckCaptcha instance
+         */
+        public static create(properties?: captcha.ICheckCaptcha): captcha.CheckCaptcha;
+
+        /**
+         * Encodes the specified CheckCaptcha message. Does not implicitly {@link captcha.CheckCaptcha.verify|verify} messages.
+         * @param message CheckCaptcha message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: captcha.ICheckCaptcha, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CheckCaptcha message, length delimited. Does not implicitly {@link captcha.CheckCaptcha.verify|verify} messages.
+         * @param message CheckCaptcha message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: captcha.ICheckCaptcha, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CheckCaptcha message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CheckCaptcha
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): captcha.CheckCaptcha;
+
+        /**
+         * Decodes a CheckCaptcha message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CheckCaptcha
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): captcha.CheckCaptcha;
+
+        /**
+         * Verifies a CheckCaptcha message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CheckCaptcha message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CheckCaptcha
+         */
+        public static fromObject(object: { [k: string]: any }): captcha.CheckCaptcha;
+
+        /**
+         * Creates a plain object from a CheckCaptcha message. Also converts values to other types if specified.
+         * @param message CheckCaptcha
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: captcha.CheckCaptcha, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CheckCaptcha to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CheckCaptcha
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Represents a CaptchaService */
+    class CaptchaService extends $protobuf.rpc.Service {
+
+        /**
+         * Constructs a new CaptchaService service.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         */
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+        /**
+         * Creates new CaptchaService service using the specified rpc implementation.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         * @returns RPC service. Useful where requests and/or responses are streamed.
+         */
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): CaptchaService;
+
+        /**
+         * Calls CreateCaptcha.
+         * @param request Empty message or plain object
+         * @param callback Node-style callback called with the error, if any, and CreateCaptchaResponse
+         */
+        public createCaptcha(request: common.IEmpty, callback: captcha.CaptchaService.CreateCaptchaCallback): void;
+
+        /**
+         * Calls CreateCaptcha.
+         * @param request Empty message or plain object
+         * @returns Promise
+         */
+        public createCaptcha(request: common.IEmpty): Promise<captcha.CreateCaptchaResponse>;
+    }
+
+    namespace CaptchaService {
+
+        /**
+         * Callback as used by {@link captcha.CaptchaService#createCaptcha}.
+         * @param error Error, if any
+         * @param [response] CreateCaptchaResponse
+         */
+        type CreateCaptchaCallback = (error: (Error|null), response?: captcha.CreateCaptchaResponse) => void;
+    }
+}
+
 /** Namespace error_code. */
 export namespace error_code {
 
@@ -1143,6 +1398,7 @@ export namespace error_code {
         SUCCESS = 0,
         INVALID_INPUT = 1001,
         SERDE_ERR = 1002,
+        CAPTCHA_ERR = 1003,
         NOT_SIGNUP = 2001,
         NONE_PASSWD = 2002,
         PASSWD_ERR = 2003,
@@ -1154,6 +1410,7 @@ export namespace error_code {
         INVALID_APP = 2018,
         PERMISSION_DENIED = 2021,
         NOT_FOUND = 4004,
+        COMMON_ERR = 7000,
         DB_ERR = 7001,
         IO_ERR = 7101,
         WX_ERR = 8001
@@ -3597,6 +3854,9 @@ export namespace user {
         /** LoginRequest timestamp */
         timestamp?: (number|Long|null);
 
+        /** LoginRequest captcha */
+        captcha?: (captcha.ICheckCaptcha|null);
+
         /** LoginRequest username */
         username?: (string|null);
 
@@ -3624,6 +3884,9 @@ export namespace user {
 
         /** LoginRequest timestamp. */
         public timestamp: (number|Long);
+
+        /** LoginRequest captcha. */
+        public captcha?: (captcha.ICheckCaptcha|null);
 
         /** LoginRequest username. */
         public username: string;
@@ -3930,103 +4193,6 @@ export namespace user {
 
         /**
          * Gets the default type url for LoginResponse
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a GetUserInfoRequest. */
-    interface IGetUserInfoRequest {
-
-        /** GetUserInfoRequest auth */
-        auth?: (auth.IAuthorization|null);
-    }
-
-    /** Represents a GetUserInfoRequest. */
-    class GetUserInfoRequest implements IGetUserInfoRequest {
-
-        /**
-         * Constructs a new GetUserInfoRequest.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: user.IGetUserInfoRequest);
-
-        /** GetUserInfoRequest auth. */
-        public auth?: (auth.IAuthorization|null);
-
-        /**
-         * Creates a new GetUserInfoRequest instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns GetUserInfoRequest instance
-         */
-        public static create(properties?: user.IGetUserInfoRequest): user.GetUserInfoRequest;
-
-        /**
-         * Encodes the specified GetUserInfoRequest message. Does not implicitly {@link user.GetUserInfoRequest.verify|verify} messages.
-         * @param message GetUserInfoRequest message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: user.IGetUserInfoRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified GetUserInfoRequest message, length delimited. Does not implicitly {@link user.GetUserInfoRequest.verify|verify} messages.
-         * @param message GetUserInfoRequest message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: user.IGetUserInfoRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a GetUserInfoRequest message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns GetUserInfoRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): user.GetUserInfoRequest;
-
-        /**
-         * Decodes a GetUserInfoRequest message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns GetUserInfoRequest
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): user.GetUserInfoRequest;
-
-        /**
-         * Verifies a GetUserInfoRequest message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a GetUserInfoRequest message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns GetUserInfoRequest
-         */
-        public static fromObject(object: { [k: string]: any }): user.GetUserInfoRequest;
-
-        /**
-         * Creates a plain object from a GetUserInfoRequest message. Also converts values to other types if specified.
-         * @param message GetUserInfoRequest
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: user.GetUserInfoRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this GetUserInfoRequest to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for GetUserInfoRequest
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -4438,6 +4604,20 @@ export namespace user {
         public login(request: user.ILoginRequest): Promise<user.LoginResponse>;
 
         /**
+         * Calls Logout.
+         * @param request AuthData message or plain object
+         * @param callback Node-style callback called with the error, if any, and Empty
+         */
+        public logout(request: auth.IAuthData, callback: user.UserService.LogoutCallback): void;
+
+        /**
+         * Calls Logout.
+         * @param request AuthData message or plain object
+         * @returns Promise
+         */
+        public logout(request: auth.IAuthData): Promise<common.Empty>;
+
+        /**
          * Calls ThreeLogin.
          * @param request ThreeLoginRequest message or plain object
          * @param callback Node-style callback called with the error, if any, and LoginResponse
@@ -4453,17 +4633,17 @@ export namespace user {
 
         /**
          * Calls GetUserInfo.
-         * @param request GetUserInfoRequest message or plain object
+         * @param request AuthData message or plain object
          * @param callback Node-style callback called with the error, if any, and User
          */
-        public getUserInfo(request: user.IGetUserInfoRequest, callback: user.UserService.GetUserInfoCallback): void;
+        public getUserInfo(request: auth.IAuthData, callback: user.UserService.GetUserInfoCallback): void;
 
         /**
          * Calls GetUserInfo.
-         * @param request GetUserInfoRequest message or plain object
+         * @param request AuthData message or plain object
          * @returns Promise
          */
-        public getUserInfo(request: user.IGetUserInfoRequest): Promise<user.User>;
+        public getUserInfo(request: auth.IAuthData): Promise<user.User>;
 
         /**
          * Calls SetUserInfo.
@@ -4502,6 +4682,13 @@ export namespace user {
          * @param [response] LoginResponse
          */
         type LoginCallback = (error: (Error|null), response?: user.LoginResponse) => void;
+
+        /**
+         * Callback as used by {@link user.UserService#logout}.
+         * @param error Error, if any
+         * @param [response] Empty
+         */
+        type LogoutCallback = (error: (Error|null), response?: common.Empty) => void;
 
         /**
          * Callback as used by {@link user.UserService#threeLogin}.
