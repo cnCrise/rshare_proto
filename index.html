@@ -237,6 +237,29 @@
         
           
           <li>
+            <a href="#captcha.proto">captcha.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#captcha.CheckCaptcha"><span class="badge">M</span>CheckCaptcha</a>
+                </li>
+              
+                <li>
+                  <a href="#captcha.CreateCaptchaResponse"><span class="badge">M</span>CreateCaptchaResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#captcha.CaptchaService"><span class="badge">S</span>CaptchaService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#common.proto">common.proto</a>
             <ul>
               
@@ -461,10 +484,6 @@
               
                 <li>
                   <a href="#user.ChangePasswdRequest"><span class="badge">M</span>ChangePasswdRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#user.GetUserInfoRequest"><span class="badge">M</span>GetUserInfoRequest</a>
                 </li>
               
                 <li>
@@ -822,6 +841,101 @@
     
       
       <div class="file-heading">
+        <h2 id="captcha.proto">captcha.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="captcha.CheckCaptcha">CheckCaptcha</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="captcha.CreateCaptchaResponse">CreateCaptchaResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="captcha.CaptchaService">CaptchaService</h3>
+        <p>验证码相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateCaptcha</td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><a href="#captcha.CreateCaptchaResponse">CreateCaptchaResponse</a></td>
+                <td><p>创建Captcha</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
         <h2 id="common.proto">common.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -908,6 +1022,12 @@
               </tr>
             
               <tr>
+                <td>CAPTCHA_ERR</td>
+                <td>1003</td>
+                <td><p>验证码错误</p></td>
+              </tr>
+            
+              <tr>
                 <td>NOT_SIGNUP</td>
                 <td>2001</td>
                 <td><p>用户名未注册</p></td>
@@ -971,6 +1091,12 @@
                 <td>NOT_FOUND</td>
                 <td>4004</td>
                 <td><p>数据不存在</p></td>
+              </tr>
+            
+              <tr>
+                <td>COMMON_ERR</td>
+                <td>7000</td>
+                <td><p>通用异常</p></td>
               </tr>
             
               <tr>
@@ -2026,30 +2152,6 @@
 
         
       
-        <h3 id="user.GetUserInfoRequest">GetUserInfoRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>auth</td>
-                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
-                  <td></td>
-                  <td><p>授权信息 </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="user.LoginRequest">LoginRequest</h3>
         <p></p>
 
@@ -2065,6 +2167,13 @@
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p>秒级时间戳 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>captcha</td>
+                  <td><a href="#captcha.CheckCaptcha">captcha.CheckCaptcha</a></td>
+                  <td></td>
+                  <td><p>验证码 </p></td>
                 </tr>
               
                 <tr>
@@ -2347,6 +2456,13 @@
               </tr>
             
               <tr>
+                <td>Logout</td>
+                <td><a href="#auth.AuthData">.auth.AuthData</a></td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><p>退出登录</p></td>
+              </tr>
+            
+              <tr>
                 <td>ThreeLogin</td>
                 <td><a href="#user.ThreeLoginRequest">ThreeLoginRequest</a></td>
                 <td><a href="#user.LoginResponse">LoginResponse</a></td>
@@ -2355,7 +2471,7 @@
             
               <tr>
                 <td>GetUserInfo</td>
-                <td><a href="#user.GetUserInfoRequest">GetUserInfoRequest</a></td>
+                <td><a href="#auth.AuthData">.auth.AuthData</a></td>
                 <td><a href="#user.User">User</a></td>
                 <td><p>获取用户信息</p></td>
               </tr>
