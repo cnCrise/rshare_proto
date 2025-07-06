@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package captcha;
+
+import "common.proto";
+
+message CreateCaptchaResponse {
+  string id = 11;
+  string path = 12;
+}
+message CheckCaptcha {
+  string id = 11;
+  string value = 13;
+}
+
+// 验证码相关服务
+service CaptchaService {
+  // 创建Captcha
+  rpc CreateCaptcha(common.Empty) returns (CreateCaptchaResponse);
+}

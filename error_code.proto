@@ -10,6 +10,8 @@ enum ErrorCode {
   INVALID_INPUT = 1001;
   // 序列化错误
   SERDE_ERR = 1002;
+  // 验证码错误
+  CAPTCHA_ERR = 1003;
   // 用户名未注册
   NOT_SIGNUP = 2001;
   // 未设置登录密码
@@ -32,6 +34,8 @@ enum ErrorCode {
   PERMISSION_DENIED = 2021;
   // 数据不存在
   NOT_FOUND = 4004;
+  // 通用异常
+  COMMON_ERR = 7000;
   // 数据库异常
   DB_ERR = 7001;
   // 本地IO异常

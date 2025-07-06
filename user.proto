@@ -3,11 +3,14 @@ syntax = "proto3";
 package user;
 
 import "common.proto";
+import "captcha.proto";
 import "auth.proto";
 
 message LoginRequest {
   // 秒级时间戳
   uint64 timestamp = 1;
+  // 验证码
+  captcha.CheckCaptcha captcha = 3;
   // 用户名
   string username = 11;
   // MD5(timestamp+用户密码)
@@ -31,11 +34,6 @@ message ThreeLoginRequest {
   uint64 expire = 51;
 }
 message LoginResponse {
-  // 授权信息
-  auth.Authorization auth = 1;
-}
-
-message GetUserInfoRequest {
   // 授权信息
   auth.Authorization auth = 1;
 }
@@ -82,10 +80,12 @@ message ChangePasswdRequest {
 service UserService {
   // 账号密码登录
   rpc Login(LoginRequest) returns (LoginResponse);
+  // 退出登录
+  rpc Logout(auth.AuthData) returns (common.Empty);
   // 微信登录
   rpc ThreeLogin(ThreeLoginRequest) returns (LoginResponse);
   // 获取用户信息
-  rpc GetUserInfo(GetUserInfoRequest) returns (User);
+  rpc GetUserInfo(auth.AuthData) returns (User);
   // 设置用户信息
   rpc SetUserInfo(SetUserInfoRequest) returns (common.Empty);
   // 修改密码
