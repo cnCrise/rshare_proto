@@ -245,6 +245,10 @@
                 </li>
               
                 <li>
+                  <a href="#captcha.CreateCaptchaRequest"><span class="badge">M</span>CreateCaptchaRequest</a>
+                </li>
+              
+                <li>
                   <a href="#captcha.CreateCaptchaResponse"><span class="badge">M</span>CreateCaptchaResponse</a>
                 </li>
               
@@ -358,6 +362,14 @@
           <li>
             <a href="#form_data.proto">form_data.proto</a>
             <ul>
+              
+                <li>
+                  <a href="#form_data.FormData"><span class="badge">M</span>FormData</a>
+                </li>
+              
+                <li>
+                  <a href="#form_data.GetFormDataRequest"><span class="badge">M</span>GetFormDataRequest</a>
+                </li>
               
                 <li>
                   <a href="#form_data.SubmitFormDataRequest"><span class="badge">M</span>SubmitFormDataRequest</a>
@@ -877,6 +889,37 @@
 
         
       
+        <h3 id="captcha.CreateCaptchaRequest">CreateCaptchaRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>height</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>高，最小50 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>width</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>宽，最小120 </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="captcha.CreateCaptchaResponse">CreateCaptchaResponse</h3>
         <p></p>
 
@@ -924,7 +967,7 @@
             
               <tr>
                 <td>CreateCaptcha</td>
-                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><a href="#captcha.CreateCaptchaRequest">CreateCaptchaRequest</a></td>
                 <td><a href="#captcha.CreateCaptchaResponse">CreateCaptchaResponse</a></td>
                 <td><p>创建Captcha</p></td>
               </tr>
@@ -1488,6 +1531,68 @@
       <p></p>
 
       
+        <h3 id="form_data.FormData">FormData</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>form</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="form_data.GetFormDataRequest">GetFormDataRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">app.AppIndex</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="form_data.SubmitFormDataRequest">SubmitFormDataRequest</h3>
         <p></p>
 
@@ -1539,6 +1644,13 @@
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
           </thead>
           <tbody>
+            
+              <tr>
+                <td>GetFormData</td>
+                <td><a href="#form_data.GetFormDataRequest">GetFormDataRequest</a></td>
+                <td><a href="#form_data.FormData">FormData</a></td>
+                <td><p></p></td>
+              </tr>
             
               <tr>
                 <td>SubmitFormData</td>
