@@ -6,11 +6,11 @@ export namespace app {
     /** Properties of an AppIndex. */
     interface IAppIndex {
 
-        /** AppIndex saasId */
-        saasId?: (number|null);
+        /** AppIndex saas_id */
+        saas_id?: (number|null);
 
-        /** AppIndex appId */
-        appId?: (number|null);
+        /** AppIndex app_id */
+        app_id?: (number|null);
     }
 
     /** Represents an AppIndex. */
@@ -22,11 +22,11 @@ export namespace app {
          */
         constructor(properties?: app.IAppIndex);
 
-        /** AppIndex saasId. */
-        public saasId: number;
+        /** AppIndex saas_id. */
+        public saas_id: number;
 
-        /** AppIndex appId. */
-        public appId: number;
+        /** AppIndex app_id. */
+        public app_id: number;
 
         /**
          * Creates a new AppIndex instance using the specified properties.
@@ -112,8 +112,8 @@ export namespace app {
         /** CreateAppRequest auth */
         auth?: (auth.IAuthorization|null);
 
-        /** CreateAppRequest saasId */
-        saasId?: (number|null);
+        /** CreateAppRequest saas_id */
+        saas_id?: (number|null);
 
         /** CreateAppRequest name */
         name?: (string|null);
@@ -131,8 +131,8 @@ export namespace app {
         /** CreateAppRequest auth. */
         public auth?: (auth.IAuthorization|null);
 
-        /** CreateAppRequest saasId. */
-        public saasId: number;
+        /** CreateAppRequest saas_id. */
+        public saas_id: number;
 
         /** CreateAppRequest name. */
         public name: string;
@@ -221,8 +221,8 @@ export namespace app {
         /** GetAppsRequest auth */
         auth?: (auth.IAuthorization|null);
 
-        /** GetAppsRequest saasId */
-        saasId?: (number|null);
+        /** GetAppsRequest saas_id */
+        saas_id?: (number|null);
     }
 
     /** Represents a GetAppsRequest. */
@@ -237,8 +237,8 @@ export namespace app {
         /** GetAppsRequest auth. */
         public auth?: (auth.IAuthorization|null);
 
-        /** GetAppsRequest saasId. */
-        public saasId: number;
+        /** GetAppsRequest saas_id. */
+        public saas_id: number;
 
         /**
          * Creates a new GetAppsRequest instance using the specified properties.
@@ -321,11 +321,11 @@ export namespace app {
     /** Properties of an App. */
     interface IApp {
 
-        /** App saasId */
-        saasId?: (number|null);
+        /** App saas_id */
+        saas_id?: (number|null);
 
-        /** App appId */
-        appId?: (number|null);
+        /** App app_id */
+        app_id?: (number|null);
 
         /** App name */
         name?: (string|null);
@@ -340,11 +340,11 @@ export namespace app {
          */
         constructor(properties?: app.IApp);
 
-        /** App saasId. */
-        public saasId: number;
+        /** App saas_id. */
+        public saas_id: number;
 
-        /** App appId. */
-        public appId: number;
+        /** App app_id. */
+        public app_id: number;
 
         /** App name. */
         public name: string;
@@ -688,11 +688,11 @@ export namespace common {
     /** Properties of a SubscribeRequest. */
     interface ISubscribeRequest {
 
-        /** SubscribeRequest intervalMin */
-        intervalMin?: (number|Long|null);
+        /** SubscribeRequest interval_min */
+        interval_min?: (number|Long|null);
 
-        /** SubscribeRequest intervalMax */
-        intervalMax?: (number|Long|null);
+        /** SubscribeRequest interval_max */
+        interval_max?: (number|Long|null);
     }
 
     /** Represents a SubscribeRequest. */
@@ -704,11 +704,11 @@ export namespace common {
          */
         constructor(properties?: common.ISubscribeRequest);
 
-        /** SubscribeRequest intervalMin. */
-        public intervalMin: (number|Long);
+        /** SubscribeRequest interval_min. */
+        public interval_min: (number|Long);
 
-        /** SubscribeRequest intervalMax. */
-        public intervalMax: (number|Long);
+        /** SubscribeRequest interval_max. */
+        public interval_max: (number|Long);
 
         /**
          * Creates a new SubscribeRequest instance using the specified properties.
@@ -1138,6 +1138,109 @@ export namespace auth {
 /** Namespace captcha. */
 export namespace captcha {
 
+    /** Properties of a CreateCaptchaRequest. */
+    interface ICreateCaptchaRequest {
+
+        /** CreateCaptchaRequest height */
+        height?: (number|null);
+
+        /** CreateCaptchaRequest width */
+        width?: (number|null);
+    }
+
+    /** Represents a CreateCaptchaRequest. */
+    class CreateCaptchaRequest implements ICreateCaptchaRequest {
+
+        /**
+         * Constructs a new CreateCaptchaRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: captcha.ICreateCaptchaRequest);
+
+        /** CreateCaptchaRequest height. */
+        public height: number;
+
+        /** CreateCaptchaRequest width. */
+        public width: number;
+
+        /**
+         * Creates a new CreateCaptchaRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CreateCaptchaRequest instance
+         */
+        public static create(properties?: captcha.ICreateCaptchaRequest): captcha.CreateCaptchaRequest;
+
+        /**
+         * Encodes the specified CreateCaptchaRequest message. Does not implicitly {@link captcha.CreateCaptchaRequest.verify|verify} messages.
+         * @param message CreateCaptchaRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: captcha.ICreateCaptchaRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CreateCaptchaRequest message, length delimited. Does not implicitly {@link captcha.CreateCaptchaRequest.verify|verify} messages.
+         * @param message CreateCaptchaRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: captcha.ICreateCaptchaRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CreateCaptchaRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CreateCaptchaRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): captcha.CreateCaptchaRequest;
+
+        /**
+         * Decodes a CreateCaptchaRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CreateCaptchaRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): captcha.CreateCaptchaRequest;
+
+        /**
+         * Verifies a CreateCaptchaRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CreateCaptchaRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CreateCaptchaRequest
+         */
+        public static fromObject(object: { [k: string]: any }): captcha.CreateCaptchaRequest;
+
+        /**
+         * Creates a plain object from a CreateCaptchaRequest message. Also converts values to other types if specified.
+         * @param message CreateCaptchaRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: captcha.CreateCaptchaRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CreateCaptchaRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CreateCaptchaRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a CreateCaptchaResponse. */
     interface ICreateCaptchaResponse {
 
@@ -1366,17 +1469,17 @@ export namespace captcha {
 
         /**
          * Calls CreateCaptcha.
-         * @param request Empty message or plain object
+         * @param request CreateCaptchaRequest message or plain object
          * @param callback Node-style callback called with the error, if any, and CreateCaptchaResponse
          */
-        public createCaptcha(request: common.IEmpty, callback: captcha.CaptchaService.CreateCaptchaCallback): void;
+        public createCaptcha(request: captcha.ICreateCaptchaRequest, callback: captcha.CaptchaService.CreateCaptchaCallback): void;
 
         /**
          * Calls CreateCaptcha.
-         * @param request Empty message or plain object
+         * @param request CreateCaptchaRequest message or plain object
          * @returns Promise
          */
-        public createCaptcha(request: common.IEmpty): Promise<captcha.CreateCaptchaResponse>;
+        public createCaptcha(request: captcha.ICreateCaptchaRequest): Promise<captcha.CreateCaptchaResponse>;
     }
 
     namespace CaptchaService {
@@ -2008,14 +2111,14 @@ export namespace form_app {
         /** SetFormAppRequest app */
         app?: (app.IAppIndex|null);
 
-        /** SetFormAppRequest prefixImg */
-        prefixImg?: (string|null);
+        /** SetFormAppRequest prefix_img */
+        prefix_img?: (string|null);
 
         /** SetFormAppRequest form */
         form?: (string|null);
 
-        /** SetFormAppRequest suffixImg */
-        suffixImg?: (string|null);
+        /** SetFormAppRequest suffix_img */
+        suffix_img?: (string|null);
 
         /** SetFormAppRequest price */
         price?: (number|null);
@@ -2036,14 +2139,14 @@ export namespace form_app {
         /** SetFormAppRequest app. */
         public app?: (app.IAppIndex|null);
 
-        /** SetFormAppRequest prefixImg. */
-        public prefixImg: string;
+        /** SetFormAppRequest prefix_img. */
+        public prefix_img: string;
 
         /** SetFormAppRequest form. */
         public form: string;
 
-        /** SetFormAppRequest suffixImg. */
-        public suffixImg: string;
+        /** SetFormAppRequest suffix_img. */
+        public suffix_img: string;
 
         /** SetFormAppRequest price. */
         public price: number;
@@ -2226,14 +2329,14 @@ export namespace form_app {
     /** Properties of a FormApp. */
     interface IFormApp {
 
-        /** FormApp prefixImg */
-        prefixImg?: (string|null);
+        /** FormApp prefix_img */
+        prefix_img?: (string|null);
 
         /** FormApp form */
         form?: (string|null);
 
-        /** FormApp suffixImg */
-        suffixImg?: (string|null);
+        /** FormApp suffix_img */
+        suffix_img?: (string|null);
 
         /** FormApp price */
         price?: (number|null);
@@ -2248,14 +2351,14 @@ export namespace form_app {
          */
         constructor(properties?: form_app.IFormApp);
 
-        /** FormApp prefixImg. */
-        public prefixImg: string;
+        /** FormApp prefix_img. */
+        public prefix_img: string;
 
         /** FormApp form. */
         public form: string;
 
-        /** FormApp suffixImg. */
-        public suffixImg: string;
+        /** FormApp suffix_img. */
+        public suffix_img: string;
 
         /** FormApp price. */
         public price: number;
@@ -2517,6 +2620,212 @@ export namespace form_data {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a GetFormDataRequest. */
+    interface IGetFormDataRequest {
+
+        /** GetFormDataRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** GetFormDataRequest app */
+        app?: (app.IAppIndex|null);
+    }
+
+    /** Represents a GetFormDataRequest. */
+    class GetFormDataRequest implements IGetFormDataRequest {
+
+        /**
+         * Constructs a new GetFormDataRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: form_data.IGetFormDataRequest);
+
+        /** GetFormDataRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** GetFormDataRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /**
+         * Creates a new GetFormDataRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetFormDataRequest instance
+         */
+        public static create(properties?: form_data.IGetFormDataRequest): form_data.GetFormDataRequest;
+
+        /**
+         * Encodes the specified GetFormDataRequest message. Does not implicitly {@link form_data.GetFormDataRequest.verify|verify} messages.
+         * @param message GetFormDataRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: form_data.IGetFormDataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetFormDataRequest message, length delimited. Does not implicitly {@link form_data.GetFormDataRequest.verify|verify} messages.
+         * @param message GetFormDataRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: form_data.IGetFormDataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetFormDataRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_data.GetFormDataRequest;
+
+        /**
+         * Decodes a GetFormDataRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_data.GetFormDataRequest;
+
+        /**
+         * Verifies a GetFormDataRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetFormDataRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetFormDataRequest
+         */
+        public static fromObject(object: { [k: string]: any }): form_data.GetFormDataRequest;
+
+        /**
+         * Creates a plain object from a GetFormDataRequest message. Also converts values to other types if specified.
+         * @param message GetFormDataRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: form_data.GetFormDataRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetFormDataRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetFormDataRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a FormData. */
+    interface IFormData {
+
+        /** FormData form */
+        form?: (string|null);
+
+        /** FormData status */
+        status?: (number|null);
+    }
+
+    /** Represents a FormData. */
+    class FormData implements IFormData {
+
+        /**
+         * Constructs a new FormData.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: form_data.IFormData);
+
+        /** FormData form. */
+        public form: string;
+
+        /** FormData status. */
+        public status: number;
+
+        /**
+         * Creates a new FormData instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns FormData instance
+         */
+        public static create(properties?: form_data.IFormData): form_data.FormData;
+
+        /**
+         * Encodes the specified FormData message. Does not implicitly {@link form_data.FormData.verify|verify} messages.
+         * @param message FormData message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: form_data.IFormData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified FormData message, length delimited. Does not implicitly {@link form_data.FormData.verify|verify} messages.
+         * @param message FormData message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: form_data.IFormData, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a FormData message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns FormData
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_data.FormData;
+
+        /**
+         * Decodes a FormData message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns FormData
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_data.FormData;
+
+        /**
+         * Verifies a FormData message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a FormData message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns FormData
+         */
+        public static fromObject(object: { [k: string]: any }): form_data.FormData;
+
+        /**
+         * Creates a plain object from a FormData message. Also converts values to other types if specified.
+         * @param message FormData
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: form_data.FormData, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this FormData to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for FormData
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Represents a FormDataService */
     class FormDataService extends $protobuf.rpc.Service {
 
@@ -2538,6 +2847,20 @@ export namespace form_data {
         public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): FormDataService;
 
         /**
+         * Calls GetFormData.
+         * @param request GetFormDataRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and FormData
+         */
+        public getFormData(request: form_data.IGetFormDataRequest, callback: form_data.FormDataService.GetFormDataCallback): void;
+
+        /**
+         * Calls GetFormData.
+         * @param request GetFormDataRequest message or plain object
+         * @returns Promise
+         */
+        public getFormData(request: form_data.IGetFormDataRequest): Promise<form_data.FormData>;
+
+        /**
          * Calls SubmitFormData.
          * @param request SubmitFormDataRequest message or plain object
          * @param callback Node-style callback called with the error, if any, and PayRequest
@@ -2553,6 +2876,13 @@ export namespace form_data {
     }
 
     namespace FormDataService {
+
+        /**
+         * Callback as used by {@link form_data.FormDataService#getFormData}.
+         * @param error Error, if any
+         * @param [response] FormData
+         */
+        type GetFormDataCallback = (error: (Error|null), response?: form_data.FormData) => void;
 
         /**
          * Callback as used by {@link form_data.FormDataService#submitFormData}.
@@ -2820,8 +3150,8 @@ export namespace role {
         /** GetRoleRequest app */
         app?: (app.IAppIndex|null);
 
-        /** GetRoleRequest userId */
-        userId?: (number|null);
+        /** GetRoleRequest user_id */
+        user_id?: (number|null);
     }
 
     /** Represents a GetRoleRequest. */
@@ -2839,8 +3169,8 @@ export namespace role {
         /** GetRoleRequest app. */
         public app?: (app.IAppIndex|null);
 
-        /** GetRoleRequest userId. */
-        public userId: number;
+        /** GetRoleRequest user_id. */
+        public user_id: number;
 
         /**
          * Creates a new GetRoleRequest instance using the specified properties.
@@ -3026,8 +3356,8 @@ export namespace role {
         /** AddRoleRequest app */
         app?: (app.IAppIndex|null);
 
-        /** AddRoleRequest userId */
-        userId?: (number|null);
+        /** AddRoleRequest user_id */
+        user_id?: (number|null);
 
         /** AddRoleRequest role */
         role?: (role.Role|null);
@@ -3048,8 +3378,8 @@ export namespace role {
         /** AddRoleRequest app. */
         public app?: (app.IAppIndex|null);
 
-        /** AddRoleRequest userId. */
-        public userId: number;
+        /** AddRoleRequest user_id. */
+        public user_id: number;
 
         /** AddRoleRequest role. */
         public role: role.Role;
@@ -3141,8 +3471,8 @@ export namespace role {
         /** DelRoleRequest app */
         app?: (app.IAppIndex|null);
 
-        /** DelRoleRequest userId */
-        userId?: (number|null);
+        /** DelRoleRequest user_id */
+        user_id?: (number|null);
 
         /** DelRoleRequest role */
         role?: (role.Role|null);
@@ -3163,8 +3493,8 @@ export namespace role {
         /** DelRoleRequest app. */
         public app?: (app.IAppIndex|null);
 
-        /** DelRoleRequest userId. */
-        public userId: number;
+        /** DelRoleRequest user_id. */
+        public user_id: number;
 
         /** DelRoleRequest role. */
         public role: role.Role;
@@ -3444,8 +3774,8 @@ export namespace saas {
     /** Properties of a CreateSaasResponse. */
     interface ICreateSaasResponse {
 
-        /** CreateSaasResponse saasId */
-        saasId?: (number|null);
+        /** CreateSaasResponse saas_id */
+        saas_id?: (number|null);
     }
 
     /** Represents a CreateSaasResponse. */
@@ -3457,8 +3787,8 @@ export namespace saas {
          */
         constructor(properties?: saas.ICreateSaasResponse);
 
-        /** CreateSaasResponse saasId. */
-        public saasId: number;
+        /** CreateSaasResponse saas_id. */
+        public saas_id: number;
 
         /**
          * Creates a new CreateSaasResponse instance using the specified properties.
@@ -3863,11 +4193,11 @@ export namespace user {
         /** LoginRequest passwd */
         passwd?: (string|null);
 
-        /** LoginRequest deviceId */
-        deviceId?: (string|null);
+        /** LoginRequest device_id */
+        device_id?: (string|null);
 
-        /** LoginRequest deviceName */
-        deviceName?: (string|null);
+        /** LoginRequest device_name */
+        device_name?: (string|null);
 
         /** LoginRequest expire */
         expire?: (number|Long|null);
@@ -3894,11 +4224,11 @@ export namespace user {
         /** LoginRequest passwd. */
         public passwd: string;
 
-        /** LoginRequest deviceId. */
-        public deviceId: string;
+        /** LoginRequest device_id. */
+        public device_id: string;
 
-        /** LoginRequest deviceName. */
-        public deviceName: string;
+        /** LoginRequest device_name. */
+        public device_name: string;
 
         /** LoginRequest expire. */
         public expire: (number|Long);
@@ -3990,11 +4320,11 @@ export namespace user {
         /** ThreeLoginRequest code */
         code?: (string|null);
 
-        /** ThreeLoginRequest deviceId */
-        deviceId?: (string|null);
+        /** ThreeLoginRequest device_id */
+        device_id?: (string|null);
 
-        /** ThreeLoginRequest deviceName */
-        deviceName?: (string|null);
+        /** ThreeLoginRequest device_name */
+        device_name?: (string|null);
 
         /** ThreeLoginRequest expire */
         expire?: (number|Long|null);
@@ -4015,11 +4345,11 @@ export namespace user {
         /** ThreeLoginRequest code. */
         public code: string;
 
-        /** ThreeLoginRequest deviceId. */
-        public deviceId: string;
+        /** ThreeLoginRequest device_id. */
+        public device_id: string;
 
-        /** ThreeLoginRequest deviceName. */
-        public deviceName: string;
+        /** ThreeLoginRequest device_name. */
+        public device_name: string;
 
         /** ThreeLoginRequest expire. */
         public expire: (number|Long);
