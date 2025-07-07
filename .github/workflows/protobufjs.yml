@@ -29,7 +29,7 @@ jobs:
           path: out_protobufjs
       - name: Build protobufjs
         run: |
-          pbjs -t static-module -w commonjs -o ../out_protobufjs/my_protobuf.js ./*.proto
+          pbjs -t static-module -w commonjs --keep-case -o ../out_protobufjs/my_protobuf.js ./*.proto
           pbts -o ../out_protobufjs/my_protobuf.d.ts ../out_protobufjs/my_protobuf.js
         working-directory: proto
       - name: Publish protobufjs

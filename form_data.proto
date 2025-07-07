@@ -12,8 +12,17 @@ message SubmitFormDataRequest {
   app.AppIndex app = 2;
   string form = 12;
 }
+message GetFormDataRequest {
+  auth.Authorization auth = 1;
+  app.AppIndex app = 2;
+}
+message FormData {
+  string form = 12;
+  int32 status = 21;
+}
 
 // 表单程序相关服务
 service FormDataService {
+  rpc GetFormData(GetFormDataRequest) returns (FormData);
   rpc SubmitFormData(SubmitFormDataRequest) returns (pay.PayRequest);
 }
