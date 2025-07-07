@@ -4,6 +4,12 @@ package captcha;
 
 import "common.proto";
 
+message CreateCaptchaRequest {
+  // 高，最小50
+  uint32 height = 21;
+  // 宽，最小120
+  uint32 width = 22;
+}
 message CreateCaptchaResponse {
   string id = 11;
   string path = 12;
@@ -16,5 +22,5 @@ message CheckCaptcha {
 // 验证码相关服务
 service CaptchaService {
   // 创建Captcha
-  rpc CreateCaptcha(common.Empty) returns (CreateCaptchaResponse);
+  rpc CreateCaptcha(CreateCaptchaRequest) returns (CreateCaptchaResponse);
 }
