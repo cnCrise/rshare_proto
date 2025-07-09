@@ -30,6 +30,8 @@ enum ErrorCode {
   EXPIRED_AUTH_SN = 2013;
   // 无效的应用ID
   INVALID_APP = 2018;
+  // 未绑定第三方平台
+  NOT_BIND_THREE = 2019;
   // 用户操作权限不足
   PERMISSION_DENIED = 2021;
   // 数据不存在

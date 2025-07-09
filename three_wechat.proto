@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package three_wechat;
+
+message GetWechatMpRequest {
+  string url = 10;
+}
+message GetWechatMpResponse {
+  string appId = 11;
+  string timestamp = 12;
+  string nonceStr = 13;
+  string signature = 14;
+}
+
+// 微信相关服务
+service ThreeWechatService {
+  // 微信公众号
+  rpc GetWechatMp(GetWechatMpRequest) returns (GetWechatMpResponse);
+}

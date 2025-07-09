@@ -6,6 +6,7 @@ import "common.proto";
 import "auth.proto";
 
 message AppIndex {
+  common.Platform platform = 10;
   uint32 saas_id = 11;
   uint32 app_id = 12;
 }

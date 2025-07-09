@@ -4,6 +4,20 @@ package common;
 
 message Empty {}
 
+// 运行平台
+enum Platform {
+  // 未知
+  UNKNOWN = 0;
+  // 普通浏览器
+  WEB = 1;
+  // 原生App
+  APP = 2;
+  // 微信公众号浏览器
+  WECHAT_MP = 11;
+  // 微信小程序
+  WECHAT_APP = 12;
+}
+
 message SubscribeRequest {
   // 保证每次推送至少间隔interval时间(ms)
   uint64 interval_min = 11;

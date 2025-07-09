@@ -2,15 +2,8 @@ syntax = "proto3";
 
 package pay;
 
-// 支付方式
-enum PayMode {
-  // 未知
-  UNKNOWN = 0;
-  WEIXIN = 1;
-}
-
 // 微信支付请求
-message WeixinPay {
+message WechatPay {
   string appId = 1;
   string timeStamp = 2;
   string nonceStr = 3;
@@ -21,5 +14,5 @@ message WeixinPay {
 
 // 支付请求
 message PayRequest {
-  WeixinPay weixin = 1;
+  WechatPay wechat = 1;
 }
