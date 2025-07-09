@@ -24,6 +24,7 @@ $root.app = (function() {
          * Properties of an AppIndex.
          * @memberof app
          * @interface IAppIndex
+         * @property {common.Platform|null} [platform] AppIndex platform
          * @property {number|null} [saas_id] AppIndex saas_id
          * @property {number|null} [app_id] AppIndex app_id
          */
@@ -42,6 +43,14 @@ $root.app = (function() {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
+
+        /**
+         * AppIndex platform.
+         * @member {common.Platform} platform
+         * @memberof app.AppIndex
+         * @instance
+         */
+        AppIndex.prototype.platform = 0;
 
         /**
          * AppIndex saas_id.
@@ -83,6 +92,8 @@ $root.app = (function() {
         AppIndex.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
+            if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int32(message.platform);
             if (message.saas_id != null && Object.hasOwnProperty.call(message, "saas_id"))
                 writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saas_id);
             if (message.app_id != null && Object.hasOwnProperty.call(message, "app_id"))
@@ -123,6 +134,10 @@ $root.app = (function() {
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
+                case 10: {
+                        message.platform = reader.int32();
+                        break;
+                    }
                 case 11: {
                         message.saas_id = reader.uint32();
                         break;
@@ -166,6 +181,17 @@ $root.app = (function() {
         AppIndex.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
+            if (message.platform != null && message.hasOwnProperty("platform"))
+                switch (message.platform) {
+                default:
+                    return "platform: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 11:
+                case 12:
+                    break;
+                }
             if (message.saas_id != null && message.hasOwnProperty("saas_id"))
                 if (!$util.isInteger(message.saas_id))
                     return "saas_id: integer expected";
@@ -187,6 +213,34 @@ $root.app = (function() {
             if (object instanceof $root.app.AppIndex)
                 return object;
             var message = new $root.app.AppIndex();
+            switch (object.platform) {
+            default:
+                if (typeof object.platform === "number") {
+                    message.platform = object.platform;
+                    break;
+                }
+                break;
+            case "UNKNOWN":
+            case 0:
+                message.platform = 0;
+                break;
+            case "WEB":
+            case 1:
+                message.platform = 1;
+                break;
+            case "APP":
+            case 2:
+                message.platform = 2;
+                break;
+            case "WECHAT_MP":
+            case 11:
+                message.platform = 11;
+                break;
+            case "WECHAT_APP":
+            case 12:
+                message.platform = 12;
+                break;
+            }
             if (object.saas_id != null)
                 message.saas_id = object.saas_id >>> 0;
             if (object.app_id != null)
@@ -208,9 +262,12 @@ $root.app = (function() {
                 options = {};
             var object = {};
             if (options.defaults) {
+                object.platform = options.enums === String ? "UNKNOWN" : 0;
                 object.saas_id = 0;
                 object.app_id = 0;
             }
+            if (message.platform != null && message.hasOwnProperty("platform"))
+                object.platform = options.enums === String ? $root.common.Platform[message.platform] === undefined ? message.platform : $root.common.Platform[message.platform] : message.platform;
             if (message.saas_id != null && message.hasOwnProperty("saas_id"))
                 object.saas_id = message.saas_id;
             if (message.app_id != null && message.hasOwnProperty("app_id"))
@@ -1504,6 +1561,26 @@ $root.common = (function() {
         };
 
         return Empty;
+    })();
+
+    /**
+     * Platform enum.
+     * @name common.Platform
+     * @enum {number}
+     * @property {number} UNKNOWN=0 UNKNOWN value
+     * @property {number} WEB=1 WEB value
+     * @property {number} APP=2 APP value
+     * @property {number} WECHAT_MP=11 WECHAT_MP value
+     * @property {number} WECHAT_APP=12 WECHAT_APP value
+     */
+    common.Platform = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "UNKNOWN"] = 0;
+        values[valuesById[1] = "WEB"] = 1;
+        values[valuesById[2] = "APP"] = 2;
+        values[valuesById[11] = "WECHAT_MP"] = 11;
+        values[valuesById[12] = "WECHAT_APP"] = 12;
+        return values;
     })();
 
     common.SubscribeRequest = (function() {
@@ -3302,6 +3379,7 @@ $root.error_code = (function() {
      * @property {number} EXPIRED_AUTH=2012 EXPIRED_AUTH value
      * @property {number} EXPIRED_AUTH_SN=2013 EXPIRED_AUTH_SN value
      * @property {number} INVALID_APP=2018 INVALID_APP value
+     * @property {number} NOT_BIND_THREE=2019 NOT_BIND_THREE value
      * @property {number} PERMISSION_DENIED=2021 PERMISSION_DENIED value
      * @property {number} NOT_FOUND=4004 NOT_FOUND value
      * @property {number} COMMON_ERR=7000 COMMON_ERR value
@@ -3324,6 +3402,7 @@ $root.error_code = (function() {
         values[valuesById[2012] = "EXPIRED_AUTH"] = 2012;
         values[valuesById[2013] = "EXPIRED_AUTH_SN"] = 2013;
         values[valuesById[2018] = "INVALID_APP"] = 2018;
+        values[valuesById[2019] = "NOT_BIND_THREE"] = 2019;
         values[valuesById[2021] = "PERMISSION_DENIED"] = 2021;
         values[valuesById[4004] = "NOT_FOUND"] = 4004;
         values[valuesById[7000] = "COMMON_ERR"] = 7000;
@@ -6379,43 +6458,29 @@ $root.pay = (function() {
      */
     var pay = {};
 
-    /**
-     * PayMode enum.
-     * @name pay.PayMode
-     * @enum {number}
-     * @property {number} UNKNOWN=0 UNKNOWN value
-     * @property {number} WEIXIN=1 WEIXIN value
-     */
-    pay.PayMode = (function() {
-        var valuesById = {}, values = Object.create(valuesById);
-        values[valuesById[0] = "UNKNOWN"] = 0;
-        values[valuesById[1] = "WEIXIN"] = 1;
-        return values;
-    })();
-
-    pay.WeixinPay = (function() {
+    pay.WechatPay = (function() {
 
         /**
-         * Properties of a WeixinPay.
+         * Properties of a WechatPay.
          * @memberof pay
-         * @interface IWeixinPay
-         * @property {string|null} [appId] WeixinPay appId
-         * @property {string|null} [timeStamp] WeixinPay timeStamp
-         * @property {string|null} [nonceStr] WeixinPay nonceStr
-         * @property {string|null} ["package"] WeixinPay package
-         * @property {string|null} [signType] WeixinPay signType
-         * @property {string|null} [paySign] WeixinPay paySign
+         * @interface IWechatPay
+         * @property {string|null} [appId] WechatPay appId
+         * @property {string|null} [timeStamp] WechatPay timeStamp
+         * @property {string|null} [nonceStr] WechatPay nonceStr
+         * @property {string|null} ["package"] WechatPay package
+         * @property {string|null} [signType] WechatPay signType
+         * @property {string|null} [paySign] WechatPay paySign
          */
 
         /**
-         * Constructs a new WeixinPay.
+         * Constructs a new WechatPay.
          * @memberof pay
-         * @classdesc Represents a WeixinPay.
-         * @implements IWeixinPay
+         * @classdesc Represents a WechatPay.
+         * @implements IWechatPay
          * @constructor
-         * @param {pay.IWeixinPay=} [properties] Properties to set
+         * @param {pay.IWechatPay=} [properties] Properties to set
          */
-        function WeixinPay(properties) {
+        function WechatPay(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -6423,75 +6488,75 @@ $root.pay = (function() {
         }
 
         /**
-         * WeixinPay appId.
+         * WechatPay appId.
          * @member {string} appId
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @instance
          */
-        WeixinPay.prototype.appId = "";
+        WechatPay.prototype.appId = "";
 
         /**
-         * WeixinPay timeStamp.
+         * WechatPay timeStamp.
          * @member {string} timeStamp
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @instance
          */
-        WeixinPay.prototype.timeStamp = "";
+        WechatPay.prototype.timeStamp = "";
 
         /**
-         * WeixinPay nonceStr.
+         * WechatPay nonceStr.
          * @member {string} nonceStr
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @instance
          */
-        WeixinPay.prototype.nonceStr = "";
+        WechatPay.prototype.nonceStr = "";
 
         /**
-         * WeixinPay package.
+         * WechatPay package.
          * @member {string} package
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @instance
          */
-        WeixinPay.prototype["package"] = "";
+        WechatPay.prototype["package"] = "";
 
         /**
-         * WeixinPay signType.
+         * WechatPay signType.
          * @member {string} signType
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @instance
          */
-        WeixinPay.prototype.signType = "";
+        WechatPay.prototype.signType = "";
 
         /**
-         * WeixinPay paySign.
+         * WechatPay paySign.
          * @member {string} paySign
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @instance
          */
-        WeixinPay.prototype.paySign = "";
+        WechatPay.prototype.paySign = "";
 
         /**
-         * Creates a new WeixinPay instance using the specified properties.
+         * Creates a new WechatPay instance using the specified properties.
          * @function create
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @static
-         * @param {pay.IWeixinPay=} [properties] Properties to set
-         * @returns {pay.WeixinPay} WeixinPay instance
+         * @param {pay.IWechatPay=} [properties] Properties to set
+         * @returns {pay.WechatPay} WechatPay instance
          */
-        WeixinPay.create = function create(properties) {
-            return new WeixinPay(properties);
+        WechatPay.create = function create(properties) {
+            return new WechatPay(properties);
         };
 
         /**
-         * Encodes the specified WeixinPay message. Does not implicitly {@link pay.WeixinPay.verify|verify} messages.
+         * Encodes the specified WechatPay message. Does not implicitly {@link pay.WechatPay.verify|verify} messages.
          * @function encode
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @static
-         * @param {pay.IWeixinPay} message WeixinPay message or plain object to encode
+         * @param {pay.IWechatPay} message WechatPay message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WeixinPay.encode = function encode(message, writer) {
+        WechatPay.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.appId != null && Object.hasOwnProperty.call(message, "appId"))
@@ -6510,33 +6575,33 @@ $root.pay = (function() {
         };
 
         /**
-         * Encodes the specified WeixinPay message, length delimited. Does not implicitly {@link pay.WeixinPay.verify|verify} messages.
+         * Encodes the specified WechatPay message, length delimited. Does not implicitly {@link pay.WechatPay.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @static
-         * @param {pay.IWeixinPay} message WeixinPay message or plain object to encode
+         * @param {pay.IWechatPay} message WechatPay message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        WeixinPay.encodeDelimited = function encodeDelimited(message, writer) {
+        WechatPay.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a WeixinPay message from the specified reader or buffer.
+         * Decodes a WechatPay message from the specified reader or buffer.
          * @function decode
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {pay.WeixinPay} WeixinPay
+         * @returns {pay.WechatPay} WechatPay
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WeixinPay.decode = function decode(reader, length, error) {
+        WechatPay.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pay.WeixinPay();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pay.WechatPay();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -6575,30 +6640,30 @@ $root.pay = (function() {
         };
 
         /**
-         * Decodes a WeixinPay message from the specified reader or buffer, length delimited.
+         * Decodes a WechatPay message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {pay.WeixinPay} WeixinPay
+         * @returns {pay.WechatPay} WechatPay
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        WeixinPay.decodeDelimited = function decodeDelimited(reader) {
+        WechatPay.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a WeixinPay message.
+         * Verifies a WechatPay message.
          * @function verify
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        WeixinPay.verify = function verify(message) {
+        WechatPay.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.appId != null && message.hasOwnProperty("appId"))
@@ -6623,17 +6688,17 @@ $root.pay = (function() {
         };
 
         /**
-         * Creates a WeixinPay message from a plain object. Also converts values to their respective internal types.
+         * Creates a WechatPay message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {pay.WeixinPay} WeixinPay
+         * @returns {pay.WechatPay} WechatPay
          */
-        WeixinPay.fromObject = function fromObject(object) {
-            if (object instanceof $root.pay.WeixinPay)
+        WechatPay.fromObject = function fromObject(object) {
+            if (object instanceof $root.pay.WechatPay)
                 return object;
-            var message = new $root.pay.WeixinPay();
+            var message = new $root.pay.WechatPay();
             if (object.appId != null)
                 message.appId = String(object.appId);
             if (object.timeStamp != null)
@@ -6650,15 +6715,15 @@ $root.pay = (function() {
         };
 
         /**
-         * Creates a plain object from a WeixinPay message. Also converts values to other types if specified.
+         * Creates a plain object from a WechatPay message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @static
-         * @param {pay.WeixinPay} message WeixinPay
+         * @param {pay.WechatPay} message WechatPay
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        WeixinPay.toObject = function toObject(message, options) {
+        WechatPay.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             var object = {};
@@ -6686,32 +6751,32 @@ $root.pay = (function() {
         };
 
         /**
-         * Converts this WeixinPay to JSON.
+         * Converts this WechatPay to JSON.
          * @function toJSON
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        WeixinPay.prototype.toJSON = function toJSON() {
+        WechatPay.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for WeixinPay
+         * Gets the default type url for WechatPay
          * @function getTypeUrl
-         * @memberof pay.WeixinPay
+         * @memberof pay.WechatPay
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        WeixinPay.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        WechatPay.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/pay.WeixinPay";
+            return typeUrlPrefix + "/pay.WechatPay";
         };
 
-        return WeixinPay;
+        return WechatPay;
     })();
 
     pay.PayRequest = (function() {
@@ -6720,7 +6785,7 @@ $root.pay = (function() {
          * Properties of a PayRequest.
          * @memberof pay
          * @interface IPayRequest
-         * @property {pay.IWeixinPay|null} [weixin] PayRequest weixin
+         * @property {pay.IWechatPay|null} [wechat] PayRequest wechat
          */
 
         /**
@@ -6739,12 +6804,12 @@ $root.pay = (function() {
         }
 
         /**
-         * PayRequest weixin.
-         * @member {pay.IWeixinPay|null|undefined} weixin
+         * PayRequest wechat.
+         * @member {pay.IWechatPay|null|undefined} wechat
          * @memberof pay.PayRequest
          * @instance
          */
-        PayRequest.prototype.weixin = null;
+        PayRequest.prototype.wechat = null;
 
         /**
          * Creates a new PayRequest instance using the specified properties.
@@ -6770,8 +6835,8 @@ $root.pay = (function() {
         PayRequest.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.weixin != null && Object.hasOwnProperty.call(message, "weixin"))
-                $root.pay.WeixinPay.encode(message.weixin, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.wechat != null && Object.hasOwnProperty.call(message, "wechat"))
+                $root.pay.WechatPay.encode(message.wechat, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
 
@@ -6809,7 +6874,7 @@ $root.pay = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 1: {
-                        message.weixin = $root.pay.WeixinPay.decode(reader, reader.uint32());
+                        message.wechat = $root.pay.WechatPay.decode(reader, reader.uint32());
                         break;
                     }
                 default:
@@ -6847,10 +6912,10 @@ $root.pay = (function() {
         PayRequest.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.weixin != null && message.hasOwnProperty("weixin")) {
-                var error = $root.pay.WeixinPay.verify(message.weixin);
+            if (message.wechat != null && message.hasOwnProperty("wechat")) {
+                var error = $root.pay.WechatPay.verify(message.wechat);
                 if (error)
-                    return "weixin." + error;
+                    return "wechat." + error;
             }
             return null;
         };
@@ -6867,10 +6932,10 @@ $root.pay = (function() {
             if (object instanceof $root.pay.PayRequest)
                 return object;
             var message = new $root.pay.PayRequest();
-            if (object.weixin != null) {
-                if (typeof object.weixin !== "object")
-                    throw TypeError(".pay.PayRequest.weixin: object expected");
-                message.weixin = $root.pay.WeixinPay.fromObject(object.weixin);
+            if (object.wechat != null) {
+                if (typeof object.wechat !== "object")
+                    throw TypeError(".pay.PayRequest.wechat: object expected");
+                message.wechat = $root.pay.WechatPay.fromObject(object.wechat);
             }
             return message;
         };
@@ -6889,9 +6954,9 @@ $root.pay = (function() {
                 options = {};
             var object = {};
             if (options.defaults)
-                object.weixin = null;
-            if (message.weixin != null && message.hasOwnProperty("weixin"))
-                object.weixin = $root.pay.WeixinPay.toObject(message.weixin, options);
+                object.wechat = null;
+            if (message.wechat != null && message.hasOwnProperty("wechat"))
+                object.wechat = $root.pay.WechatPay.toObject(message.wechat, options);
             return object;
         };
 
@@ -8809,33 +8874,33 @@ $root.saas = (function() {
     return saas;
 })();
 
-$root.three = (function() {
+$root.three_wechat = (function() {
 
     /**
-     * Namespace three.
-     * @exports three
+     * Namespace three_wechat.
+     * @exports three_wechat
      * @namespace
      */
-    var three = {};
+    var three_wechat = {};
 
-    three.GetWeichatMpRequest = (function() {
+    three_wechat.GetWechatMpRequest = (function() {
 
         /**
-         * Properties of a GetWeichatMpRequest.
-         * @memberof three
-         * @interface IGetWeichatMpRequest
-         * @property {string|null} [url] GetWeichatMpRequest url
+         * Properties of a GetWechatMpRequest.
+         * @memberof three_wechat
+         * @interface IGetWechatMpRequest
+         * @property {string|null} [url] GetWechatMpRequest url
          */
 
         /**
-         * Constructs a new GetWeichatMpRequest.
-         * @memberof three
-         * @classdesc Represents a GetWeichatMpRequest.
-         * @implements IGetWeichatMpRequest
+         * Constructs a new GetWechatMpRequest.
+         * @memberof three_wechat
+         * @classdesc Represents a GetWechatMpRequest.
+         * @implements IGetWechatMpRequest
          * @constructor
-         * @param {three.IGetWeichatMpRequest=} [properties] Properties to set
+         * @param {three_wechat.IGetWechatMpRequest=} [properties] Properties to set
          */
-        function GetWeichatMpRequest(properties) {
+        function GetWechatMpRequest(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -8843,35 +8908,35 @@ $root.three = (function() {
         }
 
         /**
-         * GetWeichatMpRequest url.
+         * GetWechatMpRequest url.
          * @member {string} url
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @instance
          */
-        GetWeichatMpRequest.prototype.url = "";
+        GetWechatMpRequest.prototype.url = "";
 
         /**
-         * Creates a new GetWeichatMpRequest instance using the specified properties.
+         * Creates a new GetWechatMpRequest instance using the specified properties.
          * @function create
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @static
-         * @param {three.IGetWeichatMpRequest=} [properties] Properties to set
-         * @returns {three.GetWeichatMpRequest} GetWeichatMpRequest instance
+         * @param {three_wechat.IGetWechatMpRequest=} [properties] Properties to set
+         * @returns {three_wechat.GetWechatMpRequest} GetWechatMpRequest instance
          */
-        GetWeichatMpRequest.create = function create(properties) {
-            return new GetWeichatMpRequest(properties);
+        GetWechatMpRequest.create = function create(properties) {
+            return new GetWechatMpRequest(properties);
         };
 
         /**
-         * Encodes the specified GetWeichatMpRequest message. Does not implicitly {@link three.GetWeichatMpRequest.verify|verify} messages.
+         * Encodes the specified GetWechatMpRequest message. Does not implicitly {@link three_wechat.GetWechatMpRequest.verify|verify} messages.
          * @function encode
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @static
-         * @param {three.IGetWeichatMpRequest} message GetWeichatMpRequest message or plain object to encode
+         * @param {three_wechat.IGetWechatMpRequest} message GetWechatMpRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GetWeichatMpRequest.encode = function encode(message, writer) {
+        GetWechatMpRequest.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.url != null && Object.hasOwnProperty.call(message, "url"))
@@ -8880,33 +8945,33 @@ $root.three = (function() {
         };
 
         /**
-         * Encodes the specified GetWeichatMpRequest message, length delimited. Does not implicitly {@link three.GetWeichatMpRequest.verify|verify} messages.
+         * Encodes the specified GetWechatMpRequest message, length delimited. Does not implicitly {@link three_wechat.GetWechatMpRequest.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @static
-         * @param {three.IGetWeichatMpRequest} message GetWeichatMpRequest message or plain object to encode
+         * @param {three_wechat.IGetWechatMpRequest} message GetWechatMpRequest message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GetWeichatMpRequest.encodeDelimited = function encodeDelimited(message, writer) {
+        GetWechatMpRequest.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a GetWeichatMpRequest message from the specified reader or buffer.
+         * Decodes a GetWechatMpRequest message from the specified reader or buffer.
          * @function decode
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {three.GetWeichatMpRequest} GetWeichatMpRequest
+         * @returns {three_wechat.GetWechatMpRequest} GetWechatMpRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetWeichatMpRequest.decode = function decode(reader, length, error) {
+        GetWechatMpRequest.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.three.GetWeichatMpRequest();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.three_wechat.GetWechatMpRequest();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -8925,30 +8990,30 @@ $root.three = (function() {
         };
 
         /**
-         * Decodes a GetWeichatMpRequest message from the specified reader or buffer, length delimited.
+         * Decodes a GetWechatMpRequest message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {three.GetWeichatMpRequest} GetWeichatMpRequest
+         * @returns {three_wechat.GetWechatMpRequest} GetWechatMpRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetWeichatMpRequest.decodeDelimited = function decodeDelimited(reader) {
+        GetWechatMpRequest.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a GetWeichatMpRequest message.
+         * Verifies a GetWechatMpRequest message.
          * @function verify
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        GetWeichatMpRequest.verify = function verify(message) {
+        GetWechatMpRequest.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.url != null && message.hasOwnProperty("url"))
@@ -8958,32 +9023,32 @@ $root.three = (function() {
         };
 
         /**
-         * Creates a GetWeichatMpRequest message from a plain object. Also converts values to their respective internal types.
+         * Creates a GetWechatMpRequest message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {three.GetWeichatMpRequest} GetWeichatMpRequest
+         * @returns {three_wechat.GetWechatMpRequest} GetWechatMpRequest
          */
-        GetWeichatMpRequest.fromObject = function fromObject(object) {
-            if (object instanceof $root.three.GetWeichatMpRequest)
+        GetWechatMpRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.three_wechat.GetWechatMpRequest)
                 return object;
-            var message = new $root.three.GetWeichatMpRequest();
+            var message = new $root.three_wechat.GetWechatMpRequest();
             if (object.url != null)
                 message.url = String(object.url);
             return message;
         };
 
         /**
-         * Creates a plain object from a GetWeichatMpRequest message. Also converts values to other types if specified.
+         * Creates a plain object from a GetWechatMpRequest message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @static
-         * @param {three.GetWeichatMpRequest} message GetWeichatMpRequest
+         * @param {three_wechat.GetWechatMpRequest} message GetWechatMpRequest
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        GetWeichatMpRequest.toObject = function toObject(message, options) {
+        GetWechatMpRequest.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             var object = {};
@@ -8995,55 +9060,55 @@ $root.three = (function() {
         };
 
         /**
-         * Converts this GetWeichatMpRequest to JSON.
+         * Converts this GetWechatMpRequest to JSON.
          * @function toJSON
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        GetWeichatMpRequest.prototype.toJSON = function toJSON() {
+        GetWechatMpRequest.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for GetWeichatMpRequest
+         * Gets the default type url for GetWechatMpRequest
          * @function getTypeUrl
-         * @memberof three.GetWeichatMpRequest
+         * @memberof three_wechat.GetWechatMpRequest
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        GetWeichatMpRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        GetWechatMpRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/three.GetWeichatMpRequest";
+            return typeUrlPrefix + "/three_wechat.GetWechatMpRequest";
         };
 
-        return GetWeichatMpRequest;
+        return GetWechatMpRequest;
     })();
 
-    three.GetWeichatMpResponse = (function() {
+    three_wechat.GetWechatMpResponse = (function() {
 
         /**
-         * Properties of a GetWeichatMpResponse.
-         * @memberof three
-         * @interface IGetWeichatMpResponse
-         * @property {string|null} [appId] GetWeichatMpResponse appId
-         * @property {string|null} [timestamp] GetWeichatMpResponse timestamp
-         * @property {string|null} [nonceStr] GetWeichatMpResponse nonceStr
-         * @property {string|null} [signature] GetWeichatMpResponse signature
+         * Properties of a GetWechatMpResponse.
+         * @memberof three_wechat
+         * @interface IGetWechatMpResponse
+         * @property {string|null} [appId] GetWechatMpResponse appId
+         * @property {string|null} [timestamp] GetWechatMpResponse timestamp
+         * @property {string|null} [nonceStr] GetWechatMpResponse nonceStr
+         * @property {string|null} [signature] GetWechatMpResponse signature
          */
 
         /**
-         * Constructs a new GetWeichatMpResponse.
-         * @memberof three
-         * @classdesc Represents a GetWeichatMpResponse.
-         * @implements IGetWeichatMpResponse
+         * Constructs a new GetWechatMpResponse.
+         * @memberof three_wechat
+         * @classdesc Represents a GetWechatMpResponse.
+         * @implements IGetWechatMpResponse
          * @constructor
-         * @param {three.IGetWeichatMpResponse=} [properties] Properties to set
+         * @param {three_wechat.IGetWechatMpResponse=} [properties] Properties to set
          */
-        function GetWeichatMpResponse(properties) {
+        function GetWechatMpResponse(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -9051,59 +9116,59 @@ $root.three = (function() {
         }
 
         /**
-         * GetWeichatMpResponse appId.
+         * GetWechatMpResponse appId.
          * @member {string} appId
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @instance
          */
-        GetWeichatMpResponse.prototype.appId = "";
+        GetWechatMpResponse.prototype.appId = "";
 
         /**
-         * GetWeichatMpResponse timestamp.
+         * GetWechatMpResponse timestamp.
          * @member {string} timestamp
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @instance
          */
-        GetWeichatMpResponse.prototype.timestamp = "";
+        GetWechatMpResponse.prototype.timestamp = "";
 
         /**
-         * GetWeichatMpResponse nonceStr.
+         * GetWechatMpResponse nonceStr.
          * @member {string} nonceStr
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @instance
          */
-        GetWeichatMpResponse.prototype.nonceStr = "";
+        GetWechatMpResponse.prototype.nonceStr = "";
 
         /**
-         * GetWeichatMpResponse signature.
+         * GetWechatMpResponse signature.
          * @member {string} signature
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @instance
          */
-        GetWeichatMpResponse.prototype.signature = "";
+        GetWechatMpResponse.prototype.signature = "";
 
         /**
-         * Creates a new GetWeichatMpResponse instance using the specified properties.
+         * Creates a new GetWechatMpResponse instance using the specified properties.
          * @function create
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @static
-         * @param {three.IGetWeichatMpResponse=} [properties] Properties to set
-         * @returns {three.GetWeichatMpResponse} GetWeichatMpResponse instance
+         * @param {three_wechat.IGetWechatMpResponse=} [properties] Properties to set
+         * @returns {three_wechat.GetWechatMpResponse} GetWechatMpResponse instance
          */
-        GetWeichatMpResponse.create = function create(properties) {
-            return new GetWeichatMpResponse(properties);
+        GetWechatMpResponse.create = function create(properties) {
+            return new GetWechatMpResponse(properties);
         };
 
         /**
-         * Encodes the specified GetWeichatMpResponse message. Does not implicitly {@link three.GetWeichatMpResponse.verify|verify} messages.
+         * Encodes the specified GetWechatMpResponse message. Does not implicitly {@link three_wechat.GetWechatMpResponse.verify|verify} messages.
          * @function encode
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @static
-         * @param {three.IGetWeichatMpResponse} message GetWeichatMpResponse message or plain object to encode
+         * @param {three_wechat.IGetWechatMpResponse} message GetWechatMpResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GetWeichatMpResponse.encode = function encode(message, writer) {
+        GetWechatMpResponse.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.appId != null && Object.hasOwnProperty.call(message, "appId"))
@@ -9118,33 +9183,33 @@ $root.three = (function() {
         };
 
         /**
-         * Encodes the specified GetWeichatMpResponse message, length delimited. Does not implicitly {@link three.GetWeichatMpResponse.verify|verify} messages.
+         * Encodes the specified GetWechatMpResponse message, length delimited. Does not implicitly {@link three_wechat.GetWechatMpResponse.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @static
-         * @param {three.IGetWeichatMpResponse} message GetWeichatMpResponse message or plain object to encode
+         * @param {three_wechat.IGetWechatMpResponse} message GetWechatMpResponse message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        GetWeichatMpResponse.encodeDelimited = function encodeDelimited(message, writer) {
+        GetWechatMpResponse.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a GetWeichatMpResponse message from the specified reader or buffer.
+         * Decodes a GetWechatMpResponse message from the specified reader or buffer.
          * @function decode
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {three.GetWeichatMpResponse} GetWeichatMpResponse
+         * @returns {three_wechat.GetWechatMpResponse} GetWechatMpResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetWeichatMpResponse.decode = function decode(reader, length, error) {
+        GetWechatMpResponse.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.three.GetWeichatMpResponse();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.three_wechat.GetWechatMpResponse();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 if (tag === error)
@@ -9175,30 +9240,30 @@ $root.three = (function() {
         };
 
         /**
-         * Decodes a GetWeichatMpResponse message from the specified reader or buffer, length delimited.
+         * Decodes a GetWechatMpResponse message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {three.GetWeichatMpResponse} GetWeichatMpResponse
+         * @returns {three_wechat.GetWechatMpResponse} GetWechatMpResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        GetWeichatMpResponse.decodeDelimited = function decodeDelimited(reader) {
+        GetWechatMpResponse.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a GetWeichatMpResponse message.
+         * Verifies a GetWechatMpResponse message.
          * @function verify
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        GetWeichatMpResponse.verify = function verify(message) {
+        GetWechatMpResponse.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.appId != null && message.hasOwnProperty("appId"))
@@ -9217,17 +9282,17 @@ $root.three = (function() {
         };
 
         /**
-         * Creates a GetWeichatMpResponse message from a plain object. Also converts values to their respective internal types.
+         * Creates a GetWechatMpResponse message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {three.GetWeichatMpResponse} GetWeichatMpResponse
+         * @returns {three_wechat.GetWechatMpResponse} GetWechatMpResponse
          */
-        GetWeichatMpResponse.fromObject = function fromObject(object) {
-            if (object instanceof $root.three.GetWeichatMpResponse)
+        GetWechatMpResponse.fromObject = function fromObject(object) {
+            if (object instanceof $root.three_wechat.GetWechatMpResponse)
                 return object;
-            var message = new $root.three.GetWeichatMpResponse();
+            var message = new $root.three_wechat.GetWechatMpResponse();
             if (object.appId != null)
                 message.appId = String(object.appId);
             if (object.timestamp != null)
@@ -9240,15 +9305,15 @@ $root.three = (function() {
         };
 
         /**
-         * Creates a plain object from a GetWeichatMpResponse message. Also converts values to other types if specified.
+         * Creates a plain object from a GetWechatMpResponse message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @static
-         * @param {three.GetWeichatMpResponse} message GetWeichatMpResponse
+         * @param {three_wechat.GetWechatMpResponse} message GetWechatMpResponse
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        GetWeichatMpResponse.toObject = function toObject(message, options) {
+        GetWechatMpResponse.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             var object = {};
@@ -9270,103 +9335,103 @@ $root.three = (function() {
         };
 
         /**
-         * Converts this GetWeichatMpResponse to JSON.
+         * Converts this GetWechatMpResponse to JSON.
          * @function toJSON
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        GetWeichatMpResponse.prototype.toJSON = function toJSON() {
+        GetWechatMpResponse.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for GetWeichatMpResponse
+         * Gets the default type url for GetWechatMpResponse
          * @function getTypeUrl
-         * @memberof three.GetWeichatMpResponse
+         * @memberof three_wechat.GetWechatMpResponse
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        GetWeichatMpResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        GetWechatMpResponse.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/three.GetWeichatMpResponse";
+            return typeUrlPrefix + "/three_wechat.GetWechatMpResponse";
         };
 
-        return GetWeichatMpResponse;
+        return GetWechatMpResponse;
     })();
 
-    three.ThreeService = (function() {
+    three_wechat.ThreeWechatService = (function() {
 
         /**
-         * Constructs a new ThreeService service.
-         * @memberof three
-         * @classdesc Represents a ThreeService
+         * Constructs a new ThreeWechatService service.
+         * @memberof three_wechat
+         * @classdesc Represents a ThreeWechatService
          * @extends $protobuf.rpc.Service
          * @constructor
          * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
          */
-        function ThreeService(rpcImpl, requestDelimited, responseDelimited) {
+        function ThreeWechatService(rpcImpl, requestDelimited, responseDelimited) {
             $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
         }
 
-        (ThreeService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = ThreeService;
+        (ThreeWechatService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = ThreeWechatService;
 
         /**
-         * Creates new ThreeService service using the specified rpc implementation.
+         * Creates new ThreeWechatService service using the specified rpc implementation.
          * @function create
-         * @memberof three.ThreeService
+         * @memberof three_wechat.ThreeWechatService
          * @static
          * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
          * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
          * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-         * @returns {ThreeService} RPC service. Useful where requests and/or responses are streamed.
+         * @returns {ThreeWechatService} RPC service. Useful where requests and/or responses are streamed.
          */
-        ThreeService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+        ThreeWechatService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
             return new this(rpcImpl, requestDelimited, responseDelimited);
         };
 
         /**
-         * Callback as used by {@link three.ThreeService#getWeichatMp}.
-         * @memberof three.ThreeService
-         * @typedef GetWeichatMpCallback
+         * Callback as used by {@link three_wechat.ThreeWechatService#getWechatMp}.
+         * @memberof three_wechat.ThreeWechatService
+         * @typedef GetWechatMpCallback
          * @type {function}
          * @param {Error|null} error Error, if any
-         * @param {three.GetWeichatMpResponse} [response] GetWeichatMpResponse
+         * @param {three_wechat.GetWechatMpResponse} [response] GetWechatMpResponse
          */
 
         /**
-         * Calls GetWeichatMp.
-         * @function getWeichatMp
-         * @memberof three.ThreeService
+         * Calls GetWechatMp.
+         * @function getWechatMp
+         * @memberof three_wechat.ThreeWechatService
          * @instance
-         * @param {three.IGetWeichatMpRequest} request GetWeichatMpRequest message or plain object
-         * @param {three.ThreeService.GetWeichatMpCallback} callback Node-style callback called with the error, if any, and GetWeichatMpResponse
+         * @param {three_wechat.IGetWechatMpRequest} request GetWechatMpRequest message or plain object
+         * @param {three_wechat.ThreeWechatService.GetWechatMpCallback} callback Node-style callback called with the error, if any, and GetWechatMpResponse
          * @returns {undefined}
          * @variation 1
          */
-        Object.defineProperty(ThreeService.prototype.getWeichatMp = function getWeichatMp(request, callback) {
-            return this.rpcCall(getWeichatMp, $root.three.GetWeichatMpRequest, $root.three.GetWeichatMpResponse, request, callback);
-        }, "name", { value: "GetWeichatMp" });
+        Object.defineProperty(ThreeWechatService.prototype.getWechatMp = function getWechatMp(request, callback) {
+            return this.rpcCall(getWechatMp, $root.three_wechat.GetWechatMpRequest, $root.three_wechat.GetWechatMpResponse, request, callback);
+        }, "name", { value: "GetWechatMp" });
 
         /**
-         * Calls GetWeichatMp.
-         * @function getWeichatMp
-         * @memberof three.ThreeService
+         * Calls GetWechatMp.
+         * @function getWechatMp
+         * @memberof three_wechat.ThreeWechatService
          * @instance
-         * @param {three.IGetWeichatMpRequest} request GetWeichatMpRequest message or plain object
-         * @returns {Promise<three.GetWeichatMpResponse>} Promise
+         * @param {three_wechat.IGetWechatMpRequest} request GetWechatMpRequest message or plain object
+         * @returns {Promise<three_wechat.GetWechatMpResponse>} Promise
          * @variation 2
          */
 
-        return ThreeService;
+        return ThreeWechatService;
     })();
 
-    return three;
+    return three_wechat;
 })();
 
 $root.user = (function() {
@@ -9386,6 +9451,7 @@ $root.user = (function() {
          * @interface ILoginRequest
          * @property {number|Long|null} [timestamp] LoginRequest timestamp
          * @property {captcha.ICheckCaptcha|null} [captcha] LoginRequest captcha
+         * @property {common.Platform|null} [platform] LoginRequest platform
          * @property {string|null} [username] LoginRequest username
          * @property {string|null} [passwd] LoginRequest passwd
          * @property {string|null} [device_id] LoginRequest device_id
@@ -9423,6 +9489,14 @@ $root.user = (function() {
          * @instance
          */
         LoginRequest.prototype.captcha = null;
+
+        /**
+         * LoginRequest platform.
+         * @member {common.Platform} platform
+         * @memberof user.LoginRequest
+         * @instance
+         */
+        LoginRequest.prototype.platform = 0;
 
         /**
          * LoginRequest username.
@@ -9492,6 +9566,8 @@ $root.user = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.timestamp);
             if (message.captcha != null && Object.hasOwnProperty.call(message, "captcha"))
                 $root.captcha.CheckCaptcha.encode(message.captcha, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+            if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
+                writer.uint32(/* id 10, wireType 0 =*/80).int32(message.platform);
             if (message.username != null && Object.hasOwnProperty.call(message, "username"))
                 writer.uint32(/* id 11, wireType 2 =*/90).string(message.username);
             if (message.passwd != null && Object.hasOwnProperty.call(message, "passwd"))
@@ -9544,6 +9620,10 @@ $root.user = (function() {
                     }
                 case 3: {
                         message.captcha = $root.captcha.CheckCaptcha.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 10: {
+                        message.platform = reader.int32();
                         break;
                     }
                 case 11: {
@@ -9609,6 +9689,17 @@ $root.user = (function() {
                 if (error)
                     return "captcha." + error;
             }
+            if (message.platform != null && message.hasOwnProperty("platform"))
+                switch (message.platform) {
+                default:
+                    return "platform: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 11:
+                case 12:
+                    break;
+                }
             if (message.username != null && message.hasOwnProperty("username"))
                 if (!$util.isString(message.username))
                     return "username: string expected";
@@ -9653,6 +9744,34 @@ $root.user = (function() {
                     throw TypeError(".user.LoginRequest.captcha: object expected");
                 message.captcha = $root.captcha.CheckCaptcha.fromObject(object.captcha);
             }
+            switch (object.platform) {
+            default:
+                if (typeof object.platform === "number") {
+                    message.platform = object.platform;
+                    break;
+                }
+                break;
+            case "UNKNOWN":
+            case 0:
+                message.platform = 0;
+                break;
+            case "WEB":
+            case 1:
+                message.platform = 1;
+                break;
+            case "APP":
+            case 2:
+                message.platform = 2;
+                break;
+            case "WECHAT_MP":
+            case 11:
+                message.platform = 11;
+                break;
+            case "WECHAT_APP":
+            case 12:
+                message.platform = 12;
+                break;
+            }
             if (object.username != null)
                 message.username = String(object.username);
             if (object.passwd != null)
@@ -9693,6 +9812,7 @@ $root.user = (function() {
                 } else
                     object.timestamp = options.longs === String ? "0" : 0;
                 object.captcha = null;
+                object.platform = options.enums === String ? "UNKNOWN" : 0;
                 object.username = "";
                 object.passwd = "";
                 object.device_id = "";
@@ -9710,6 +9830,8 @@ $root.user = (function() {
                     object.timestamp = options.longs === String ? $util.Long.prototype.toString.call(message.timestamp) : options.longs === Number ? new $util.LongBits(message.timestamp.low >>> 0, message.timestamp.high >>> 0).toNumber(true) : message.timestamp;
             if (message.captcha != null && message.hasOwnProperty("captcha"))
                 object.captcha = $root.captcha.CheckCaptcha.toObject(message.captcha, options);
+            if (message.platform != null && message.hasOwnProperty("platform"))
+                object.platform = options.enums === String ? $root.common.Platform[message.platform] === undefined ? message.platform : $root.common.Platform[message.platform] : message.platform;
             if (message.username != null && message.hasOwnProperty("username"))
                 object.username = message.username;
             if (message.passwd != null && message.hasOwnProperty("passwd"))
@@ -9761,7 +9883,7 @@ $root.user = (function() {
          * Properties of a ThreeLoginRequest.
          * @memberof user
          * @interface IThreeLoginRequest
-         * @property {string|null} [platform] ThreeLoginRequest platform
+         * @property {common.Platform|null} [platform] ThreeLoginRequest platform
          * @property {string|null} [code] ThreeLoginRequest code
          * @property {string|null} [device_id] ThreeLoginRequest device_id
          * @property {string|null} [device_name] ThreeLoginRequest device_name
@@ -9785,11 +9907,11 @@ $root.user = (function() {
 
         /**
          * ThreeLoginRequest platform.
-         * @member {string} platform
+         * @member {common.Platform} platform
          * @memberof user.ThreeLoginRequest
          * @instance
          */
-        ThreeLoginRequest.prototype.platform = "";
+        ThreeLoginRequest.prototype.platform = 0;
 
         /**
          * ThreeLoginRequest code.
@@ -9848,7 +9970,7 @@ $root.user = (function() {
             if (!writer)
                 writer = $Writer.create();
             if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
-                writer.uint32(/* id 10, wireType 2 =*/82).string(message.platform);
+                writer.uint32(/* id 10, wireType 0 =*/80).int32(message.platform);
             if (message.code != null && Object.hasOwnProperty.call(message, "code"))
                 writer.uint32(/* id 11, wireType 2 =*/90).string(message.code);
             if (message.device_id != null && Object.hasOwnProperty.call(message, "device_id"))
@@ -9894,7 +10016,7 @@ $root.user = (function() {
                     break;
                 switch (tag >>> 3) {
                 case 10: {
-                        message.platform = reader.string();
+                        message.platform = reader.int32();
                         break;
                     }
                 case 11: {
@@ -9949,8 +10071,16 @@ $root.user = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.platform != null && message.hasOwnProperty("platform"))
-                if (!$util.isString(message.platform))
-                    return "platform: string expected";
+                switch (message.platform) {
+                default:
+                    return "platform: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 11:
+                case 12:
+                    break;
+                }
             if (message.code != null && message.hasOwnProperty("code"))
                 if (!$util.isString(message.code))
                     return "code: string expected";
@@ -9978,8 +10108,34 @@ $root.user = (function() {
             if (object instanceof $root.user.ThreeLoginRequest)
                 return object;
             var message = new $root.user.ThreeLoginRequest();
-            if (object.platform != null)
-                message.platform = String(object.platform);
+            switch (object.platform) {
+            default:
+                if (typeof object.platform === "number") {
+                    message.platform = object.platform;
+                    break;
+                }
+                break;
+            case "UNKNOWN":
+            case 0:
+                message.platform = 0;
+                break;
+            case "WEB":
+            case 1:
+                message.platform = 1;
+                break;
+            case "APP":
+            case 2:
+                message.platform = 2;
+                break;
+            case "WECHAT_MP":
+            case 11:
+                message.platform = 11;
+                break;
+            case "WECHAT_APP":
+            case 12:
+                message.platform = 12;
+                break;
+            }
             if (object.code != null)
                 message.code = String(object.code);
             if (object.device_id != null)
@@ -10012,7 +10168,7 @@ $root.user = (function() {
                 options = {};
             var object = {};
             if (options.defaults) {
-                object.platform = "";
+                object.platform = options.enums === String ? "UNKNOWN" : 0;
                 object.code = "";
                 object.device_id = "";
                 object.device_name = "";
@@ -10023,7 +10179,7 @@ $root.user = (function() {
                     object.expire = options.longs === String ? "0" : 0;
             }
             if (message.platform != null && message.hasOwnProperty("platform"))
-                object.platform = message.platform;
+                object.platform = options.enums === String ? $root.common.Platform[message.platform] === undefined ? message.platform : $root.common.Platform[message.platform] : message.platform;
             if (message.code != null && message.hasOwnProperty("code"))
                 object.code = message.code;
             if (message.device_id != null && message.hasOwnProperty("device_id"))

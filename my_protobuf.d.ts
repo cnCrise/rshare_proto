@@ -6,6 +6,9 @@ export namespace app {
     /** Properties of an AppIndex. */
     interface IAppIndex {
 
+        /** AppIndex platform */
+        platform?: (common.Platform|null);
+
         /** AppIndex saas_id */
         saas_id?: (number|null);
 
@@ -21,6 +24,9 @@ export namespace app {
          * @param [properties] Properties to set
          */
         constructor(properties?: app.IAppIndex);
+
+        /** AppIndex platform. */
+        public platform: common.Platform;
 
         /** AppIndex saas_id. */
         public saas_id: number;
@@ -683,6 +689,15 @@ export namespace common {
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Platform enum. */
+    enum Platform {
+        UNKNOWN = 0,
+        WEB = 1,
+        APP = 2,
+        WECHAT_MP = 11,
+        WECHAT_APP = 12
     }
 
     /** Properties of a SubscribeRequest. */
@@ -1511,6 +1526,7 @@ export namespace error_code {
         EXPIRED_AUTH = 2012,
         EXPIRED_AUTH_SN = 2013,
         INVALID_APP = 2018,
+        NOT_BIND_THREE = 2019,
         PERMISSION_DENIED = 2021,
         NOT_FOUND = 4004,
         COMMON_ERR = 7000,
@@ -2896,133 +2912,127 @@ export namespace form_data {
 /** Namespace pay. */
 export namespace pay {
 
-    /** PayMode enum. */
-    enum PayMode {
-        UNKNOWN = 0,
-        WEIXIN = 1
-    }
+    /** Properties of a WechatPay. */
+    interface IWechatPay {
 
-    /** Properties of a WeixinPay. */
-    interface IWeixinPay {
-
-        /** WeixinPay appId */
+        /** WechatPay appId */
         appId?: (string|null);
 
-        /** WeixinPay timeStamp */
+        /** WechatPay timeStamp */
         timeStamp?: (string|null);
 
-        /** WeixinPay nonceStr */
+        /** WechatPay nonceStr */
         nonceStr?: (string|null);
 
-        /** WeixinPay package */
+        /** WechatPay package */
         "package"?: (string|null);
 
-        /** WeixinPay signType */
+        /** WechatPay signType */
         signType?: (string|null);
 
-        /** WeixinPay paySign */
+        /** WechatPay paySign */
         paySign?: (string|null);
     }
 
-    /** Represents a WeixinPay. */
-    class WeixinPay implements IWeixinPay {
+    /** Represents a WechatPay. */
+    class WechatPay implements IWechatPay {
 
         /**
-         * Constructs a new WeixinPay.
+         * Constructs a new WechatPay.
          * @param [properties] Properties to set
          */
-        constructor(properties?: pay.IWeixinPay);
+        constructor(properties?: pay.IWechatPay);
 
-        /** WeixinPay appId. */
+        /** WechatPay appId. */
         public appId: string;
 
-        /** WeixinPay timeStamp. */
+        /** WechatPay timeStamp. */
         public timeStamp: string;
 
-        /** WeixinPay nonceStr. */
+        /** WechatPay nonceStr. */
         public nonceStr: string;
 
-        /** WeixinPay package. */
+        /** WechatPay package. */
         public package: string;
 
-        /** WeixinPay signType. */
+        /** WechatPay signType. */
         public signType: string;
 
-        /** WeixinPay paySign. */
+        /** WechatPay paySign. */
         public paySign: string;
 
         /**
-         * Creates a new WeixinPay instance using the specified properties.
+         * Creates a new WechatPay instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns WeixinPay instance
+         * @returns WechatPay instance
          */
-        public static create(properties?: pay.IWeixinPay): pay.WeixinPay;
+        public static create(properties?: pay.IWechatPay): pay.WechatPay;
 
         /**
-         * Encodes the specified WeixinPay message. Does not implicitly {@link pay.WeixinPay.verify|verify} messages.
-         * @param message WeixinPay message or plain object to encode
+         * Encodes the specified WechatPay message. Does not implicitly {@link pay.WechatPay.verify|verify} messages.
+         * @param message WechatPay message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: pay.IWeixinPay, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: pay.IWechatPay, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified WeixinPay message, length delimited. Does not implicitly {@link pay.WeixinPay.verify|verify} messages.
-         * @param message WeixinPay message or plain object to encode
+         * Encodes the specified WechatPay message, length delimited. Does not implicitly {@link pay.WechatPay.verify|verify} messages.
+         * @param message WechatPay message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: pay.IWeixinPay, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: pay.IWechatPay, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a WeixinPay message from the specified reader or buffer.
+         * Decodes a WechatPay message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns WeixinPay
+         * @returns WechatPay
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): pay.WeixinPay;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): pay.WechatPay;
 
         /**
-         * Decodes a WeixinPay message from the specified reader or buffer, length delimited.
+         * Decodes a WechatPay message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns WeixinPay
+         * @returns WechatPay
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): pay.WeixinPay;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): pay.WechatPay;
 
         /**
-         * Verifies a WeixinPay message.
+         * Verifies a WechatPay message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a WeixinPay message from a plain object. Also converts values to their respective internal types.
+         * Creates a WechatPay message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns WeixinPay
+         * @returns WechatPay
          */
-        public static fromObject(object: { [k: string]: any }): pay.WeixinPay;
+        public static fromObject(object: { [k: string]: any }): pay.WechatPay;
 
         /**
-         * Creates a plain object from a WeixinPay message. Also converts values to other types if specified.
-         * @param message WeixinPay
+         * Creates a plain object from a WechatPay message. Also converts values to other types if specified.
+         * @param message WechatPay
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: pay.WeixinPay, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: pay.WechatPay, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this WeixinPay to JSON.
+         * Converts this WechatPay to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for WeixinPay
+         * Gets the default type url for WechatPay
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -3032,8 +3042,8 @@ export namespace pay {
     /** Properties of a PayRequest. */
     interface IPayRequest {
 
-        /** PayRequest weixin */
-        weixin?: (pay.IWeixinPay|null);
+        /** PayRequest wechat */
+        wechat?: (pay.IWechatPay|null);
     }
 
     /** Represents a PayRequest. */
@@ -3045,8 +3055,8 @@ export namespace pay {
          */
         constructor(properties?: pay.IPayRequest);
 
-        /** PayRequest weixin. */
-        public weixin?: (pay.IWeixinPay|null);
+        /** PayRequest wechat. */
+        public wechat?: (pay.IWechatPay|null);
 
         /**
          * Creates a new PayRequest instance using the specified properties.
@@ -3914,226 +3924,226 @@ export namespace saas {
     }
 }
 
-/** Namespace three. */
-export namespace three {
+/** Namespace three_wechat. */
+export namespace three_wechat {
 
-    /** Properties of a GetWeichatMpRequest. */
-    interface IGetWeichatMpRequest {
+    /** Properties of a GetWechatMpRequest. */
+    interface IGetWechatMpRequest {
 
-        /** GetWeichatMpRequest url */
+        /** GetWechatMpRequest url */
         url?: (string|null);
     }
 
-    /** Represents a GetWeichatMpRequest. */
-    class GetWeichatMpRequest implements IGetWeichatMpRequest {
+    /** Represents a GetWechatMpRequest. */
+    class GetWechatMpRequest implements IGetWechatMpRequest {
 
         /**
-         * Constructs a new GetWeichatMpRequest.
+         * Constructs a new GetWechatMpRequest.
          * @param [properties] Properties to set
          */
-        constructor(properties?: three.IGetWeichatMpRequest);
+        constructor(properties?: three_wechat.IGetWechatMpRequest);
 
-        /** GetWeichatMpRequest url. */
+        /** GetWechatMpRequest url. */
         public url: string;
 
         /**
-         * Creates a new GetWeichatMpRequest instance using the specified properties.
+         * Creates a new GetWechatMpRequest instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns GetWeichatMpRequest instance
+         * @returns GetWechatMpRequest instance
          */
-        public static create(properties?: three.IGetWeichatMpRequest): three.GetWeichatMpRequest;
+        public static create(properties?: three_wechat.IGetWechatMpRequest): three_wechat.GetWechatMpRequest;
 
         /**
-         * Encodes the specified GetWeichatMpRequest message. Does not implicitly {@link three.GetWeichatMpRequest.verify|verify} messages.
-         * @param message GetWeichatMpRequest message or plain object to encode
+         * Encodes the specified GetWechatMpRequest message. Does not implicitly {@link three_wechat.GetWechatMpRequest.verify|verify} messages.
+         * @param message GetWechatMpRequest message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: three.IGetWeichatMpRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: three_wechat.IGetWechatMpRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified GetWeichatMpRequest message, length delimited. Does not implicitly {@link three.GetWeichatMpRequest.verify|verify} messages.
-         * @param message GetWeichatMpRequest message or plain object to encode
+         * Encodes the specified GetWechatMpRequest message, length delimited. Does not implicitly {@link three_wechat.GetWechatMpRequest.verify|verify} messages.
+         * @param message GetWechatMpRequest message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: three.IGetWeichatMpRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: three_wechat.IGetWechatMpRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a GetWeichatMpRequest message from the specified reader or buffer.
+         * Decodes a GetWechatMpRequest message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns GetWeichatMpRequest
+         * @returns GetWechatMpRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): three.GetWeichatMpRequest;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): three_wechat.GetWechatMpRequest;
 
         /**
-         * Decodes a GetWeichatMpRequest message from the specified reader or buffer, length delimited.
+         * Decodes a GetWechatMpRequest message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns GetWeichatMpRequest
+         * @returns GetWechatMpRequest
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): three.GetWeichatMpRequest;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): three_wechat.GetWechatMpRequest;
 
         /**
-         * Verifies a GetWeichatMpRequest message.
+         * Verifies a GetWechatMpRequest message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a GetWeichatMpRequest message from a plain object. Also converts values to their respective internal types.
+         * Creates a GetWechatMpRequest message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns GetWeichatMpRequest
+         * @returns GetWechatMpRequest
          */
-        public static fromObject(object: { [k: string]: any }): three.GetWeichatMpRequest;
+        public static fromObject(object: { [k: string]: any }): three_wechat.GetWechatMpRequest;
 
         /**
-         * Creates a plain object from a GetWeichatMpRequest message. Also converts values to other types if specified.
-         * @param message GetWeichatMpRequest
+         * Creates a plain object from a GetWechatMpRequest message. Also converts values to other types if specified.
+         * @param message GetWechatMpRequest
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: three.GetWeichatMpRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: three_wechat.GetWechatMpRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this GetWeichatMpRequest to JSON.
+         * Converts this GetWechatMpRequest to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for GetWeichatMpRequest
+         * Gets the default type url for GetWechatMpRequest
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    /** Properties of a GetWeichatMpResponse. */
-    interface IGetWeichatMpResponse {
+    /** Properties of a GetWechatMpResponse. */
+    interface IGetWechatMpResponse {
 
-        /** GetWeichatMpResponse appId */
+        /** GetWechatMpResponse appId */
         appId?: (string|null);
 
-        /** GetWeichatMpResponse timestamp */
+        /** GetWechatMpResponse timestamp */
         timestamp?: (string|null);
 
-        /** GetWeichatMpResponse nonceStr */
+        /** GetWechatMpResponse nonceStr */
         nonceStr?: (string|null);
 
-        /** GetWeichatMpResponse signature */
+        /** GetWechatMpResponse signature */
         signature?: (string|null);
     }
 
-    /** Represents a GetWeichatMpResponse. */
-    class GetWeichatMpResponse implements IGetWeichatMpResponse {
+    /** Represents a GetWechatMpResponse. */
+    class GetWechatMpResponse implements IGetWechatMpResponse {
 
         /**
-         * Constructs a new GetWeichatMpResponse.
+         * Constructs a new GetWechatMpResponse.
          * @param [properties] Properties to set
          */
-        constructor(properties?: three.IGetWeichatMpResponse);
+        constructor(properties?: three_wechat.IGetWechatMpResponse);
 
-        /** GetWeichatMpResponse appId. */
+        /** GetWechatMpResponse appId. */
         public appId: string;
 
-        /** GetWeichatMpResponse timestamp. */
+        /** GetWechatMpResponse timestamp. */
         public timestamp: string;
 
-        /** GetWeichatMpResponse nonceStr. */
+        /** GetWechatMpResponse nonceStr. */
         public nonceStr: string;
 
-        /** GetWeichatMpResponse signature. */
+        /** GetWechatMpResponse signature. */
         public signature: string;
 
         /**
-         * Creates a new GetWeichatMpResponse instance using the specified properties.
+         * Creates a new GetWechatMpResponse instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns GetWeichatMpResponse instance
+         * @returns GetWechatMpResponse instance
          */
-        public static create(properties?: three.IGetWeichatMpResponse): three.GetWeichatMpResponse;
+        public static create(properties?: three_wechat.IGetWechatMpResponse): three_wechat.GetWechatMpResponse;
 
         /**
-         * Encodes the specified GetWeichatMpResponse message. Does not implicitly {@link three.GetWeichatMpResponse.verify|verify} messages.
-         * @param message GetWeichatMpResponse message or plain object to encode
+         * Encodes the specified GetWechatMpResponse message. Does not implicitly {@link three_wechat.GetWechatMpResponse.verify|verify} messages.
+         * @param message GetWechatMpResponse message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: three.IGetWeichatMpResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: three_wechat.IGetWechatMpResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified GetWeichatMpResponse message, length delimited. Does not implicitly {@link three.GetWeichatMpResponse.verify|verify} messages.
-         * @param message GetWeichatMpResponse message or plain object to encode
+         * Encodes the specified GetWechatMpResponse message, length delimited. Does not implicitly {@link three_wechat.GetWechatMpResponse.verify|verify} messages.
+         * @param message GetWechatMpResponse message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: three.IGetWeichatMpResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: three_wechat.IGetWechatMpResponse, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a GetWeichatMpResponse message from the specified reader or buffer.
+         * Decodes a GetWechatMpResponse message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns GetWeichatMpResponse
+         * @returns GetWechatMpResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): three.GetWeichatMpResponse;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): three_wechat.GetWechatMpResponse;
 
         /**
-         * Decodes a GetWeichatMpResponse message from the specified reader or buffer, length delimited.
+         * Decodes a GetWechatMpResponse message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns GetWeichatMpResponse
+         * @returns GetWechatMpResponse
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): three.GetWeichatMpResponse;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): three_wechat.GetWechatMpResponse;
 
         /**
-         * Verifies a GetWeichatMpResponse message.
+         * Verifies a GetWechatMpResponse message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a GetWeichatMpResponse message from a plain object. Also converts values to their respective internal types.
+         * Creates a GetWechatMpResponse message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns GetWeichatMpResponse
+         * @returns GetWechatMpResponse
          */
-        public static fromObject(object: { [k: string]: any }): three.GetWeichatMpResponse;
+        public static fromObject(object: { [k: string]: any }): three_wechat.GetWechatMpResponse;
 
         /**
-         * Creates a plain object from a GetWeichatMpResponse message. Also converts values to other types if specified.
-         * @param message GetWeichatMpResponse
+         * Creates a plain object from a GetWechatMpResponse message. Also converts values to other types if specified.
+         * @param message GetWechatMpResponse
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: three.GetWeichatMpResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: three_wechat.GetWechatMpResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this GetWeichatMpResponse to JSON.
+         * Converts this GetWechatMpResponse to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for GetWeichatMpResponse
+         * Gets the default type url for GetWechatMpResponse
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    /** Represents a ThreeService */
-    class ThreeService extends $protobuf.rpc.Service {
+    /** Represents a ThreeWechatService */
+    class ThreeWechatService extends $protobuf.rpc.Service {
 
         /**
-         * Constructs a new ThreeService service.
+         * Constructs a new ThreeWechatService service.
          * @param rpcImpl RPC implementation
          * @param [requestDelimited=false] Whether requests are length-delimited
          * @param [responseDelimited=false] Whether responses are length-delimited
@@ -4141,37 +4151,37 @@ export namespace three {
         constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
 
         /**
-         * Creates new ThreeService service using the specified rpc implementation.
+         * Creates new ThreeWechatService service using the specified rpc implementation.
          * @param rpcImpl RPC implementation
          * @param [requestDelimited=false] Whether requests are length-delimited
          * @param [responseDelimited=false] Whether responses are length-delimited
          * @returns RPC service. Useful where requests and/or responses are streamed.
          */
-        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): ThreeService;
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): ThreeWechatService;
 
         /**
-         * Calls GetWeichatMp.
-         * @param request GetWeichatMpRequest message or plain object
-         * @param callback Node-style callback called with the error, if any, and GetWeichatMpResponse
+         * Calls GetWechatMp.
+         * @param request GetWechatMpRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and GetWechatMpResponse
          */
-        public getWeichatMp(request: three.IGetWeichatMpRequest, callback: three.ThreeService.GetWeichatMpCallback): void;
+        public getWechatMp(request: three_wechat.IGetWechatMpRequest, callback: three_wechat.ThreeWechatService.GetWechatMpCallback): void;
 
         /**
-         * Calls GetWeichatMp.
-         * @param request GetWeichatMpRequest message or plain object
+         * Calls GetWechatMp.
+         * @param request GetWechatMpRequest message or plain object
          * @returns Promise
          */
-        public getWeichatMp(request: three.IGetWeichatMpRequest): Promise<three.GetWeichatMpResponse>;
+        public getWechatMp(request: three_wechat.IGetWechatMpRequest): Promise<three_wechat.GetWechatMpResponse>;
     }
 
-    namespace ThreeService {
+    namespace ThreeWechatService {
 
         /**
-         * Callback as used by {@link three.ThreeService#getWeichatMp}.
+         * Callback as used by {@link three_wechat.ThreeWechatService#getWechatMp}.
          * @param error Error, if any
-         * @param [response] GetWeichatMpResponse
+         * @param [response] GetWechatMpResponse
          */
-        type GetWeichatMpCallback = (error: (Error|null), response?: three.GetWeichatMpResponse) => void;
+        type GetWechatMpCallback = (error: (Error|null), response?: three_wechat.GetWechatMpResponse) => void;
     }
 }
 
@@ -4186,6 +4196,9 @@ export namespace user {
 
         /** LoginRequest captcha */
         captcha?: (captcha.ICheckCaptcha|null);
+
+        /** LoginRequest platform */
+        platform?: (common.Platform|null);
 
         /** LoginRequest username */
         username?: (string|null);
@@ -4217,6 +4230,9 @@ export namespace user {
 
         /** LoginRequest captcha. */
         public captcha?: (captcha.ICheckCaptcha|null);
+
+        /** LoginRequest platform. */
+        public platform: common.Platform;
 
         /** LoginRequest username. */
         public username: string;
@@ -4315,7 +4331,7 @@ export namespace user {
     interface IThreeLoginRequest {
 
         /** ThreeLoginRequest platform */
-        platform?: (string|null);
+        platform?: (common.Platform|null);
 
         /** ThreeLoginRequest code */
         code?: (string|null);
@@ -4340,7 +4356,7 @@ export namespace user {
         constructor(properties?: user.IThreeLoginRequest);
 
         /** ThreeLoginRequest platform. */
-        public platform: string;
+        public platform: common.Platform;
 
         /** ThreeLoginRequest code. */
         public code: string;
