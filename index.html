@@ -276,6 +276,10 @@
                 </li>
               
               
+                <li>
+                  <a href="#common.Platform"><span class="badge">E</span>Platform</a>
+                </li>
+              
               
               
             </ul>
@@ -395,13 +399,9 @@
                 </li>
               
                 <li>
-                  <a href="#pay.WeixinPay"><span class="badge">M</span>WeixinPay</a>
+                  <a href="#pay.WechatPay"><span class="badge">M</span>WechatPay</a>
                 </li>
               
-              
-                <li>
-                  <a href="#pay.PayMode"><span class="badge">E</span>PayMode</a>
-                </li>
               
               
               
@@ -468,22 +468,22 @@
         
           
           <li>
-            <a href="#three.proto">three.proto</a>
+            <a href="#three_wechat.proto">three_wechat.proto</a>
             <ul>
               
                 <li>
-                  <a href="#three.GetWeichatMpRequest"><span class="badge">M</span>GetWeichatMpRequest</a>
+                  <a href="#three_wechat.GetWechatMpRequest"><span class="badge">M</span>GetWechatMpRequest</a>
                 </li>
               
                 <li>
-                  <a href="#three.GetWeichatMpResponse"><span class="badge">M</span>GetWeichatMpResponse</a>
+                  <a href="#three_wechat.GetWechatMpResponse"><span class="badge">M</span>GetWechatMpResponse</a>
                 </li>
               
               
               
               
                 <li>
-                  <a href="#three.ThreeService"><span class="badge">S</span>ThreeService</a>
+                  <a href="#three_wechat.ThreeWechatService"><span class="badge">S</span>ThreeWechatService</a>
                 </li>
               
             </ul>
@@ -591,6 +591,13 @@
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+              
+                <tr>
+                  <td>platform</td>
+                  <td><a href="#common.Platform">common.Platform</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
               
                 <tr>
                   <td>saas_id</td>
@@ -1024,6 +1031,47 @@
       
 
       
+        <h3 id="common.Platform">Platform</h3>
+        <p>运行平台</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWN</td>
+                <td>0</td>
+                <td><p>未知</p></td>
+              </tr>
+            
+              <tr>
+                <td>WEB</td>
+                <td>1</td>
+                <td><p>普通浏览器</p></td>
+              </tr>
+            
+              <tr>
+                <td>APP</td>
+                <td>2</td>
+                <td><p>原生App</p></td>
+              </tr>
+            
+              <tr>
+                <td>WECHAT_MP</td>
+                <td>11</td>
+                <td><p>微信公众号浏览器</p></td>
+              </tr>
+            
+              <tr>
+                <td>WECHAT_APP</td>
+                <td>12</td>
+                <td><p>微信小程序</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
 
       
 
@@ -1122,6 +1170,12 @@
                 <td>INVALID_APP</td>
                 <td>2018</td>
                 <td><p>无效的应用ID</p></td>
+              </tr>
+            
+              <tr>
+                <td>NOT_BIND_THREE</td>
+                <td>2019</td>
+                <td><p>未绑定第三方平台</p></td>
               </tr>
             
               <tr>
@@ -1682,8 +1736,8 @@
             <tbody>
               
                 <tr>
-                  <td>weixin</td>
-                  <td><a href="#pay.WeixinPay">WeixinPay</a></td>
+                  <td>wechat</td>
+                  <td><a href="#pay.WechatPay">WechatPay</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1695,7 +1749,7 @@
 
         
       
-        <h3 id="pay.WeixinPay">WeixinPay</h3>
+        <h3 id="pay.WechatPay">WechatPay</h3>
         <p>微信支付请求</p>
 
         
@@ -1755,29 +1809,6 @@
         
       
 
-      
-        <h3 id="pay.PayMode">PayMode</h3>
-        <p>支付方式</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>UNKNOWN</td>
-                <td>0</td>
-                <td><p>未知</p></td>
-              </tr>
-            
-              <tr>
-                <td>WEIXIN</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
       
 
       
@@ -2126,12 +2157,12 @@
     
       
       <div class="file-heading">
-        <h2 id="three.proto">three.proto</h2><a href="#title">Top</a>
+        <h2 id="three_wechat.proto">three_wechat.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
       
-        <h3 id="three.GetWeichatMpRequest">GetWeichatMpRequest</h3>
+        <h3 id="three_wechat.GetWechatMpRequest">GetWechatMpRequest</h3>
         <p></p>
 
         
@@ -2155,7 +2186,7 @@
 
         
       
-        <h3 id="three.GetWeichatMpResponse">GetWeichatMpResponse</h3>
+        <h3 id="three_wechat.GetWechatMpResponse">GetWechatMpResponse</h3>
         <p></p>
 
         
@@ -2206,8 +2237,8 @@
       
 
       
-        <h3 id="three.ThreeService">ThreeService</h3>
-        <p>第三方相关服务</p>
+        <h3 id="three_wechat.ThreeWechatService">ThreeWechatService</h3>
+        <p>微信相关服务</p>
         <table class="enum-table">
           <thead>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
@@ -2215,9 +2246,9 @@
           <tbody>
             
               <tr>
-                <td>GetWeichatMp</td>
-                <td><a href="#three.GetWeichatMpRequest">GetWeichatMpRequest</a></td>
-                <td><a href="#three.GetWeichatMpResponse">GetWeichatMpResponse</a></td>
+                <td>GetWechatMp</td>
+                <td><a href="#three_wechat.GetWechatMpRequest">GetWechatMpRequest</a></td>
+                <td><a href="#three_wechat.GetWechatMpResponse">GetWechatMpResponse</a></td>
                 <td><p>微信公众号</p></td>
               </tr>
             
@@ -2286,6 +2317,13 @@
                   <td><a href="#captcha.CheckCaptcha">captcha.CheckCaptcha</a></td>
                   <td></td>
                   <td><p>验证码 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>platform</td>
+                  <td><a href="#common.Platform">common.Platform</a></td>
+                  <td></td>
+                  <td><p>平台 </p></td>
                 </tr>
               
                 <tr>
@@ -2418,9 +2456,9 @@
               
                 <tr>
                   <td>platform</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#common.Platform">common.Platform</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>平台 </p></td>
                 </tr>
               
                 <tr>
