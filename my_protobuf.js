@@ -6116,6 +6116,24 @@ $root.form_data = (function() {
         return GetFormDataRequest;
     })();
 
+    /**
+     * Status enum.
+     * @name form_data.Status
+     * @enum {number}
+     * @property {number} NONE=0 NONE value
+     * @property {number} WAIT_PAY=1 WAIT_PAY value
+     * @property {number} WAIT_RECV=2 WAIT_RECV value
+     * @property {number} FINISH=3 FINISH value
+     */
+    form_data.Status = (function() {
+        var valuesById = {}, values = Object.create(valuesById);
+        values[valuesById[0] = "NONE"] = 0;
+        values[valuesById[1] = "WAIT_PAY"] = 1;
+        values[valuesById[2] = "WAIT_RECV"] = 2;
+        values[valuesById[3] = "FINISH"] = 3;
+        return values;
+    })();
+
     form_data.FormData = (function() {
 
         /**
@@ -6123,7 +6141,7 @@ $root.form_data = (function() {
          * @memberof form_data
          * @interface IFormData
          * @property {string|null} [form] FormData form
-         * @property {number|null} [status] FormData status
+         * @property {form_data.Status|null} [status] FormData status
          */
 
         /**
@@ -6151,7 +6169,7 @@ $root.form_data = (function() {
 
         /**
          * FormData status.
-         * @member {number} status
+         * @member {form_data.Status} status
          * @memberof form_data.FormData
          * @instance
          */
@@ -6268,8 +6286,15 @@ $root.form_data = (function() {
                 if (!$util.isString(message.form))
                     return "form: string expected";
             if (message.status != null && message.hasOwnProperty("status"))
-                if (!$util.isInteger(message.status))
-                    return "status: integer expected";
+                switch (message.status) {
+                default:
+                    return "status: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    break;
+                }
             return null;
         };
 
@@ -6287,8 +6312,30 @@ $root.form_data = (function() {
             var message = new $root.form_data.FormData();
             if (object.form != null)
                 message.form = String(object.form);
-            if (object.status != null)
-                message.status = object.status | 0;
+            switch (object.status) {
+            default:
+                if (typeof object.status === "number") {
+                    message.status = object.status;
+                    break;
+                }
+                break;
+            case "NONE":
+            case 0:
+                message.status = 0;
+                break;
+            case "WAIT_PAY":
+            case 1:
+                message.status = 1;
+                break;
+            case "WAIT_RECV":
+            case 2:
+                message.status = 2;
+                break;
+            case "FINISH":
+            case 3:
+                message.status = 3;
+                break;
+            }
             return message;
         };
 
@@ -6307,12 +6354,12 @@ $root.form_data = (function() {
             var object = {};
             if (options.defaults) {
                 object.form = "";
-                object.status = 0;
+                object.status = options.enums === String ? "NONE" : 0;
             }
             if (message.form != null && message.hasOwnProperty("form"))
                 object.form = message.form;
             if (message.status != null && message.hasOwnProperty("status"))
-                object.status = message.status;
+                object.status = options.enums === String ? $root.form_data.Status[message.status] === undefined ? message.status : $root.form_data.Status[message.status] : message.status;
             return object;
         };
 

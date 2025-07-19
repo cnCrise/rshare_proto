@@ -2739,6 +2739,14 @@ export namespace form_data {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Status enum. */
+    enum Status {
+        NONE = 0,
+        WAIT_PAY = 1,
+        WAIT_RECV = 2,
+        FINISH = 3
+    }
+
     /** Properties of a FormData. */
     interface IFormData {
 
@@ -2746,7 +2754,7 @@ export namespace form_data {
         form?: (string|null);
 
         /** FormData status */
-        status?: (number|null);
+        status?: (form_data.Status|null);
     }
 
     /** Represents a FormData. */
@@ -2762,7 +2770,7 @@ export namespace form_data {
         public form: string;
 
         /** FormData status. */
-        public status: number;
+        public status: form_data.Status;
 
         /**
          * Creates a new FormData instance using the specified properties.
