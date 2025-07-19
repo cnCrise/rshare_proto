@@ -16,9 +16,16 @@ message GetFormDataRequest {
   auth.Authorization auth = 1;
   app.AppIndex app = 2;
 }
+
+enum Status {
+    NONE = 0;
+    WAIT_PAY = 1;
+    WAIT_RECV = 2;
+    FINISH = 3;
+}
 message FormData {
   string form = 12;
-  int32 status = 21;
+  Status status = 21;
 }
 
 // 表单程序相关服务
