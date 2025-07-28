@@ -2550,6 +2550,9 @@ export namespace form_data {
 
         /** SubmitFormDataRequest form */
         form?: (string|null);
+
+        /** SubmitFormDataRequest passwd */
+        passwd?: (string|null);
     }
 
     /** Represents a SubmitFormDataRequest. */
@@ -2569,6 +2572,9 @@ export namespace form_data {
 
         /** SubmitFormDataRequest form. */
         public form: string;
+
+        /** SubmitFormDataRequest passwd. */
+        public passwd: string;
 
         /**
          * Creates a new SubmitFormDataRequest instance using the specified properties.

@@ -5670,6 +5670,7 @@ $root.form_data = (function() {
          * @property {auth.IAuthorization|null} [auth] SubmitFormDataRequest auth
          * @property {app.IAppIndex|null} [app] SubmitFormDataRequest app
          * @property {string|null} [form] SubmitFormDataRequest form
+         * @property {string|null} [passwd] SubmitFormDataRequest passwd
          */
 
         /**
@@ -5712,6 +5713,14 @@ $root.form_data = (function() {
         SubmitFormDataRequest.prototype.form = "";
 
         /**
+         * SubmitFormDataRequest passwd.
+         * @member {string} passwd
+         * @memberof form_data.SubmitFormDataRequest
+         * @instance
+         */
+        SubmitFormDataRequest.prototype.passwd = "";
+
+        /**
          * Creates a new SubmitFormDataRequest instance using the specified properties.
          * @function create
          * @memberof form_data.SubmitFormDataRequest
@@ -5741,6 +5750,8 @@ $root.form_data = (function() {
                 $root.app.AppIndex.encode(message.app, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
             if (message.form != null && Object.hasOwnProperty.call(message, "form"))
                 writer.uint32(/* id 12, wireType 2 =*/98).string(message.form);
+            if (message.passwd != null && Object.hasOwnProperty.call(message, "passwd"))
+                writer.uint32(/* id 13, wireType 2 =*/106).string(message.passwd);
             return writer;
         };
 
@@ -5787,6 +5798,10 @@ $root.form_data = (function() {
                     }
                 case 12: {
                         message.form = reader.string();
+                        break;
+                    }
+                case 13: {
+                        message.passwd = reader.string();
                         break;
                     }
                 default:
@@ -5837,6 +5852,9 @@ $root.form_data = (function() {
             if (message.form != null && message.hasOwnProperty("form"))
                 if (!$util.isString(message.form))
                     return "form: string expected";
+            if (message.passwd != null && message.hasOwnProperty("passwd"))
+                if (!$util.isString(message.passwd))
+                    return "passwd: string expected";
             return null;
         };
 
@@ -5864,6 +5882,8 @@ $root.form_data = (function() {
             }
             if (object.form != null)
                 message.form = String(object.form);
+            if (object.passwd != null)
+                message.passwd = String(object.passwd);
             return message;
         };
 
@@ -5884,6 +5904,7 @@ $root.form_data = (function() {
                 object.auth = null;
                 object.app = null;
                 object.form = "";
+                object.passwd = "";
             }
             if (message.auth != null && message.hasOwnProperty("auth"))
                 object.auth = $root.auth.Authorization.toObject(message.auth, options);
@@ -5891,6 +5912,8 @@ $root.form_data = (function() {
                 object.app = $root.app.AppIndex.toObject(message.app, options);
             if (message.form != null && message.hasOwnProperty("form"))
                 object.form = message.form;
+            if (message.passwd != null && message.hasOwnProperty("passwd"))
+                object.passwd = message.passwd;
             return object;
         };
 
