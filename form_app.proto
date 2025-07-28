@@ -12,6 +12,7 @@ message SetFormAppRequest {
   string prefix_img = 11;
   string form = 12;
   string suffix_img = 13;
+  string passwd_title = 20;
   double price = 21;
 }
 message GetFormAppRequest {
@@ -21,6 +22,7 @@ message FormApp {
   string prefix_img = 11;
   string form = 12;
   string suffix_img = 13;
+  string passwd_title = 20;
   double price = 21;
 }
 
