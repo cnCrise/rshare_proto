@@ -2136,6 +2136,9 @@ export namespace form_app {
         /** SetFormAppRequest suffix_img */
         suffix_img?: (string|null);
 
+        /** SetFormAppRequest passwd_title */
+        passwd_title?: (string|null);
+
         /** SetFormAppRequest price */
         price?: (number|null);
     }
@@ -2163,6 +2166,9 @@ export namespace form_app {
 
         /** SetFormAppRequest suffix_img. */
         public suffix_img: string;
+
+        /** SetFormAppRequest passwd_title. */
+        public passwd_title: string;
 
         /** SetFormAppRequest price. */
         public price: number;
@@ -2354,6 +2360,9 @@ export namespace form_app {
         /** FormApp suffix_img */
         suffix_img?: (string|null);
 
+        /** FormApp passwd_title */
+        passwd_title?: (string|null);
+
         /** FormApp price */
         price?: (number|null);
     }
@@ -2375,6 +2384,9 @@ export namespace form_app {
 
         /** FormApp suffix_img. */
         public suffix_img: string;
+
+        /** FormApp passwd_title. */
+        public passwd_title: string;
 
         /** FormApp price. */
         public price: number;
@@ -2739,6 +2751,218 @@ export namespace form_data {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a GetFormDataByPasswdRequest. */
+    interface IGetFormDataByPasswdRequest {
+
+        /** GetFormDataByPasswdRequest app */
+        app?: (app.IAppIndex|null);
+
+        /** GetFormDataByPasswdRequest passwd */
+        passwd?: (string|null);
+    }
+
+    /** Represents a GetFormDataByPasswdRequest. */
+    class GetFormDataByPasswdRequest implements IGetFormDataByPasswdRequest {
+
+        /**
+         * Constructs a new GetFormDataByPasswdRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: form_data.IGetFormDataByPasswdRequest);
+
+        /** GetFormDataByPasswdRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /** GetFormDataByPasswdRequest passwd. */
+        public passwd: string;
+
+        /**
+         * Creates a new GetFormDataByPasswdRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetFormDataByPasswdRequest instance
+         */
+        public static create(properties?: form_data.IGetFormDataByPasswdRequest): form_data.GetFormDataByPasswdRequest;
+
+        /**
+         * Encodes the specified GetFormDataByPasswdRequest message. Does not implicitly {@link form_data.GetFormDataByPasswdRequest.verify|verify} messages.
+         * @param message GetFormDataByPasswdRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: form_data.IGetFormDataByPasswdRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetFormDataByPasswdRequest message, length delimited. Does not implicitly {@link form_data.GetFormDataByPasswdRequest.verify|verify} messages.
+         * @param message GetFormDataByPasswdRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: form_data.IGetFormDataByPasswdRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetFormDataByPasswdRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetFormDataByPasswdRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_data.GetFormDataByPasswdRequest;
+
+        /**
+         * Decodes a GetFormDataByPasswdRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetFormDataByPasswdRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_data.GetFormDataByPasswdRequest;
+
+        /**
+         * Verifies a GetFormDataByPasswdRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetFormDataByPasswdRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetFormDataByPasswdRequest
+         */
+        public static fromObject(object: { [k: string]: any }): form_data.GetFormDataByPasswdRequest;
+
+        /**
+         * Creates a plain object from a GetFormDataByPasswdRequest message. Also converts values to other types if specified.
+         * @param message GetFormDataByPasswdRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: form_data.GetFormDataByPasswdRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetFormDataByPasswdRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for GetFormDataByPasswdRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a FinishFormDataRequest. */
+    interface IFinishFormDataRequest {
+
+        /** FinishFormDataRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** FinishFormDataRequest app */
+        app?: (app.IAppIndex|null);
+
+        /** FinishFormDataRequest passwd */
+        passwd?: (string|null);
+    }
+
+    /** Represents a FinishFormDataRequest. */
+    class FinishFormDataRequest implements IFinishFormDataRequest {
+
+        /**
+         * Constructs a new FinishFormDataRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: form_data.IFinishFormDataRequest);
+
+        /** FinishFormDataRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** FinishFormDataRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /** FinishFormDataRequest passwd. */
+        public passwd: string;
+
+        /**
+         * Creates a new FinishFormDataRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns FinishFormDataRequest instance
+         */
+        public static create(properties?: form_data.IFinishFormDataRequest): form_data.FinishFormDataRequest;
+
+        /**
+         * Encodes the specified FinishFormDataRequest message. Does not implicitly {@link form_data.FinishFormDataRequest.verify|verify} messages.
+         * @param message FinishFormDataRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: form_data.IFinishFormDataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified FinishFormDataRequest message, length delimited. Does not implicitly {@link form_data.FinishFormDataRequest.verify|verify} messages.
+         * @param message FinishFormDataRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: form_data.IFinishFormDataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a FinishFormDataRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns FinishFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_data.FinishFormDataRequest;
+
+        /**
+         * Decodes a FinishFormDataRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns FinishFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_data.FinishFormDataRequest;
+
+        /**
+         * Verifies a FinishFormDataRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a FinishFormDataRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns FinishFormDataRequest
+         */
+        public static fromObject(object: { [k: string]: any }): form_data.FinishFormDataRequest;
+
+        /**
+         * Creates a plain object from a FinishFormDataRequest message. Also converts values to other types if specified.
+         * @param message FinishFormDataRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: form_data.FinishFormDataRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this FinishFormDataRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for FinishFormDataRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Status enum. */
     enum Status {
         NONE = 0,
@@ -2752,6 +2976,9 @@ export namespace form_data {
 
         /** FormData form */
         form?: (string|null);
+
+        /** FormData passwd */
+        passwd?: (string|null);
 
         /** FormData status */
         status?: (form_data.Status|null);
@@ -2768,6 +2995,9 @@ export namespace form_data {
 
         /** FormData form. */
         public form: string;
+
+        /** FormData passwd. */
+        public passwd: string;
 
         /** FormData status. */
         public status: form_data.Status;
@@ -2885,6 +3115,20 @@ export namespace form_data {
         public getFormData(request: form_data.IGetFormDataRequest): Promise<form_data.FormData>;
 
         /**
+         * Calls GetFormDataByPasswd.
+         * @param request GetFormDataByPasswdRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and FormData
+         */
+        public getFormDataByPasswd(request: form_data.IGetFormDataByPasswdRequest, callback: form_data.FormDataService.GetFormDataByPasswdCallback): void;
+
+        /**
+         * Calls GetFormDataByPasswd.
+         * @param request GetFormDataByPasswdRequest message or plain object
+         * @returns Promise
+         */
+        public getFormDataByPasswd(request: form_data.IGetFormDataByPasswdRequest): Promise<form_data.FormData>;
+
+        /**
          * Calls SubmitFormData.
          * @param request SubmitFormDataRequest message or plain object
          * @param callback Node-style callback called with the error, if any, and PayRequest
@@ -2897,6 +3141,20 @@ export namespace form_data {
          * @returns Promise
          */
         public submitFormData(request: form_data.ISubmitFormDataRequest): Promise<pay.PayRequest>;
+
+        /**
+         * Calls FinishFormData.
+         * @param request FinishFormDataRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and Empty
+         */
+        public finishFormData(request: form_data.IFinishFormDataRequest, callback: form_data.FormDataService.FinishFormDataCallback): void;
+
+        /**
+         * Calls FinishFormData.
+         * @param request FinishFormDataRequest message or plain object
+         * @returns Promise
+         */
+        public finishFormData(request: form_data.IFinishFormDataRequest): Promise<common.Empty>;
     }
 
     namespace FormDataService {
@@ -2909,11 +3167,25 @@ export namespace form_data {
         type GetFormDataCallback = (error: (Error|null), response?: form_data.FormData) => void;
 
         /**
+         * Callback as used by {@link form_data.FormDataService#getFormDataByPasswd}.
+         * @param error Error, if any
+         * @param [response] FormData
+         */
+        type GetFormDataByPasswdCallback = (error: (Error|null), response?: form_data.FormData) => void;
+
+        /**
          * Callback as used by {@link form_data.FormDataService#submitFormData}.
          * @param error Error, if any
          * @param [response] PayRequest
          */
         type SubmitFormDataCallback = (error: (Error|null), response?: pay.PayRequest) => void;
+
+        /**
+         * Callback as used by {@link form_data.FormDataService#finishFormData}.
+         * @param error Error, if any
+         * @param [response] Empty
+         */
+        type FinishFormDataCallback = (error: (Error|null), response?: common.Empty) => void;
     }
 }
 
