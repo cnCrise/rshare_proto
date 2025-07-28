@@ -368,7 +368,15 @@
             <ul>
               
                 <li>
+                  <a href="#form_data.FinishFormDataRequest"><span class="badge">M</span>FinishFormDataRequest</a>
+                </li>
+              
+                <li>
                   <a href="#form_data.FormData"><span class="badge">M</span>FormData</a>
+                </li>
+              
+                <li>
+                  <a href="#form_data.GetFormDataByPasswdRequest"><span class="badge">M</span>GetFormDataByPasswdRequest</a>
                 </li>
               
                 <li>
@@ -1453,6 +1461,13 @@
                 </tr>
               
                 <tr>
+                  <td>passwd_title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>price</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
@@ -1536,6 +1551,13 @@
                 </tr>
               
                 <tr>
+                  <td>passwd_title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>price</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
@@ -1589,6 +1611,44 @@
       <p></p>
 
       
+        <h3 id="form_data.FinishFormDataRequest">FinishFormDataRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">app.AppIndex</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>passwd</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="form_data.FormData">FormData</h3>
         <p></p>
 
@@ -1607,8 +1667,46 @@
                 </tr>
               
                 <tr>
+                  <td>passwd</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>status</td>
                   <td><a href="#form_data.Status">Status</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="form_data.GetFormDataByPasswdRequest">GetFormDataByPasswdRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">app.AppIndex</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>passwd</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1746,9 +1844,23 @@
               </tr>
             
               <tr>
+                <td>GetFormDataByPasswd</td>
+                <td><a href="#form_data.GetFormDataByPasswdRequest">GetFormDataByPasswdRequest</a></td>
+                <td><a href="#form_data.FormData">FormData</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
                 <td>SubmitFormData</td>
                 <td><a href="#form_data.SubmitFormDataRequest">SubmitFormDataRequest</a></td>
                 <td><a href="#pay.PayRequest">.pay.PayRequest</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>FinishFormData</td>
+                <td><a href="#form_data.FinishFormDataRequest">FinishFormDataRequest</a></td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
                 <td><p></p></td>
               </tr>
             
