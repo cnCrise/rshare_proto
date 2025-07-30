@@ -21,6 +21,10 @@ message GetFormDataByPasswdRequest {
   app.AppIndex app = 2;
   string passwd = 13;
 }
+message CancelFormDataRequest {
+  auth.Authorization auth = 1;
+  app.AppIndex app = 2;
+}
 message FinishFormDataRequest {
   auth.Authorization auth = 1;
   app.AppIndex app = 2;
@@ -44,5 +48,6 @@ service FormDataService {
   rpc GetFormData(GetFormDataRequest) returns (FormData);
   rpc GetFormDataByPasswd(GetFormDataByPasswdRequest) returns (FormData);
   rpc SubmitFormData(SubmitFormDataRequest) returns (pay.PayRequest);
+  rpc CancelFormData(CancelFormDataRequest) returns (common.Empty);
   rpc FinishFormData(FinishFormDataRequest) returns (common.Empty);
 }
