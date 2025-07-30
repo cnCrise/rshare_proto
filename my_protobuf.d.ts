@@ -2860,6 +2860,109 @@ export namespace form_data {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a CancelFormDataRequest. */
+    interface ICancelFormDataRequest {
+
+        /** CancelFormDataRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** CancelFormDataRequest app */
+        app?: (app.IAppIndex|null);
+    }
+
+    /** Represents a CancelFormDataRequest. */
+    class CancelFormDataRequest implements ICancelFormDataRequest {
+
+        /**
+         * Constructs a new CancelFormDataRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: form_data.ICancelFormDataRequest);
+
+        /** CancelFormDataRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** CancelFormDataRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /**
+         * Creates a new CancelFormDataRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CancelFormDataRequest instance
+         */
+        public static create(properties?: form_data.ICancelFormDataRequest): form_data.CancelFormDataRequest;
+
+        /**
+         * Encodes the specified CancelFormDataRequest message. Does not implicitly {@link form_data.CancelFormDataRequest.verify|verify} messages.
+         * @param message CancelFormDataRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: form_data.ICancelFormDataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CancelFormDataRequest message, length delimited. Does not implicitly {@link form_data.CancelFormDataRequest.verify|verify} messages.
+         * @param message CancelFormDataRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: form_data.ICancelFormDataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CancelFormDataRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CancelFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): form_data.CancelFormDataRequest;
+
+        /**
+         * Decodes a CancelFormDataRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CancelFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): form_data.CancelFormDataRequest;
+
+        /**
+         * Verifies a CancelFormDataRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CancelFormDataRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CancelFormDataRequest
+         */
+        public static fromObject(object: { [k: string]: any }): form_data.CancelFormDataRequest;
+
+        /**
+         * Creates a plain object from a CancelFormDataRequest message. Also converts values to other types if specified.
+         * @param message CancelFormDataRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: form_data.CancelFormDataRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CancelFormDataRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CancelFormDataRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a FinishFormDataRequest. */
     interface IFinishFormDataRequest {
 
@@ -3149,6 +3252,20 @@ export namespace form_data {
         public submitFormData(request: form_data.ISubmitFormDataRequest): Promise<pay.PayRequest>;
 
         /**
+         * Calls CancelFormData.
+         * @param request CancelFormDataRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and Empty
+         */
+        public cancelFormData(request: form_data.ICancelFormDataRequest, callback: form_data.FormDataService.CancelFormDataCallback): void;
+
+        /**
+         * Calls CancelFormData.
+         * @param request CancelFormDataRequest message or plain object
+         * @returns Promise
+         */
+        public cancelFormData(request: form_data.ICancelFormDataRequest): Promise<common.Empty>;
+
+        /**
          * Calls FinishFormData.
          * @param request FinishFormDataRequest message or plain object
          * @param callback Node-style callback called with the error, if any, and Empty
@@ -3185,6 +3302,13 @@ export namespace form_data {
          * @param [response] PayRequest
          */
         type SubmitFormDataCallback = (error: (Error|null), response?: pay.PayRequest) => void;
+
+        /**
+         * Callback as used by {@link form_data.FormDataService#cancelFormData}.
+         * @param error Error, if any
+         * @param [response] Empty
+         */
+        type CancelFormDataCallback = (error: (Error|null), response?: common.Empty) => void;
 
         /**
          * Callback as used by {@link form_data.FormDataService#finishFormData}.

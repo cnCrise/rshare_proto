@@ -6419,6 +6419,245 @@ $root.form_data = (function() {
         return GetFormDataByPasswdRequest;
     })();
 
+    form_data.CancelFormDataRequest = (function() {
+
+        /**
+         * Properties of a CancelFormDataRequest.
+         * @memberof form_data
+         * @interface ICancelFormDataRequest
+         * @property {auth.IAuthorization|null} [auth] CancelFormDataRequest auth
+         * @property {app.IAppIndex|null} [app] CancelFormDataRequest app
+         */
+
+        /**
+         * Constructs a new CancelFormDataRequest.
+         * @memberof form_data
+         * @classdesc Represents a CancelFormDataRequest.
+         * @implements ICancelFormDataRequest
+         * @constructor
+         * @param {form_data.ICancelFormDataRequest=} [properties] Properties to set
+         */
+        function CancelFormDataRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * CancelFormDataRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof form_data.CancelFormDataRequest
+         * @instance
+         */
+        CancelFormDataRequest.prototype.auth = null;
+
+        /**
+         * CancelFormDataRequest app.
+         * @member {app.IAppIndex|null|undefined} app
+         * @memberof form_data.CancelFormDataRequest
+         * @instance
+         */
+        CancelFormDataRequest.prototype.app = null;
+
+        /**
+         * Creates a new CancelFormDataRequest instance using the specified properties.
+         * @function create
+         * @memberof form_data.CancelFormDataRequest
+         * @static
+         * @param {form_data.ICancelFormDataRequest=} [properties] Properties to set
+         * @returns {form_data.CancelFormDataRequest} CancelFormDataRequest instance
+         */
+        CancelFormDataRequest.create = function create(properties) {
+            return new CancelFormDataRequest(properties);
+        };
+
+        /**
+         * Encodes the specified CancelFormDataRequest message. Does not implicitly {@link form_data.CancelFormDataRequest.verify|verify} messages.
+         * @function encode
+         * @memberof form_data.CancelFormDataRequest
+         * @static
+         * @param {form_data.ICancelFormDataRequest} message CancelFormDataRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CancelFormDataRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.app != null && Object.hasOwnProperty.call(message, "app"))
+                $root.app.AppIndex.encode(message.app, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            return writer;
+        };
+
+        /**
+         * Encodes the specified CancelFormDataRequest message, length delimited. Does not implicitly {@link form_data.CancelFormDataRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof form_data.CancelFormDataRequest
+         * @static
+         * @param {form_data.ICancelFormDataRequest} message CancelFormDataRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        CancelFormDataRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a CancelFormDataRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof form_data.CancelFormDataRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {form_data.CancelFormDataRequest} CancelFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CancelFormDataRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.form_data.CancelFormDataRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 2: {
+                        message.app = $root.app.AppIndex.decode(reader, reader.uint32());
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a CancelFormDataRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof form_data.CancelFormDataRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {form_data.CancelFormDataRequest} CancelFormDataRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        CancelFormDataRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a CancelFormDataRequest message.
+         * @function verify
+         * @memberof form_data.CancelFormDataRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        CancelFormDataRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.app != null && message.hasOwnProperty("app")) {
+                var error = $root.app.AppIndex.verify(message.app);
+                if (error)
+                    return "app." + error;
+            }
+            return null;
+        };
+
+        /**
+         * Creates a CancelFormDataRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof form_data.CancelFormDataRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {form_data.CancelFormDataRequest} CancelFormDataRequest
+         */
+        CancelFormDataRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.form_data.CancelFormDataRequest)
+                return object;
+            var message = new $root.form_data.CancelFormDataRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".form_data.CancelFormDataRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.app != null) {
+                if (typeof object.app !== "object")
+                    throw TypeError(".form_data.CancelFormDataRequest.app: object expected");
+                message.app = $root.app.AppIndex.fromObject(object.app);
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a CancelFormDataRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof form_data.CancelFormDataRequest
+         * @static
+         * @param {form_data.CancelFormDataRequest} message CancelFormDataRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        CancelFormDataRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.app = null;
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.app != null && message.hasOwnProperty("app"))
+                object.app = $root.app.AppIndex.toObject(message.app, options);
+            return object;
+        };
+
+        /**
+         * Converts this CancelFormDataRequest to JSON.
+         * @function toJSON
+         * @memberof form_data.CancelFormDataRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        CancelFormDataRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for CancelFormDataRequest
+         * @function getTypeUrl
+         * @memberof form_data.CancelFormDataRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        CancelFormDataRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/form_data.CancelFormDataRequest";
+        };
+
+        return CancelFormDataRequest;
+    })();
+
     form_data.FinishFormDataRequest = (function() {
 
         /**
@@ -7108,6 +7347,39 @@ $root.form_data = (function() {
          * @instance
          * @param {form_data.ISubmitFormDataRequest} request SubmitFormDataRequest message or plain object
          * @returns {Promise<pay.PayRequest>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link form_data.FormDataService#cancelFormData}.
+         * @memberof form_data.FormDataService
+         * @typedef CancelFormDataCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {common.Empty} [response] Empty
+         */
+
+        /**
+         * Calls CancelFormData.
+         * @function cancelFormData
+         * @memberof form_data.FormDataService
+         * @instance
+         * @param {form_data.ICancelFormDataRequest} request CancelFormDataRequest message or plain object
+         * @param {form_data.FormDataService.CancelFormDataCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(FormDataService.prototype.cancelFormData = function cancelFormData(request, callback) {
+            return this.rpcCall(cancelFormData, $root.form_data.CancelFormDataRequest, $root.common.Empty, request, callback);
+        }, "name", { value: "CancelFormData" });
+
+        /**
+         * Calls CancelFormData.
+         * @function cancelFormData
+         * @memberof form_data.FormDataService
+         * @instance
+         * @param {form_data.ICancelFormDataRequest} request CancelFormDataRequest message or plain object
+         * @returns {Promise<common.Empty>} Promise
          * @variation 2
          */
 
