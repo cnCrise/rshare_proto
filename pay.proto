@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package pay;
 
+import "common.proto";
+import "auth.proto";
+
 // 微信支付请求
 message WechatPay {
   string appId = 1;
@@ -15,4 +18,34 @@ message WechatPay {
 // 支付请求
 message PayRequest {
   WechatPay wechat = 1;
+}
+
+message SetMerchantRequest {
+  auth.Authorization auth = 1;
+  // 主键
+  uint32 pay_id = 5;
+  // 支付方式
+  string kind = 10;
+  // 商户ID
+  string mchid = 11;
+  // 密钥
+  string key = 12;
+  // API ID
+  string api_id = 21;
+  // API密钥
+  string api_key = 22;
+}
+
+message AuthMerchantRequest {
+  auth.Authorization auth = 1;
+  uint32 pay_id = 5;
+  uint32 user_id = 11;
+}
+
+// 支付相关服务
+service PayService {
+  // 设置商户信息
+  rpc SetMerchant(SetMerchantRequest) returns (common.Empty);
+  // 授权给用户
+  rpc AuthMerchant(AuthMerchantRequest) returns (common.Empty);
 }

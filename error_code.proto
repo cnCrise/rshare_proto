@@ -36,6 +36,8 @@ enum ErrorCode {
   PERMISSION_DENIED = 2021;
   // 数据不存在
   NOT_FOUND = 4004;
+  // 数量已达上限
+  QuantityLimit = 4005;
   // 通用异常
   COMMON_ERR = 7000;
   // 数据库异常
