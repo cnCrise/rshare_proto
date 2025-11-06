@@ -567,7 +567,7 @@ $root.app = (function() {
          * Properties of a GetAppsRequest.
          * @memberof app
          * @interface IGetAppsRequest
-         * @property {auth.IAuthorization|null} [auth] GetAppsRequest auth
+         * @property {number|null} [user_id] GetAppsRequest user_id
          * @property {number|null} [saas_id] GetAppsRequest saas_id
          */
 
@@ -587,12 +587,12 @@ $root.app = (function() {
         }
 
         /**
-         * GetAppsRequest auth.
-         * @member {auth.IAuthorization|null|undefined} auth
+         * GetAppsRequest user_id.
+         * @member {number} user_id
          * @memberof app.GetAppsRequest
          * @instance
          */
-        GetAppsRequest.prototype.auth = null;
+        GetAppsRequest.prototype.user_id = 0;
 
         /**
          * GetAppsRequest saas_id.
@@ -626,8 +626,8 @@ $root.app = (function() {
         GetAppsRequest.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
-                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.user_id != null && Object.hasOwnProperty.call(message, "user_id"))
+                writer.uint32(/* id 10, wireType 0 =*/80).uint32(message.user_id);
             if (message.saas_id != null && Object.hasOwnProperty.call(message, "saas_id"))
                 writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saas_id);
             return writer;
@@ -666,8 +666,8 @@ $root.app = (function() {
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
-                case 1: {
-                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                case 10: {
+                        message.user_id = reader.uint32();
                         break;
                     }
                 case 11: {
@@ -709,11 +709,9 @@ $root.app = (function() {
         GetAppsRequest.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.auth != null && message.hasOwnProperty("auth")) {
-                var error = $root.auth.Authorization.verify(message.auth);
-                if (error)
-                    return "auth." + error;
-            }
+            if (message.user_id != null && message.hasOwnProperty("user_id"))
+                if (!$util.isInteger(message.user_id))
+                    return "user_id: integer expected";
             if (message.saas_id != null && message.hasOwnProperty("saas_id"))
                 if (!$util.isInteger(message.saas_id))
                     return "saas_id: integer expected";
@@ -732,11 +730,8 @@ $root.app = (function() {
             if (object instanceof $root.app.GetAppsRequest)
                 return object;
             var message = new $root.app.GetAppsRequest();
-            if (object.auth != null) {
-                if (typeof object.auth !== "object")
-                    throw TypeError(".app.GetAppsRequest.auth: object expected");
-                message.auth = $root.auth.Authorization.fromObject(object.auth);
-            }
+            if (object.user_id != null)
+                message.user_id = object.user_id >>> 0;
             if (object.saas_id != null)
                 message.saas_id = object.saas_id >>> 0;
             return message;
@@ -756,11 +751,11 @@ $root.app = (function() {
                 options = {};
             var object = {};
             if (options.defaults) {
-                object.auth = null;
+                object.user_id = 0;
                 object.saas_id = 0;
             }
-            if (message.auth != null && message.hasOwnProperty("auth"))
-                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.user_id != null && message.hasOwnProperty("user_id"))
+                object.user_id = message.user_id;
             if (message.saas_id != null && message.hasOwnProperty("saas_id"))
                 object.saas_id = message.saas_id;
             return object;
@@ -3382,6 +3377,7 @@ $root.error_code = (function() {
      * @property {number} NOT_BIND_THREE=2019 NOT_BIND_THREE value
      * @property {number} PERMISSION_DENIED=2021 PERMISSION_DENIED value
      * @property {number} NOT_FOUND=4004 NOT_FOUND value
+     * @property {number} QuantityLimit=4005 QuantityLimit value
      * @property {number} COMMON_ERR=7000 COMMON_ERR value
      * @property {number} DB_ERR=7001 DB_ERR value
      * @property {number} IO_ERR=7101 IO_ERR value
@@ -3405,6 +3401,7 @@ $root.error_code = (function() {
         values[valuesById[2019] = "NOT_BIND_THREE"] = 2019;
         values[valuesById[2021] = "PERMISSION_DENIED"] = 2021;
         values[valuesById[4004] = "NOT_FOUND"] = 4004;
+        values[valuesById[4005] = "QuantityLimit"] = 4005;
         values[valuesById[7000] = "COMMON_ERR"] = 7000;
         values[valuesById[7001] = "DB_ERR"] = 7001;
         values[valuesById[7101] = "IO_ERR"] = 7101;
@@ -4699,6 +4696,7 @@ $root.form_app = (function() {
          * @property {string|null} [suffix_img] SetFormAppRequest suffix_img
          * @property {string|null} [passwd_title] SetFormAppRequest passwd_title
          * @property {number|null} [price] SetFormAppRequest price
+         * @property {number|null} [limit] SetFormAppRequest limit
          */
 
         /**
@@ -4773,6 +4771,14 @@ $root.form_app = (function() {
         SetFormAppRequest.prototype.price = 0;
 
         /**
+         * SetFormAppRequest limit.
+         * @member {number} limit
+         * @memberof form_app.SetFormAppRequest
+         * @instance
+         */
+        SetFormAppRequest.prototype.limit = 0;
+
+        /**
          * Creates a new SetFormAppRequest instance using the specified properties.
          * @function create
          * @memberof form_app.SetFormAppRequest
@@ -4810,6 +4816,8 @@ $root.form_app = (function() {
                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.passwd_title);
             if (message.price != null && Object.hasOwnProperty.call(message, "price"))
                 writer.uint32(/* id 21, wireType 1 =*/169).double(message.price);
+            if (message.limit != null && Object.hasOwnProperty.call(message, "limit"))
+                writer.uint32(/* id 22, wireType 0 =*/176).uint32(message.limit);
             return writer;
         };
 
@@ -4874,6 +4882,10 @@ $root.form_app = (function() {
                         message.price = reader.double();
                         break;
                     }
+                case 22: {
+                        message.limit = reader.uint32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -4934,6 +4946,9 @@ $root.form_app = (function() {
             if (message.price != null && message.hasOwnProperty("price"))
                 if (typeof message.price !== "number")
                     return "price: number expected";
+            if (message.limit != null && message.hasOwnProperty("limit"))
+                if (!$util.isInteger(message.limit))
+                    return "limit: integer expected";
             return null;
         };
 
@@ -4969,6 +4984,8 @@ $root.form_app = (function() {
                 message.passwd_title = String(object.passwd_title);
             if (object.price != null)
                 message.price = Number(object.price);
+            if (object.limit != null)
+                message.limit = object.limit >>> 0;
             return message;
         };
 
@@ -4993,6 +5010,7 @@ $root.form_app = (function() {
                 object.suffix_img = "";
                 object.passwd_title = "";
                 object.price = 0;
+                object.limit = 0;
             }
             if (message.auth != null && message.hasOwnProperty("auth"))
                 object.auth = $root.auth.Authorization.toObject(message.auth, options);
@@ -5008,6 +5026,8 @@ $root.form_app = (function() {
                 object.passwd_title = message.passwd_title;
             if (message.price != null && message.hasOwnProperty("price"))
                 object.price = options.json && !isFinite(message.price) ? String(message.price) : message.price;
+            if (message.limit != null && message.hasOwnProperty("limit"))
+                object.limit = message.limit;
             return object;
         };
 
@@ -5261,6 +5281,7 @@ $root.form_app = (function() {
          * @property {string|null} [suffix_img] FormApp suffix_img
          * @property {string|null} [passwd_title] FormApp passwd_title
          * @property {number|null} [price] FormApp price
+         * @property {number|null} [limit] FormApp limit
          */
 
         /**
@@ -5319,6 +5340,14 @@ $root.form_app = (function() {
         FormApp.prototype.price = 0;
 
         /**
+         * FormApp limit.
+         * @member {number} limit
+         * @memberof form_app.FormApp
+         * @instance
+         */
+        FormApp.prototype.limit = 0;
+
+        /**
          * Creates a new FormApp instance using the specified properties.
          * @function create
          * @memberof form_app.FormApp
@@ -5352,6 +5381,8 @@ $root.form_app = (function() {
                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.passwd_title);
             if (message.price != null && Object.hasOwnProperty.call(message, "price"))
                 writer.uint32(/* id 21, wireType 1 =*/169).double(message.price);
+            if (message.limit != null && Object.hasOwnProperty.call(message, "limit"))
+                writer.uint32(/* id 22, wireType 0 =*/176).uint32(message.limit);
             return writer;
         };
 
@@ -5408,6 +5439,10 @@ $root.form_app = (function() {
                         message.price = reader.double();
                         break;
                     }
+                case 22: {
+                        message.limit = reader.uint32();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -5458,6 +5493,9 @@ $root.form_app = (function() {
             if (message.price != null && message.hasOwnProperty("price"))
                 if (typeof message.price !== "number")
                     return "price: number expected";
+            if (message.limit != null && message.hasOwnProperty("limit"))
+                if (!$util.isInteger(message.limit))
+                    return "limit: integer expected";
             return null;
         };
 
@@ -5483,6 +5521,8 @@ $root.form_app = (function() {
                 message.passwd_title = String(object.passwd_title);
             if (object.price != null)
                 message.price = Number(object.price);
+            if (object.limit != null)
+                message.limit = object.limit >>> 0;
             return message;
         };
 
@@ -5505,6 +5545,7 @@ $root.form_app = (function() {
                 object.suffix_img = "";
                 object.passwd_title = "";
                 object.price = 0;
+                object.limit = 0;
             }
             if (message.prefix_img != null && message.hasOwnProperty("prefix_img"))
                 object.prefix_img = message.prefix_img;
@@ -5516,6 +5557,8 @@ $root.form_app = (function() {
                 object.passwd_title = message.passwd_title;
             if (message.price != null && message.hasOwnProperty("price"))
                 object.price = options.json && !isFinite(message.price) ? String(message.price) : message.price;
+            if (message.limit != null && message.hasOwnProperty("limit"))
+                object.limit = message.limit;
             return object;
         };
 
@@ -7960,6 +8003,713 @@ $root.pay = (function() {
         };
 
         return PayRequest;
+    })();
+
+    pay.SetMerchantRequest = (function() {
+
+        /**
+         * Properties of a SetMerchantRequest.
+         * @memberof pay
+         * @interface ISetMerchantRequest
+         * @property {auth.IAuthorization|null} [auth] SetMerchantRequest auth
+         * @property {number|null} [pay_id] SetMerchantRequest pay_id
+         * @property {string|null} [kind] SetMerchantRequest kind
+         * @property {string|null} [mchid] SetMerchantRequest mchid
+         * @property {string|null} [key] SetMerchantRequest key
+         * @property {string|null} [api_id] SetMerchantRequest api_id
+         * @property {string|null} [api_key] SetMerchantRequest api_key
+         */
+
+        /**
+         * Constructs a new SetMerchantRequest.
+         * @memberof pay
+         * @classdesc Represents a SetMerchantRequest.
+         * @implements ISetMerchantRequest
+         * @constructor
+         * @param {pay.ISetMerchantRequest=} [properties] Properties to set
+         */
+        function SetMerchantRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * SetMerchantRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof pay.SetMerchantRequest
+         * @instance
+         */
+        SetMerchantRequest.prototype.auth = null;
+
+        /**
+         * SetMerchantRequest pay_id.
+         * @member {number} pay_id
+         * @memberof pay.SetMerchantRequest
+         * @instance
+         */
+        SetMerchantRequest.prototype.pay_id = 0;
+
+        /**
+         * SetMerchantRequest kind.
+         * @member {string} kind
+         * @memberof pay.SetMerchantRequest
+         * @instance
+         */
+        SetMerchantRequest.prototype.kind = "";
+
+        /**
+         * SetMerchantRequest mchid.
+         * @member {string} mchid
+         * @memberof pay.SetMerchantRequest
+         * @instance
+         */
+        SetMerchantRequest.prototype.mchid = "";
+
+        /**
+         * SetMerchantRequest key.
+         * @member {string} key
+         * @memberof pay.SetMerchantRequest
+         * @instance
+         */
+        SetMerchantRequest.prototype.key = "";
+
+        /**
+         * SetMerchantRequest api_id.
+         * @member {string} api_id
+         * @memberof pay.SetMerchantRequest
+         * @instance
+         */
+        SetMerchantRequest.prototype.api_id = "";
+
+        /**
+         * SetMerchantRequest api_key.
+         * @member {string} api_key
+         * @memberof pay.SetMerchantRequest
+         * @instance
+         */
+        SetMerchantRequest.prototype.api_key = "";
+
+        /**
+         * Creates a new SetMerchantRequest instance using the specified properties.
+         * @function create
+         * @memberof pay.SetMerchantRequest
+         * @static
+         * @param {pay.ISetMerchantRequest=} [properties] Properties to set
+         * @returns {pay.SetMerchantRequest} SetMerchantRequest instance
+         */
+        SetMerchantRequest.create = function create(properties) {
+            return new SetMerchantRequest(properties);
+        };
+
+        /**
+         * Encodes the specified SetMerchantRequest message. Does not implicitly {@link pay.SetMerchantRequest.verify|verify} messages.
+         * @function encode
+         * @memberof pay.SetMerchantRequest
+         * @static
+         * @param {pay.ISetMerchantRequest} message SetMerchantRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SetMerchantRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.pay_id != null && Object.hasOwnProperty.call(message, "pay_id"))
+                writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.pay_id);
+            if (message.kind != null && Object.hasOwnProperty.call(message, "kind"))
+                writer.uint32(/* id 10, wireType 2 =*/82).string(message.kind);
+            if (message.mchid != null && Object.hasOwnProperty.call(message, "mchid"))
+                writer.uint32(/* id 11, wireType 2 =*/90).string(message.mchid);
+            if (message.key != null && Object.hasOwnProperty.call(message, "key"))
+                writer.uint32(/* id 12, wireType 2 =*/98).string(message.key);
+            if (message.api_id != null && Object.hasOwnProperty.call(message, "api_id"))
+                writer.uint32(/* id 21, wireType 2 =*/170).string(message.api_id);
+            if (message.api_key != null && Object.hasOwnProperty.call(message, "api_key"))
+                writer.uint32(/* id 22, wireType 2 =*/178).string(message.api_key);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified SetMerchantRequest message, length delimited. Does not implicitly {@link pay.SetMerchantRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pay.SetMerchantRequest
+         * @static
+         * @param {pay.ISetMerchantRequest} message SetMerchantRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        SetMerchantRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a SetMerchantRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof pay.SetMerchantRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pay.SetMerchantRequest} SetMerchantRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SetMerchantRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pay.SetMerchantRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 5: {
+                        message.pay_id = reader.uint32();
+                        break;
+                    }
+                case 10: {
+                        message.kind = reader.string();
+                        break;
+                    }
+                case 11: {
+                        message.mchid = reader.string();
+                        break;
+                    }
+                case 12: {
+                        message.key = reader.string();
+                        break;
+                    }
+                case 21: {
+                        message.api_id = reader.string();
+                        break;
+                    }
+                case 22: {
+                        message.api_key = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a SetMerchantRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pay.SetMerchantRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pay.SetMerchantRequest} SetMerchantRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        SetMerchantRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a SetMerchantRequest message.
+         * @function verify
+         * @memberof pay.SetMerchantRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        SetMerchantRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.pay_id != null && message.hasOwnProperty("pay_id"))
+                if (!$util.isInteger(message.pay_id))
+                    return "pay_id: integer expected";
+            if (message.kind != null && message.hasOwnProperty("kind"))
+                if (!$util.isString(message.kind))
+                    return "kind: string expected";
+            if (message.mchid != null && message.hasOwnProperty("mchid"))
+                if (!$util.isString(message.mchid))
+                    return "mchid: string expected";
+            if (message.key != null && message.hasOwnProperty("key"))
+                if (!$util.isString(message.key))
+                    return "key: string expected";
+            if (message.api_id != null && message.hasOwnProperty("api_id"))
+                if (!$util.isString(message.api_id))
+                    return "api_id: string expected";
+            if (message.api_key != null && message.hasOwnProperty("api_key"))
+                if (!$util.isString(message.api_key))
+                    return "api_key: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a SetMerchantRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pay.SetMerchantRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pay.SetMerchantRequest} SetMerchantRequest
+         */
+        SetMerchantRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.pay.SetMerchantRequest)
+                return object;
+            var message = new $root.pay.SetMerchantRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".pay.SetMerchantRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.pay_id != null)
+                message.pay_id = object.pay_id >>> 0;
+            if (object.kind != null)
+                message.kind = String(object.kind);
+            if (object.mchid != null)
+                message.mchid = String(object.mchid);
+            if (object.key != null)
+                message.key = String(object.key);
+            if (object.api_id != null)
+                message.api_id = String(object.api_id);
+            if (object.api_key != null)
+                message.api_key = String(object.api_key);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a SetMerchantRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pay.SetMerchantRequest
+         * @static
+         * @param {pay.SetMerchantRequest} message SetMerchantRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        SetMerchantRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.pay_id = 0;
+                object.kind = "";
+                object.mchid = "";
+                object.key = "";
+                object.api_id = "";
+                object.api_key = "";
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.pay_id != null && message.hasOwnProperty("pay_id"))
+                object.pay_id = message.pay_id;
+            if (message.kind != null && message.hasOwnProperty("kind"))
+                object.kind = message.kind;
+            if (message.mchid != null && message.hasOwnProperty("mchid"))
+                object.mchid = message.mchid;
+            if (message.key != null && message.hasOwnProperty("key"))
+                object.key = message.key;
+            if (message.api_id != null && message.hasOwnProperty("api_id"))
+                object.api_id = message.api_id;
+            if (message.api_key != null && message.hasOwnProperty("api_key"))
+                object.api_key = message.api_key;
+            return object;
+        };
+
+        /**
+         * Converts this SetMerchantRequest to JSON.
+         * @function toJSON
+         * @memberof pay.SetMerchantRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        SetMerchantRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for SetMerchantRequest
+         * @function getTypeUrl
+         * @memberof pay.SetMerchantRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        SetMerchantRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pay.SetMerchantRequest";
+        };
+
+        return SetMerchantRequest;
+    })();
+
+    pay.AuthMerchantRequest = (function() {
+
+        /**
+         * Properties of an AuthMerchantRequest.
+         * @memberof pay
+         * @interface IAuthMerchantRequest
+         * @property {auth.IAuthorization|null} [auth] AuthMerchantRequest auth
+         * @property {number|null} [pay_id] AuthMerchantRequest pay_id
+         * @property {number|null} [user_id] AuthMerchantRequest user_id
+         */
+
+        /**
+         * Constructs a new AuthMerchantRequest.
+         * @memberof pay
+         * @classdesc Represents an AuthMerchantRequest.
+         * @implements IAuthMerchantRequest
+         * @constructor
+         * @param {pay.IAuthMerchantRequest=} [properties] Properties to set
+         */
+        function AuthMerchantRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * AuthMerchantRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof pay.AuthMerchantRequest
+         * @instance
+         */
+        AuthMerchantRequest.prototype.auth = null;
+
+        /**
+         * AuthMerchantRequest pay_id.
+         * @member {number} pay_id
+         * @memberof pay.AuthMerchantRequest
+         * @instance
+         */
+        AuthMerchantRequest.prototype.pay_id = 0;
+
+        /**
+         * AuthMerchantRequest user_id.
+         * @member {number} user_id
+         * @memberof pay.AuthMerchantRequest
+         * @instance
+         */
+        AuthMerchantRequest.prototype.user_id = 0;
+
+        /**
+         * Creates a new AuthMerchantRequest instance using the specified properties.
+         * @function create
+         * @memberof pay.AuthMerchantRequest
+         * @static
+         * @param {pay.IAuthMerchantRequest=} [properties] Properties to set
+         * @returns {pay.AuthMerchantRequest} AuthMerchantRequest instance
+         */
+        AuthMerchantRequest.create = function create(properties) {
+            return new AuthMerchantRequest(properties);
+        };
+
+        /**
+         * Encodes the specified AuthMerchantRequest message. Does not implicitly {@link pay.AuthMerchantRequest.verify|verify} messages.
+         * @function encode
+         * @memberof pay.AuthMerchantRequest
+         * @static
+         * @param {pay.IAuthMerchantRequest} message AuthMerchantRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthMerchantRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.pay_id != null && Object.hasOwnProperty.call(message, "pay_id"))
+                writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.pay_id);
+            if (message.user_id != null && Object.hasOwnProperty.call(message, "user_id"))
+                writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.user_id);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified AuthMerchantRequest message, length delimited. Does not implicitly {@link pay.AuthMerchantRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof pay.AuthMerchantRequest
+         * @static
+         * @param {pay.IAuthMerchantRequest} message AuthMerchantRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        AuthMerchantRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an AuthMerchantRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof pay.AuthMerchantRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {pay.AuthMerchantRequest} AuthMerchantRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthMerchantRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.pay.AuthMerchantRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 5: {
+                        message.pay_id = reader.uint32();
+                        break;
+                    }
+                case 11: {
+                        message.user_id = reader.uint32();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an AuthMerchantRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof pay.AuthMerchantRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {pay.AuthMerchantRequest} AuthMerchantRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        AuthMerchantRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an AuthMerchantRequest message.
+         * @function verify
+         * @memberof pay.AuthMerchantRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        AuthMerchantRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.pay_id != null && message.hasOwnProperty("pay_id"))
+                if (!$util.isInteger(message.pay_id))
+                    return "pay_id: integer expected";
+            if (message.user_id != null && message.hasOwnProperty("user_id"))
+                if (!$util.isInteger(message.user_id))
+                    return "user_id: integer expected";
+            return null;
+        };
+
+        /**
+         * Creates an AuthMerchantRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof pay.AuthMerchantRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {pay.AuthMerchantRequest} AuthMerchantRequest
+         */
+        AuthMerchantRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.pay.AuthMerchantRequest)
+                return object;
+            var message = new $root.pay.AuthMerchantRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".pay.AuthMerchantRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.pay_id != null)
+                message.pay_id = object.pay_id >>> 0;
+            if (object.user_id != null)
+                message.user_id = object.user_id >>> 0;
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an AuthMerchantRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof pay.AuthMerchantRequest
+         * @static
+         * @param {pay.AuthMerchantRequest} message AuthMerchantRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        AuthMerchantRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.pay_id = 0;
+                object.user_id = 0;
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.pay_id != null && message.hasOwnProperty("pay_id"))
+                object.pay_id = message.pay_id;
+            if (message.user_id != null && message.hasOwnProperty("user_id"))
+                object.user_id = message.user_id;
+            return object;
+        };
+
+        /**
+         * Converts this AuthMerchantRequest to JSON.
+         * @function toJSON
+         * @memberof pay.AuthMerchantRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        AuthMerchantRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for AuthMerchantRequest
+         * @function getTypeUrl
+         * @memberof pay.AuthMerchantRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        AuthMerchantRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/pay.AuthMerchantRequest";
+        };
+
+        return AuthMerchantRequest;
+    })();
+
+    pay.PayService = (function() {
+
+        /**
+         * Constructs a new PayService service.
+         * @memberof pay
+         * @classdesc Represents a PayService
+         * @extends $protobuf.rpc.Service
+         * @constructor
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         */
+        function PayService(rpcImpl, requestDelimited, responseDelimited) {
+            $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+        }
+
+        (PayService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = PayService;
+
+        /**
+         * Creates new PayService service using the specified rpc implementation.
+         * @function create
+         * @memberof pay.PayService
+         * @static
+         * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+         * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+         * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+         * @returns {PayService} RPC service. Useful where requests and/or responses are streamed.
+         */
+        PayService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
+            return new this(rpcImpl, requestDelimited, responseDelimited);
+        };
+
+        /**
+         * Callback as used by {@link pay.PayService#setMerchant}.
+         * @memberof pay.PayService
+         * @typedef SetMerchantCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {common.Empty} [response] Empty
+         */
+
+        /**
+         * Calls SetMerchant.
+         * @function setMerchant
+         * @memberof pay.PayService
+         * @instance
+         * @param {pay.ISetMerchantRequest} request SetMerchantRequest message or plain object
+         * @param {pay.PayService.SetMerchantCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(PayService.prototype.setMerchant = function setMerchant(request, callback) {
+            return this.rpcCall(setMerchant, $root.pay.SetMerchantRequest, $root.common.Empty, request, callback);
+        }, "name", { value: "SetMerchant" });
+
+        /**
+         * Calls SetMerchant.
+         * @function setMerchant
+         * @memberof pay.PayService
+         * @instance
+         * @param {pay.ISetMerchantRequest} request SetMerchantRequest message or plain object
+         * @returns {Promise<common.Empty>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link pay.PayService#authMerchant}.
+         * @memberof pay.PayService
+         * @typedef AuthMerchantCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {common.Empty} [response] Empty
+         */
+
+        /**
+         * Calls AuthMerchant.
+         * @function authMerchant
+         * @memberof pay.PayService
+         * @instance
+         * @param {pay.IAuthMerchantRequest} request AuthMerchantRequest message or plain object
+         * @param {pay.PayService.AuthMerchantCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(PayService.prototype.authMerchant = function authMerchant(request, callback) {
+            return this.rpcCall(authMerchant, $root.pay.AuthMerchantRequest, $root.common.Empty, request, callback);
+        }, "name", { value: "AuthMerchant" });
+
+        /**
+         * Calls AuthMerchant.
+         * @function authMerchant
+         * @memberof pay.PayService
+         * @instance
+         * @param {pay.IAuthMerchantRequest} request AuthMerchantRequest message or plain object
+         * @returns {Promise<common.Empty>} Promise
+         * @variation 2
+         */
+
+        return PayService;
     })();
 
     return pay;

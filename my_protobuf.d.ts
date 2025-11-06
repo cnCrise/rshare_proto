@@ -224,8 +224,8 @@ export namespace app {
     /** Properties of a GetAppsRequest. */
     interface IGetAppsRequest {
 
-        /** GetAppsRequest auth */
-        auth?: (auth.IAuthorization|null);
+        /** GetAppsRequest user_id */
+        user_id?: (number|null);
 
         /** GetAppsRequest saas_id */
         saas_id?: (number|null);
@@ -240,8 +240,8 @@ export namespace app {
          */
         constructor(properties?: app.IGetAppsRequest);
 
-        /** GetAppsRequest auth. */
-        public auth?: (auth.IAuthorization|null);
+        /** GetAppsRequest user_id. */
+        public user_id: number;
 
         /** GetAppsRequest saas_id. */
         public saas_id: number;
@@ -1529,6 +1529,7 @@ export namespace error_code {
         NOT_BIND_THREE = 2019,
         PERMISSION_DENIED = 2021,
         NOT_FOUND = 4004,
+        QuantityLimit = 4005,
         COMMON_ERR = 7000,
         DB_ERR = 7001,
         IO_ERR = 7101,
@@ -2141,6 +2142,9 @@ export namespace form_app {
 
         /** SetFormAppRequest price */
         price?: (number|null);
+
+        /** SetFormAppRequest limit */
+        limit?: (number|null);
     }
 
     /** Represents a SetFormAppRequest. */
@@ -2172,6 +2176,9 @@ export namespace form_app {
 
         /** SetFormAppRequest price. */
         public price: number;
+
+        /** SetFormAppRequest limit. */
+        public limit: number;
 
         /**
          * Creates a new SetFormAppRequest instance using the specified properties.
@@ -2365,6 +2372,9 @@ export namespace form_app {
 
         /** FormApp price */
         price?: (number|null);
+
+        /** FormApp limit */
+        limit?: (number|null);
     }
 
     /** Represents a FormApp. */
@@ -2390,6 +2400,9 @@ export namespace form_app {
 
         /** FormApp price. */
         public price: number;
+
+        /** FormApp limit. */
+        public limit: number;
 
         /**
          * Creates a new FormApp instance using the specified properties.
@@ -3544,6 +3557,314 @@ export namespace pay {
          * @returns The default type url
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SetMerchantRequest. */
+    interface ISetMerchantRequest {
+
+        /** SetMerchantRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** SetMerchantRequest pay_id */
+        pay_id?: (number|null);
+
+        /** SetMerchantRequest kind */
+        kind?: (string|null);
+
+        /** SetMerchantRequest mchid */
+        mchid?: (string|null);
+
+        /** SetMerchantRequest key */
+        key?: (string|null);
+
+        /** SetMerchantRequest api_id */
+        api_id?: (string|null);
+
+        /** SetMerchantRequest api_key */
+        api_key?: (string|null);
+    }
+
+    /** Represents a SetMerchantRequest. */
+    class SetMerchantRequest implements ISetMerchantRequest {
+
+        /**
+         * Constructs a new SetMerchantRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: pay.ISetMerchantRequest);
+
+        /** SetMerchantRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** SetMerchantRequest pay_id. */
+        public pay_id: number;
+
+        /** SetMerchantRequest kind. */
+        public kind: string;
+
+        /** SetMerchantRequest mchid. */
+        public mchid: string;
+
+        /** SetMerchantRequest key. */
+        public key: string;
+
+        /** SetMerchantRequest api_id. */
+        public api_id: string;
+
+        /** SetMerchantRequest api_key. */
+        public api_key: string;
+
+        /**
+         * Creates a new SetMerchantRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SetMerchantRequest instance
+         */
+        public static create(properties?: pay.ISetMerchantRequest): pay.SetMerchantRequest;
+
+        /**
+         * Encodes the specified SetMerchantRequest message. Does not implicitly {@link pay.SetMerchantRequest.verify|verify} messages.
+         * @param message SetMerchantRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: pay.ISetMerchantRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SetMerchantRequest message, length delimited. Does not implicitly {@link pay.SetMerchantRequest.verify|verify} messages.
+         * @param message SetMerchantRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: pay.ISetMerchantRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SetMerchantRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SetMerchantRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): pay.SetMerchantRequest;
+
+        /**
+         * Decodes a SetMerchantRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SetMerchantRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): pay.SetMerchantRequest;
+
+        /**
+         * Verifies a SetMerchantRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SetMerchantRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SetMerchantRequest
+         */
+        public static fromObject(object: { [k: string]: any }): pay.SetMerchantRequest;
+
+        /**
+         * Creates a plain object from a SetMerchantRequest message. Also converts values to other types if specified.
+         * @param message SetMerchantRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: pay.SetMerchantRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SetMerchantRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SetMerchantRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an AuthMerchantRequest. */
+    interface IAuthMerchantRequest {
+
+        /** AuthMerchantRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** AuthMerchantRequest pay_id */
+        pay_id?: (number|null);
+
+        /** AuthMerchantRequest user_id */
+        user_id?: (number|null);
+    }
+
+    /** Represents an AuthMerchantRequest. */
+    class AuthMerchantRequest implements IAuthMerchantRequest {
+
+        /**
+         * Constructs a new AuthMerchantRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: pay.IAuthMerchantRequest);
+
+        /** AuthMerchantRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** AuthMerchantRequest pay_id. */
+        public pay_id: number;
+
+        /** AuthMerchantRequest user_id. */
+        public user_id: number;
+
+        /**
+         * Creates a new AuthMerchantRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns AuthMerchantRequest instance
+         */
+        public static create(properties?: pay.IAuthMerchantRequest): pay.AuthMerchantRequest;
+
+        /**
+         * Encodes the specified AuthMerchantRequest message. Does not implicitly {@link pay.AuthMerchantRequest.verify|verify} messages.
+         * @param message AuthMerchantRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: pay.IAuthMerchantRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified AuthMerchantRequest message, length delimited. Does not implicitly {@link pay.AuthMerchantRequest.verify|verify} messages.
+         * @param message AuthMerchantRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: pay.IAuthMerchantRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an AuthMerchantRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns AuthMerchantRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): pay.AuthMerchantRequest;
+
+        /**
+         * Decodes an AuthMerchantRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns AuthMerchantRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): pay.AuthMerchantRequest;
+
+        /**
+         * Verifies an AuthMerchantRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an AuthMerchantRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns AuthMerchantRequest
+         */
+        public static fromObject(object: { [k: string]: any }): pay.AuthMerchantRequest;
+
+        /**
+         * Creates a plain object from an AuthMerchantRequest message. Also converts values to other types if specified.
+         * @param message AuthMerchantRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: pay.AuthMerchantRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this AuthMerchantRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for AuthMerchantRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Represents a PayService */
+    class PayService extends $protobuf.rpc.Service {
+
+        /**
+         * Constructs a new PayService service.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         */
+        constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
+
+        /**
+         * Creates new PayService service using the specified rpc implementation.
+         * @param rpcImpl RPC implementation
+         * @param [requestDelimited=false] Whether requests are length-delimited
+         * @param [responseDelimited=false] Whether responses are length-delimited
+         * @returns RPC service. Useful where requests and/or responses are streamed.
+         */
+        public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): PayService;
+
+        /**
+         * Calls SetMerchant.
+         * @param request SetMerchantRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and Empty
+         */
+        public setMerchant(request: pay.ISetMerchantRequest, callback: pay.PayService.SetMerchantCallback): void;
+
+        /**
+         * Calls SetMerchant.
+         * @param request SetMerchantRequest message or plain object
+         * @returns Promise
+         */
+        public setMerchant(request: pay.ISetMerchantRequest): Promise<common.Empty>;
+
+        /**
+         * Calls AuthMerchant.
+         * @param request AuthMerchantRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and Empty
+         */
+        public authMerchant(request: pay.IAuthMerchantRequest, callback: pay.PayService.AuthMerchantCallback): void;
+
+        /**
+         * Calls AuthMerchant.
+         * @param request AuthMerchantRequest message or plain object
+         * @returns Promise
+         */
+        public authMerchant(request: pay.IAuthMerchantRequest): Promise<common.Empty>;
+    }
+
+    namespace PayService {
+
+        /**
+         * Callback as used by {@link pay.PayService#setMerchant}.
+         * @param error Error, if any
+         * @param [response] Empty
+         */
+        type SetMerchantCallback = (error: (Error|null), response?: common.Empty) => void;
+
+        /**
+         * Callback as used by {@link pay.PayService#authMerchant}.
+         * @param error Error, if any
+         * @param [response] Empty
+         */
+        type AuthMerchantCallback = (error: (Error|null), response?: common.Empty) => void;
     }
 }
 
