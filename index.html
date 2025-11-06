@@ -411,7 +411,15 @@
             <ul>
               
                 <li>
+                  <a href="#pay.AuthMerchantRequest"><span class="badge">M</span>AuthMerchantRequest</a>
+                </li>
+              
+                <li>
                   <a href="#pay.PayRequest"><span class="badge">M</span>PayRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#pay.SetMerchantRequest"><span class="badge">M</span>SetMerchantRequest</a>
                 </li>
               
                 <li>
@@ -420,6 +428,10 @@
               
               
               
+              
+                <li>
+                  <a href="#pay.PayService"><span class="badge">S</span>PayService</a>
+                </li>
               
             </ul>
           </li>
@@ -685,8 +697,8 @@
             <tbody>
               
                 <tr>
-                  <td>auth</td>
-                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td>user_id</td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1207,6 +1219,12 @@
               </tr>
             
               <tr>
+                <td>QuantityLimit</td>
+                <td>4005</td>
+                <td><p>数量已达上限</p></td>
+              </tr>
+            
+              <tr>
                 <td>COMMON_ERR</td>
                 <td>7000</td>
                 <td><p>通用异常</p></td>
@@ -1478,6 +1496,13 @@
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -1564,6 +1589,13 @@
                 <tr>
                   <td>price</td>
                   <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1925,6 +1957,44 @@
       <p></p>
 
       
+        <h3 id="pay.AuthMerchantRequest">AuthMerchantRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pay_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="pay.PayRequest">PayRequest</h3>
         <p>支付请求</p>
 
@@ -1940,6 +2010,72 @@
                   <td><a href="#pay.WechatPay">WechatPay</a></td>
                   <td></td>
                   <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="pay.SetMerchantRequest">SetMerchantRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>pay_id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>主键 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>kind</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>支付方式 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>mchid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>商户ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>密钥 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>api_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>API ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>api_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>API密钥 </p></td>
                 </tr>
               
             </tbody>
@@ -2014,6 +2150,32 @@
       
 
       
+        <h3 id="pay.PayService">PayService</h3>
+        <p>支付相关服务</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SetMerchant</td>
+                <td><a href="#pay.SetMerchantRequest">SetMerchantRequest</a></td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><p>设置商户信息</p></td>
+              </tr>
+            
+              <tr>
+                <td>AuthMerchant</td>
+                <td><a href="#pay.AuthMerchantRequest">AuthMerchantRequest</a></td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><p>授权给用户</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
