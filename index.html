@@ -198,6 +198,10 @@
                   <a href="#app.GetAppsResponse"><span class="badge">M</span>GetAppsResponse</a>
                 </li>
               
+                <li>
+                  <a href="#app.UpdateAppRequest"><span class="badge">M</span>UpdateAppRequest</a>
+                </li>
+              
               
               
               
@@ -621,13 +625,6 @@
             <tbody>
               
                 <tr>
-                  <td>platform</td>
-                  <td><a href="#common.Platform">common.Platform</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
                   <td>saas_id</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -741,6 +738,44 @@
 
         
       
+        <h3 id="app.UpdateAppRequest">UpdateAppRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>auth</td>
+                  <td><a href="#auth.Authorization">auth.Authorization</a></td>
+                  <td></td>
+                  <td><p>授权信息 </p></td>
+                </tr>
+              
+                <tr>
+                  <td>app</td>
+                  <td><a href="#app.AppIndex">AppIndex</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -763,10 +798,17 @@
               </tr>
             
               <tr>
+                <td>UpdateApp</td>
+                <td><a href="#app.UpdateAppRequest">UpdateAppRequest</a></td>
+                <td><a href="#common.Empty">.common.Empty</a></td>
+                <td><p>修改app</p></td>
+              </tr>
+            
+              <tr>
                 <td>GetApps</td>
                 <td><a href="#app.GetAppsRequest">GetAppsRequest</a></td>
                 <td><a href="#app.GetAppsResponse">GetAppsResponse</a></td>
-                <td><p></p></td>
+                <td><p>获取App列表</p></td>
               </tr>
             
           </tbody>
