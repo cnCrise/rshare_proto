@@ -6,9 +6,6 @@ export namespace app {
     /** Properties of an AppIndex. */
     interface IAppIndex {
 
-        /** AppIndex platform */
-        platform?: (common.Platform|null);
-
         /** AppIndex saas_id */
         saas_id?: (number|null);
 
@@ -24,9 +21,6 @@ export namespace app {
          * @param [properties] Properties to set
          */
         constructor(properties?: app.IAppIndex);
-
-        /** AppIndex platform. */
-        public platform: common.Platform;
 
         /** AppIndex saas_id. */
         public saas_id: number;
@@ -215,6 +209,115 @@ export namespace app {
 
         /**
          * Gets the default type url for CreateAppRequest
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an UpdateAppRequest. */
+    interface IUpdateAppRequest {
+
+        /** UpdateAppRequest auth */
+        auth?: (auth.IAuthorization|null);
+
+        /** UpdateAppRequest app */
+        app?: (app.IAppIndex|null);
+
+        /** UpdateAppRequest name */
+        name?: (string|null);
+    }
+
+    /** Represents an UpdateAppRequest. */
+    class UpdateAppRequest implements IUpdateAppRequest {
+
+        /**
+         * Constructs a new UpdateAppRequest.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: app.IUpdateAppRequest);
+
+        /** UpdateAppRequest auth. */
+        public auth?: (auth.IAuthorization|null);
+
+        /** UpdateAppRequest app. */
+        public app?: (app.IAppIndex|null);
+
+        /** UpdateAppRequest name. */
+        public name: string;
+
+        /**
+         * Creates a new UpdateAppRequest instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns UpdateAppRequest instance
+         */
+        public static create(properties?: app.IUpdateAppRequest): app.UpdateAppRequest;
+
+        /**
+         * Encodes the specified UpdateAppRequest message. Does not implicitly {@link app.UpdateAppRequest.verify|verify} messages.
+         * @param message UpdateAppRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: app.IUpdateAppRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified UpdateAppRequest message, length delimited. Does not implicitly {@link app.UpdateAppRequest.verify|verify} messages.
+         * @param message UpdateAppRequest message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: app.IUpdateAppRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an UpdateAppRequest message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns UpdateAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): app.UpdateAppRequest;
+
+        /**
+         * Decodes an UpdateAppRequest message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns UpdateAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): app.UpdateAppRequest;
+
+        /**
+         * Verifies an UpdateAppRequest message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an UpdateAppRequest message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns UpdateAppRequest
+         */
+        public static fromObject(object: { [k: string]: any }): app.UpdateAppRequest;
+
+        /**
+         * Creates a plain object from an UpdateAppRequest message. Also converts values to other types if specified.
+         * @param message UpdateAppRequest
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: app.UpdateAppRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this UpdateAppRequest to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for UpdateAppRequest
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -565,6 +668,20 @@ export namespace app {
         public createApp(request: app.ICreateAppRequest): Promise<app.AppIndex>;
 
         /**
+         * Calls UpdateApp.
+         * @param request UpdateAppRequest message or plain object
+         * @param callback Node-style callback called with the error, if any, and Empty
+         */
+        public updateApp(request: app.IUpdateAppRequest, callback: app.AppService.UpdateAppCallback): void;
+
+        /**
+         * Calls UpdateApp.
+         * @param request UpdateAppRequest message or plain object
+         * @returns Promise
+         */
+        public updateApp(request: app.IUpdateAppRequest): Promise<common.Empty>;
+
+        /**
          * Calls GetApps.
          * @param request GetAppsRequest message or plain object
          * @param callback Node-style callback called with the error, if any, and GetAppsResponse
@@ -587,6 +704,13 @@ export namespace app {
          * @param [response] AppIndex
          */
         type CreateAppCallback = (error: (Error|null), response?: app.AppIndex) => void;
+
+        /**
+         * Callback as used by {@link app.AppService#updateApp}.
+         * @param error Error, if any
+         * @param [response] Empty
+         */
+        type UpdateAppCallback = (error: (Error|null), response?: common.Empty) => void;
 
         /**
          * Callback as used by {@link app.AppService#getApps}.

@@ -24,7 +24,6 @@ $root.app = (function() {
          * Properties of an AppIndex.
          * @memberof app
          * @interface IAppIndex
-         * @property {common.Platform|null} [platform] AppIndex platform
          * @property {number|null} [saas_id] AppIndex saas_id
          * @property {number|null} [app_id] AppIndex app_id
          */
@@ -43,14 +42,6 @@ $root.app = (function() {
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
-
-        /**
-         * AppIndex platform.
-         * @member {common.Platform} platform
-         * @memberof app.AppIndex
-         * @instance
-         */
-        AppIndex.prototype.platform = 0;
 
         /**
          * AppIndex saas_id.
@@ -92,8 +83,6 @@ $root.app = (function() {
         AppIndex.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.platform != null && Object.hasOwnProperty.call(message, "platform"))
-                writer.uint32(/* id 10, wireType 0 =*/80).int32(message.platform);
             if (message.saas_id != null && Object.hasOwnProperty.call(message, "saas_id"))
                 writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saas_id);
             if (message.app_id != null && Object.hasOwnProperty.call(message, "app_id"))
@@ -134,10 +123,6 @@ $root.app = (function() {
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
-                case 10: {
-                        message.platform = reader.int32();
-                        break;
-                    }
                 case 11: {
                         message.saas_id = reader.uint32();
                         break;
@@ -181,17 +166,6 @@ $root.app = (function() {
         AppIndex.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.platform != null && message.hasOwnProperty("platform"))
-                switch (message.platform) {
-                default:
-                    return "platform: enum value expected";
-                case 0:
-                case 1:
-                case 2:
-                case 11:
-                case 12:
-                    break;
-                }
             if (message.saas_id != null && message.hasOwnProperty("saas_id"))
                 if (!$util.isInteger(message.saas_id))
                     return "saas_id: integer expected";
@@ -213,34 +187,6 @@ $root.app = (function() {
             if (object instanceof $root.app.AppIndex)
                 return object;
             var message = new $root.app.AppIndex();
-            switch (object.platform) {
-            default:
-                if (typeof object.platform === "number") {
-                    message.platform = object.platform;
-                    break;
-                }
-                break;
-            case "UNKNOWN":
-            case 0:
-                message.platform = 0;
-                break;
-            case "WEB":
-            case 1:
-                message.platform = 1;
-                break;
-            case "APP":
-            case 2:
-                message.platform = 2;
-                break;
-            case "WECHAT_MP":
-            case 11:
-                message.platform = 11;
-                break;
-            case "WECHAT_APP":
-            case 12:
-                message.platform = 12;
-                break;
-            }
             if (object.saas_id != null)
                 message.saas_id = object.saas_id >>> 0;
             if (object.app_id != null)
@@ -262,12 +208,9 @@ $root.app = (function() {
                 options = {};
             var object = {};
             if (options.defaults) {
-                object.platform = options.enums === String ? "UNKNOWN" : 0;
                 object.saas_id = 0;
                 object.app_id = 0;
             }
-            if (message.platform != null && message.hasOwnProperty("platform"))
-                object.platform = options.enums === String ? $root.common.Platform[message.platform] === undefined ? message.platform : $root.common.Platform[message.platform] : message.platform;
             if (message.saas_id != null && message.hasOwnProperty("saas_id"))
                 object.saas_id = message.saas_id;
             if (message.app_id != null && message.hasOwnProperty("app_id"))
@@ -559,6 +502,268 @@ $root.app = (function() {
         };
 
         return CreateAppRequest;
+    })();
+
+    app.UpdateAppRequest = (function() {
+
+        /**
+         * Properties of an UpdateAppRequest.
+         * @memberof app
+         * @interface IUpdateAppRequest
+         * @property {auth.IAuthorization|null} [auth] UpdateAppRequest auth
+         * @property {app.IAppIndex|null} [app] UpdateAppRequest app
+         * @property {string|null} [name] UpdateAppRequest name
+         */
+
+        /**
+         * Constructs a new UpdateAppRequest.
+         * @memberof app
+         * @classdesc Represents an UpdateAppRequest.
+         * @implements IUpdateAppRequest
+         * @constructor
+         * @param {app.IUpdateAppRequest=} [properties] Properties to set
+         */
+        function UpdateAppRequest(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * UpdateAppRequest auth.
+         * @member {auth.IAuthorization|null|undefined} auth
+         * @memberof app.UpdateAppRequest
+         * @instance
+         */
+        UpdateAppRequest.prototype.auth = null;
+
+        /**
+         * UpdateAppRequest app.
+         * @member {app.IAppIndex|null|undefined} app
+         * @memberof app.UpdateAppRequest
+         * @instance
+         */
+        UpdateAppRequest.prototype.app = null;
+
+        /**
+         * UpdateAppRequest name.
+         * @member {string} name
+         * @memberof app.UpdateAppRequest
+         * @instance
+         */
+        UpdateAppRequest.prototype.name = "";
+
+        /**
+         * Creates a new UpdateAppRequest instance using the specified properties.
+         * @function create
+         * @memberof app.UpdateAppRequest
+         * @static
+         * @param {app.IUpdateAppRequest=} [properties] Properties to set
+         * @returns {app.UpdateAppRequest} UpdateAppRequest instance
+         */
+        UpdateAppRequest.create = function create(properties) {
+            return new UpdateAppRequest(properties);
+        };
+
+        /**
+         * Encodes the specified UpdateAppRequest message. Does not implicitly {@link app.UpdateAppRequest.verify|verify} messages.
+         * @function encode
+         * @memberof app.UpdateAppRequest
+         * @static
+         * @param {app.IUpdateAppRequest} message UpdateAppRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UpdateAppRequest.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.auth != null && Object.hasOwnProperty.call(message, "auth"))
+                $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.app != null && Object.hasOwnProperty.call(message, "app"))
+                $root.app.AppIndex.encode(message.app, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 20, wireType 2 =*/162).string(message.name);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified UpdateAppRequest message, length delimited. Does not implicitly {@link app.UpdateAppRequest.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof app.UpdateAppRequest
+         * @static
+         * @param {app.IUpdateAppRequest} message UpdateAppRequest message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        UpdateAppRequest.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an UpdateAppRequest message from the specified reader or buffer.
+         * @function decode
+         * @memberof app.UpdateAppRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {app.UpdateAppRequest} UpdateAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UpdateAppRequest.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.app.UpdateAppRequest();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.auth = $root.auth.Authorization.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 10: {
+                        message.app = $root.app.AppIndex.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 20: {
+                        message.name = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an UpdateAppRequest message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof app.UpdateAppRequest
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {app.UpdateAppRequest} UpdateAppRequest
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        UpdateAppRequest.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an UpdateAppRequest message.
+         * @function verify
+         * @memberof app.UpdateAppRequest
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        UpdateAppRequest.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.auth != null && message.hasOwnProperty("auth")) {
+                var error = $root.auth.Authorization.verify(message.auth);
+                if (error)
+                    return "auth." + error;
+            }
+            if (message.app != null && message.hasOwnProperty("app")) {
+                var error = $root.app.AppIndex.verify(message.app);
+                if (error)
+                    return "app." + error;
+            }
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an UpdateAppRequest message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof app.UpdateAppRequest
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {app.UpdateAppRequest} UpdateAppRequest
+         */
+        UpdateAppRequest.fromObject = function fromObject(object) {
+            if (object instanceof $root.app.UpdateAppRequest)
+                return object;
+            var message = new $root.app.UpdateAppRequest();
+            if (object.auth != null) {
+                if (typeof object.auth !== "object")
+                    throw TypeError(".app.UpdateAppRequest.auth: object expected");
+                message.auth = $root.auth.Authorization.fromObject(object.auth);
+            }
+            if (object.app != null) {
+                if (typeof object.app !== "object")
+                    throw TypeError(".app.UpdateAppRequest.app: object expected");
+                message.app = $root.app.AppIndex.fromObject(object.app);
+            }
+            if (object.name != null)
+                message.name = String(object.name);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an UpdateAppRequest message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof app.UpdateAppRequest
+         * @static
+         * @param {app.UpdateAppRequest} message UpdateAppRequest
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        UpdateAppRequest.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.auth = null;
+                object.app = null;
+                object.name = "";
+            }
+            if (message.auth != null && message.hasOwnProperty("auth"))
+                object.auth = $root.auth.Authorization.toObject(message.auth, options);
+            if (message.app != null && message.hasOwnProperty("app"))
+                object.app = $root.app.AppIndex.toObject(message.app, options);
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            return object;
+        };
+
+        /**
+         * Converts this UpdateAppRequest to JSON.
+         * @function toJSON
+         * @memberof app.UpdateAppRequest
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        UpdateAppRequest.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for UpdateAppRequest
+         * @function getTypeUrl
+         * @memberof app.UpdateAppRequest
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        UpdateAppRequest.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/app.UpdateAppRequest";
+        };
+
+        return UpdateAppRequest;
     })();
 
     app.GetAppsRequest = (function() {
@@ -1330,6 +1535,39 @@ $root.app = (function() {
          * @instance
          * @param {app.ICreateAppRequest} request CreateAppRequest message or plain object
          * @returns {Promise<app.AppIndex>} Promise
+         * @variation 2
+         */
+
+        /**
+         * Callback as used by {@link app.AppService#updateApp}.
+         * @memberof app.AppService
+         * @typedef UpdateAppCallback
+         * @type {function}
+         * @param {Error|null} error Error, if any
+         * @param {common.Empty} [response] Empty
+         */
+
+        /**
+         * Calls UpdateApp.
+         * @function updateApp
+         * @memberof app.AppService
+         * @instance
+         * @param {app.IUpdateAppRequest} request UpdateAppRequest message or plain object
+         * @param {app.AppService.UpdateAppCallback} callback Node-style callback called with the error, if any, and Empty
+         * @returns {undefined}
+         * @variation 1
+         */
+        Object.defineProperty(AppService.prototype.updateApp = function updateApp(request, callback) {
+            return this.rpcCall(updateApp, $root.app.UpdateAppRequest, $root.common.Empty, request, callback);
+        }, "name", { value: "UpdateApp" });
+
+        /**
+         * Calls UpdateApp.
+         * @function updateApp
+         * @memberof app.AppService
+         * @instance
+         * @param {app.IUpdateAppRequest} request UpdateAppRequest message or plain object
+         * @returns {Promise<common.Empty>} Promise
          * @variation 2
          */
 
