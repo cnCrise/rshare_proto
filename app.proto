@@ -36,6 +36,8 @@ message App {
   uint32 saas_id =11;
   uint32 app_id = 12;
   string name = 20;
+  string detail = 21;
+  string img = 22;
 }
 message GetAppsResponse {
   repeated App apps = 11;
