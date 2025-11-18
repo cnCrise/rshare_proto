@@ -256,6 +256,8 @@ $root.app = (function() {
          * @property {auth.IAuthorization|null} [auth] CreateAppRequest auth
          * @property {number|null} [saas_id] CreateAppRequest saas_id
          * @property {string|null} [name] CreateAppRequest name
+         * @property {string|null} [detail] CreateAppRequest detail
+         * @property {string|null} [img] CreateAppRequest img
          */
 
         /**
@@ -298,6 +300,22 @@ $root.app = (function() {
         CreateAppRequest.prototype.name = "";
 
         /**
+         * CreateAppRequest detail.
+         * @member {string} detail
+         * @memberof app.CreateAppRequest
+         * @instance
+         */
+        CreateAppRequest.prototype.detail = "";
+
+        /**
+         * CreateAppRequest img.
+         * @member {string} img
+         * @memberof app.CreateAppRequest
+         * @instance
+         */
+        CreateAppRequest.prototype.img = "";
+
+        /**
          * Creates a new CreateAppRequest instance using the specified properties.
          * @function create
          * @memberof app.CreateAppRequest
@@ -327,6 +345,10 @@ $root.app = (function() {
                 writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saas_id);
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.name);
+            if (message.detail != null && Object.hasOwnProperty.call(message, "detail"))
+                writer.uint32(/* id 21, wireType 2 =*/170).string(message.detail);
+            if (message.img != null && Object.hasOwnProperty.call(message, "img"))
+                writer.uint32(/* id 22, wireType 2 =*/178).string(message.img);
             return writer;
         };
 
@@ -375,6 +397,14 @@ $root.app = (function() {
                         message.name = reader.string();
                         break;
                     }
+                case 21: {
+                        message.detail = reader.string();
+                        break;
+                    }
+                case 22: {
+                        message.img = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -421,6 +451,12 @@ $root.app = (function() {
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
+            if (message.detail != null && message.hasOwnProperty("detail"))
+                if (!$util.isString(message.detail))
+                    return "detail: string expected";
+            if (message.img != null && message.hasOwnProperty("img"))
+                if (!$util.isString(message.img))
+                    return "img: string expected";
             return null;
         };
 
@@ -445,6 +481,10 @@ $root.app = (function() {
                 message.saas_id = object.saas_id >>> 0;
             if (object.name != null)
                 message.name = String(object.name);
+            if (object.detail != null)
+                message.detail = String(object.detail);
+            if (object.img != null)
+                message.img = String(object.img);
             return message;
         };
 
@@ -465,6 +505,8 @@ $root.app = (function() {
                 object.auth = null;
                 object.saas_id = 0;
                 object.name = "";
+                object.detail = "";
+                object.img = "";
             }
             if (message.auth != null && message.hasOwnProperty("auth"))
                 object.auth = $root.auth.Authorization.toObject(message.auth, options);
@@ -472,6 +514,10 @@ $root.app = (function() {
                 object.saas_id = message.saas_id;
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
+            if (message.detail != null && message.hasOwnProperty("detail"))
+                object.detail = message.detail;
+            if (message.img != null && message.hasOwnProperty("img"))
+                object.img = message.img;
             return object;
         };
 
@@ -513,6 +559,8 @@ $root.app = (function() {
          * @property {auth.IAuthorization|null} [auth] UpdateAppRequest auth
          * @property {app.IAppIndex|null} [app] UpdateAppRequest app
          * @property {string|null} [name] UpdateAppRequest name
+         * @property {string|null} [detail] UpdateAppRequest detail
+         * @property {string|null} [img] UpdateAppRequest img
          */
 
         /**
@@ -555,6 +603,22 @@ $root.app = (function() {
         UpdateAppRequest.prototype.name = "";
 
         /**
+         * UpdateAppRequest detail.
+         * @member {string} detail
+         * @memberof app.UpdateAppRequest
+         * @instance
+         */
+        UpdateAppRequest.prototype.detail = "";
+
+        /**
+         * UpdateAppRequest img.
+         * @member {string} img
+         * @memberof app.UpdateAppRequest
+         * @instance
+         */
+        UpdateAppRequest.prototype.img = "";
+
+        /**
          * Creates a new UpdateAppRequest instance using the specified properties.
          * @function create
          * @memberof app.UpdateAppRequest
@@ -584,6 +648,10 @@ $root.app = (function() {
                 $root.app.AppIndex.encode(message.app, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.name);
+            if (message.detail != null && Object.hasOwnProperty.call(message, "detail"))
+                writer.uint32(/* id 21, wireType 2 =*/170).string(message.detail);
+            if (message.img != null && Object.hasOwnProperty.call(message, "img"))
+                writer.uint32(/* id 22, wireType 2 =*/178).string(message.img);
             return writer;
         };
 
@@ -630,6 +698,14 @@ $root.app = (function() {
                     }
                 case 20: {
                         message.name = reader.string();
+                        break;
+                    }
+                case 21: {
+                        message.detail = reader.string();
+                        break;
+                    }
+                case 22: {
+                        message.img = reader.string();
                         break;
                     }
                 default:
@@ -680,6 +756,12 @@ $root.app = (function() {
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
+            if (message.detail != null && message.hasOwnProperty("detail"))
+                if (!$util.isString(message.detail))
+                    return "detail: string expected";
+            if (message.img != null && message.hasOwnProperty("img"))
+                if (!$util.isString(message.img))
+                    return "img: string expected";
             return null;
         };
 
@@ -707,6 +789,10 @@ $root.app = (function() {
             }
             if (object.name != null)
                 message.name = String(object.name);
+            if (object.detail != null)
+                message.detail = String(object.detail);
+            if (object.img != null)
+                message.img = String(object.img);
             return message;
         };
 
@@ -727,6 +813,8 @@ $root.app = (function() {
                 object.auth = null;
                 object.app = null;
                 object.name = "";
+                object.detail = "";
+                object.img = "";
             }
             if (message.auth != null && message.hasOwnProperty("auth"))
                 object.auth = $root.auth.Authorization.toObject(message.auth, options);
@@ -734,6 +822,10 @@ $root.app = (function() {
                 object.app = $root.app.AppIndex.toObject(message.app, options);
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
+            if (message.detail != null && message.hasOwnProperty("detail"))
+                object.detail = message.detail;
+            if (message.img != null && message.hasOwnProperty("img"))
+                object.img = message.img;
             return object;
         };
 

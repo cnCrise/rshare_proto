@@ -117,6 +117,12 @@ export namespace app {
 
         /** CreateAppRequest name */
         name?: (string|null);
+
+        /** CreateAppRequest detail */
+        detail?: (string|null);
+
+        /** CreateAppRequest img */
+        img?: (string|null);
     }
 
     /** Represents a CreateAppRequest. */
@@ -136,6 +142,12 @@ export namespace app {
 
         /** CreateAppRequest name. */
         public name: string;
+
+        /** CreateAppRequest detail. */
+        public detail: string;
+
+        /** CreateAppRequest img. */
+        public img: string;
 
         /**
          * Creates a new CreateAppRequest instance using the specified properties.
@@ -226,6 +238,12 @@ export namespace app {
 
         /** UpdateAppRequest name */
         name?: (string|null);
+
+        /** UpdateAppRequest detail */
+        detail?: (string|null);
+
+        /** UpdateAppRequest img */
+        img?: (string|null);
     }
 
     /** Represents an UpdateAppRequest. */
@@ -245,6 +263,12 @@ export namespace app {
 
         /** UpdateAppRequest name. */
         public name: string;
+
+        /** UpdateAppRequest detail. */
+        public detail: string;
+
+        /** UpdateAppRequest img. */
+        public img: string;
 
         /**
          * Creates a new UpdateAppRequest instance using the specified properties.
