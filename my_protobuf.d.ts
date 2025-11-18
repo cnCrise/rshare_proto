@@ -462,6 +462,12 @@ export namespace app {
 
         /** App name */
         name?: (string|null);
+
+        /** App detail */
+        detail?: (string|null);
+
+        /** App img */
+        img?: (string|null);
     }
 
     /** Represents an App. */
@@ -481,6 +487,12 @@ export namespace app {
 
         /** App name. */
         public name: string;
+
+        /** App detail. */
+        public detail: string;
+
+        /** App img. */
+        public img: string;
 
         /**
          * Creates a new App instance using the specified properties.

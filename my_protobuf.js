@@ -1096,6 +1096,8 @@ $root.app = (function() {
          * @property {number|null} [saas_id] App saas_id
          * @property {number|null} [app_id] App app_id
          * @property {string|null} [name] App name
+         * @property {string|null} [detail] App detail
+         * @property {string|null} [img] App img
          */
 
         /**
@@ -1138,6 +1140,22 @@ $root.app = (function() {
         App.prototype.name = "";
 
         /**
+         * App detail.
+         * @member {string} detail
+         * @memberof app.App
+         * @instance
+         */
+        App.prototype.detail = "";
+
+        /**
+         * App img.
+         * @member {string} img
+         * @memberof app.App
+         * @instance
+         */
+        App.prototype.img = "";
+
+        /**
          * Creates a new App instance using the specified properties.
          * @function create
          * @memberof app.App
@@ -1167,6 +1185,10 @@ $root.app = (function() {
                 writer.uint32(/* id 12, wireType 0 =*/96).uint32(message.app_id);
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.name);
+            if (message.detail != null && Object.hasOwnProperty.call(message, "detail"))
+                writer.uint32(/* id 21, wireType 2 =*/170).string(message.detail);
+            if (message.img != null && Object.hasOwnProperty.call(message, "img"))
+                writer.uint32(/* id 22, wireType 2 =*/178).string(message.img);
             return writer;
         };
 
@@ -1215,6 +1237,14 @@ $root.app = (function() {
                         message.name = reader.string();
                         break;
                     }
+                case 21: {
+                        message.detail = reader.string();
+                        break;
+                    }
+                case 22: {
+                        message.img = reader.string();
+                        break;
+                    }
                 default:
                     reader.skipType(tag & 7);
                     break;
@@ -1259,6 +1289,12 @@ $root.app = (function() {
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
+            if (message.detail != null && message.hasOwnProperty("detail"))
+                if (!$util.isString(message.detail))
+                    return "detail: string expected";
+            if (message.img != null && message.hasOwnProperty("img"))
+                if (!$util.isString(message.img))
+                    return "img: string expected";
             return null;
         };
 
@@ -1280,6 +1316,10 @@ $root.app = (function() {
                 message.app_id = object.app_id >>> 0;
             if (object.name != null)
                 message.name = String(object.name);
+            if (object.detail != null)
+                message.detail = String(object.detail);
+            if (object.img != null)
+                message.img = String(object.img);
             return message;
         };
 
@@ -1300,6 +1340,8 @@ $root.app = (function() {
                 object.saas_id = 0;
                 object.app_id = 0;
                 object.name = "";
+                object.detail = "";
+                object.img = "";
             }
             if (message.saas_id != null && message.hasOwnProperty("saas_id"))
                 object.saas_id = message.saas_id;
@@ -1307,6 +1349,10 @@ $root.app = (function() {
                 object.app_id = message.app_id;
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
+            if (message.detail != null && message.hasOwnProperty("detail"))
+                object.detail = message.detail;
+            if (message.img != null && message.hasOwnProperty("img"))
+                object.img = message.img;
             return object;
         };
 
