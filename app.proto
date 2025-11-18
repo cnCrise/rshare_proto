@@ -15,6 +15,8 @@ message CreateAppRequest {
   auth.Authorization auth = 1;
   uint32 saas_id = 11;
   string name = 20;
+  string detail = 21;
+  string img = 22;
 }
 
 message UpdateAppRequest {
@@ -22,6 +24,8 @@ message UpdateAppRequest {
   auth.Authorization auth = 1;
   AppIndex app = 10;
   string name = 20;
+  string detail = 21;
+  string img = 22;
 }
 
 message GetAppsRequest {
