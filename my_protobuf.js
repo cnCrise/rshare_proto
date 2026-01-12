@@ -558,6 +558,7 @@ $root.app = (function() {
          * @interface IUpdateAppRequest
          * @property {auth.IAuthorization|null} [auth] UpdateAppRequest auth
          * @property {app.IAppIndex|null} [app] UpdateAppRequest app
+         * @property {boolean|null} [disabled] UpdateAppRequest disabled
          * @property {string|null} [name] UpdateAppRequest name
          * @property {string|null} [detail] UpdateAppRequest detail
          * @property {string|null} [img] UpdateAppRequest img
@@ -593,6 +594,14 @@ $root.app = (function() {
          * @instance
          */
         UpdateAppRequest.prototype.app = null;
+
+        /**
+         * UpdateAppRequest disabled.
+         * @member {boolean} disabled
+         * @memberof app.UpdateAppRequest
+         * @instance
+         */
+        UpdateAppRequest.prototype.disabled = false;
 
         /**
          * UpdateAppRequest name.
@@ -646,6 +655,8 @@ $root.app = (function() {
                 $root.auth.Authorization.encode(message.auth, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             if (message.app != null && Object.hasOwnProperty.call(message, "app"))
                 $root.app.AppIndex.encode(message.app, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+            if (message.disabled != null && Object.hasOwnProperty.call(message, "disabled"))
+                writer.uint32(/* id 16, wireType 0 =*/128).bool(message.disabled);
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.name);
             if (message.detail != null && Object.hasOwnProperty.call(message, "detail"))
@@ -694,6 +705,10 @@ $root.app = (function() {
                     }
                 case 10: {
                         message.app = $root.app.AppIndex.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 16: {
+                        message.disabled = reader.bool();
                         break;
                     }
                 case 20: {
@@ -753,6 +768,9 @@ $root.app = (function() {
                 if (error)
                     return "app." + error;
             }
+            if (message.disabled != null && message.hasOwnProperty("disabled"))
+                if (typeof message.disabled !== "boolean")
+                    return "disabled: boolean expected";
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
@@ -787,6 +805,8 @@ $root.app = (function() {
                     throw TypeError(".app.UpdateAppRequest.app: object expected");
                 message.app = $root.app.AppIndex.fromObject(object.app);
             }
+            if (object.disabled != null)
+                message.disabled = Boolean(object.disabled);
             if (object.name != null)
                 message.name = String(object.name);
             if (object.detail != null)
@@ -812,6 +832,7 @@ $root.app = (function() {
             if (options.defaults) {
                 object.auth = null;
                 object.app = null;
+                object.disabled = false;
                 object.name = "";
                 object.detail = "";
                 object.img = "";
@@ -820,6 +841,8 @@ $root.app = (function() {
                 object.auth = $root.auth.Authorization.toObject(message.auth, options);
             if (message.app != null && message.hasOwnProperty("app"))
                 object.app = $root.app.AppIndex.toObject(message.app, options);
+            if (message.disabled != null && message.hasOwnProperty("disabled"))
+                object.disabled = message.disabled;
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
             if (message.detail != null && message.hasOwnProperty("detail"))
@@ -1095,6 +1118,7 @@ $root.app = (function() {
          * @interface IApp
          * @property {number|null} [saas_id] App saas_id
          * @property {number|null} [app_id] App app_id
+         * @property {boolean|null} [disabled] App disabled
          * @property {string|null} [name] App name
          * @property {string|null} [detail] App detail
          * @property {string|null} [img] App img
@@ -1130,6 +1154,14 @@ $root.app = (function() {
          * @instance
          */
         App.prototype.app_id = 0;
+
+        /**
+         * App disabled.
+         * @member {boolean} disabled
+         * @memberof app.App
+         * @instance
+         */
+        App.prototype.disabled = false;
 
         /**
          * App name.
@@ -1183,6 +1215,8 @@ $root.app = (function() {
                 writer.uint32(/* id 11, wireType 0 =*/88).uint32(message.saas_id);
             if (message.app_id != null && Object.hasOwnProperty.call(message, "app_id"))
                 writer.uint32(/* id 12, wireType 0 =*/96).uint32(message.app_id);
+            if (message.disabled != null && Object.hasOwnProperty.call(message, "disabled"))
+                writer.uint32(/* id 16, wireType 0 =*/128).bool(message.disabled);
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 20, wireType 2 =*/162).string(message.name);
             if (message.detail != null && Object.hasOwnProperty.call(message, "detail"))
@@ -1231,6 +1265,10 @@ $root.app = (function() {
                     }
                 case 12: {
                         message.app_id = reader.uint32();
+                        break;
+                    }
+                case 16: {
+                        message.disabled = reader.bool();
                         break;
                     }
                 case 20: {
@@ -1286,6 +1324,9 @@ $root.app = (function() {
             if (message.app_id != null && message.hasOwnProperty("app_id"))
                 if (!$util.isInteger(message.app_id))
                     return "app_id: integer expected";
+            if (message.disabled != null && message.hasOwnProperty("disabled"))
+                if (typeof message.disabled !== "boolean")
+                    return "disabled: boolean expected";
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
@@ -1314,6 +1355,8 @@ $root.app = (function() {
                 message.saas_id = object.saas_id >>> 0;
             if (object.app_id != null)
                 message.app_id = object.app_id >>> 0;
+            if (object.disabled != null)
+                message.disabled = Boolean(object.disabled);
             if (object.name != null)
                 message.name = String(object.name);
             if (object.detail != null)
@@ -1339,6 +1382,7 @@ $root.app = (function() {
             if (options.defaults) {
                 object.saas_id = 0;
                 object.app_id = 0;
+                object.disabled = false;
                 object.name = "";
                 object.detail = "";
                 object.img = "";
@@ -1347,6 +1391,8 @@ $root.app = (function() {
                 object.saas_id = message.saas_id;
             if (message.app_id != null && message.hasOwnProperty("app_id"))
                 object.app_id = message.app_id;
+            if (message.disabled != null && message.hasOwnProperty("disabled"))
+                object.disabled = message.disabled;
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
             if (message.detail != null && message.hasOwnProperty("detail"))
@@ -12964,45 +13010,25 @@ $root.user = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * SetUserInfoRequest _nickname.
-         * @member {"nickname"|undefined} _nickname
-         * @memberof user.SetUserInfoRequest
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(SetUserInfoRequest.prototype, "_nickname", {
             get: $util.oneOfGetter($oneOfFields = ["nickname"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * SetUserInfoRequest _avatar.
-         * @member {"avatar"|undefined} _avatar
-         * @memberof user.SetUserInfoRequest
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(SetUserInfoRequest.prototype, "_avatar", {
             get: $util.oneOfGetter($oneOfFields = ["avatar"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * SetUserInfoRequest _sex.
-         * @member {"sex"|undefined} _sex
-         * @memberof user.SetUserInfoRequest
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(SetUserInfoRequest.prototype, "_sex", {
             get: $util.oneOfGetter($oneOfFields = ["sex"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * SetUserInfoRequest _bio.
-         * @member {"bio"|undefined} _bio
-         * @memberof user.SetUserInfoRequest
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(SetUserInfoRequest.prototype, "_bio", {
             get: $util.oneOfGetter($oneOfFields = ["bio"]),
             set: $util.oneOfSetter($oneOfFields)

@@ -236,6 +236,9 @@ export namespace app {
         /** UpdateAppRequest app */
         app?: (app.IAppIndex|null);
 
+        /** UpdateAppRequest disabled */
+        disabled?: (boolean|null);
+
         /** UpdateAppRequest name */
         name?: (string|null);
 
@@ -260,6 +263,9 @@ export namespace app {
 
         /** UpdateAppRequest app. */
         public app?: (app.IAppIndex|null);
+
+        /** UpdateAppRequest disabled. */
+        public disabled: boolean;
 
         /** UpdateAppRequest name. */
         public name: string;
@@ -460,6 +466,9 @@ export namespace app {
         /** App app_id */
         app_id?: (number|null);
 
+        /** App disabled */
+        disabled?: (boolean|null);
+
         /** App name */
         name?: (string|null);
 
@@ -484,6 +493,9 @@ export namespace app {
 
         /** App app_id. */
         public app_id: number;
+
+        /** App disabled. */
+        public disabled: boolean;
 
         /** App name. */
         public name: string;
@@ -5612,18 +5624,6 @@ export namespace user {
 
         /** SetUserInfoRequest bio. */
         public bio?: (string|null);
-
-        /** SetUserInfoRequest _nickname. */
-        public _nickname?: "nickname";
-
-        /** SetUserInfoRequest _avatar. */
-        public _avatar?: "avatar";
-
-        /** SetUserInfoRequest _sex. */
-        public _sex?: "sex";
-
-        /** SetUserInfoRequest _bio. */
-        public _bio?: "bio";
 
         /**
          * Creates a new SetUserInfoRequest instance using the specified properties.
