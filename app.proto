@@ -23,6 +23,7 @@ message UpdateAppRequest {
   // 授权信息
   auth.Authorization auth = 1;
   AppIndex app = 10;
+  bool disabled = 16;
   string name = 20;
   string detail = 21;
   string img = 22;
@@ -35,6 +36,7 @@ message GetAppsRequest {
 message App {
   uint32 saas_id =11;
   uint32 app_id = 12;
+  bool disabled = 16;
   string name = 20;
   string detail = 21;
   string img = 22;
